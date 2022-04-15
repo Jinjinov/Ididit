@@ -56,8 +56,8 @@ public partial class GoalComponent
         // TODO: add / edit goal name
 
         // TODO: delete goal
-        // TODO: delete time
 
+        // TODO: delete time
         // TODO: task - is repeating
         // TODO: task - desired interval
         // TODO: task - times completed list

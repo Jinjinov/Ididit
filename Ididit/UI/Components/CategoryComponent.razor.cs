@@ -19,22 +19,30 @@ public sealed partial class CategoryComponent
     [Parameter]
     public EventCallback<CategoryModel> CategoryChanged { get; set; }
 
-    public bool editCategory;
+    public bool editName;
 
-    void EditCategory()
+    void EditName()
     {
         if (Category != null)
-            editCategory = true;
+            editName = true;
     }
 
     void CancelEdit()
     {
-        editCategory = false;
+        editName = false;
+    }
+
+    async Task SaveName()
+    {
+        editName = false;
+
+        if (Category != null)
+            await _repository.UpdateCategoryName(Category.Id, Category.Name);
     }
 
     async Task NewCategory()
     {
-        editCategory = true;
+        editName = true;
 
         CategoryModel category = Category != null ? Category.CreateCategory() : _repository.CreateCategory();
 
@@ -42,14 +50,6 @@ public sealed partial class CategoryComponent
 
         Category = category;
         await CategoryChanged.InvokeAsync(Category);
-    }
-
-    async Task SaveCategory()
-    {
-        editCategory = false;
-
-        if (Category != null)
-            await _repository.UpdateCategoryName(Category.Id, Category.Name);
     }
 
     async Task DeleteCategory()
