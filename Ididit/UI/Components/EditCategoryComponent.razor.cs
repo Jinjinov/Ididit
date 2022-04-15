@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
 
-public sealed partial class CategoryComponent
+public sealed partial class EditCategoryComponent
 {
     [Inject]
     IRepository _repository { get; set; } = null!;
