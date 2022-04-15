@@ -6,13 +6,13 @@ namespace Ididit.Persistence;
 
 internal class GoogleDriveBackup
 {
-    public async Task<DataModel> ImportData()
+    public Task<DataModel> ImportData()
     {
         // TODO:
         throw new NotImplementedException();
     }
 
-    public async Task ExportData(IDataModel data)
+    public Task ExportData(IDataModel data)
     {
         // TODO:
         throw new NotImplementedException();

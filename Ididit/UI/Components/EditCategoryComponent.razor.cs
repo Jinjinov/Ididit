@@ -14,6 +14,10 @@ public sealed partial class EditCategoryComponent
     Theme Theme { get; set; } = null!;
 
     [Parameter]
+    [EditorRequired]
+    public CategoryModel? ParentCategory { get; set; } = null!;
+
+    [Parameter]
     public CategoryModel? Category { get; set; } = null!;
 
     [Parameter]
@@ -38,13 +42,15 @@ public sealed partial class EditCategoryComponent
 
         if (Category != null)
             await _repository.UpdateCategoryName(Category.Id, Category.Name);
+
+        await CategoryChanged.InvokeAsync(Category);
     }
 
     async Task NewCategory()
     {
         editName = true;
 
-        CategoryModel category = Category != null ? Category.CreateCategory() : _repository.CreateCategory();
+        CategoryModel category = ParentCategory != null ? ParentCategory.CreateCategory() : _repository.CreateCategory();
 
         await _repository.AddCategory(category);
 
@@ -54,12 +60,15 @@ public sealed partial class EditCategoryComponent
 
     async Task DeleteCategory()
     {
-        if (Category != null)
-        {
-            await _repository.DeleteCategory(Category.Id);
+        if (Category == null)
+            return;
 
-            Category = null;
-            await CategoryChanged.InvokeAsync(Category);
-        }
+        if (ParentCategory != null)
+            ParentCategory.CategoryList.Remove(Category);
+
+        await _repository.DeleteCategory(Category.Id);
+
+        Category = null;
+        await CategoryChanged.InvokeAsync(Category);
     }
 }
