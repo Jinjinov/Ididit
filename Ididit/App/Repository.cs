@@ -194,6 +194,16 @@ internal class Repository : DataModel, IRepository
 
     public async Task DeleteCategory(long id)
     {
+        foreach (CategoryModel category in _categoryDict[id].CategoryList)
+        {
+            await DeleteCategory(category.Id);
+        }
+
+        foreach (GoalModel goal in _categoryDict[id].GoalList)
+        {
+            await DeleteGoal(goal.Id);
+        }
+
         CategoryList.Remove(_categoryDict[id]);
 
         _categoryDict.Remove(id);
@@ -203,6 +213,11 @@ internal class Repository : DataModel, IRepository
 
     public async Task DeleteGoal(long id)
     {
+        foreach (TaskModel task in _goalDict[id].TaskList)
+        {
+            await DeleteTask(task.Id);
+        }
+
         _goalDict.Remove(id);
 
         await _databaseAccess.DeleteGoal(id);
@@ -210,6 +225,11 @@ internal class Repository : DataModel, IRepository
 
     public async Task DeleteTask(long id)
     {
+        foreach (DateTime time in _taskDict[id].TimeList)
+        {
+            await DeleteTime(time.Ticks);
+        }
+
         _taskDict.Remove(id);
 
         await _databaseAccess.DeleteTask(id);
