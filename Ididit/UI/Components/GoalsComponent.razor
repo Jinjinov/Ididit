@@ -1,0 +1,17 @@
+﻿@using Ididit.Data.Models
+
+<h3>GoalsComponent</h3>
+
+<div>Parent: @ParentCategory?.Name</div>
+
+<div>Selected: @_selectedGoal?.Name</div>
+
+@if (ParentCategory != null)
+{
+    <Button Color=Color.Primary Outline=true @onclick=NewGoal><span class="fa fa-fw fa-plus"></span>Add goal</Button>
+}
+
+@foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.GetAllGoals())
+{
+    <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal />
+}

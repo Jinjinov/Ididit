@@ -1,0 +1,13 @@
+﻿
+<div class="input-group flex-nowrap">
+    <Check TValue="bool" class="d-inline" >@Task.Name</Check>
+
+    @if (Task == SelectedTask)
+    {
+        <span>Selected</span>
+    }
+    else
+    {
+        <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Select</Button>
+    }
+</div>

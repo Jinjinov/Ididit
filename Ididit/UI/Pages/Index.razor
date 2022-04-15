@@ -1,0 +1,21 @@
+﻿@page "/"
+@using Ididit.Data.Models
+
+<PageTitle>ididit!</PageTitle>
+
+<div class="row flex-grow-1 overflow-hidden">
+    <div class="col mh-100 overflow-auto">
+        <ErrorBoundary>
+            <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
+        </ErrorBoundary>
+    </div>
+    <div class="col mh-100 overflow-auto">
+        <ErrorBoundary>
+            <GoalsComponent ParentCategory=_selectedCategory />
+        </ErrorBoundary>
+    </div>
+</div>
+
+@code {
+    CategoryModel? _selectedCategory;
+}
