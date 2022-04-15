@@ -53,10 +53,6 @@ public partial class GoalComponent
 
         // TODO: fix auto size
 
-        // TODO: add / edit goal name
-
-        // TODO: delete goal
-
         // TODO: delete time
         // TODO: task - is repeating
         // TODO: task - desired interval

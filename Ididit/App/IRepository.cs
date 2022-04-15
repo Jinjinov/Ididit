@@ -11,7 +11,9 @@ internal interface IRepository : IDataModel
     long MaxGoalId { get; }
     long MaxTaskId { get; }
 
-    IReadOnlyCollection<GoalModel> GetAllGoals();
+    IReadOnlyDictionary<long, CategoryModel> AllCategories { get; }
+    IReadOnlyDictionary<long, GoalModel> AllGoals { get; }
+    IReadOnlyDictionary<long, TaskModel> AllTasks { get; }
 
     Task Initialize();
     Task AddData(IDataModel data);

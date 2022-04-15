@@ -14,6 +14,10 @@ internal class Repository : DataModel, IRepository
     public long MaxGoalId => _goalDict.Keys.DefaultIfEmpty().Max();
     public long MaxTaskId => _taskDict.Keys.DefaultIfEmpty().Max();
 
+    public IReadOnlyDictionary<long, CategoryModel> AllCategories => _categoryDict;
+    public IReadOnlyDictionary<long, GoalModel> AllGoals => _goalDict;
+    public IReadOnlyDictionary<long, TaskModel> AllTasks => _taskDict;
+
     private Dictionary<long, CategoryModel> _categoryDict = new();
     private Dictionary<long, GoalModel> _goalDict = new();
     private Dictionary<long, TaskModel> _taskDict = new();
@@ -24,11 +28,6 @@ internal class Repository : DataModel, IRepository
     public Repository(IDatabaseAccess databaseAccess)
     {
         _databaseAccess = databaseAccess;
-    }
-
-    public IReadOnlyCollection<GoalModel> GetAllGoals()
-    {
-        return _goalDict.Values;
     }
 
     /// <summary>

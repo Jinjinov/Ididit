@@ -14,10 +14,6 @@ public sealed partial class EditCategoryComponent
     Theme Theme { get; set; } = null!;
 
     [Parameter]
-    [EditorRequired]
-    public CategoryModel? ParentCategory { get; set; } = null!;
-
-    [Parameter]
     public CategoryModel? Category { get; set; } = null!;
 
     [Parameter]
@@ -50,7 +46,7 @@ public sealed partial class EditCategoryComponent
     {
         editName = true;
 
-        CategoryModel category = ParentCategory != null ? ParentCategory.CreateCategory() : _repository.CreateCategory();
+        CategoryModel category = Category != null ? Category.CreateCategory() : _repository.CreateCategory();
 
         await _repository.AddCategory(category);
 
@@ -63,8 +59,8 @@ public sealed partial class EditCategoryComponent
         if (Category == null)
             return;
 
-        if (ParentCategory != null)
-            ParentCategory.CategoryList.Remove(Category);
+        if (Category.CategoryId.HasValue && _repository.AllCategories.TryGetValue(Category.CategoryId.Value, out CategoryModel? parent))
+            parent.CategoryList.Remove(Category);
 
         await _repository.DeleteCategory(Category.Id);
 
