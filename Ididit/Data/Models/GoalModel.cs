@@ -13,7 +13,6 @@ public class GoalModel
     internal long CategoryId { get; set; }
 
     public string Name { get; set; } = string.Empty;
-    [JsonIgnore]
     internal string Details { get; set; } = string.Empty;
 
     [JsonIgnore]
@@ -27,7 +26,7 @@ public class GoalModel
         {
             GoalId = Id,
             Name = "Task " + TaskList.Count,
-            Created = DateTime.Now
+            CreatedAt = DateTime.Now.Ticks
         };
 
         TaskList.Add(task);

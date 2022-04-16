@@ -13,23 +13,19 @@ public class TaskModel
 
     public string Name { get; set; } = string.Empty;
 
-    public bool IsRepeating { get; set; }
-    public DateTime Created { get; set; }
+    public long CreatedAt { get; set; }
 
-    public long AverageIntervalTicks { get => AverageInterval.Ticks; set => AverageInterval = new TimeSpan(value); }
-    public long DesiredIntervalTicks { get => DesiredInterval.Ticks; set => DesiredInterval = new TimeSpan(value); }
+    public long AverageInterval { get; set; }
+    public long DesiredInterval { get; set; }
 
-    internal TimeSpan AverageInterval { get; set; }
-    internal TimeSpan DesiredInterval { get; set; } = new TimeSpan(1, 0, 0, 0);
-
-    public List<DateTime> TimeList = new();
+    public List<long> TimeList = new();
 
     public (long Ticks, long TaskId) AddTime()
     {
-        DateTime time = DateTime.Now;
+        long time = DateTime.Now.Ticks;
 
         TimeList.Add(time);
 
-        return (time.Ticks, Id);
+        return (time, Id);
     }
 }

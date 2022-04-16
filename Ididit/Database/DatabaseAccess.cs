@@ -127,10 +127,9 @@ internal class DatabaseAccess : IDatabaseAccess
                 Id = task.Id,
                 GoalId = task.GoalId,
                 Name = task.Name,
-                IsRepeating = task.IsRepeating,
-                Created = task.Created,
-                AverageIntervalTicks = task.AverageIntervalTicks,
-                DesiredIntervalTicks = task.DesiredIntervalTicks
+                CreatedAt = task.CreatedAt,
+                AverageInterval = task.AverageInterval,
+                DesiredInterval = task.DesiredInterval
             };
 
             _taskDict[task.Id] = task;
@@ -146,7 +145,7 @@ internal class DatabaseAccess : IDatabaseAccess
         {
             _timeDict[time.Ticks] = time;
 
-            data.TaskDict[time.TaskId].TimeList.Add(new DateTime(time.Ticks));
+            data.TaskDict[time.TaskId].TimeList.Add(time.Ticks);
         }
 
         return data;
@@ -200,10 +199,9 @@ internal class DatabaseAccess : IDatabaseAccess
                         Id = task.Id,
                         GoalId = task.GoalId,
                         Name = task.Name,
-                        IsRepeating = task.IsRepeating,
-                        Created = task.Created,
-                        AverageIntervalTicks = task.AverageIntervalTicks,
-                        DesiredIntervalTicks = task.DesiredIntervalTicks
+                        CreatedAt = task.CreatedAt,
+                        AverageInterval = task.AverageInterval,
+                        DesiredInterval = task.DesiredInterval
                     };
 
                     if (!_taskDict.ContainsKey(taskEntity.Id))
@@ -211,11 +209,11 @@ internal class DatabaseAccess : IDatabaseAccess
 
                     _taskDict[taskEntity.Id] = taskEntity;
 
-                    foreach (DateTime time in task.TimeList)
+                    foreach (long time in task.TimeList)
                     {
                         TimeEntity timeEntity = new()
                         {
-                            Ticks = time.Ticks,
+                            Ticks = time,
                             TaskId = task.Id
                         };
 
@@ -274,10 +272,9 @@ internal class DatabaseAccess : IDatabaseAccess
             Id = task.Id,
             GoalId = task.GoalId,
             Name = task.Name,
-            IsRepeating = task.IsRepeating,
-            Created = task.Created,
-            AverageIntervalTicks = task.AverageIntervalTicks,
-            DesiredIntervalTicks = task.DesiredIntervalTicks
+            CreatedAt = task.CreatedAt,
+            AverageInterval = task.AverageInterval,
+            DesiredInterval = task.DesiredInterval
         };
 
         _taskList.Add(taskEntity);

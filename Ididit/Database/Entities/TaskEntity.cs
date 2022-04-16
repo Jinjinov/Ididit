@@ -1,5 +1,4 @@
 ﻿using DnetIndexedDb;
-using System;
 
 namespace Ididit.Database.Entities;
 
@@ -15,14 +14,11 @@ internal class TaskEntity
     public string Name { get; set; } = string.Empty;
 
     [IndexDbIndex]
-    public bool IsRepeating { get; set; }
+    public long CreatedAt { get; set; }
 
     [IndexDbIndex]
-    public DateTime Created { get; set; }
+    public long AverageInterval { get; set; }
 
     [IndexDbIndex]
-    public long AverageIntervalTicks { get; set; }
-
-    [IndexDbIndex]
-    public long DesiredIntervalTicks { get; set; }
+    public long DesiredInterval { get; set; }
 }

@@ -34,11 +34,11 @@ public partial class GoalComponent
     {
         if (Goal.Details.Count(c => c.Equals('\n')) < text.Count(c => c.Equals('\n')))
         {
-            string[] tasks = Goal.Details.Split('\n');
+            string[] lines = Goal.Details.Split('\n');
 
             TaskModel task = Goal.CreateTask();
 
-            task.Name = tasks[^1];
+            task.Name = lines[^1];
 
             await _repository.AddTask(task);
         }
@@ -51,12 +51,14 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: fix auto size
-
+        // TODO: add time
         // TODO: delete time
-        // TODO: task - is repeating
-        // TODO: task - desired interval
-        // TODO: task - times completed list
+        // TODO: task - times completed list should load on demand
+
+        // TODO: task - set is repeating - no need - if interval is not set, it is not repeating
+        // TODO: task - set desired interval
+        // TODO: task - calculate average interval
+        // TODO: task - calculate (elapsed time / desired interval)
 
         // TODO: move backup from MainLayout to a component
 

@@ -31,7 +31,6 @@ public partial class MainLayout
     [Inject]
     JsInterop _jsInterop { get; set; } = null!;
 
-
     // calling _repository.Initialize() from OnInitializedAsync() or OnParametersSetAsync() doesn't work
 
     public override async Task SetParametersAsync(ParameterView parameters)

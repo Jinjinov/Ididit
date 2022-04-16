@@ -225,9 +225,9 @@ internal class Repository : DataModel, IRepository
 
     public async Task DeleteTask(long id)
     {
-        foreach (DateTime time in _taskDict[id].TimeList)
+        foreach (long time in _taskDict[id].TimeList)
         {
-            await DeleteTime(time.Ticks);
+            await DeleteTime(time);
         }
 
         _taskDict.Remove(id);
