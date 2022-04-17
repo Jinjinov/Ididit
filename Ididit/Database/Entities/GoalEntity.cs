@@ -4,7 +4,7 @@ namespace Ididit.Database.Entities;
 
 internal class GoalEntity
 {
-    [IndexDbKey(AutoIncrement = true)]
+    [IndexDbKey]
     public long Id { get; set; }
 
     [IndexDbIndex]

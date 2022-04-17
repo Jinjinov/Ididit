@@ -5,7 +5,7 @@ namespace Ididit.Database.Entities;
 
 internal class TaskEntity
 {
-    [IndexDbKey(AutoIncrement = true)]
+    [IndexDbKey]
     public long Id { get; set; }
 
     [IndexDbIndex]

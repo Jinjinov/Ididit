@@ -26,7 +26,7 @@ internal class IndexedDb : IndexedDbInterop
             Name = "Ididit",
             Version = 1,
             DbModelId = 0,
-            UseKeyGenerator = true
+            //UseKeyGenerator = true - Unable to use AutoIncrement = false and AutoIncrement = true in the same IndexedDbDatabaseModel
         };
 
         indexedDbDatabaseModel.AddStore<CategoryEntity>();
@@ -143,9 +143,9 @@ internal class DatabaseAccess : IDatabaseAccess
 
         foreach (TimeEntity time in _timeList)
         {
-            _timeDict[time.Time.Ticks] = time;
+            _timeDict[time.Ticks] = time;
 
-            data.TaskDict[time.TaskId].TimeList.Add(time.Time);
+            data.TaskDict[time.TaskId].TimeList.Add(new DateTime(time.Ticks));
         }
 
         return data;
@@ -213,14 +213,14 @@ internal class DatabaseAccess : IDatabaseAccess
                     {
                         TimeEntity timeEntity = new()
                         {
-                            Time = time,
+                            Ticks = time.Ticks,
                             TaskId = task.Id
                         };
 
-                        if (!_timeDict.ContainsKey(timeEntity.Time.Ticks))
+                        if (!_timeDict.ContainsKey(timeEntity.Ticks))
                             _timeList.Add(timeEntity);
 
-                        _timeDict[timeEntity.Time.Ticks] = timeEntity;
+                        _timeDict[timeEntity.Ticks] = timeEntity;
                     }
                 }
             }
@@ -288,13 +288,13 @@ internal class DatabaseAccess : IDatabaseAccess
     {
         TimeEntity timeEntity = new()
         {
-            Time = time,
+            Ticks = time.Ticks,
             TaskId = taskId
         };
 
         _timeList.Add(timeEntity);
 
-        _timeDict[timeEntity.Time.Ticks] = timeEntity;
+        _timeDict[timeEntity.Ticks] = timeEntity;
 
         string result = await _indexedDb.AddItems(new List<TimeEntity>() { timeEntity });
     }
