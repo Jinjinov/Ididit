@@ -20,12 +20,12 @@ public class TaskModel
 
     public List<DateTime> TimeList = new();
 
-    public (long Ticks, long TaskId) AddTime()
+    public (DateTime Time, long TaskId) AddTime()
     {
         DateTime time = DateTime.Now;
 
         TimeList.Add(time);
 
-        return (time.Ticks, Id);
+        return (time, Id);
     }
 }

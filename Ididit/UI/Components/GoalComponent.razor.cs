@@ -43,9 +43,8 @@ public partial class GoalComponent
 
             await _repository.AddTask(task);
 
-            DateTime now = DateTime.Now;
-            task.TimeList.Add(now);
-            await _repository.AddTime(now, task.Id);
+            (DateTime time, long taskId) = task.AddTime();
+            await _repository.AddTime(time, taskId);
         }
         else if (Goal.Details.Count(c => c.Equals('\n')) > text.Count(c => c.Equals('\n')) && Goal.TaskList.Any())
         {
