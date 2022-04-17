@@ -131,9 +131,9 @@ internal class Repository : DataModel, IRepository
         await _databaseAccess.AddTask(task);
     }
 
-    public async Task AddTime(long ticks, long taskId)
+    public async Task AddTime(DateTime time, long taskId)
     {
-        await _databaseAccess.AddTime(ticks, taskId);
+        await _databaseAccess.AddTime(time, taskId);
     }
 
     public async Task UpdateCategoryName(long id, string name)
@@ -225,9 +225,9 @@ internal class Repository : DataModel, IRepository
 
     public async Task DeleteTask(long id)
     {
-        foreach (long time in _taskDict[id].TimeList)
+        foreach (DateTime time in _taskDict[id].TimeList)
         {
-            await DeleteTime(time);
+            await DeleteTime(time.Ticks);
         }
 
         _taskDict.Remove(id);

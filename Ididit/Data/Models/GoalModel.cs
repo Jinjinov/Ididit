@@ -26,7 +26,7 @@ public class GoalModel
         {
             GoalId = Id,
             Name = "Task " + TaskList.Count,
-            CreatedAt = DateTime.Now.Ticks
+            CreatedAt = DateTime.Now
         };
 
         TaskList.Add(task);

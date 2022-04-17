@@ -13,19 +13,19 @@ public class TaskModel
 
     public string Name { get; set; } = string.Empty;
 
-    public long CreatedAt { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     public long AverageInterval { get; set; }
     public long DesiredInterval { get; set; }
 
-    public List<long> TimeList = new();
+    public List<DateTime> TimeList = new();
 
     public (long Ticks, long TaskId) AddTime()
     {
-        long time = DateTime.Now.Ticks;
+        DateTime time = DateTime.Now;
 
         TimeList.Add(time);
 
-        return (time, Id);
+        return (time.Ticks, Id);
     }
 }

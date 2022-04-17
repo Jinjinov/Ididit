@@ -143,9 +143,9 @@ internal class DatabaseAccess : IDatabaseAccess
 
         foreach (TimeEntity time in _timeList)
         {
-            _timeDict[time.Ticks] = time;
+            _timeDict[time.Time.Ticks] = time;
 
-            data.TaskDict[time.TaskId].TimeList.Add(time.Ticks);
+            data.TaskDict[time.TaskId].TimeList.Add(time.Time);
         }
 
         return data;
@@ -209,18 +209,18 @@ internal class DatabaseAccess : IDatabaseAccess
 
                     _taskDict[taskEntity.Id] = taskEntity;
 
-                    foreach (long time in task.TimeList)
+                    foreach (DateTime time in task.TimeList)
                     {
                         TimeEntity timeEntity = new()
                         {
-                            Ticks = time,
+                            Time = time,
                             TaskId = task.Id
                         };
 
-                        if (!_timeDict.ContainsKey(timeEntity.Ticks))
+                        if (!_timeDict.ContainsKey(timeEntity.Time.Ticks))
                             _timeList.Add(timeEntity);
 
-                        _timeDict[timeEntity.Ticks] = timeEntity;
+                        _timeDict[timeEntity.Time.Ticks] = timeEntity;
                     }
                 }
             }
@@ -284,17 +284,17 @@ internal class DatabaseAccess : IDatabaseAccess
         string result = await _indexedDb.AddItems(new List<TaskEntity>() { taskEntity });
     }
 
-    public async Task AddTime(long ticks, long taskId)
+    public async Task AddTime(DateTime time, long taskId)
     {
         TimeEntity timeEntity = new()
         {
-            Ticks = ticks,
+            Time = time,
             TaskId = taskId
         };
 
         _timeList.Add(timeEntity);
 
-        _timeDict[timeEntity.Ticks] = timeEntity;
+        _timeDict[timeEntity.Time.Ticks] = timeEntity;
 
         string result = await _indexedDb.AddItems(new List<TimeEntity>() { timeEntity });
     }

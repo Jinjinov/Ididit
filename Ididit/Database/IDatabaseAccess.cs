@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data;
 using Ididit.Data.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Ididit.Database;
@@ -15,7 +16,7 @@ internal interface IDatabaseAccess
     Task AddCategory(CategoryModel category);
     Task AddGoal(GoalModel goal);
     Task AddTask(TaskModel task);
-    Task AddTime(long ticks, long taskId);
+    Task AddTime(DateTime time, long taskId);
 
     Task UpdateCategoryName(long id, string name);
     Task UpdateGoalName(long id, string name);

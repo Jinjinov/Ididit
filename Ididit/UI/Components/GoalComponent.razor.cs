@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,6 +42,10 @@ public partial class GoalComponent
             task.Name = lines[^1];
 
             await _repository.AddTask(task);
+
+            DateTime now = DateTime.Now;
+            task.TimeList.Add(now);
+            await _repository.AddTime(now, task.Id);
         }
         else if (Goal.Details.Count(c => c.Equals('\n')) > text.Count(c => c.Equals('\n')) && Goal.TaskList.Any())
         {
@@ -55,7 +60,6 @@ public partial class GoalComponent
         // TODO: delete time
         // TODO: task - times completed list should load on demand
 
-        // TODO: task - set is repeating - no need - if interval is not set, it is not repeating
         // TODO: task - set desired interval
         // TODO: task - calculate average interval
         // TODO: task - calculate (elapsed time / desired interval)
