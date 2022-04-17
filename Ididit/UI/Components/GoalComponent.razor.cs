@@ -42,9 +42,6 @@ public partial class GoalComponent
             task.Name = lines[^1];
 
             await _repository.AddTask(task);
-
-            (DateTime time, long taskId) = task.AddTime();
-            await _repository.AddTime(time, taskId);
         }
         else if (Goal.Details.Count(c => c.Equals('\n')) > text.Count(c => c.Equals('\n')) && Goal.TaskList.Any())
         {
