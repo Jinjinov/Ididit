@@ -36,10 +36,8 @@ public class TaskModel
 
     public List<DateTime> TimeList = new();
 
-    public (DateTime Time, long TaskId) AddTime()
+    public (DateTime Time, long TaskId) AddTime(DateTime time)
     {
-        DateTime time = DateTime.Now;
-
         TimeList.Add(time);
 
         if (TimeList.Count == 1)

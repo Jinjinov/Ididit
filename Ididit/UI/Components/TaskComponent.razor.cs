@@ -26,6 +26,7 @@ public partial class TaskComponent
 
     public bool editTime;
     public long SelectedTime;
+    public DateTime EditTime;
 
     async Task SelectTask()
     {
@@ -36,9 +37,25 @@ public partial class TaskComponent
 
     async Task OnDone()
     {
-        (DateTime time, long taskId) = Task.AddTime();
+        (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 
         await _repository.AddTime(time, taskId);
+    }
+
+    async Task SaveTime(DateTime time)
+    {
+        Task.RemoveTime(time);
+        await _repository.DeleteTime(time.Ticks);
+
+        Task.AddTime(EditTime);
+        await _repository.AddTime(EditTime, Task.Id);
+    }
+
+    async Task DeleteTime(DateTime time)
+    {
+        Task.RemoveTime(time);
+
+        await _repository.DeleteTime(time.Ticks);
     }
 
     public async Task SetDesiredIntervalDays(int? days)
@@ -53,13 +70,6 @@ public partial class TaskComponent
         Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
         await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
-    }
-
-    async Task DeleteTime(DateTime time)
-    {
-        Task.RemoveTime(time);
-
-        await _repository.DeleteTime(time.Ticks);
     }
 
     public static string ToReadableString(TimeSpan span)
