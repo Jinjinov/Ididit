@@ -4,13 +4,14 @@
         <Check TValue="bool" class="d-inline" >@Task.Name</Check>
 
         <Button Color=Color.Primary Outline=true Block=false Size="@Theme.Size" @onclick=OnDone><span class="fa fa-fw fa-check"></span></Button>
+
+        @if (Task != SelectedTask)
+        {
+            <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Select</Button>
+        }
     </div>
 
-    @if (Task != SelectedTask)
-    {
-        <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Select</Button>
-    }
-    else
+    @if (Task == SelectedTask)
     {
         <p>
             @( "Average interval: " + ToReadableString(Task.AverageTime) )

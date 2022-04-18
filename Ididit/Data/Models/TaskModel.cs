@@ -42,7 +42,10 @@ public class TaskModel
 
         TimeList.Add(time);
 
-        AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+        if (TimeList.Count == 1)
+            AverageTime = TimeList.First() - CreatedAt;
+        else
+            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
 
         return (time, Id);
     }
