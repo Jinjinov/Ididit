@@ -355,6 +355,20 @@ internal class DatabaseAccess : IDatabaseAccess
         }
     }
 
+    public async Task UpdateTaskInterval(long id, long interval)
+    {
+        if (_taskDict.TryGetValue(id, out TaskEntity? task))
+        {
+            task.DesiredInterval = interval;
+
+            await _indexedDb.UpdateItems(new List<TaskEntity> { task });
+        }
+        else
+        {
+            throw new ArgumentException($"Task {id} doesn't exist!");
+        }
+    }
+
     public async Task DeleteCategory(long id)
     {
         _categoryList.Remove(_categoryDict[id]);

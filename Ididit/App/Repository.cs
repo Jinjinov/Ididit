@@ -192,6 +192,20 @@ internal class Repository : DataModel, IRepository
         }
     }
 
+    public async Task UpdateTaskInterval(long id, long interval)
+    {
+        if (_taskDict.TryGetValue(id, out TaskModel? task))
+        {
+            task.DesiredInterval = interval;
+
+            await _databaseAccess.UpdateTaskInterval(id, interval);
+        }
+        else
+        {
+            throw new ArgumentException($"Task {id} doesn't exist!");
+        }
+    }
+
     public async Task DeleteCategory(long id)
     {
         foreach (CategoryModel category in _categoryDict[id].CategoryList)

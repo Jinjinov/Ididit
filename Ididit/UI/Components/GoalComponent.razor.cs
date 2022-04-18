@@ -52,7 +52,7 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: add time
+        // TODO: edit time
         // TODO: delete time
         // TODO: task - times completed list should load on demand
 

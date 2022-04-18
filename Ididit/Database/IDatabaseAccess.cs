@@ -23,6 +23,7 @@ internal interface IDatabaseAccess
     Task UpdateTaskName(long id, string name);
 
     Task UpdateGoalDetails(long id, string details);
+    Task UpdateTaskInterval(long id, long interval);
 
     Task DeleteCategory(long id);
     Task DeleteGoal(long id);

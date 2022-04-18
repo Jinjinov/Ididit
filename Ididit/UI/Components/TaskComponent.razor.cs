@@ -37,4 +37,27 @@ public partial class TaskComponent
 
         await _repository.AddTime(time, taskId);
     }
+
+    public async Task SetDesiredIntervalDays(int? days)
+    {
+        Task.DesiredTime = new TimeSpan(days ?? 0, Task.DesiredTime.Hours, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
+
+        await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
+    }
+
+    public async Task SetDesiredIntervalHours(int? hours)
+    {
+        Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
+
+        await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
+    }
+
+    public static string ToReadableString(TimeSpan span)
+    {
+        return span.TotalMinutes >= 1.0 ? (
+            (span.Days > 0 ? span.Days + " d" + (span.Hours > 0 || span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
+            (span.Hours > 0 ? span.Hours + " h" + (span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
+            (span.Minutes > 0 ? span.Minutes + " m" : string.Empty)
+            ) : "0 minutes";
+    }
 }

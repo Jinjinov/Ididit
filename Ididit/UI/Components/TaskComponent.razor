@@ -4,12 +4,62 @@
 
     <Button Color=Color.Primary Outline=true Block=false Size="@Theme.Size" @onclick=OnDone><span class="fa fa-fw fa-check"></span></Button>
 
-    @if (Task == SelectedTask)
+    @if (Task != SelectedTask)
     {
-        <span>Selected</span>
+        <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Select</Button>
     }
     else
     {
-        <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Select</Button>
+        <p>
+            @( "Average interval: " + ToReadableString(Task.AverageTime) )
+
+            @if (Task.IsElapsedOverAverage)
+            {
+                <div><span class="font-weight-bold"> @( "Average interval is overdue by: " + ToReadableString(Task.ElapsedTime - Task.AverageTime) + " ( " + (Task.ElapsedToAverageRatio - 100).ToString("N0") + " % )" )</span></div>
+            }
+        </p>
+
+        <p>
+            @( "Desired interval:" )
+
+            <div class="input-group flex-nowrap my-1">
+                <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
+                <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
+
+                <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
+                <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
+            </div>
+
+            @if (Task.IsElapsedOverDesired)
+            {
+                <div><span class="font-weight-bold"> @( "Desired interval is overdue by: " + ToReadableString(Task.ElapsedTime - Task.DesiredTime) + " ( " + (Task.ElapsedToDesiredRatio - 100).ToString("N0") + " % )" )</span></div>
+            }
+        </p>
+
+        @foreach (DateTime time in Task.TimeList)
+        {
+            @*@if (editTime && SelectedTime == time)
+            {
+                <div class="input-group flex-nowrap mb-1">
+                    <DateEdit TValue="DateTime" Size="@Theme.Size" Date="@time" DateChanged="@((dateTime) => { time = dateTime.Date + time.TimeOfDay; })" />
+                    <TimeEdit TValue="TimeSpan" Size="@Theme.Size" Time="@time.TimeOfDay" TimeChanged="@((timeSpan) => { time = time.Date + timeSpan; })" />
+                    <div class="input-group-append">
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await SaveTime(time))"><span class="fa fa-fw fa-save"></span></Button>
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = null; editTime = false; })"><span class="fa fa-fw fa-times"></span></Button>
+                    </div>
+                </div>
+            }
+            else*@
+            {
+                <div class="input-group flex-nowrap mb-1 d-flex">
+                    <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+
+                    @*<div class="input-group-append">
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time; editTime = true; })"><span class="fa fa-fw fa-edit"></span></Button>
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await DeleteTime(time))"><span class="fas fa-fw fa-trash-alt"></span></Button>
+                    </div>*@
+                </div>
+            }
+        }
     }
 </div>
