@@ -59,4 +59,16 @@ public class TaskModel
         else
             AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
     }
+
+    public void UpdateTime(DateTime oldTime, DateTime newTime)
+    {
+        TimeList.Remove(oldTime);
+
+        TimeList.Add(newTime);
+
+        if (TimeList.Count == 1)
+            AverageTime = TimeList.First() - CreatedAt;
+        else
+            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+    }
 }

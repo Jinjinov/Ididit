@@ -41,18 +41,16 @@ public partial class TaskComponent
 
         await _repository.AddTime(time, taskId);
 
-        // TODO: save average
+        await _repository.UpdateTask(Task.Id);
     }
 
     async Task SaveTime(DateTime time)
     {
-        Task.RemoveTime(time);
-        await _repository.DeleteTime(time.Ticks);
+        Task.UpdateTime(time, EditTime);
 
-        Task.AddTime(EditTime);
-        await _repository.AddTime(EditTime, Task.Id);
+        await _repository.UpdateTime(time.Ticks, EditTime, Task.Id);
 
-        // TODO: save average
+        await _repository.UpdateTask(Task.Id);
     }
 
     async Task DeleteTime(DateTime time)
@@ -61,7 +59,7 @@ public partial class TaskComponent
 
         await _repository.DeleteTime(time.Ticks);
 
-        // TODO: save average
+        await _repository.UpdateTask(Task.Id);
     }
 
     public async Task SetDesiredIntervalDays(int? days)
