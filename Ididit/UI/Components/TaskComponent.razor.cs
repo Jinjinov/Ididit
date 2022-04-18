@@ -40,6 +40,8 @@ public partial class TaskComponent
         (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 
         await _repository.AddTime(time, taskId);
+
+        // TODO: save average
     }
 
     async Task SaveTime(DateTime time)
@@ -49,6 +51,8 @@ public partial class TaskComponent
 
         Task.AddTime(EditTime);
         await _repository.AddTime(EditTime, Task.Id);
+
+        // TODO: save average
     }
 
     async Task DeleteTime(DateTime time)
@@ -56,20 +60,22 @@ public partial class TaskComponent
         Task.RemoveTime(time);
 
         await _repository.DeleteTime(time.Ticks);
+
+        // TODO: save average
     }
 
     public async Task SetDesiredIntervalDays(int? days)
     {
         Task.DesiredTime = new TimeSpan(days ?? 0, Task.DesiredTime.Hours, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
-        await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
+        await _repository.UpdateTask(Task.Id);
     }
 
     public async Task SetDesiredIntervalHours(int? hours)
     {
         Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
-        await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
+        await _repository.UpdateTask(Task.Id);
     }
 
     public static string ToReadableString(TimeSpan span)

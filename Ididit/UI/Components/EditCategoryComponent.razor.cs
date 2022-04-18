@@ -37,7 +37,7 @@ public sealed partial class EditCategoryComponent
         editName = false;
 
         if (Category != null)
-            await _repository.UpdateCategoryName(Category.Id, Category.Name);
+            await _repository.UpdateCategory(Category.Id);
 
         await CategoryChanged.InvokeAsync(Category);
     }

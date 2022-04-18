@@ -299,73 +299,66 @@ internal class DatabaseAccess : IDatabaseAccess
         string result = await _indexedDb.AddItems(new List<TimeEntity>() { timeEntity });
     }
 
-    public async Task UpdateCategoryName(long id, string name)
+    public async Task UpdateCategory(CategoryModel category)
     {
-        if (_categoryDict.TryGetValue(id, out CategoryEntity? category))
+        if (_categoryDict.TryGetValue(category.Id, out CategoryEntity? categoryEntity))
         {
-            category.Name = name;
+            categoryEntity.CategoryId = category.CategoryId;
+            categoryEntity.Name = category.Name;
 
-            await _indexedDb.UpdateItems(new List<CategoryEntity> { category });
+            await _indexedDb.UpdateItems(new List<CategoryEntity> { categoryEntity });
         }
         else
         {
-            throw new ArgumentException($"Category {id} doesn't exist!");
+            throw new ArgumentException($"Category {category.Id} doesn't exist!");
         }
     }
 
-    public async Task UpdateGoalName(long id, string name)
+    public async Task UpdateGoal(GoalModel goal)
     {
-        if (_goalDict.TryGetValue(id, out GoalEntity? goal))
+        if (_goalDict.TryGetValue(goal.Id, out GoalEntity? goalEntity))
         {
-            goal.Name = name;
+            goalEntity.CategoryId = goal.CategoryId;
+            goalEntity.Name = goal.Name;
+            goalEntity.Details = goal.Details;
 
-            await _indexedDb.UpdateItems(new List<GoalEntity> { goal });
+            await _indexedDb.UpdateItems(new List<GoalEntity> { goalEntity });
         }
         else
         {
-            throw new ArgumentException($"Gaol {id} doesn't exist!");
+            throw new ArgumentException($"Gaol {goal.Id} doesn't exist!");
         }
     }
 
-    public async Task UpdateTaskName(long id, string name)
+    public async Task UpdateTask(TaskModel task)
     {
-        if (_taskDict.TryGetValue(id, out TaskEntity? task))
+        if (_taskDict.TryGetValue(task.Id, out TaskEntity? taskEntity))
         {
-            task.Name = name;
+            taskEntity.GoalId = taskEntity.GoalId;
+            taskEntity.Name = taskEntity.Name;
+            taskEntity.CreatedAt = taskEntity.CreatedAt;
+            taskEntity.AverageInterval = taskEntity.AverageInterval;
+            taskEntity.DesiredInterval = taskEntity.DesiredInterval;
 
-            await _indexedDb.UpdateItems(new List<TaskEntity> { task });
+            await _indexedDb.UpdateItems(new List<TaskEntity> { taskEntity });
         }
         else
         {
-            throw new ArgumentException($"Task {id} doesn't exist!");
+            throw new ArgumentException($"Task {task.Id} doesn't exist!");
         }
     }
 
-    public async Task UpdateGoalDetails(long id, string details)
+    public async Task UpdateTime(long id, DateTime time, long taskId)
     {
-        if (_goalDict.TryGetValue(id, out GoalEntity? goal))
+        if (_timeDict.ContainsKey(id))
         {
-            goal.Details = details;
+            await DeleteTime(id);
 
-            await _indexedDb.UpdateItems(new List<GoalEntity> { goal });
+            await AddTime(time, taskId);
         }
         else
         {
             throw new ArgumentException($"Goal {id} doesn't exist!");
-        }
-    }
-
-    public async Task UpdateTaskInterval(long id, long interval)
-    {
-        if (_taskDict.TryGetValue(id, out TaskEntity? task))
-        {
-            task.DesiredInterval = interval;
-
-            await _indexedDb.UpdateItems(new List<TaskEntity> { task });
-        }
-        else
-        {
-            throw new ArgumentException($"Task {id} doesn't exist!");
         }
     }
 

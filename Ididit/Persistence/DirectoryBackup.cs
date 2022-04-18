@@ -58,7 +58,8 @@ internal class DirectoryBackup
                 }
                 else
                 {
-                    _repository.UpdateGoalDetails(goal.Id, node.Text);
+                    goal.Details = node.Text;
+                    _repository.UpdateGoal(goal.Id);
                 }
             }
             else if (node.Kind == "directory")

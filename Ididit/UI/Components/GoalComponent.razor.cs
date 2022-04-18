@@ -75,6 +75,8 @@ public partial class GoalComponent
         // TODO: drag & drop - reorder
         // TODO: drag & drop - move / change parent
 
-        await _repository.UpdateGoalDetails(Goal.Id, text);
+        Goal.Details = text;
+
+        await _repository.UpdateGoal(Goal.Id);
     }
 }

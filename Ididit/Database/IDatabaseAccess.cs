@@ -18,12 +18,10 @@ internal interface IDatabaseAccess
     Task AddTask(TaskModel task);
     Task AddTime(DateTime time, long taskId);
 
-    Task UpdateCategoryName(long id, string name);
-    Task UpdateGoalName(long id, string name);
-    Task UpdateTaskName(long id, string name);
-
-    Task UpdateGoalDetails(long id, string details);
-    Task UpdateTaskInterval(long id, long interval);
+    Task UpdateCategory(CategoryModel category);
+    Task UpdateGoal(GoalModel goal);
+    Task UpdateTask(TaskModel task);
+    Task UpdateTime(long id, DateTime time, long taskId);
 
     Task DeleteCategory(long id);
     Task DeleteGoal(long id);

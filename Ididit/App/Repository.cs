@@ -136,13 +136,11 @@ internal class Repository : DataModel, IRepository
         await _databaseAccess.AddTime(time, taskId);
     }
 
-    public async Task UpdateCategoryName(long id, string name)
+    public async Task UpdateCategory(long id)
     {
         if (_categoryDict.TryGetValue(id, out CategoryModel? category))
         {
-            category.Name = name;
-
-            await _databaseAccess.UpdateCategoryName(id, name);
+            await _databaseAccess.UpdateCategory(category);
         }
         else
         {
@@ -150,13 +148,11 @@ internal class Repository : DataModel, IRepository
         }
     }
 
-    public async Task UpdateGoalName(long id, string name)
+    public async Task UpdateGoal(long id)
     {
         if (_goalDict.TryGetValue(id, out GoalModel? goal))
         {
-            goal.Name = name;
-
-            await _databaseAccess.UpdateGoalName(id, name);
+            await _databaseAccess.UpdateGoal(goal);
         }
         else
         {
@@ -164,13 +160,11 @@ internal class Repository : DataModel, IRepository
         }
     }
 
-    public async Task UpdateTaskName(long id, string name)
+    public async Task UpdateTask(long id)
     {
         if (_taskDict.TryGetValue(id, out TaskModel? task))
         {
-            task.Name = name;
-
-            await _databaseAccess.UpdateTaskName(id, name);
+            await _databaseAccess.UpdateTask(task);
         }
         else
         {
@@ -178,32 +172,9 @@ internal class Repository : DataModel, IRepository
         }
     }
 
-    public async Task UpdateGoalDetails(long id, string details)
+    public async Task UpdateTime(long id, DateTime time, long taskId)
     {
-        if (_goalDict.TryGetValue(id, out GoalModel? goal))
-        {
-            goal.Details = details;
-
-            await _databaseAccess.UpdateGoalDetails(id, details);
-        }
-        else
-        {
-            throw new ArgumentException($"Goal {id} doesn't exist!");
-        }
-    }
-
-    public async Task UpdateTaskInterval(long id, long interval)
-    {
-        if (_taskDict.TryGetValue(id, out TaskModel? task))
-        {
-            task.DesiredInterval = interval;
-
-            await _databaseAccess.UpdateTaskInterval(id, interval);
-        }
-        else
-        {
-            throw new ArgumentException($"Task {id} doesn't exist!");
-        }
+        await _databaseAccess.UpdateTime(id, time, taskId);
     }
 
     public async Task DeleteCategory(long id)

@@ -25,12 +25,10 @@ internal interface IRepository : IDataModel
     Task AddTask(TaskModel task);
     Task AddTime(DateTime time, long taskId);
 
-    Task UpdateCategoryName(long id, string name);
-    Task UpdateGoalName(long id, string name);
-    Task UpdateTaskName(long id, string name);
-
-    Task UpdateGoalDetails(long id, string details);
-    Task UpdateTaskInterval(long id, long interval);
+    Task UpdateCategory(long id);
+    Task UpdateGoal(long id);
+    Task UpdateTask(long id);
+    Task UpdateTime(long id, DateTime time, long taskId);
 
     Task DeleteCategory(long id);
     Task DeleteGoal(long id);

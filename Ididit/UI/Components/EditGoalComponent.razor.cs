@@ -41,7 +41,7 @@ public sealed partial class EditGoalComponent
         editName = false;
 
         if (Goal != null)
-            await _repository.UpdateGoalName(Goal.Id, Goal.Name);
+            await _repository.UpdateGoal(Goal.Id);
 
         await GoalChanged.InvokeAsync(Goal);
     }
