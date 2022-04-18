@@ -1,8 +1,10 @@
 ﻿
-<div class="input-group flex-nowrap">
-    <Check TValue="bool" class="d-inline" >@Task.Name</Check>
+<div>
+    <div class="input-group flex-nowrap">
+        <Check TValue="bool" class="d-inline" >@Task.Name</Check>
 
-    <Button Color=Color.Primary Outline=true Block=false Size="@Theme.Size" @onclick=OnDone><span class="fa fa-fw fa-check"></span></Button>
+        <Button Color=Color.Primary Outline=true Block=false Size="@Theme.Size" @onclick=OnDone><span class="fa fa-fw fa-check"></span></Button>
+    </div>
 
     @if (Task != SelectedTask)
     {
@@ -15,7 +17,7 @@
 
             @if (Task.IsElapsedOverAverage)
             {
-                <div><span class="font-weight-bold"> @( "Average interval is overdue by: " + ToReadableString(Task.ElapsedTime - Task.AverageTime) + " ( " + (Task.ElapsedToAverageRatio - 100).ToString("N0") + " % )" )</span></div>
+                <div class="font-weight-bold">@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</div>
             }
         </p>
 
@@ -32,7 +34,7 @@
 
             @if (Task.IsElapsedOverDesired)
             {
-                <div><span class="font-weight-bold"> @( "Desired interval is overdue by: " + ToReadableString(Task.ElapsedTime - Task.DesiredTime) + " ( " + (Task.ElapsedToDesiredRatio - 100).ToString("N0") + " % )" )</span></div>
+                <div class="font-weight-bold">@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</div>
             }
         </p>
 
