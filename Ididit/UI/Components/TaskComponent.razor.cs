@@ -30,7 +30,10 @@ public partial class TaskComponent
 
     async Task SelectTask()
     {
-        SelectedTask = Task;
+        if (SelectedTask != Task)
+            SelectedTask = Task;
+        else
+            SelectedTask = null;
 
         await SelectedTaskChanged.InvokeAsync(SelectedTask);
     }
@@ -83,5 +86,12 @@ public partial class TaskComponent
             (span.Hours > 0 ? span.Hours + " h" + (span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
             (span.Minutes > 0 ? span.Minutes + " m" : string.Empty)
             ) : "0 minutes";
+    }
+
+    public static string ToHighestValueString(TimeSpan span)
+    {
+        return span.Days > 0 ? span.Days + " day" + (span.Days == 1 ? string.Empty : "s")
+                             : span.Hours > 0 ? span.Hours + " hour" + (span.Hours == 1 ? string.Empty : "s")
+                                              : span.Minutes + " minute" + (span.Minutes == 1 ? string.Empty : "s");
     }
 }

@@ -1,14 +1,34 @@
 ﻿
 <div>
-    <div class="input-group flex-nowrap">
-        <Check TValue="bool" class="d-inline" >@Task.Name</Check>
-
-        <Button Color=Color.Primary Outline=true Block=false Size="@Theme.Size" @onclick=OnDone><span class="fa fa-fw fa-check"></span></Button>
-
-        @if (Task != SelectedTask)
-        {
-            <Button Color=Color.Primary Outline=true Block=false Size=Size.ExtraSmall @onclick=SelectTask>Show details</Button>
-        }
+    <div class="input-group flex-nowrap my-1">
+        <div class="input-group-prepend flex-grow-1">
+            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="SelectTask">
+                <div class="m-1">@Task.Name</div>
+                <div class="m-1 ml-auto">@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</div>
+                @if (true)
+                {
+                    @if (Task.ElapsedToDesiredRatio >= 100)
+                    {
+                        <div class="m-1 font-weight-bold text-danger">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                    }
+                    else if (Task.ElapsedToDesiredRatio >= 80)
+                    {
+                        <div class="m-1 font-weight-bold text-warning">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                    }
+                    else if (Task.TimeList.Count > 1)
+                    {
+                        <div class="m-1 font-weight-bold text-info">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                    }
+                    else
+                    {
+                        <div class="m-1"><span class="fa fa-fw fa-exclamation"></span></div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="input-group-append">
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="OnDone"><span class="fa fa-fw fa-check"></span></Button>
+        </div>
     </div>
 
     @if (Task == SelectedTask)
