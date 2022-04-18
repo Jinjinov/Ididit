@@ -57,10 +57,10 @@
                 <div class="input-group flex-nowrap mb-1 d-flex">
                     <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
-                    @*<div class="input-group-append">
-                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time; editTime = true; })"><span class="fa fa-fw fa-edit"></span></Button>
+                    <div class="input-group-append">
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time.Ticks; editTime = true; })"><span class="fa fa-fw fa-edit"></span></Button>
                         <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await DeleteTime(time))"><span class="fas fa-fw fa-trash-alt"></span></Button>
-                    </div>*@
+                    </div>
                 </div>
             }
         }

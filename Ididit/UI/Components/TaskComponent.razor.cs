@@ -24,6 +24,9 @@ public partial class TaskComponent
     [Parameter]
     public EventCallback<TaskModel?> SelectedTaskChanged { get; set; }
 
+    public bool editTime;
+    public long SelectedTime;
+
     async Task SelectTask()
     {
         SelectedTask = Task;
@@ -50,6 +53,13 @@ public partial class TaskComponent
         Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
         await _repository.UpdateTaskInterval(Task.Id, Task.DesiredInterval);
+    }
+
+    async Task DeleteTime(DateTime time)
+    {
+        Task.RemoveTime(time);
+
+        await _repository.DeleteTime(time.Ticks);
     }
 
     public static string ToReadableString(TimeSpan span)

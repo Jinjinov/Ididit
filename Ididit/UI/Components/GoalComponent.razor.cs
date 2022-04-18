@@ -52,13 +52,8 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: edit time
-        // TODO: delete time
-        // TODO: task - times completed list should load on demand
-
-        // TODO: task - set desired interval
-        // TODO: task - calculate average interval
-        // TODO: task - calculate (elapsed time / desired interval)
+        // TODO: edit time - delete existing, add new
+        // TODO: task - times completed list should load on demand - on Task done - on show Task details
 
         // TODO: move backup from MainLayout to a component
 

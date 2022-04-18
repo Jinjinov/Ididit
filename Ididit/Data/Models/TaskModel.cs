@@ -49,4 +49,16 @@ public class TaskModel
 
         return (time, Id);
     }
+
+    public void RemoveTime(DateTime time)
+    {
+        TimeList.Remove(time);
+
+        if (TimeList.Count == 0)
+            AverageTime = TimeSpan.Zero;
+        else if (TimeList.Count == 1)
+            AverageTime = TimeList.First() - CreatedAt;
+        else
+            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+    }
 }
