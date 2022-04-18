@@ -2,7 +2,7 @@
 <div>
     <div class="input-group flex-nowrap my-1">
         <div class="input-group-prepend flex-grow-1">
-            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="SelectTask">
+            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="ToggleTask">
                 <div class="m-1">@Task.Name</div>
                 <div class="m-1 ml-auto">@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</div>
                 @if (true)
@@ -59,29 +59,37 @@
             }
         </p>
 
-        @foreach (DateTime time in Task.TimeList)
+        @if (Task.TimeList.Any())
         {
-            @if (editTime && SelectedTime == time.Ticks)
-            {
-                <div class="input-group flex-nowrap mb-1">
-                    <DateEdit TValue="DateTime" Size="@Theme.Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
-                    <TimeEdit TValue="TimeSpan" Size="@Theme.Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
-                    <div class="input-group-append">
-                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await SaveTime(time))"><span class="fa fa-fw fa-save"></span></Button>
-                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = 0; editTime = false; })"><span class="fa fa-fw fa-times"></span></Button>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="input-group flex-nowrap mb-1 d-flex">
-                    <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.First()) + " ago")</div>
+        }
 
-                    <div class="input-group-append">
-                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time.Ticks; EditTime = time; editTime = true; })"><span class="fa fa-fw fa-edit"></span></Button>
-                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await DeleteTime(time))"><span class="fas fa-fw fa-trash-alt"></span></Button>
+        @if (showTime)
+        {
+            @foreach (DateTime time in Task.TimeList)
+            {
+                @if (editTime && SelectedTime == time.Ticks)
+                {
+                    <div class="input-group flex-nowrap mb-1">
+                        <DateEdit TValue="DateTime" Size="@Theme.Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
+                        <TimeEdit TValue="TimeSpan" Size="@Theme.Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
+                        <div class="input-group-append">
+                            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await SaveTime(time))"><span class="fa fa-fw fa-save"></span></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = 0; editTime = false; })"><span class="fa fa-fw fa-times"></span></Button>
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="input-group flex-nowrap mb-1 d-flex">
+                        <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+
+                        <div class="input-group-append">
+                            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time.Ticks; EditTime = time; editTime = true; })"><span class="fa fa-fw fa-edit"></span></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await DeleteTime(time))"><span class="fas fa-fw fa-trash-alt"></span></Button>
+                        </div>
+                    </div>
+                }
             }
         }
     }

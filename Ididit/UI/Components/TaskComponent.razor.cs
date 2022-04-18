@@ -24,11 +24,12 @@ public partial class TaskComponent
     [Parameter]
     public EventCallback<TaskModel?> SelectedTaskChanged { get; set; }
 
+    public bool showTime;
     public bool editTime;
     public long SelectedTime;
     public DateTime EditTime;
 
-    async Task SelectTask()
+    async Task ToggleTask()
     {
         if (SelectedTask != Task)
             SelectedTask = Task;
@@ -36,6 +37,11 @@ public partial class TaskComponent
             SelectedTask = null;
 
         await SelectedTaskChanged.InvokeAsync(SelectedTask);
+    }
+
+    void ToggleShowTime()
+    {
+        showTime = !showTime;
     }
 
     async Task OnDone()
@@ -65,21 +71,21 @@ public partial class TaskComponent
         await _repository.UpdateTask(Task.Id);
     }
 
-    public async Task SetDesiredIntervalDays(int? days)
+    async Task SetDesiredIntervalDays(int? days)
     {
         Task.DesiredTime = new TimeSpan(days ?? 0, Task.DesiredTime.Hours, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
         await _repository.UpdateTask(Task.Id);
     }
 
-    public async Task SetDesiredIntervalHours(int? hours)
+    async Task SetDesiredIntervalHours(int? hours)
     {
         Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
         await _repository.UpdateTask(Task.Id);
     }
 
-    public static string ToReadableString(TimeSpan span)
+    static string ToReadableString(TimeSpan span)
     {
         return span.TotalMinutes >= 1.0 ? (
             (span.Days > 0 ? span.Days + " d" + (span.Hours > 0 || span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
@@ -88,7 +94,7 @@ public partial class TaskComponent
             ) : "0 minutes";
     }
 
-    public static string ToHighestValueString(TimeSpan span)
+    static string ToHighestValueString(TimeSpan span)
     {
         return span.Days > 0 ? span.Days + " day" + (span.Days == 1 ? string.Empty : "s")
                              : span.Hours > 0 ? span.Hours + " hour" + (span.Hours == 1 ? string.Empty : "s")
