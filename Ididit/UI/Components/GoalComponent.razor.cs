@@ -52,6 +52,24 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
+        // TODO: don't add Category / Goal until name is set / Save button clicked
+
+        // TODO: edit Category / Goal inside the selected Category / Goal
+
+        // TODO: use Breadcrumb to show Category/Subcategory in Goal header
+
+        // TODO: use Card to group all Goal UI together
+        // TODO: user friendly "select Goal" - easy to select and edit, but not when selecting one Task
+        // TODO: user friendly "edit" "discard" "save"
+
+        // TODO: use Drag & Drop to move Subcategory into another Category
+        // TODO: use Drag & Drop to move Goal into another Category
+
+        // https://blazorise.com/docs/components/repeater
+        // The repeater component is a helper component that repeats the child content for each element in a collection.
+        // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
+        // Meaning you can do custom actions whenever a data-source changes.
+
         // TODO: task - times list should load on demand - on Task done - on show Task details
 
         // TODO: move backup from MainLayout to a component
