@@ -6,7 +6,8 @@
 <Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><span class="fa fa-fw fa-minus"></span>Show all goals</Button>
 <Button Color=Color.Primary Outline=true @onclick=NewCategory><span class="fa fa-fw fa-plus"></span>Add category</Button>
 
-<TreeView Nodes=_repository.CategoryList
+<TreeView Margin=Margin.Is0
+          Nodes=_repository.CategoryList
           GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
           HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
           SelectedNode=SelectedCategory
