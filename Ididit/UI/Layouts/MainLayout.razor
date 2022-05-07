@@ -7,14 +7,14 @@
     @Body
     <div class="row flex-shrink-0">
         <div class="col-12 border">
-            <label for="file-upload" class="d-inline btn btn-primary mb-0">Import</label>
+            <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
             <InputFile id="file-upload" class="d-none" OnChange=Import />
 
             <Button Color=Color.Primary Block=false @onclick=ExportJson>Export Json</Button>
 
             <Button Color=Color.Primary Block=false @onclick=ExportYaml>Export Yaml</Button>
 
-            <label for="notes-upload" class="d-inline btn btn-primary mb-0">Import Markdown</label>
+            <Label For="notes-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import Markdown</Label>
             <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
 
             <Button Color=Color.Primary Block=false @onclick=ExportMarkdown>Export Markdown</Button>

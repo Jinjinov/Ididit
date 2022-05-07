@@ -1,22 +1,22 @@
 ﻿@if (editName && Goal != null)
 {
-    <div class="input-group flex-nowrap">
+    <Addons Flex=Flex.NoWrap>
         <TextEdit Size="@Theme.Size" @bind-Text="@Goal.Name" Placeholder="Add new category" />
-        <div class="input-group-append">
+        <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
-        </div>
-    </div>
+        </Addon>
+    </Addons>
 }
 else
 {
-    <div class="input-group flex-nowrap">
+    <Addons Flex=Flex.NoWrap>
         <TextEdit Size="@Theme.Size" Text="@Goal?.Name" ReadOnly=true />
 
-        <div class="input-group-append">
+        <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>
 
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=DeleteGoal><Icon Name="IconName.Delete" /></Button>
-        </div>
-    </div>
+        </Addon>
+    </Addons>
 }

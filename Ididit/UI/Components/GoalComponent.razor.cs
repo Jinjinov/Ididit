@@ -52,9 +52,9 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: don't add Category / Goal until name is set / Save button clicked
+        // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
 
-        // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
+        // TODO: use only Blazorise, no css
 
         // TODO: user friendly "edit" "discard" "save"
 

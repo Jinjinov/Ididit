@@ -1,8 +1,8 @@
 ﻿
-<div>
-    <div class="input-group flex-nowrap my-1">
-        <div class="input-group-prepend flex-grow-1">
-            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="ToggleTask" @onclick:stopPropagation>
+<div @onclick:stopPropagation>
+    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+        <Addon AddonType="AddonType.Start" Flex=Flex.Grow.Is1>
+            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is1.Is0.OnEnd class="btn btn-secondary" @onclick="ToggleTask">
                 <Div Margin=Margin.Is1>@Task.Name</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (true)
@@ -24,12 +24,12 @@
                         <Div Margin=Margin.Is1><Icon Name="IconName.Exclamation" /></Div>
                     }
                 }
-            </div>
-        </div>
-        <div class="input-group-append" @onclick:stopPropagation>
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Clicked="OnDone" @onclick:stopPropagation><Icon Name="IconName.Check" /></Button>
-        </div>
-    </div>
+            </Div>
+        </Addon>
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+        </Addon>
+    </Addons>
 
     @if (Task == SelectedTask)
     {
@@ -45,13 +45,13 @@
         <p>
             @( "Desired interval:" )
 
-            <div class="input-group flex-nowrap my-1">
+            <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                 <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
                 <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
 
                 <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
                 <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
-            </div>
+            </Addons>
 
             @if (Task.IsElapsedOverDesired)
             {
@@ -61,7 +61,7 @@
 
         @if (Task.TimeList.Any())
         {
-            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.First()) + " ago")</div>
+            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.First()) + " ago - (Click to see all)")</div>
         }
 
         @if (showTime)
@@ -70,25 +70,25 @@
             {
                 @if (editTime && SelectedTime == time.Ticks)
                 {
-                    <div class="input-group flex-nowrap mb-1">
+                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromBottom>
                         <DateEdit TValue="DateTime" Size="@Theme.Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
                         <TimeEdit TValue="TimeSpan" Size="@Theme.Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
-                        <div class="input-group-append">
+                        <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await SaveTime(time))"><Icon Name="IconName.Save" /></Button>
                             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = 0; editTime = false; })"><Icon Name="IconName.Times" /></Button>
-                        </div>
-                    </div>
+                        </Addon>
+                    </Addons>
                 }
                 else
                 {
-                    <div class="input-group flex-nowrap mb-1 d-flex">
+                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromBottom Display=Display.Flex>
                         <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
-                        <div class="input-group-append">
+                        <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(() => { SelectedTime = time.Ticks; EditTime = time; editTime = true; })"><Icon Name="IconName.Edit" /></Button>
                             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="@(async () => await DeleteTime(time))"><Icon Name="IconName.Delete" /></Button>
-                        </div>
-                    </div>
+                        </Addon>
+                    </Addons>
                 }
             }
         }
