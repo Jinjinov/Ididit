@@ -52,18 +52,24 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: don't add Category / Goal until name is set / Save button clicked
+        // TODO: edit Category inside the selected Category
+        // TODO: edit Goal inside the selected Goal
 
-        // TODO: edit Category / Goal inside the selected Category / Goal
-
-        // TODO: use Breadcrumb to show Category/Subcategory in Goal header
-
-        // TODO: use Card to group all Goal UI together
         // TODO: user friendly "select Goal" - easy to select and edit, but not when selecting one Task
         // TODO: user friendly "edit" "discard" "save"
 
+        // TODO: don't add Category / Goal until name is set / Save button clicked
+
+        // TODO: use Breadcrumb to show Category/Subcategory in Goal header
+
+        // TODO: use Blazorise icons
+
+        // TODO: use only Blazorise, no css?
+
         // TODO: use Drag & Drop to move Subcategory into another Category
         // TODO: use Drag & Drop to move Goal into another Category
+        // TODO: use Drag & Drop to sort Goals
+        // TODO: use Drag & Drop to sort Tasks
 
         // https://blazorise.com/docs/components/repeater
         // The repeater component is a helper component that repeats the child content for each element in a collection.
@@ -86,9 +92,9 @@ public partial class GoalComponent
         // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
         // @((MarkupString)Goal.NotesMarkdownHtml)
 
-        // TODO: settings
+        // TODO: settings - https://bootstrapdemo.blazorise.com/tests/misc-forms
         // TODO: themes
-        // TODO: loading intro
+        // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
         // TODO: drag & drop - reorder
         // TODO: drag & drop - move / change parent

@@ -1,18 +1,20 @@
 ﻿@using Ididit.Data.Models
 
-<div>
-    <Button Color=Color.Primary Outline=true @onclick=SelectGoal>@Goal.Name</Button>
+<Card Margin=Margin.Is3.FromBottom>
+    <CardBody>
+        <Button Color=Color.Primary Outline=true @onclick=SelectGoal>@Goal.Name</Button>
 
-    @if (SelectedGoal == Goal)
-    {
-        <span>Selected</span>
-        <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" TextChanged=OnTextChanged />
-    }
-    else
-    {
-        @foreach(TaskModel task in Goal.TaskList)
+        @if (SelectedGoal == Goal)
         {
-            <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+            <span>Selected</span>
+            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" TextChanged=OnTextChanged />
         }
-    }
-</div>
+        else
+        {
+            @foreach(TaskModel task in Goal.TaskList)
+            {
+                <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+            }
+        }
+    </CardBody>
+</Card>
