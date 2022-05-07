@@ -2,7 +2,7 @@
 <div>
     <div class="input-group flex-nowrap my-1">
         <div class="input-group-prepend flex-grow-1">
-            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="ToggleTask">
+            <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="ToggleTask" @onclick:stopPropagation>
                 <Div Margin=Margin.Is1>@Task.Name</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (true)
@@ -26,8 +26,8 @@
                 }
             </div>
         </div>
-        <div class="input-group-append">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick="OnDone"><Icon Name="IconName.Check" /></Button>
+        <div class="input-group-append" @onclick:stopPropagation>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Clicked="OnDone" @onclick:stopPropagation><Icon Name="IconName.Check" /></Button>
         </div>
     </div>
 

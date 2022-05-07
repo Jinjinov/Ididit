@@ -56,7 +56,6 @@ public partial class GoalComponent
 
         // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
 
-        // TODO: user friendly "select Goal" - easy to select and edit, but not when selecting one Task
         // TODO: user friendly "edit" "discard" "save"
 
         // TODO: use Breadcrumb to show Category/Subcategory in Goal header

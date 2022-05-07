@@ -1,9 +1,7 @@
 ﻿@using Ididit.Data.Models
 
 <Card Margin=Margin.Is3.FromBottom>
-    <CardBody>
-        <Button Color=Color.Primary Outline=true @onclick=SelectGoal>@Goal.Name</Button>
-
+    <CardBody @onclick=SelectGoal>
         <EditGoalComponent @bind-Goal=Goal />
 
         @if (SelectedGoal == Goal)
