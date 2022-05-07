@@ -3,8 +3,8 @@
     <div class="input-group flex-nowrap">
         <TextEdit Size="@Theme.Size" @bind-Text="@Goal.Name" Placeholder="Add new category" />
         <div class="input-group-append">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=SaveName><span class="fa fa-fw fa-save"></span></Button>
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=CancelEdit><span class="fa fa-fw fa-times"></span></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
         </div>
     </div>
 }
@@ -12,15 +12,15 @@ else
 {
     <div class="input-group flex-nowrap">
         <div class="input-group-prepend">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=NewGoal><span class="fa fa-fw fa-plus"></span></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=NewGoal><Icon Name="IconName.Add" /></Button>
         </div>
 
         <TextEdit Size="@Theme.Size" Text="@Goal?.Name" ReadOnly=true />
 
         <div class="input-group-append">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=EditName><span class="fa fa-fw fa-edit"></span></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>
 
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=DeleteGoal><span class="fas fa-fw fa-trash-alt"></span></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=DeleteGoal><Icon Name="IconName.Delete" /></Button>
         </div>
     </div>
 }

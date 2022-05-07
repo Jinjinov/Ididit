@@ -3,8 +3,8 @@
 
 <EditCategoryComponent @bind-Category=SelectedCategory />
 
-<Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><span class="fa fa-fw fa-minus"></span>Show all goals</Button>
-<Button Color=Color.Primary Outline=true @onclick=NewCategory><span class="fa fa-fw fa-plus"></span>Add category</Button>
+<Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
+<Button Color=Color.Primary Outline=true @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
 
 <TreeView Margin=Margin.Is0
           Nodes=_repository.CategoryList
