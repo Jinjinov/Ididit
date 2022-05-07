@@ -3,25 +3,25 @@
     <div class="input-group flex-nowrap my-1">
         <div class="input-group-prepend flex-grow-1">
             <div class="btn btn-secondary @Theme.ButtonSizeClass border border-right-0 flex-grow-1 d-flex" @onclick="ToggleTask">
-                <div class="m-1">@Task.Name</div>
-                <div class="m-1 ml-auto">@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</div>
+                <Div Margin=Margin.Is1>@Task.Name</Div>
+                <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (true)
                 {
                     @if (Task.ElapsedToDesiredRatio >= 100)
                     {
-                        <div class="m-1 font-weight-bold text-danger">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else if (Task.ElapsedToDesiredRatio >= 80)
                     {
-                        <div class="m-1 font-weight-bold text-warning">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else if (Task.TimeList.Count > 1)
                     {
-                        <div class="m-1 font-weight-bold text-info">( @Task.ElapsedToDesiredRatio.ToString("N0") % )</div>
+                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else
                     {
-                        <div class="m-1"><Icon Name="IconName.Exclamation" /></div>
+                        <Div Margin=Margin.Is1><Icon Name="IconName.Exclamation" /></Div>
                     }
                 }
             </div>
@@ -38,7 +38,7 @@
 
             @if (Task.IsElapsedOverAverage)
             {
-                <div class="font-weight-bold">@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</div>
+                <Div TextWeight=TextWeight.Bold>@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</Div>
             }
         </p>
 
@@ -55,7 +55,7 @@
 
             @if (Task.IsElapsedOverDesired)
             {
-                <div class="font-weight-bold">@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</div>
+                <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
             }
         </p>
 

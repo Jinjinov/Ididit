@@ -62,7 +62,6 @@ public partial class GoalComponent
 
         // TODO: use Breadcrumb to show Category/Subcategory in Goal header
 
-        // TODO: use only Blazorise, no css - margin
         // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
 
         // TODO: use Drag & Drop to move Subcategory into another Category
