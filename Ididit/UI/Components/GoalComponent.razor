@@ -4,6 +4,8 @@
     <CardBody>
         <Button Color=Color.Primary Outline=true @onclick=SelectGoal>@Goal.Name</Button>
 
+        <EditGoalComponent @bind-Goal=Goal />
+
         @if (SelectedGoal == Goal)
         {
             <span>Selected</span>

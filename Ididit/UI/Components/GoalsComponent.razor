@@ -1,10 +1,8 @@
 ﻿@using Ididit.Data.Models
 
-<EditGoalComponent @bind-Goal=_selectedGoal ParentCategory=ParentCategory />
+<div>Selected: @_selectedGoal?.Name</div>
 
 <div>Parent: @ParentCategory?.Name</div>
-
-<div>Selected: @_selectedGoal?.Name</div>
 
 @if (ParentCategory != null)
 {

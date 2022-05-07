@@ -56,9 +56,6 @@ public partial class GoalComponent
 
         // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
 
-        // TODO: Goal - separate Add from Edit and Delete
-        // TODO: edit Goal inside the selected Goal
-
         // TODO: user friendly "select Goal" - easy to select and edit, but not when selecting one Task
         // TODO: user friendly "edit" "discard" "save"
 

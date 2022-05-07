@@ -14,10 +14,6 @@ public sealed partial class EditGoalComponent
     Theme Theme { get; set; } = null!;
 
     [Parameter]
-    [EditorRequired]
-    public CategoryModel? ParentCategory { get; set; } = null!;
-
-    [Parameter]
     public GoalModel? Goal { get; set; } = null!;
 
     [Parameter]
@@ -46,28 +42,28 @@ public sealed partial class EditGoalComponent
         await GoalChanged.InvokeAsync(Goal);
     }
 
-    async Task NewGoal()
-    {
-        if (ParentCategory == null)
-            return;
+    //async Task NewGoal()
+    //{
+    //    if (ParentCategory == null)
+    //        return;
 
-        editName = true;
+    //    editName = true;
 
-        GoalModel goal = ParentCategory.CreateGoal();
+    //    GoalModel goal = ParentCategory.CreateGoal();
 
-        await _repository.AddGoal(goal);
+    //    await _repository.AddGoal(goal);
 
-        Goal = goal;
-        await GoalChanged.InvokeAsync(Goal);
-    }
+    //    Goal = goal;
+    //    await GoalChanged.InvokeAsync(Goal);
+    //}
 
     async Task DeleteGoal()
     {
         if (Goal == null)
             return;
 
-        if (ParentCategory != null)
-            ParentCategory.GoalList.Remove(Goal);
+        if (_repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
+            parent.GoalList.Remove(Goal);
 
         await _repository.DeleteGoal(Goal.Id);
 

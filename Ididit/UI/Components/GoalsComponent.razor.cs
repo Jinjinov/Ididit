@@ -23,5 +23,4 @@ public partial class GoalsComponent
             await _repository.AddGoal(ParentCategory.CreateGoal());
         }
     }
-
 }
