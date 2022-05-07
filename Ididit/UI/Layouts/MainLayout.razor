@@ -1,6 +1,24 @@
 ﻿@inherits LayoutComponentBase
 
 @*
+    https://getbootstrap.com/docs/4.3/layout/grid/
+    Containers provide a means to center and horizontally pad your site’s contents. Use .container for a responsive pixel width or .container-fluid for width: 100% across all viewport and device sizes.
+    In a grid layout, content must be placed within columns and only columns may be immediate children of rows.
+
+    https://getbootstrap.com/docs/4.3/utilities/flex/
+
+    https://getbootstrap.com/docs/4.3/utilities/borders/
+
+    https://getbootstrap.com/docs/4.3/utilities/sizing/
+
+    https://getbootstrap.com/docs/4.3/utilities/overflow/
+
+    https://blazorise.com/docs/components/grid
+
+    https://blazorise.com/docs/helpers/utilities
+
+    https://bootstrapdemo.blazorise.com/tests/utilities/sizing
+
     flex-column 
         flex-direction: column!important; 
         - if missing, all child nodes are in a row
@@ -39,13 +57,13 @@
         max-width: 100%;
 *@
 
-<div class="container-fluid h-100 d-flex flex-column">
-    <div class="row flex-shrink-0">
-        <div class="col-12 border">Header</div>
-    </div>
+<Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
+    <Row>
+        <Column Border=Border.Is1>Header</Column>
+    </Row>
     @Body
-    <div class="row flex-shrink-0">
-        <div class="col-12 border">
+    <Row>
+        <Column Border=Border.Is1>
             <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
             <InputFile id="file-upload" class="d-none" OnChange=Import />
 
@@ -61,6 +79,6 @@
             <Button Color=Color.Primary Block=false @onclick=ImportDirectory>Import folder</Button>
 
             <Button Color=Color.Primary Block=false @onclick=ExportDirectory>Export folder</Button>
-        </div>
-    </div>
-</div>
+        </Column>
+    </Row>
+</Container>

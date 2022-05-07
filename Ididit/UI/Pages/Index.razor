@@ -39,18 +39,18 @@
         overflow: auto!important;
  *@
 
-<div class="row flex-grow-1 overflow-hidden">
-    <div class="col mh-100 overflow-auto">
+<Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden>
+    <Column Height=Height.Max100 Overflow=Overflow.Auto>
         @*<ErrorBoundary>*@
             <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
         @*</ErrorBoundary>*@
-    </div>
-    <div class="col mh-100 overflow-auto">
+    </Column>
+    <Column Height=Height.Max100 Overflow=Overflow.Auto>
         @*<ErrorBoundary>*@
             <GoalsComponent ParentCategory=_selectedCategory />
         @*</ErrorBoundary>*@
-    </div>
-</div>
+    </Column>
+</Row>
 
 @code {
     CategoryModel? _selectedCategory;
