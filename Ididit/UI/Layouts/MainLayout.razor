@@ -1,5 +1,44 @@
 ﻿@inherits LayoutComponentBase
 
+@*
+    flex-column 
+        flex-direction: column!important; 
+        - if missing, all child nodes are in a row
+    d-flex 
+        display: flex!important; 
+        - if missing, whole page scrolls, including header and footer
+    h-100 
+        height: 100%!important; 
+        - if missing, whole page scrolls, including header and footer
+    container-fluid 
+        - if missing, page width is not 100% and horizontal scrollbar is visible
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+
+    flex-shrink-0
+        - if missing, ???
+        flex-shrink: 0!important;
+    row 
+        - if missing, header and footer have 15px margin
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+
+    col-12
+        - if missing, header and footer don't have 100% width
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        flex: 0 0 100%;
+        max-width: 100%;
+*@
+
 <div class="container-fluid h-100 d-flex flex-column">
     <div class="row flex-shrink-0">
         <div class="col-12 border">Header</div>

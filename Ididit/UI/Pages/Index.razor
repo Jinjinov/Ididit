@@ -3,6 +3,42 @@
 
 <PageTitle>ididit!</PageTitle>
 
+ @*
+     row
+         - if missing, the second column is not visible 
+         display: flex;
+         flex-wrap: wrap;
+         margin-right: -15px;
+         margin-left: -15px;
+     
+     flex-grow-1
+        - if missing, and content is not 100% height, footer will not be at the bottom
+        flex-grow: 1!important;
+     
+     overflow-hidden
+        - if missing, whole page scrolls, including header and footer
+        overflow: hidden!important;
+
+     col
+        - if missing, column is minimum width
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+     
+     mh-100
+        - if missing, height is over 100%, but not scrollable
+        max-height: 100%!important;
+     
+     overflow-auto
+        - if missing, no vertical scrollbar
+        overflow: auto!important;
+ *@
+
 <div class="row flex-grow-1 overflow-hidden">
     <div class="col mh-100 overflow-auto">
         @*<ErrorBoundary>*@
