@@ -26,7 +26,10 @@ public partial class GoalComponent
 
     async Task SelectGoal()
     {
-        SelectedGoal = Goal;
+        if (SelectedGoal != Goal)
+            SelectedGoal = Goal;
+        else
+            SelectedGoal = null;
 
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
@@ -52,9 +55,15 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
+        // TODO: fix average interval
 
-        // TODO: use only Blazorise, no css
+        // TODO: fix when exclamation is displayed
+
+        // TODO: fix initial selected Goal - (if you select a Category first, there is no problem)
+
+        // TODO: fix initial selected Category - (if you select a Goal first, there is no problem)
+
+        // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
 
         // TODO: user friendly "edit" "discard" "save"
 
