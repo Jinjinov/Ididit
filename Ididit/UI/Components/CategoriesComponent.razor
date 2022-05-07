@@ -1,8 +1,6 @@
 ﻿@using Blazorise.TreeView
 @using Ididit.Data.Models
 
-<EditCategoryComponent @bind-Category=SelectedCategory />
-
 <Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
 <Button Color=Color.Primary Outline=true @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
 
@@ -12,6 +10,17 @@
           HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
           SelectedNode=SelectedCategory
           SelectedNodeChanged=@(async (CategoryModel category) => await OnSelectedCategoryChanged(category))
+          NodeStyling="@((item, style) => { style.TextColor = (item?.CategoryList?.Any() == true) ? TextColor.Primary : TextColor.Dark; style.Style = "font-weight:bold"; })"
+          SelectedNodeStyling="@((item, style) => { style.Style = "padding:0!important"; })"
           @bind-ExpandedNodes=_expandedNodes>
-    <NodeContent>@context?.Name</NodeContent>
+    <NodeContent>
+        @if (context == SelectedCategory)
+        {
+            <EditCategoryComponent @bind-Category=context />
+        }
+        else
+        {
+            @context?.Name
+        }
+    </NodeContent>
 </TreeView>

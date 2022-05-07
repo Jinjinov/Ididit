@@ -52,17 +52,17 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: edit Category inside the selected Category
+        // TODO: don't add Category / Goal until name is set / Save button clicked
+
+        // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
+
+        // TODO: Goal - separate Add from Edit and Delete
         // TODO: edit Goal inside the selected Goal
 
         // TODO: user friendly "select Goal" - easy to select and edit, but not when selecting one Task
         // TODO: user friendly "edit" "discard" "save"
 
-        // TODO: don't add Category / Goal until name is set / Save button clicked
-
         // TODO: use Breadcrumb to show Category/Subcategory in Goal header
-
-        // TODO: use only Blazorise, no css - input group - https://blazorise.com/docs/components/addon
 
         // TODO: use Drag & Drop to move Subcategory into another Category
         // TODO: use Drag & Drop to move Goal into another Category
