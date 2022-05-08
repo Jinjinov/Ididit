@@ -104,7 +104,24 @@ public partial class GoalComponent
         // TODO: group by (must, should, can) - importance / urgency
         // TODO: group statistics
 
+        // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
+        // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
+
+        // TODO: weekly category goal (do X tasks from this category)
+
+        // TODO: statistics / graphs (did X tasks from this category) / (num of tasks over time)
+
+        // TODO: backup - Dropbox / OneDrive / iCloud
+
         // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
+        // TODO: class Solution - when, where
+        // name, address, phone number, working hours, website, email
+        // possible to do the task:
+        // - anytime
+        // - free time
+        // - during work week open hours
+        // - during weekend
+        // - when opportunity arises
 
         // TODO: settings - https://bootstrapdemo.blazorise.com/tests/misc-forms
         // TODO: bootstrap themes
@@ -118,6 +135,14 @@ public partial class GoalComponent
         // TODO: drag & drop - reorder
         // TODO: drag & drop - move / change parent
 
+        // TODO: use blazor layouts?
+        // @inherits LayoutComponentBase
+        // @page "/users"
+        // @layout MainLayout
+        // @page "/admin"
+        // @layout AdminLayout
+        // TODO: use route navigation for help, options, settings?
+
         // TODO: options
         // TODO: help
 
@@ -126,13 +151,6 @@ public partial class GoalComponent
         // TODO: show Times in a Calendar/Scheduler, not a List
 
         // TODO: arrow down can change focus to next textarea
-
-        // TODO: possible to do the task:
-        // - anytime
-        // - free time
-        // - during work week open hours
-        // - during weekend
-        // - when opportunity arises
 
         Goal.Details = text;
 
