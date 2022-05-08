@@ -69,8 +69,10 @@ public partial class GoalComponent
         // TODO: user friendly "edit" "discard" "save"
 
         // TODO: use Breadcrumb to show Category/Subcategory in Goal header
+
         // TODO: show sub-categories in Goal list
-        // TODO: toggle: only current Category Goals / Goal of all sub-categories, grouped by Category
+
+        // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 
         // TODO: id = fixed, sort index = priority (index)
 
@@ -78,13 +80,6 @@ public partial class GoalComponent
         // TODO: use Drag & Drop to move Goal into another Category
         // TODO: use Drag & Drop to sort Goals
         // TODO: use Drag & Drop to sort Tasks
-
-        // https://blazorise.com/docs/components/repeater
-        // The repeater component is a helper component that repeats the child content for each element in a collection.
-        // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
-        // Meaning you can do custom actions whenever a data-source changes.
-
-        // TODO: task - times list should load on demand - on Task done - on show Task details
 
         // TODO: move backup from MainLayout to a component
 
@@ -99,6 +94,13 @@ public partial class GoalComponent
         // readonly MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
         // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
         // @((MarkupString)Goal.NotesMarkdownHtml)
+
+        // TODO: task - times list should load on demand - on Task done - on show Task details
+
+        // https://blazorise.com/docs/components/repeater
+        // The repeater component is a helper component that repeats the child content for each element in a collection.
+        // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
+        // Meaning you can do custom actions whenever a data-source changes.
 
         // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
         // TODO: group by (must, should, can) - importance / urgency
