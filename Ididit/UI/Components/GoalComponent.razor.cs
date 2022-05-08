@@ -1,7 +1,6 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -59,6 +58,8 @@ public partial class GoalComponent
 
         // TODO: fix when exclamation is displayed
 
+        // TODO: fix UI - task is not repeating until interval is set
+
         // TODO: fix initial selected Goal - (if you select a Category first, there is no problem)
 
         // TODO: fix initial selected Category - (if you select a Goal first, there is no problem)
@@ -68,6 +69,10 @@ public partial class GoalComponent
         // TODO: user friendly "edit" "discard" "save"
 
         // TODO: use Breadcrumb to show Category/Subcategory in Goal header
+        // TODO: show sub-categories in Goal list
+        // TODO: toggle: only current Category Goals / Goal of all sub-categories, grouped by Category
+
+        // TODO: id = fixed, sort index = priority (index)
 
         // TODO: use Drag & Drop to move Subcategory into another Category
         // TODO: use Drag & Drop to move Goal into another Category
@@ -95,12 +100,39 @@ public partial class GoalComponent
         // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
         // @((MarkupString)Goal.NotesMarkdownHtml)
 
+        // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
+        // TODO: group by (must, should, can) - importance / urgency
+        // TODO: group statistics
+
+        // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
+
         // TODO: settings - https://bootstrapdemo.blazorise.com/tests/misc-forms
-        // TODO: themes
+        // TODO: bootstrap themes
+        // https://cdnjs.com/libraries/bootstrap/5.1.3
+        // https://www.jsdelivr.com/package/npm/bootstrap
+        // https://cdnjs.com/libraries/bootswatch/5.1.3
+        // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
+
         // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
         // TODO: drag & drop - reorder
         // TODO: drag & drop - move / change parent
+
+        // TODO: options
+        // TODO: help
+
+        // TODO: see all - or collapse to titles
+
+        // TODO: show Times in a Calendar/Scheduler, not a List
+
+        // TODO: arrow down can change focus to next textarea
+
+        // TODO: possible to do the task:
+        // - anytime
+        // - free time
+        // - during work week open hours
+        // - during weekend
+        // - when opportunity arises
 
         Goal.Details = text;
 
