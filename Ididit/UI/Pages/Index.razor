@@ -1,5 +1,8 @@
 ﻿@page "/"
+@using Ididit.App
 @using Ididit.Data.Models
+
+@inject IRepository _repository;
 
 <PageTitle>ididit!</PageTitle>
 
@@ -54,4 +57,9 @@
 
 @code {
     CategoryModel? _selectedCategory;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await _repository.Initialize();
+    }
 }

@@ -61,7 +61,7 @@
 
         @if (Task.TimeList.Any())
         {
-            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.First()) + " ago - (Click to see all)")</div>
+            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.Last()) + " ago - (Click to see all)")</div>
         }
 
         @if (showTime)

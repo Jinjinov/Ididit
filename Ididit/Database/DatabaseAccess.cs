@@ -334,11 +334,11 @@ internal class DatabaseAccess : IDatabaseAccess
     {
         if (_taskDict.TryGetValue(task.Id, out TaskEntity? taskEntity))
         {
-            taskEntity.GoalId = taskEntity.GoalId;
-            taskEntity.Name = taskEntity.Name;
-            taskEntity.CreatedAt = taskEntity.CreatedAt;
-            taskEntity.AverageInterval = taskEntity.AverageInterval;
-            taskEntity.DesiredInterval = taskEntity.DesiredInterval;
+            taskEntity.GoalId = task.GoalId;
+            taskEntity.Name = task.Name;
+            taskEntity.CreatedAt = task.CreatedAt;
+            taskEntity.AverageInterval = task.AverageInterval;
+            taskEntity.DesiredInterval = task.DesiredInterval;
 
             await _indexedDb.UpdateItems(new List<TaskEntity> { taskEntity });
         }

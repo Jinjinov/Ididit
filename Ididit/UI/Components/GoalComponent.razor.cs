@@ -54,8 +54,6 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: fix average interval
-
         // TODO: fix when exclamation is displayed
 
         // TODO: fix UI - task is not repeating until interval is set
