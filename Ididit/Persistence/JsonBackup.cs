@@ -25,7 +25,7 @@ internal class JsonBackup
 
         DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
 
-        return data ?? throw new Exception("Can't deserialize JSON");
+        return data ?? throw new InvalidDataException("Can't deserialize JSON");
     }
 
     public async Task ExportData(IDataModel data)

@@ -64,7 +64,7 @@ internal class DatabaseAccess : IDatabaseAccess
     public async Task Initialize()
     {
         if (_dbModelId != -1)
-            throw new Exception("IndexedDb is already open");
+            throw new InvalidOperationException("IndexedDb is already open");
 
         _dbModelId = await _indexedDb.OpenIndexedDb();
     }

@@ -30,14 +30,8 @@ internal class Repository : DataModel, IRepository
         _databaseAccess = databaseAccess;
     }
 
-    /// <summary>
-    /// Should be called from SetParametersAsync()
-    /// Calling this from OnInitializedAsync() or OnParametersSetAsync() doesn't work
-    /// </summary>
     public async Task Initialize()
     {
-        // This is called 2 times. If isInitialized is used to return after first call, then it doesn't work.
-
         await _databaseAccess.Initialize();
 
         RepositoryData data = await _databaseAccess.GetData();

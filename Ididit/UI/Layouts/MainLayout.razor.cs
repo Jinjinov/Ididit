@@ -31,20 +31,6 @@ public partial class MainLayout
     [Inject]
     JsInterop _jsInterop { get; set; } = null!;
 
-    /*
-    // calling _repository.Initialize() from OnInitializedAsync() or OnParametersSetAsync() doesn't work
-
-    public override async Task SetParametersAsync(ParameterView parameters)
-    {
-        parameters.SetParameterProperties(this);
-
-        // This is called 2 times. If isInitialized is used to return after first call, then it doesn't work.
-        await _repository.Initialize();
-
-        await base.SetParametersAsync(ParameterView.Empty);
-    }
-    /**/
-
     async Task Import(InputFileChangeEventArgs e)
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
