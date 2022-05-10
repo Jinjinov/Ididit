@@ -7,7 +7,7 @@
         @if (SelectedGoal == Goal)
         {
             <span>Selected</span>
-            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" TextChanged=OnTextChanged />
+            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" TextChanged=OnTextChanged @onclick:stopPropagation />
         }
         else
         {

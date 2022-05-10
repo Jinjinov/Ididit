@@ -54,13 +54,7 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: fix when exclamation is displayed
-
-        // TODO: fix UI - task is not repeating until interval is set
-
-        // TODO: fix initial selected Goal - (if you select a Category first, there is no problem)
-
-        // TODO: fix initial selected Category - (if you select a Goal first, there is no problem)
+        // TODO: fix UI - task is not a repeating task until interval is set
 
         // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
 

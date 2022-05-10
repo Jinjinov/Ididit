@@ -5,7 +5,7 @@
             <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is1.Is0.OnEnd class="btn btn-secondary" @onclick="ToggleTask">
                 <Div Margin=Margin.Is1>@Task.Name</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
-                @if (true)
+                @if (true) @*Settings.ShowRatio*@
                 {
                     @if (Task.ElapsedToDesiredRatio >= 100)
                     {
@@ -15,7 +15,7 @@
                     {
                         <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
-                    else if (Task.TimeList.Count > 1)
+                    else if (Task.TimeList.Any())
                     {
                         <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
