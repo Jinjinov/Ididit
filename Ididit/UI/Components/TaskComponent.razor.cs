@@ -44,6 +44,27 @@ public partial class TaskComponent
         showTime = !showTime;
     }
 
+    async Task SetDesiredInterval()
+    {
+        Task.DesiredInterval = 864000000000;
+
+        await _repository.UpdateTask(Task.Id);
+
+        if (SelectedTask != Task)
+        {
+            SelectedTask = Task;
+
+            await SelectedTaskChanged.InvokeAsync(SelectedTask);
+        }
+    }
+
+    async Task ClearDesiredInterval()
+    {
+        Task.DesiredInterval = 0;
+
+        await _repository.UpdateTask(Task.Id);
+    }
+
     async Task OnDone()
     {
         (DateTime time, long taskId) = Task.AddTime(DateTime.Now);

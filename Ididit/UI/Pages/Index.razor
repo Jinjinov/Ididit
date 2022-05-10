@@ -61,5 +61,7 @@
     protected override async Task OnInitializedAsync()
     {
         await _repository.Initialize();
+
+        _selectedCategory = _repository.CategoryList.FirstOrDefault();
     }
 }

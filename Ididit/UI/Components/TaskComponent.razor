@@ -5,7 +5,7 @@
             <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is1.Is0.OnEnd class="btn btn-secondary" @onclick="ToggleTask">
                 <Div Margin=Margin.Is1>@Task.Name</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
-                @if (true) @*Settings.ShowRatio*@
+                @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
                 {
                     @if (Task.ElapsedToDesiredRatio >= 100)
                     {
@@ -27,41 +27,57 @@
             </Div>
         </Addon>
         <Addon AddonType="AddonType.End">
+            @if (Task.DesiredInterval == 0)
+            {
+                <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
+            }
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
         </Addon>
     </Addons>
 
     @if (Task == SelectedTask)
     {
-        <p>
-            @( "Average interval: " + ToReadableString(Task.AverageTime) )
+        @if (Task.AverageInterval > 0)
+        {
+            <p>
+                @( "Average interval: " + ToReadableString(Task.AverageTime) )
 
-            @if (Task.IsElapsedOverAverage)
-            {
-                <Div TextWeight=TextWeight.Bold>@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</Div>
-            }
-        </p>
+                @if (Task.IsElapsedOverAverage)
+                {
+                    <Div TextWeight=TextWeight.Bold>@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</Div>
+                }
+            </p>
+        }
 
-        <p>
-            @( "Desired interval:" )
+        @if (Task.DesiredInterval > 0)
+        {
+            <p>
+                @( "Desired interval:" )
 
-            <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
-                <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
-                <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
+                <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                    <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
+                    <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
 
-                <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
-                <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
-            </Addons>
+                    <NumericEdit ShowStepButtons="false" Size="@Theme.Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
+                    <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
 
-            @if (Task.IsElapsedOverDesired)
-            {
-                <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
-            }
-        </p>
+                    <Addon AddonType="AddonType.End">
+                        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=ClearDesiredInterval><Icon Name="IconName.Times" /></Button>
+                    </Addon>
+                </Addons>
+
+                @if (Task.IsElapsedOverDesired)
+                {
+                    <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
+                }
+            </p>
+        }
 
         @if (Task.TimeList.Any())
         {
-            <div @onclick="ToggleShowTime">@(ToReadableString(DateTime.Now - Task.TimeList.Last()) + " ago - (Click to see all)")</div>
+            <Button Color="Color.Primary" Block=false Outline="true" Size="@Theme.Size" Margin=Margin.Is1.FromEnd.Is1.OnY Clicked="ToggleShowTime"><Icon Name="IconName.History" /></Button>
+
+            <span>@(ToReadableString(DateTime.Now - Task.TimeList.Last()) + " ago")</span>
         }
 
         @if (showTime)

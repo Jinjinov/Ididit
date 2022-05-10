@@ -54,8 +54,6 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: fix UI - task is not a repeating task until interval is set
-
         // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
 
         // TODO: user friendly "edit" "discard" "save"

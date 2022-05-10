@@ -17,7 +17,7 @@ public class TaskModel
     public DateTime CreatedAt { get; set; }
 
     public long AverageInterval { get; set; }
-    public long DesiredInterval { get; set; } = 864000000000;
+    public long DesiredInterval { get; set; }
 
     [JsonIgnore]
     internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
