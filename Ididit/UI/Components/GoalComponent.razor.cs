@@ -54,6 +54,10 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
+        // click on goal title = the only edit toggle
+
+        // mix markdown notes with tasks - don't use DynamicComponent - for each line of text use if, else
+
         // TODO: update tasks on text changed
 
         Goal.Details = text;
@@ -77,8 +81,8 @@ public partial class GoalComponent
 
     // TODO: use Drag & Drop to move Subcategory into another Category
     // TODO: use Drag & Drop to move Goal into another Category
-    // TODO: use Drag & Drop to sort Goals
-    // TODO: use Drag & Drop to sort Tasks
+    // TODO: use Drag & Drop to reorder Goals
+    // TODO: use Drag & Drop to reorder Tasks
 
     // TODO: move backup from MainLayout to a component
 
@@ -132,9 +136,6 @@ public partial class GoalComponent
     // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
 
     // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
-
-    // TODO: drag & drop - reorder
-    // TODO: drag & drop - move / change parent
 
     // TODO: use blazor layouts?
     // @inherits LayoutComponentBase
