@@ -54,8 +54,6 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // click on goal title = the only edit toggle
-
         // mix markdown notes with tasks - don't use DynamicComponent - for each line of text use if, else
 
         // TODO: update tasks on text changed

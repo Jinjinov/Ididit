@@ -1,12 +1,14 @@
 ﻿@using Ididit.Data.Models
 
 <Card Margin=Margin.Is1.FromTop>
-    <CardBody Padding=Padding.Is1 @onclick=SelectGoal>
-        <EditGoalComponent @bind-Goal=Goal />
+    <CardBody Padding=Padding.Is1>
+        <div @onclick=SelectGoal>
+            <EditGoalComponent @bind-Goal=Goal />
+        </div>
 
         @if (SelectedGoal == Goal)
         {
-            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" TextChanged=OnTextChanged @onclick:stopPropagation />
+            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop TextChanged=OnTextChanged />
         }
         else
         {
