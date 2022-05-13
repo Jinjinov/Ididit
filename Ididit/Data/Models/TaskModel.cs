@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Markdig;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -7,12 +8,26 @@ namespace Ididit.Data.Models;
 
 public class TaskModel
 {
+    static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
+
     [JsonIgnore]
     internal long Id { get; set; }
     [JsonIgnore]
     internal long GoalId { get; set; }
 
-    public string Name { get; set; } = string.Empty;
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            _name = value;
+            MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline);
+        }
+    }
+
+    [JsonIgnore]
+    internal string MarkdownHtml { get; set; } = string.Empty;
 
     public DateTime CreatedAt { get; set; }
 

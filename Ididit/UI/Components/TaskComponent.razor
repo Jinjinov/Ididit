@@ -37,6 +37,13 @@
 
     @if (Task == SelectedTask)
     {
+        @if (!Task.TimeList.Any())
+        {
+            <p>
+                @( "Created at: " + Task.CreatedAt )
+            </p>
+        }
+
         @if (Task.AverageInterval > 0)
         {
             <p>

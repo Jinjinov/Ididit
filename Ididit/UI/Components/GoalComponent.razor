@@ -14,7 +14,14 @@
         {
             @foreach(TaskModel task in Goal.TaskList)
             {
-                <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+                @if (task.Name.StartsWith('-'))
+                {
+                    <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+                }
+                else
+                {
+                    @((MarkupString)task.MarkdownHtml)
+                }
             }
         }
     </CardBody>
