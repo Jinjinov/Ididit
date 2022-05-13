@@ -1,5 +1,7 @@
 ﻿@using Ididit.Data.Models
 
+<Card>
+<CardBody>
 <div>Selected: @_selectedGoal?.Name</div>
 
 <div>Parent: @ParentCategory?.Name</div>
@@ -8,6 +10,8 @@
 {
     <Button Color=Color.Primary Outline=true @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
 }
+</CardBody>
+</Card>
 
 @foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
 {

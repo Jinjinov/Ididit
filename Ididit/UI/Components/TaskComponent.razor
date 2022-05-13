@@ -1,8 +1,8 @@
 ﻿<Card>
-<CardBody Padding=Padding.Is0>
+<CardBody Background=Background.Light Padding=Padding.Is0>
     <Addons Flex=Flex.NoWrap>
         <Addon AddonType="AddonType.Start" Flex=Flex.Grow.Is1>
-            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 class="btn btn-secondary" @onclick="ToggleTask">
+            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
                 <Div Margin=Margin.Is1>@Task.Name.Substring(2)</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
@@ -93,7 +93,7 @@
             {
                 @if (editTime && SelectedTime == time.Ticks)
                 {
-                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromBottom>
+                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
                         <DateEdit TValue="DateTime" Size="@Theme.Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
                         <TimeEdit TValue="TimeSpan" Size="@Theme.Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
                         <Addon AddonType="AddonType.End">
@@ -104,7 +104,7 @@
                 }
                 else
                 {
-                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromBottom Display=Display.Flex>
+                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
                         <TextEdit Size="@Theme.Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
                         <Addon AddonType="AddonType.End">
