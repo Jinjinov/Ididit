@@ -55,7 +55,7 @@ public partial class GoalComponent
         }
 
         // TODO: task is only span + icon with @onclick
-        // TODO: card body for task details
+        // TODO: themes
 
         // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
         // TODO: add new Goal - select it, edit it
