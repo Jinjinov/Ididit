@@ -8,21 +8,25 @@
 
         @if (SelectedGoal == Goal)
         {
-            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop TextChanged=OnTextChanged />
+            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 TextChanged=OnTextChanged />
         }
         else
         {
-            @foreach(TaskModel task in Goal.TaskList)
-            {
-                @if (task.MarkdownHtml is null)
-                {
-                    <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
-                }
-                else
-                {
-                    @((MarkupString)task.MarkdownHtml)
-                }
-            }
+            <Card Margin=Margin.Is1.FromTop>
+                <CardBody Padding=Padding.Is1>
+                    @foreach(TaskModel task in Goal.TaskList)
+                    {
+                        @if (task.MarkdownHtml is null)
+                        {
+                            <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+                        }
+                        else
+                        {
+                            @((MarkupString)task.MarkdownHtml)
+                        }
+                    }
+                </CardBody>
+            </Card>
         }
     </CardBody>
 </Card>

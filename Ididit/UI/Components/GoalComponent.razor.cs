@@ -55,22 +55,12 @@ public partial class GoalComponent
         }
 
         // TODO: task is only span + icon with @onclick
+        // TODO: card body for task details
 
-        // using Markdig;
-        // readonly MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
-        // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
-        // @((MarkupString)Goal.NotesMarkdownHtml)
-
-        // TODO: mix markdown notes with tasks
-        // URL link can't be a (repeating) task - can't toggle details
-        // polymorphism: note, task, repeating task ? all in one ?
-
-        // TODO: add new Category - select it, edit it
-
+        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
         // TODO: add new Goal - select it, edit it
 
-        // TODO: update tasks on (text changed) / (edit disabled) ?
-
+        // TODO: update existing task text on (text changed) / (edit disabled) ?
         // TODO: user friendly "edit" "discard" "save"
 
         // TODO: GoogleDriveBackup
