@@ -22,12 +22,16 @@ public class TaskModel
         set
         {
             _name = value;
-            MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline);
+
+            if (!_name.StartsWith("- "))
+                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+            else
+                MarkdownHtml = null;
         }
     }
 
     [JsonIgnore]
-    internal string MarkdownHtml { get; set; } = string.Empty;
+    internal string? MarkdownHtml { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

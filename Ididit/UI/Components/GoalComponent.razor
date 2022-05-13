@@ -14,7 +14,7 @@
         {
             @foreach(TaskModel task in Goal.TaskList)
             {
-                @if (task.Name.StartsWith('-'))
+                @if (task.MarkdownHtml is null)
                 {
                     <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
                 }
