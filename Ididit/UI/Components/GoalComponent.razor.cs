@@ -55,15 +55,27 @@ public partial class GoalComponent
         }
 
         // TODO: task is only span + icon with @onclick
-        // TODO: themes
 
-        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
-        // TODO: add new Goal - select it, edit it
+        // TODO: remove all margin and padding inside Goal
+        // TODO: remove all borders inside Goal
+
+        // TODO: each Goal is a Card (secondary / dark color) = goal, textarea / all tasks
+        // TODO: each Task is a Card (card / light color) = task, details
+
+        // TODO: themes - 5 colors:
+        // - background color
+        // - card color
+        // - secondary color
+        // - light color
+        // - dark color
 
         // TODO: update existing task text on (text changed) / (edit disabled) ?
         // TODO: user friendly "edit" "discard" "save"
 
         // TODO: GoogleDriveBackup
+
+        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
+        // TODO: add new Goal - select it, edit it
 
         Goal.Details = text;
 
