@@ -2,7 +2,7 @@
 <div>
     <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
         <Addon AddonType="AddonType.Start" Flex=Flex.Grow.Is1>
-            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 class="btn btn-secondary" @onclick="ToggleTask">
+            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 class="btn btn-secondary" @onclick="ToggleTask">
                 <Div Margin=Margin.Is1>@Task.Name</Div>
                 <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
@@ -29,9 +29,9 @@
         <Addon AddonType="AddonType.End">
             @if (Task.DesiredInterval == 0)
             {
-                <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
+                <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0 Padding=Padding.Is0 Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
             }
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0 Padding=Padding.Is0 Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
         </Addon>
     </Addons>
 

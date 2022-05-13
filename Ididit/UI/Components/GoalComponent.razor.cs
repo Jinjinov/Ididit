@@ -54,20 +54,33 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // mix markdown notes with tasks - don't use DynamicComponent - for each line of text use if, else
+        // TODO: task is only span + icon with @onclick
 
-        // TODO: update tasks on text changed
+        // using Markdig;
+        // readonly MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
+        // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
+        // @((MarkupString)Goal.NotesMarkdownHtml)
+
+        // TODO: mix markdown notes with tasks
+        // URL link can't be a (repeating) task - can't toggle details
+        // polymorphism: note, task, repeating task ? all in one ?
+
+        // TODO: add new Category - select it, edit it
+
+        // TODO: add new Goal - select it, edit it
+
+        // TODO: update tasks on (text changed) / (edit disabled) ?
+
+        // TODO: user friendly "edit" "discard" "save"
+
+        // TODO: GoogleDriveBackup
 
         Goal.Details = text;
 
         await _repository.UpdateGoal(Goal.Id);
     }
 
-    // TODO: GoogleDriveBackup
-
     // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
-
-    // TODO: user friendly "edit" "discard" "save"
 
     // TODO: use Breadcrumb to show Category/Subcategory in Goal header
 
@@ -90,11 +103,6 @@ public partial class GoalComponent
     // TODO: import - notes = lines without "-"
     // TODO: import - tasks = lines with "-"
     // TODO: import - nested tasks = lines with "    -"
-
-    // using Markdig;
-    // readonly MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
-    // public string MarkdownToHtml(string markdown) => Markdown.ToHtml(markdown, markdownPipeline);
-    // @((MarkupString)Goal.NotesMarkdownHtml)
 
     // TODO: task - times list should load on demand - on Task done - on show Task details
 
@@ -127,6 +135,7 @@ public partial class GoalComponent
     // - when opportunity arises
 
     // TODO: settings - https://bootstrapdemo.blazorise.com/tests/misc-forms
+
     // TODO: bootstrap themes
     // https://cdnjs.com/libraries/bootstrap/5.1.3
     // https://www.jsdelivr.com/package/npm/bootstrap
@@ -141,6 +150,7 @@ public partial class GoalComponent
     // @layout MainLayout
     // @page "/admin"
     // @layout AdminLayout
+
     // TODO: use route navigation for help, options, settings?
 
     // TODO: options
