@@ -79,6 +79,8 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
+        // TODO: id = fixed, sort index = priority (index)
+
         // TODO: update existing task text on
         // - text changed - update only one task, you know which one - unless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
         // - edit disabled - can deal with line sorting, but how to deal with multiple changed lines ?
@@ -101,8 +103,6 @@ public partial class GoalComponent
     // TODO: show sub-categories in Goal list
 
     // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
-
-    // TODO: id = fixed, sort index = priority (index)
 
     // TODO: use Drag & Drop to move Subcategory into another Category
     // TODO: use Drag & Drop to move Goal into another Category

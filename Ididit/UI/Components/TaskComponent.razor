@@ -5,7 +5,7 @@
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
             <Div>@Task.Name.Substring(2)</Div>
             <Div Margin=Margin.IsAuto.FromStart.Is1.FromEnd>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
-            @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
+            @if (Task.DesiredInterval > 0)
             {
                 @if (Task.ElapsedToDesiredRatio >= 100)
                 {
@@ -113,5 +113,6 @@
             }
         }
     }
+
 </CardBody>
 </Card>

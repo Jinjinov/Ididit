@@ -61,21 +61,6 @@ public sealed partial class EditGoalComponent
         await GoalChanged.InvokeAsync(Goal);
     }
 
-    //async Task NewGoal()
-    //{
-    //    if (ParentCategory == null)
-    //        return;
-
-    //    editName = true;
-
-    //    GoalModel goal = ParentCategory.CreateGoal();
-
-    //    await _repository.AddGoal(goal);
-
-    //    Goal = goal;
-    //    await GoalChanged.InvokeAsync(Goal);
-    //}
-
     async Task DeleteGoal()
     {
         if (Goal == null)

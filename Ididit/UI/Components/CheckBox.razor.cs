@@ -51,11 +51,6 @@ namespace Ididit.UI.Components
             }
         }
 
-        //private async ValueTask SetElementProperty(ElementReference element, string property, object value)
-        //{
-        //    await jsRuntime.InvokeVoidAsync("setElementProperty", element, property, value);
-        //}
-
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await SetIndeterminate();

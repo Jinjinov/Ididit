@@ -61,18 +61,6 @@ public sealed partial class EditCategoryComponent
         await CategoryChanged.InvokeAsync(Category);
     }
 
-    //async Task NewCategory()
-    //{
-    //    editName = true;
-
-    //    CategoryModel category = Category != null ? Category.CreateCategory() : _repository.CreateCategory();
-
-    //    await _repository.AddCategory(category);
-
-    //    Category = category;
-    //    await CategoryChanged.InvokeAsync(Category);
-    //}
-
     async Task DeleteCategory()
     {
         if (Category == null)
