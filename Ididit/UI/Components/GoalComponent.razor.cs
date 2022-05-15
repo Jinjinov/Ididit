@@ -29,6 +29,16 @@ public partial class GoalComponent
 
     TaskModel? _selectedTask;
 
+    Blazorise.MemoEdit? _memoEdit;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (SelectedGoal == Goal && _memoEdit != null)
+        {
+            await _memoEdit.Focus();
+        }
+    }
+
     async Task SelectGoal()
     {
         if (SelectedGoal != Goal)
@@ -59,9 +69,6 @@ public partial class GoalComponent
 
             await _repository.DeleteTask(task.Id);
         }
-
-        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
-        // TODO: add new Goal - select it, edit it
 
         // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
 

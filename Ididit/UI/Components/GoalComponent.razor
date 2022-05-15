@@ -8,7 +8,7 @@
 
         @if (SelectedGoal == Goal)
         {
-            <MemoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Border=Border.Is0 TextChanged=OnTextChanged />
+            <MemoEdit @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Border=Border.Is0 TextChanged=OnTextChanged />
         }
         else
         {
