@@ -25,6 +25,16 @@ public sealed partial class EditGoalComponent
     [Parameter]
     public EventCallback<GoalModel> EditGoalChanged { get; set; }
 
+    Blazorise.TextEdit? _textEdit;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (EditGoal == Goal && _textEdit != null)
+        {
+            await _textEdit.Focus();
+        }
+    }
+
     async Task EditName()
     {
         if (Goal != null)

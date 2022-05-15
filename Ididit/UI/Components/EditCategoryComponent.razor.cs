@@ -25,6 +25,16 @@ public sealed partial class EditCategoryComponent
     [Parameter]
     public EventCallback<CategoryModel> EditCategoryChanged { get; set; }
 
+    Blazorise.TextEdit? _textEdit;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (EditCategory == Category && _textEdit != null)
+        {
+            await _textEdit.Focus();
+        }
+    }
+
     async Task EditName()
     {
         if (Category != null)

@@ -19,7 +19,7 @@
 
     @foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
     {
-        <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal />
+        <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
     }
 
 </Div>
