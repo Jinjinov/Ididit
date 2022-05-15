@@ -54,20 +54,18 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: set focus on select / edit
+        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
+        // TODO: add new Goal - select it, edit it
+
+        // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
 
         // TODO: remove focused borders
 
         // TODO: update existing task text on
-        // (text changed - update only one task, you know which one - uless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop) /
-        // (edit disabled - can deal with line sorting, but how to deal with multiple changed lines) ?
-
-        // TODO: user friendly "edit" "discard" "save"
+        // - text changed - update only one task, you know which one - uless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
+        // - edit disabled - can deal with line sorting, but how to deal with multiple changed lines ?
 
         // TODO: GoogleDriveBackup
-
-        // TODO: add new Category - select it, edit it - TreeView @bind-ExpandedNodes=_expandedNodes
-        // TODO: add new Goal - select it, edit it
 
         Goal.Details = text;
 
