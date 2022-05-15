@@ -1,13 +1,13 @@
 ﻿@using Blazorise.TreeView
 @using Ididit.Data.Models
 
-<Card>
-<CardBody>
+<Card Margin=Margin.Is3.OnY>
+<CardBody Padding=Padding.Is1>
 
 <Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
 <Button Color=Color.Primary Outline=true @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
 
-<TreeView Margin=Margin.Is0
+<TreeView Margin=Margin.Is0.Is1.FromTop
           Nodes=_repository.CategoryList
           GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
           HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"

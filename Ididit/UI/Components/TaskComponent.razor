@@ -1,27 +1,27 @@
-﻿<Card>
-<CardBody Background=Background.Light Padding=Padding.Is0>
+﻿<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
+<CardBody Background=Background.Light Padding=Padding.Is1>
     <Addons Flex=Flex.NoWrap>
         <Addon AddonType="AddonType.Start" Flex=Flex.Grow.Is1>
             <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-                <Div Margin=Margin.Is1>@Task.Name.Substring(2)</Div>
-                <Div Margin=Margin.Is1.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
+                <Div>@Task.Name.Substring(2)</Div>
+                <Div Margin=Margin.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
                 @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
                 {
                     @if (Task.ElapsedToDesiredRatio >= 100)
                     {
-                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else if (Task.ElapsedToDesiredRatio >= 80)
                     {
-                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else if (Task.TimeList.Any())
                     {
-                        <Div Margin=Margin.Is1 TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                     }
                     else
                     {
-                        <Div Margin=Margin.Is1><Icon Name="IconName.Exclamation" /></Div>
+                        <Div Margin=Margin.Is1.OnX><Icon Name="IconName.Exclamation" /></Div>
                     }
                 }
             </Div>
@@ -82,7 +82,7 @@
 
         @if (Task.TimeList.Any())
         {
-            <Button Color="Color.Primary" Block=false Outline="true" Size="@Theme.Size" Margin=Margin.Is1.FromEnd.Is1.OnY Clicked="ToggleShowTime"><Icon Name="IconName.History" /></Button>
+            <Button Color="Color.Primary" Block=false Outline="true" Size="@Theme.Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" /></Button>
 
             <span>@(ToReadableString(DateTime.Now - Task.TimeList.Last()) + " ago")</span>
         }

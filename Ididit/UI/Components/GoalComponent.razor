@@ -1,6 +1,6 @@
 ﻿@using Ididit.Data.Models
 
-<Card Margin=Margin.Is3.FromTop>
+<Card Margin=Margin.Is3.FromTop Border=Border.Is0>
     <CardBody Padding=Padding.Is0>
         <div @onclick=SelectGoal>
             <EditGoalComponent @bind-Goal=Goal />
@@ -12,7 +12,7 @@
         }
         else
         {
-            <Div Margin=Margin.Is1.FromTop Padding=Padding.Is1>
+            <Div Margin=Margin.Is1.FromTop Padding=Padding.Is1 Style="min-height: 32px">
                 @foreach(TaskModel task in Goal.TaskList)
                 {
                     @if (task.MarkdownHtml is null)

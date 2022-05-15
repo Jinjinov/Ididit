@@ -1,7 +1,7 @@
 ﻿@if (editName && Goal != null)
 {
     <Addons Flex=Flex.NoWrap @onclick:stopPropagation>
-        <TextEdit Size="@Theme.Size" @bind-Text="@Goal.Name" Placeholder="Add new category" />
+        <TextEdit Border=Border.Is0 Size="@Theme.Size" @bind-Text="@Goal.Name" Placeholder="Add new category" />
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
@@ -11,7 +11,7 @@
 else
 {
     <Addons Flex=Flex.NoWrap>
-        <TextEdit Size="@Theme.Size" Text="@Goal?.Name" ReadOnly=true />
+        <TextEdit Border=Border.Is0 Size="@Theme.Size" Text="@Goal?.Name" ReadOnly=true />
 
         <Addon AddonType="AddonType.End" @onclick:stopPropagation>
             <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>

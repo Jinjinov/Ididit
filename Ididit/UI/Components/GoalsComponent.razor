@@ -1,7 +1,9 @@
 ﻿@using Ididit.Data.Models
 
+<Div Margin=Margin.Is3.OnY>
+
 <Card>
-<CardBody>
+<CardBody Padding=Padding.Is1>
 <div>Selected: @_selectedGoal?.Name</div>
 
 <div>Parent: @ParentCategory?.Name</div>
@@ -17,3 +19,5 @@
 {
     <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal />
 }
+
+</Div>
