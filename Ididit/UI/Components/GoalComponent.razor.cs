@@ -70,8 +70,6 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
-
         // TODO: update existing task text on
         // - text changed - update only one task, you know which one - uless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
         // - edit disabled - can deal with line sorting, but how to deal with multiple changed lines ?
@@ -82,6 +80,8 @@ public partial class GoalComponent
 
         await _repository.UpdateGoal(Goal.Id);
     }
+
+    // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
 
     // TODO: remove focused borders
 
