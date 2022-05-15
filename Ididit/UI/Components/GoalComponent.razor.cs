@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -51,18 +52,26 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        if (Goal.Details.Count(c => c.Equals('\n')) < text.Count(c => c.Equals('\n')))
-        {
-            string[] lines = Goal.Details.Split('\n');
+        int oldCount = Goal.Details.Count(c => c.Equals('\n'));
 
+        int newCount = text.Count(c => c.Equals('\n'));
+
+        List<string> lines = Goal.Details.Split('\n').ToList();
+
+        if (oldCount < newCount)
+        {
             TaskModel task = Goal.CreateTask();
+
+            // TODO: compare lines to existing tasks
 
             task.Name = lines[^1];
 
             await _repository.AddTask(task);
         }
-        else if (Goal.Details.Count(c => c.Equals('\n')) > text.Count(c => c.Equals('\n')) && Goal.TaskList.Any())
+        else if (oldCount > newCount && Goal.TaskList.Any())
         {
+            // TODO: compare lines to existing tasks
+
             TaskModel task = Goal.TaskList.Last();
 
             Goal.TaskList.Remove(task);
@@ -71,7 +80,7 @@ public partial class GoalComponent
         }
 
         // TODO: update existing task text on
-        // - text changed - update only one task, you know which one - uless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
+        // - text changed - update only one task, you know which one - unless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
         // - edit disabled - can deal with line sorting, but how to deal with multiple changed lines ?
 
         // TODO: GoogleDriveBackup
