@@ -19,6 +19,8 @@ public partial class CategoriesComponent
 
     IList<CategoryModel?> _expandedNodes = new List<CategoryModel?>();
 
+    CategoryModel? _editCategory;
+
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
         SelectedCategory = category;
@@ -36,5 +38,17 @@ public partial class CategoriesComponent
         CategoryModel category = SelectedCategory != null ? SelectedCategory.CreateCategory() : _repository.CreateCategory();
 
         await _repository.AddCategory(category);
+
+        if (SelectedCategory != null)
+        {
+            if (!_expandedNodes.Contains(SelectedCategory))
+            {
+                _expandedNodes.Add(SelectedCategory);
+            }
+        }
+
+        _editCategory = category;
+
+        await OnSelectedCategoryChanged(category);
     }
 }

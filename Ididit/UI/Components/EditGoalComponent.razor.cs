@@ -19,22 +19,31 @@ public sealed partial class EditGoalComponent
     [Parameter]
     public EventCallback<GoalModel> GoalChanged { get; set; }
 
-    public bool editName;
+    [Parameter]
+    public GoalModel? EditGoal { get; set; } = null!;
 
-    void EditName()
+    [Parameter]
+    public EventCallback<GoalModel> EditGoalChanged { get; set; }
+
+    async Task EditName()
     {
         if (Goal != null)
-            editName = true;
+        {
+            EditGoal = Goal;
+            await EditGoalChanged.InvokeAsync(EditGoal);
+        }
     }
 
-    void CancelEdit()
+    async Task CancelEdit()
     {
-        editName = false;
+        EditGoal = null;
+        await EditGoalChanged.InvokeAsync(EditGoal);
     }
 
     async Task SaveName()
     {
-        editName = false;
+        EditGoal = null;
+        await EditGoalChanged.InvokeAsync(EditGoal);
 
         if (Goal != null)
             await _repository.UpdateGoal(Goal.Id);

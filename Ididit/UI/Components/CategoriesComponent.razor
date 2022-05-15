@@ -4,29 +4,29 @@
 <Card Margin=Margin.Is3.OnY>
 <CardBody Padding=Padding.Is1>
 
-<Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
-<Button Color=Color.Primary Outline=true @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
+    <Button Color=Color.Primary Outline=true @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
+    <Button Color=Color.Primary Outline=true @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
 
-<TreeView Margin=Margin.Is0.Is1.FromTop
-          Nodes=_repository.CategoryList
-          GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
-          HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
-          SelectedNode=SelectedCategory
-          SelectedNodeChanged=@(async (CategoryModel category) => await OnSelectedCategoryChanged(category))
-          NodeStyling="@((item, style) => { style.TextColor = (item?.CategoryList?.Any() == true) ? TextColor.Primary : TextColor.Dark; style.Style = "font-weight:bold"; })"
-          SelectedNodeStyling="@((item, style) => { style.Style = "padding:0!important"; })"
-          @bind-ExpandedNodes=_expandedNodes>
-    <NodeContent>
-        @if (context == SelectedCategory)
-        {
-            <EditCategoryComponent @bind-Category=context />
-        }
-        else
-        {
-            @context?.Name
-        }
-    </NodeContent>
-</TreeView>
+    <TreeView Margin=Margin.Is0.Is1.FromTop
+              Nodes=_repository.CategoryList
+              GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
+              HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
+              SelectedNode=SelectedCategory
+              SelectedNodeChanged=@(async (CategoryModel category) => await OnSelectedCategoryChanged(category))
+              NodeStyling="@((item, style) => { style.TextColor = (item?.CategoryList?.Any() == true) ? TextColor.Primary : TextColor.Dark; style.Style = "font-weight:bold"; })"
+              SelectedNodeStyling="@((item, style) => { style.Style = "padding:0!important"; })"
+              @bind-ExpandedNodes=_expandedNodes>
+        <NodeContent>
+            @if (context == SelectedCategory)
+            {
+                <EditCategoryComponent @bind-Category=context @bind-EditCategory=_editCategory />
+            }
+            else
+            {
+                @context?.Name
+            }
+        </NodeContent>
+    </TreeView>
 
 </CardBody>
 </Card>

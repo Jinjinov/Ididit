@@ -2,22 +2,24 @@
 
 <Div Margin=Margin.Is3.OnY>
 
-<Card>
-<CardBody Padding=Padding.Is1>
-<div>Selected: @_selectedGoal?.Name</div>
+    <Card>
+    <CardBody Padding=Padding.Is1>
 
-<div>Parent: @ParentCategory?.Name</div>
+        <div>Selected: @_selectedGoal?.Name</div>
 
-@if (ParentCategory != null)
-{
-    <Button Color=Color.Primary Outline=true @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
-}
-</CardBody>
-</Card>
+        <div>Parent: @ParentCategory?.Name</div>
 
-@foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
-{
-    <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal />
-}
+        @if (ParentCategory != null)
+        {
+            <Button Color=Color.Primary Outline=true @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
+        }
+
+    </CardBody>
+    </Card>
+
+    @foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
+    {
+        <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal />
+    }
 
 </Div>

@@ -16,11 +16,19 @@ public partial class GoalsComponent
 
     public GoalModel? _selectedGoal { get; set; }
 
+    public GoalModel? _editGoal { get; set; }
+
     async Task NewGoal()
     {
         if (ParentCategory != null)
         {
-            await _repository.AddGoal(ParentCategory.CreateGoal());
+            GoalModel goal = ParentCategory.CreateGoal();
+
+            await _repository.AddGoal(goal);
+
+            _selectedGoal = goal;
+
+            _editGoal = goal;
         }
     }
 }
