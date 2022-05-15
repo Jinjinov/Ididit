@@ -1,64 +1,61 @@
 ﻿<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
 <CardBody Background=Background.Light Padding=Padding.Is1>
-    <Addons Flex=Flex.NoWrap>
-        <Addon AddonType="AddonType.Start" Flex=Flex.Grow.Is1>
-            <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-                <Div>@Task.Name.Substring(2)</Div>
-                <Div Margin=Margin.IsAuto.FromStart>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
-                @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
-                {
-                    @if (Task.ElapsedToDesiredRatio >= 100)
-                    {
-                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                    }
-                    else if (Task.ElapsedToDesiredRatio >= 80)
-                    {
-                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                    }
-                    else if (Task.TimeList.Any())
-                    {
-                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                    }
-                    else
-                    {
-                        <Div Margin=Margin.Is1.OnX><Icon Name="IconName.Exclamation" /></Div>
-                    }
-                }
-            </Div>
-        </Addon>
-        <Addon AddonType="AddonType.End">
-            @if (Task.DesiredInterval == 0)
+
+    <Div Flex=Flex.NoWrap.AlignItems.Start>
+        <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
+            <Div>@Task.Name.Substring(2)</Div>
+            <Div Margin=Margin.IsAuto.FromStart.Is1.FromEnd>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
+            @if (Task.DesiredInterval > 0) @* Settings.ShowRatio *@
             {
-                <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0 Padding=Padding.Is0 Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
+                @if (Task.ElapsedToDesiredRatio >= 100)
+                {
+                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                }
+                else if (Task.ElapsedToDesiredRatio >= 80)
+                {
+                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                }
+                else if (Task.TimeList.Any())
+                {
+                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                }
+                else
+                {
+                    <Div Margin=Margin.Is1.OnX><Icon Name="IconName.Exclamation" /></Div>
+                }
             }
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0 Padding=Padding.Is0 Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
-        </Addon>
-    </Addons>
+        </Div>
+        @if (Task.DesiredInterval == 0)
+        {
+            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0.Is1.OnX Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
+        }
+        <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" Margin=Margin.Is0 Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+    </Div>
 
     @if (Task == SelectedTask)
     {
         @if (!Task.TimeList.Any())
         {
-            <p>
+            <div>
                 @( "Created at: " + Task.CreatedAt )
-            </p>
+            </div>
         }
 
         @if (Task.AverageInterval > 0)
         {
-            <p>
+            <div>
                 @( "Average interval: " + ToReadableString(Task.AverageTime) )
 
                 @if (Task.IsElapsedOverAverage)
                 {
                     <Div TextWeight=TextWeight.Bold>@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</Div>
                 }
-            </p>
+            </div>
         }
 
         @if (Task.DesiredInterval > 0)
         {
-            <p>
+            <div>
                 @( "Desired interval:" )
 
                 <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
@@ -77,7 +74,7 @@
                 {
                     <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
                 }
-            </p>
+            </div>
         }
 
         @if (Task.TimeList.Any())

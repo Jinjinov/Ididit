@@ -54,31 +54,9 @@ public partial class GoalComponent
             await _repository.DeleteTask(task.Id);
         }
 
-        // TODO: border - must have margin / padding - no margin / padding -> transparent, no border
-
-        // TODO: fix all buttons
-
-        // TODO: fix task padding
-
-        // https://getbootstrap.com/docs/4.6/layout/utilities-for-layout/
-        // https://getbootstrap.com/docs/4.6/layout/grid/
-        // https://getbootstrap.com/docs/4.6/utilities/flex/#fill
-        // https://getbootstrap.com/docs/4.6/utilities/flex/#grow-and-shrink
-
-        // https://bootstrapdemo.blazorise.com/tests/utilities/layout
-        // https://bootstrapdemo.blazorise.com/tests/utilities/flex
-
-        // TODO: task is only span + icon with @onclick
-        // TODO: remove </Addons> from all titles, leave it for desired interval and completed time
+        // TODO: set focus on select / edit
 
         // TODO: remove focused borders
-
-        // TODO: themes - 5 colors:
-        // - background color
-        // - card color
-        // - secondary color
-        // - light color
-        // - dark color
 
         // TODO: update existing task text on
         // (text changed - update only one task, you know which one - uless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop) /
