@@ -58,11 +58,11 @@ public partial class GoalComponent
 
         List<string> lines = Goal.Details.Split('\n').ToList();
 
+        // TODO: compare lines to existing tasks
+
         if (oldCount < newCount)
         {
             TaskModel task = Goal.CreateTask();
-
-            // TODO: compare lines to existing tasks
 
             task.Name = lines[^1];
 
@@ -70,16 +70,12 @@ public partial class GoalComponent
         }
         else if (oldCount > newCount && Goal.TaskList.Any())
         {
-            // TODO: compare lines to existing tasks
-
             TaskModel task = Goal.TaskList.Last();
 
             Goal.TaskList.Remove(task);
 
             await _repository.DeleteTask(task.Id);
         }
-
-        // TODO: id = fixed, sort index = priority (index)
 
         // TODO: update existing task text on
         // - text changed - update only one task, you know which one - unless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
@@ -88,7 +84,7 @@ public partial class GoalComponent
         // TODO: GoogleDriveBackup
 
         // TODO: mobile: single column, minimized tree view
-        // TODO: new import / export page
+        // TODO: new import/export page
         // TODO: main menu
 
         Goal.Details = text;
