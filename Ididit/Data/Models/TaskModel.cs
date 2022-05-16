@@ -15,7 +15,7 @@ public class TaskModel
     [JsonIgnore]
     internal long GoalId { get; set; }
 
-    public int Index { get; set; }
+    public long? PreviousId { get; set; }
 
     private string _name = string.Empty;
     public string Name

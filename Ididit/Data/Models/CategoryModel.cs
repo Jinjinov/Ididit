@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Ididit.Data.Models;
@@ -10,7 +11,7 @@ public class CategoryModel
     [JsonIgnore]
     internal long? CategoryId { get; set; }
 
-    public int Index { get; set; }
+    public long? PreviousId { get; set; }
 
     public string Name { get; set; } = string.Empty;
 
@@ -22,7 +23,7 @@ public class CategoryModel
         CategoryModel category = new()
         {
             CategoryId = Id,
-            Index = CategoryList.Count,
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
             Name = "Category " + CategoryList.Count
         };
 
@@ -36,7 +37,7 @@ public class CategoryModel
         GoalModel goal = new()
         {
             CategoryId = Id,
-            Index = GoalList.Count,
+            PreviousId = GoalList.Any() ? GoalList.Last().Id : null,
             Name = "Goal " + GoalList.Count
         };
 

@@ -12,7 +12,7 @@ public class GoalModel
     [JsonIgnore]
     internal long CategoryId { get; set; }
 
-    public int Index { get; set; }
+    public long? PreviousId { get; set; }
 
     public string Name { get; set; } = string.Empty;
     internal string Details { get; set; } = string.Empty;
@@ -27,7 +27,7 @@ public class GoalModel
         TaskModel task = new()
         {
             GoalId = Id,
-            Index = TaskList.Count,
+            PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
             Name = "Task " + TaskList.Count,
             CreatedAt = DateTime.Now
         };
@@ -35,5 +35,21 @@ public class GoalModel
         TaskList.Add(task);
 
         return task;
+    }
+
+    public void OrderTasks()
+    {
+        List<TaskModel> taskList = new();
+        long? previousId = null;
+
+        while (TaskList.Any())
+        {
+            TaskModel task = TaskList.Single(t => t.PreviousId == previousId);
+            previousId = task.Id;
+            taskList.Add(task);
+            TaskList.Remove(task);
+        }
+
+        TaskList = taskList;
     }
 }

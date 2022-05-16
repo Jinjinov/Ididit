@@ -90,7 +90,7 @@ internal class Repository : DataModel, IRepository
         CategoryModel category = new()
         {
             CategoryId = null,
-            Index = CategoryList.Count,
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
             Name = "Category " + CategoryList.Count
         };
 

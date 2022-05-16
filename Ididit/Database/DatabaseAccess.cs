@@ -81,7 +81,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = category.Id,
                 CategoryId = category.CategoryId,
-                Index = category.Index,
+                PreviousId = category.PreviousId,
                 Name = category.Name
             });
 
@@ -108,7 +108,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = goal.Id,
                 CategoryId = goal.CategoryId,
-                Index = goal.Index,
+                PreviousId = goal.PreviousId,
                 Name = goal.Name,
                 Details = goal.Details
             };
@@ -128,7 +128,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = task.Id,
                 GoalId = task.GoalId,
-                Index = task.Index,
+                PreviousId = task.PreviousId,
                 Name = task.Name,
                 CreatedAt = task.CreatedAt,
                 AverageInterval = task.AverageInterval,
@@ -172,7 +172,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = category.Id,
                 CategoryId = category.CategoryId,
-                Index = category.Index,
+                PreviousId = category.PreviousId,
                 Name = category.Name
             };
 
@@ -187,7 +187,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 {
                     Id = goal.Id,
                     CategoryId = goal.CategoryId,
-                    Index = goal.Index,
+                    PreviousId = goal.PreviousId,
                     Name = goal.Name,
                     Details = goal.Details
                 };
@@ -203,7 +203,7 @@ internal class DatabaseAccess : IDatabaseAccess
                     {
                         Id = task.Id,
                         GoalId = task.GoalId,
-                        Index = task.Index,
+                        PreviousId = task.PreviousId,
                         Name = task.Name,
                         CreatedAt = task.CreatedAt,
                         AverageInterval = task.AverageInterval,
@@ -244,7 +244,7 @@ internal class DatabaseAccess : IDatabaseAccess
         {
             Id = category.Id,
             CategoryId = category.CategoryId,
-            Index = category.Index,
+            PreviousId = category.PreviousId,
             Name = category.Name
         };
 
@@ -261,7 +261,7 @@ internal class DatabaseAccess : IDatabaseAccess
         {
             Id = goal.Id,
             CategoryId = goal.CategoryId,
-            Index = goal.Index,
+            PreviousId = goal.PreviousId,
             Name = goal.Name,
             Details = goal.Details
         };
@@ -279,7 +279,7 @@ internal class DatabaseAccess : IDatabaseAccess
         {
             Id = task.Id,
             GoalId = task.GoalId,
-            Index = task.Index,
+            PreviousId = task.PreviousId,
             Name = task.Name,
             CreatedAt = task.CreatedAt,
             AverageInterval = task.AverageInterval,
@@ -313,7 +313,7 @@ internal class DatabaseAccess : IDatabaseAccess
         if (_categoryDict.TryGetValue(category.Id, out CategoryEntity? categoryEntity))
         {
             categoryEntity.CategoryId = category.CategoryId;
-            categoryEntity.Index = category.Index;
+            categoryEntity.PreviousId = category.PreviousId;
             categoryEntity.Name = category.Name;
 
             await _indexedDb.UpdateItems(new List<CategoryEntity> { categoryEntity });
@@ -329,7 +329,7 @@ internal class DatabaseAccess : IDatabaseAccess
         if (_goalDict.TryGetValue(goal.Id, out GoalEntity? goalEntity))
         {
             goalEntity.CategoryId = goal.CategoryId;
-            goalEntity.Index = goal.Index;
+            goalEntity.PreviousId = goal.PreviousId;
             goalEntity.Name = goal.Name;
             goalEntity.Details = goal.Details;
 
@@ -346,7 +346,7 @@ internal class DatabaseAccess : IDatabaseAccess
         if (_taskDict.TryGetValue(task.Id, out TaskEntity? taskEntity))
         {
             taskEntity.GoalId = task.GoalId;
-            taskEntity.Index = task.Index;
+            taskEntity.PreviousId = task.PreviousId;
             taskEntity.Name = task.Name;
             taskEntity.CreatedAt = task.CreatedAt;
             taskEntity.AverageInterval = task.AverageInterval;
