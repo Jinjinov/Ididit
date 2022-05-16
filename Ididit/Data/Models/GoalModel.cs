@@ -12,6 +12,8 @@ public class GoalModel
     [JsonIgnore]
     internal long CategoryId { get; set; }
 
+    public int Index { get; set; }
+
     public string Name { get; set; } = string.Empty;
     internal string Details { get; set; } = string.Empty;
 
@@ -25,6 +27,7 @@ public class GoalModel
         TaskModel task = new()
         {
             GoalId = Id,
+            Index = TaskList.Count,
             Name = "Task " + TaskList.Count,
             CreatedAt = DateTime.Now
         };

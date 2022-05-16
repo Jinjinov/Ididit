@@ -13,7 +13,7 @@
         else
         {
             <Div Margin=Margin.Is1.FromTop Padding=Padding.Is1>
-                @foreach(TaskModel task in Goal.TaskList)
+                @foreach (TaskModel task in Goal.TaskList.OrderBy(t => t.Index))
                 {
                     @if (task.MarkdownHtml is null)
                     {

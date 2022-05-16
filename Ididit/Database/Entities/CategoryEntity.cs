@@ -11,5 +11,8 @@ internal class CategoryEntity
     public long? CategoryId { get; set; }
 
     [IndexDbIndex]
+    public int Index { get; set; }
+
+    [IndexDbIndex]
     public string Name { get; set; } = string.Empty;
 }

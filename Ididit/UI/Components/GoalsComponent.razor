@@ -17,7 +17,7 @@
     </CardBody>
     </Card>
 
-    @foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
+    @foreach (GoalModel goal in ParentCategory?.GoalList.OrderBy(g => g.Index) ?? _repository.AllGoals.Values.OrderBy(g => g.Index))
     {
         <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
     }

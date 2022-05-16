@@ -10,6 +10,8 @@ public class CategoryModel
     [JsonIgnore]
     internal long? CategoryId { get; set; }
 
+    public int Index { get; set; }
+
     public string Name { get; set; } = string.Empty;
 
     public List<CategoryModel> CategoryList = new();
@@ -20,6 +22,7 @@ public class CategoryModel
         CategoryModel category = new()
         {
             CategoryId = Id,
+            Index = CategoryList.Count,
             Name = "Category " + CategoryList.Count
         };
 
@@ -33,6 +36,7 @@ public class CategoryModel
         GoalModel goal = new()
         {
             CategoryId = Id,
+            Index = GoalList.Count,
             Name = "Goal " + GoalList.Count
         };
 

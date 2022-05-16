@@ -12,6 +12,9 @@ internal class TaskEntity
     public long GoalId { get; set; }
 
     [IndexDbIndex]
+    public int Index { get; set; }
+
+    [IndexDbIndex]
     public string Name { get; set; } = string.Empty;
 
     [IndexDbIndex]

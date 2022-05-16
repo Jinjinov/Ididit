@@ -87,6 +87,10 @@ public partial class GoalComponent
 
         // TODO: GoogleDriveBackup
 
+        // TODO: mobile: single column, minimized tree view
+        // TODO: new import / export page
+        // TODO: main menu
+
         Goal.Details = text;
 
         await _repository.UpdateGoal(Goal.Id);
