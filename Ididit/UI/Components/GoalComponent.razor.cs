@@ -61,12 +61,9 @@ public partial class GoalComponent
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 
-        List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
-        List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
-
-        for (int i = indexOfNewLineInOldLines.Count - 1; i >= 0; --i)
+        for (int i = newLines.Count - 1; i >= 0; --i)
         {
-            if (indexOfNewLineInOldLines[i] == -1) // newLines has a line that was not here before
+            if (oldLines.IndexOf(newLines[i]) == -1) // newLines has a line that was not here before
             {
                 if (oldLines.Count == newLines.Count) // changed
                 {
@@ -96,9 +93,9 @@ public partial class GoalComponent
             }
         }
 
-        for (int i = indexOfOldLineInNewLines.Count - 1; i >= 0; --i)
+        for (int i = oldLines.Count - 1; i >= 0; --i)
         {
-            if (indexOfOldLineInNewLines[i] == -1) // oldLines has a line that is not here now
+            if (newLines.IndexOf(oldLines[i]) == -1) // oldLines has a line that is not here now
             {
                 if (oldLines.Count == newLines.Count) // changed
                 {
