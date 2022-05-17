@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,29 +53,54 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        int oldCount = Goal.Details.Count(c => c.Equals('\n'));
+        List<string> oldLines = Goal.Details.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        List<string> newLines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
 
-        int newCount = text.Count(c => c.Equals('\n'));
+        // reordering will be done with drag & drop, don't check the order of tasks here
 
-        List<string> lines = Goal.Details.Split('\n').ToList();
+        List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
+        List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
 
-        // TODO: compare lines to existing tasks
-
-        if (oldCount < newCount)
+        for (int i = indexOfNewLineInOldLines.Count - 1; i >= 0; --i)
         {
-            TaskModel task = Goal.CreateTask();
+            if (indexOfNewLineInOldLines[i] == -1) // newLines has a line that was not here before
+            {
+                if (oldLines.Count == newLines.Count) // changed
+                {
+                    TaskModel task = Goal.TaskList[i];
 
-            task.Name = lines[^1];
+                    task.Name = newLines[i];
 
-            await _repository.AddTask(task);
+                    await _repository.UpdateTask(task.Id);
+                }
+                else // added
+                {
+                    TaskModel task = Goal.CreateTask(i);
+
+                    task.Name = newLines[i];
+
+                    await _repository.AddTask(task);
+                }
+            }
         }
-        else if (oldCount > newCount && Goal.TaskList.Any())
+
+        for (int i = indexOfOldLineInNewLines.Count - 1; i >= 0; --i)
         {
-            TaskModel task = Goal.TaskList.Last();
+            if (indexOfOldLineInNewLines[i] == -1) // oldLines has a line that is not here now
+            {
+                if (oldLines.Count == newLines.Count) // changed
+                {
 
-            Goal.TaskList.Remove(task);
+                }
+                else // deleted
+                {
+                    TaskModel task = Goal.TaskList[i];
 
-            await _repository.DeleteTask(task.Id);
+                    Goal.TaskList.Remove(task);
+
+                    await _repository.DeleteTask(task.Id);
+                }
+            }
         }
 
         // TODO: update existing task text on

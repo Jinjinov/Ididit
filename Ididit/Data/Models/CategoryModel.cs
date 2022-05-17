@@ -45,4 +45,36 @@ public class CategoryModel
 
         return goal;
     }
+
+    public void OrderCategories()
+    {
+        List<CategoryModel> categoryList = new();
+        long? previousId = null;
+
+        while (CategoryList.Any())
+        {
+            CategoryModel category = CategoryList.Single(t => t.PreviousId == previousId);
+            previousId = category.Id;
+            categoryList.Add(category);
+            CategoryList.Remove(category);
+        }
+
+        CategoryList = categoryList;
+    }
+
+    public void OrderGoals()
+    {
+        List<GoalModel> goalList = new();
+        long? previousId = null;
+
+        while (GoalList.Any())
+        {
+            GoalModel goal = GoalList.Single(t => t.PreviousId == previousId);
+            previousId = goal.Id;
+            goalList.Add(goal);
+            GoalList.Remove(goal);
+        }
+
+        GoalList = goalList;
+    }
 }

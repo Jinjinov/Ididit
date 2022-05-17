@@ -22,7 +22,7 @@ public class GoalModel
 
     public List<TaskModel> TaskList = new();
 
-    public TaskModel CreateTask()
+    public TaskModel CreateTask(int index = -1)
     {
         TaskModel task = new()
         {
@@ -32,7 +32,10 @@ public class GoalModel
             CreatedAt = DateTime.Now
         };
 
-        TaskList.Add(task);
+        if (index == -1)
+            TaskList.Add(task);
+        else
+            TaskList.Insert(index, task);
 
         return task;
     }
