@@ -120,6 +120,12 @@ internal class DatabaseAccess : IDatabaseAccess
             data.CategoryDict[goal.CategoryId].GoalList.Add(goalModel);
         }
 
+        foreach (CategoryModel category in data.CategoryDict.Values)
+        {
+            category.OrderCategories();
+            category.OrderGoals();
+        }
+
         _taskList = await _indexedDb.GetAll<TaskEntity>();
 
         foreach (TaskEntity task in _taskList)
@@ -140,6 +146,11 @@ internal class DatabaseAccess : IDatabaseAccess
             data.TaskDict.Add(task.Id, taskModel);
 
             data.GoalDict[task.GoalId].TaskList.Add(taskModel);
+        }
+
+        foreach (GoalModel goal in data.GoalDict.Values)
+        {
+            goal.OrderTasks();
         }
 
         _timeList = await _indexedDb.GetAll<TimeEntity>();
