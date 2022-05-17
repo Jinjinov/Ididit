@@ -56,6 +56,9 @@ public partial class GoalComponent
         List<string> oldLines = Goal.Details.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
         List<string> newLines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
 
+        Goal.Details = text;
+        await _repository.UpdateGoal(Goal.Id);
+
         // reordering will be done with drag & drop, don't check the order of tasks here
 
         List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
@@ -79,6 +82,8 @@ public partial class GoalComponent
 
                     task.Name = newLines[i];
 
+                    // TODO: set task.PreviousId
+
                     await _repository.AddTask(task);
                 }
             }
@@ -98,24 +103,18 @@ public partial class GoalComponent
 
                     Goal.TaskList.Remove(task);
 
+                    // TODO: set task.PreviousId
+
                     await _repository.DeleteTask(task.Id);
                 }
             }
         }
-
-        // TODO: update existing task text on
-        // - text changed - update only one task, you know which one - unless multiple lines are deleted - can't deal with cut/paste line sorting - use drag & drop /
-        // - edit disabled - can deal with line sorting, but how to deal with multiple changed lines ?
 
         // TODO: GoogleDriveBackup
 
         // TODO: mobile: single column, minimized tree view
         // TODO: new import/export page
         // TODO: main menu
-
-        Goal.Details = text;
-
-        await _repository.UpdateGoal(Goal.Id);
     }
 
     // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
