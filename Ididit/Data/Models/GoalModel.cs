@@ -22,7 +22,7 @@ public class GoalModel
 
     public List<TaskModel> TaskList = new();
 
-    public TaskModel CreateTask(int index = -1)
+    public TaskModel CreateTask()
     {
         TaskModel task = new()
         {
@@ -32,12 +32,58 @@ public class GoalModel
             CreatedAt = DateTime.Now
         };
 
-        if (index == -1)
-            TaskList.Add(task);
-        else
-            TaskList.Insert(index, task);
+        TaskList.Add(task);
 
         return task;
+    }
+
+    public (TaskModel newTask, TaskModel? changedTask) CreateTask(int index)
+    {
+        TaskModel? changedTask = null;
+
+        TaskModel task = new()
+        {
+            GoalId = Id,
+            PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
+            Name = "Task " + TaskList.Count,
+            CreatedAt = DateTime.Now
+        };
+
+        if (index > 0)
+            task.PreviousId = TaskList[index - 1].Id;
+        else
+            task.PreviousId = null;
+
+        if (index < TaskList.Count)
+        {
+            changedTask = TaskList[index];
+            changedTask.PreviousId = task.Id;
+        }
+
+        TaskList.Insert(index, task);
+
+        return (task, changedTask);
+    }
+
+    public TaskModel? RemoveTask(TaskModel task)
+    {
+        TaskModel? changedTask = null;
+
+        int index = TaskList.IndexOf(task);
+
+        if (index < TaskList.Count - 1)
+        {
+            changedTask = TaskList[index + 1];
+
+            if (index > 0)
+                changedTask.PreviousId = TaskList[index - 1].Id;
+            else
+                changedTask.PreviousId = null;
+        }
+
+        TaskList.Remove(task);
+
+        return changedTask;
     }
 
     public void OrderTasks()

@@ -78,11 +78,17 @@ public partial class GoalComponent
                 }
                 else // added
                 {
-                    TaskModel task = Goal.CreateTask(i);
+                    (TaskModel task, TaskModel? changedTask) = Goal.CreateTask(i);
 
                     task.Name = newLines[i];
 
-                    // TODO: set task.PreviousId
+                    if (changedTask is not null)
+                    {
+                        // TODO:: move setting of ".Id = Max" to object constructor
+                        changedTask.PreviousId = _repository.MaxTaskId + 1;
+
+                        await _repository.UpdateTask(changedTask.Id);
+                    }
 
                     await _repository.AddTask(task);
                 }
@@ -101,9 +107,10 @@ public partial class GoalComponent
                 {
                     TaskModel task = Goal.TaskList[i];
 
-                    Goal.TaskList.Remove(task);
+                    TaskModel? changedTask = Goal.RemoveTask(task);
 
-                    // TODO: set task.PreviousId
+                    if (changedTask is not null)
+                        await _repository.UpdateTask(changedTask.Id);
 
                     await _repository.DeleteTask(task.Id);
                 }
