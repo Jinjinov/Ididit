@@ -84,7 +84,8 @@ public partial class GoalComponent
 
                     if (changedTask is not null)
                     {
-                        // TODO:: move setting of ".Id = Max" to object constructor
+                        // TODO: move setting of ".Id = Max" from Repository.Add...() to object constructor
+
                         changedTask.PreviousId = _repository.MaxTaskId + 1;
 
                         await _repository.UpdateTask(changedTask.Id);
