@@ -61,56 +61,75 @@ public partial class GoalComponent
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 
-        for (int i = newLines.Count - 1; i >= 0; --i)
+        List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
+        List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
+
+        for (int i = indexOfNewLineInOldLines.Count - 1; i >= 0; --i)
         {
-            if (oldLines.IndexOf(newLines[i]) == -1) // newLines has a line that was not here before
+            if (oldLines.Count == newLines.Count) // changed
             {
-                if (oldLines.Count == newLines.Count) // changed
+                if (indexOfNewLineInOldLines[i] == -1) // this newLine is not in oldLines list
                 {
                     TaskModel task = Goal.TaskList[i];
-
                     task.Name = newLines[i];
-
                     await _repository.UpdateTask(task.Id);
                 }
-                else // added
+                else // this newLine is SOMEWHERE in oldLines list
+                {
+                    // TODO: check if it is in the correct place
+                }
+            }
+            else // added
+            {
+                if (indexOfNewLineInOldLines[i] == -1) // this newLine is not in oldLines list
                 {
                     (TaskModel task, TaskModel? changedTask) = Goal.CreateTask(i);
-
                     task.Name = newLines[i];
 
                     if (changedTask is not null)
                     {
                         // TODO: move setting of ".Id = Max" from Repository.Add...() to object constructor
-
                         changedTask.PreviousId = _repository.MaxTaskId + 1;
-
                         await _repository.UpdateTask(changedTask.Id);
                     }
 
                     await _repository.AddTask(task);
                 }
+                else // this newLine is SOMEWHERE in oldLines list
+                {
+                    // TODO: check if it is in the correct place
+                }
             }
         }
 
-        for (int i = oldLines.Count - 1; i >= 0; --i)
+        for (int i = indexOfOldLineInNewLines.Count - 1; i >= 0; --i)
         {
-            if (newLines.IndexOf(oldLines[i]) == -1) // oldLines has a line that is not here now
+            if (oldLines.Count == newLines.Count) // changed
             {
-                if (oldLines.Count == newLines.Count) // changed
+                if (indexOfOldLineInNewLines[i] == -1) // this oldLine is not in newLines list
                 {
 
                 }
-                else // deleted
+                else // this oldLine is SOMEWHERE in newLines list
+                {
+
+                }
+            }
+            else // deleted
+            {
+                if (indexOfOldLineInNewLines[i] == -1) // this oldLine is not in newLines list
                 {
                     TaskModel task = Goal.TaskList[i];
-
                     TaskModel? changedTask = Goal.RemoveTask(task);
 
                     if (changedTask is not null)
                         await _repository.UpdateTask(changedTask.Id);
 
                     await _repository.DeleteTask(task.Id);
+                }
+                else // this oldLine is SOMEWHERE in newLines list
+                {
+
                 }
             }
         }
