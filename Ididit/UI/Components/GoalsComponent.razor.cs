@@ -22,7 +22,7 @@ public partial class GoalsComponent
     {
         if (ParentCategory != null)
         {
-            GoalModel goal = ParentCategory.CreateGoal();
+            GoalModel goal = ParentCategory.CreateGoal(_repository.MaxGoalId + 1);
 
             await _repository.AddGoal(goal);
 

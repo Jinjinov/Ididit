@@ -26,7 +26,7 @@ internal class MarkdownBackup
 
         string text = await streamReader.ReadToEndAsync();
 
-        GoalModel goal = category.CreateGoal();
+        GoalModel goal = category.CreateGoal(_repository.MaxGoalId + 1);
         goal.Name = name;
         goal.Details = text;
 
@@ -36,7 +36,7 @@ internal class MarkdownBackup
         {
             if (line.StartsWith("- "))
             {
-                TaskModel task = goal.CreateTask();
+                TaskModel task = goal.CreateTask(_repository.MaxTaskId + 1);
                 task.Name = line[2..];
 
                 await _repository.AddTask(task);

@@ -50,7 +50,7 @@ internal class DirectoryBackup
 
                 if (goal == null)
                 {
-                    goal = parent.CreateGoal();
+                    goal = parent.CreateGoal(_repository.MaxGoalId + 1);
                     goal.Name = name;
                     goal.Details = node.Text;
 
@@ -71,7 +71,7 @@ internal class DirectoryBackup
 
                 if (category == null)
                 {
-                    category = parent.CreateCategory();
+                    category = parent.CreateCategory(_repository.MaxCategoryId + 1);
                     category.Name = name;
 
                     _repository.AddCategory(category);

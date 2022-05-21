@@ -64,6 +64,8 @@ public partial class GoalComponent
         List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
         List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
 
+        int indexOfNewLineShouldBe = 0;
+
         for (int i = indexOfNewLineInOldLines.Count - 1; i >= 0; --i)
         {
             if (oldLines.Count == newLines.Count) // changed
@@ -74,33 +76,33 @@ public partial class GoalComponent
                     task.Name = newLines[i];
                     await _repository.UpdateTask(task.Id);
                 }
-                else // this newLine is SOMEWHERE in oldLines list
+                else if (indexOfNewLineInOldLines[i] != indexOfNewLineShouldBe) // this newLine is SOMEWHERE in oldLines list
                 {
-                    // TODO: check if it is in the correct place
                 }
             }
             else // added
             {
                 if (indexOfNewLineInOldLines[i] == -1) // this newLine is not in oldLines list
                 {
-                    (TaskModel task, TaskModel? changedTask) = Goal.CreateTask(i);
+                    (TaskModel task, TaskModel? changedTask) = Goal.CreateTask(_repository.MaxTaskId + 1, i);
                     task.Name = newLines[i];
 
                     if (changedTask is not null)
-                    {
-                        // TODO: move setting of ".Id = Max" from Repository.Add...() to object constructor
-                        changedTask.PreviousId = _repository.MaxTaskId + 1;
                         await _repository.UpdateTask(changedTask.Id);
-                    }
 
                     await _repository.AddTask(task);
+
+                    --indexOfNewLineShouldBe;
                 }
-                else // this newLine is SOMEWHERE in oldLines list
+                else if (indexOfNewLineInOldLines[i] != indexOfNewLineShouldBe) // this newLine is SOMEWHERE in oldLines list
                 {
-                    // TODO: check if it is in the correct place
                 }
             }
+
+            ++indexOfNewLineShouldBe;
         }
+
+        int indexOfOldLineShouldBe = 0;
 
         for (int i = indexOfOldLineInNewLines.Count - 1; i >= 0; --i)
         {
@@ -110,9 +112,8 @@ public partial class GoalComponent
                 {
 
                 }
-                else // this oldLine is SOMEWHERE in newLines list
+                else if (indexOfOldLineInNewLines[i] != indexOfOldLineShouldBe) // this oldLine is SOMEWHERE in newLines list
                 {
-
                 }
             }
             else // deleted
@@ -126,12 +127,15 @@ public partial class GoalComponent
                         await _repository.UpdateTask(changedTask.Id);
 
                     await _repository.DeleteTask(task.Id);
-                }
-                else // this oldLine is SOMEWHERE in newLines list
-                {
 
+                    --indexOfOldLineShouldBe;
+                }
+                else if (indexOfOldLineInNewLines[i] != indexOfOldLineShouldBe) // this oldLine is SOMEWHERE in newLines list
+                {
                 }
             }
+
+            ++indexOfOldLineShouldBe;
         }
 
         // TODO: GoogleDriveBackup

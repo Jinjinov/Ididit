@@ -22,10 +22,11 @@ public class GoalModel
 
     public List<TaskModel> TaskList = new();
 
-    public TaskModel CreateTask()
+    public TaskModel CreateTask(long id)
     {
         TaskModel task = new()
         {
+            Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
             Name = "Task " + TaskList.Count,
@@ -37,12 +38,13 @@ public class GoalModel
         return task;
     }
 
-    public (TaskModel newTask, TaskModel? changedTask) CreateTask(int index)
+    public (TaskModel newTask, TaskModel? changedTask) CreateTask(long id, int index)
     {
         TaskModel? changedTask = null;
 
         TaskModel task = new()
         {
+            Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
             Name = "Task " + TaskList.Count,
