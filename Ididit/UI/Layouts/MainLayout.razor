@@ -62,10 +62,13 @@
 <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
     <Row>
         <Column Border=Border.Is1>
+            Ididit
             <LoginDisplay />
         </Column>
     </Row>
-    @Body
+    <Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>
+        @Body
+    </Row>
     <Row>
         <Column Border=Border.Is1>
             <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
