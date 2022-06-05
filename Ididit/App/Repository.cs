@@ -48,7 +48,7 @@ internal class Repository : DataModel, IRepository
     {
         AddCategoryList(data.CategoryList);
 
-        foreach (var settings in data.SettingsList)
+        foreach (SettingsModel settings in data.SettingsList)
         {
             if (!_settingsDict.ContainsKey(settings.Id))
                 SettingsList.Add(settings);

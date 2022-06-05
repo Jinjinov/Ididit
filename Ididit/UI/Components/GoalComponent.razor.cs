@@ -140,12 +140,19 @@ public partial class GoalComponent
 
         // TODO: GoogleDriveBackup
 
+        // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
+
+        // TODO: show only ASAP tasks, show only repeating tasks, show only notes
+
+        // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
+        // TODO: group by (must, should, can) - importance / urgency
+
         // TODO: mobile: single column, minimized tree view
         // TODO: new import/export page
         // TODO: main menu
     }
 
-    // TODO: user friendly "edit" "save" - remove Edit buttons, remove Toggle buttons, edit on click (except on URL link click)
+    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), edit on click (except on URL link click)
 
     // TODO: remove focused borders
 
@@ -154,8 +161,6 @@ public partial class GoalComponent
     // TODO: use Breadcrumb to show Category/Subcategory in Goal header
 
     // TODO: show sub-categories in Goal list
-
-    // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 
     // TODO: use Drag & Drop to move Subcategory into another Category
     // TODO: use Drag & Drop to move Goal into another Category
@@ -178,16 +183,12 @@ public partial class GoalComponent
     // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
     // Meaning you can do custom actions whenever a data-source changes.
 
-    // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
-    // TODO: group by (must, should, can) - importance / urgency
-    // TODO: group statistics
-
     // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
     // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
 
     // TODO: weekly category goal (do X tasks from this category)
-
-    // TODO: statistics / graphs (did X tasks from this category) / (num of tasks over time)
+    // TODO: statistics (did X tasks from this category)
+    // TODO: graphs (num of tasks over time)
 
     // TODO: backup - Dropbox / OneDrive / iCloud
 
@@ -201,7 +202,7 @@ public partial class GoalComponent
     // - during weekend
     // - when opportunity arises
 
-    // TODO: settings - https://bootstrapdemo.blazorise.com/tests/misc-forms
+    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: bootstrap themes
     // https://cdnjs.com/libraries/bootstrap/5.1.3
