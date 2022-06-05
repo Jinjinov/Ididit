@@ -1,6 +1,7 @@
 ﻿using Ididit.Data;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,10 +16,13 @@ namespace Ididit.Persistence;
 
 internal class GoogleDriveBackup
 {
-    public Task<DataModel> ImportData()
+    public async Task<DataModel> ImportData()
     {
-        // TODO:
-        throw new NotImplementedException();
+        string text = await LoadFile();
+
+        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
+
+        return data ?? throw new InvalidDataException("Can't deserialize JSON");
     }
 
     public void ExportData(IDataModel data)
@@ -57,26 +61,47 @@ internal class GoogleDriveBackup
 
     private async Task SaveFile(string content)
     {
-        string folder = await GetFolder();
+        string folderId = await GetFolderId();
 
-        if (string.IsNullOrEmpty(folder))
+        if (string.IsNullOrEmpty(folderId))
         {
-            folder = await CreateFolder();
+            folderId = await CreateFolder();
         }
 
-        string file = await GetFile(folder);
+        string fileId = await GetFileId(folderId);
 
-        if (string.IsNullOrEmpty(file))
+        if (string.IsNullOrEmpty(fileId))
         {
-            file = await CreateFile(folder, content);
+            fileId = await CreateFile(folderId, content);
         }
         else
         {
-            await UpdateFile(file, content);
+            await UpdateFile(fileId, content);
         }
     }
 
-    private async Task<string> GetFolder()
+    private async Task<string> LoadFile()
+    {
+        string folderId = await GetFolderId();
+
+        if (string.IsNullOrEmpty(folderId))
+        {
+            return string.Empty;
+        }
+
+        string fileId = await GetFileId(folderId);
+
+        if (string.IsNullOrEmpty(fileId))
+        {
+            return string.Empty;
+        }
+        else
+        {
+            return await GetFile(fileId);
+        }
+    }
+
+    private async Task<string> GetFolderId()
     {
         string folderId = string.Empty;
 
@@ -121,7 +146,7 @@ internal class GoogleDriveBackup
         return folderId;
     }
 
-    private async Task<string> GetFile(string folderId)
+    private async Task<string> GetFileId(string folderId)
     {
         string fileId = string.Empty;
 
@@ -161,6 +186,34 @@ internal class GoogleDriveBackup
         }
 
         return fileId;
+    }
+
+    private async Task<string> GetFile(string fileId)
+    {
+        string file = string.Empty;
+
+        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out AccessToken token))
+        {
+            string url = $"https://www.googleapis.com/drive/v3/files/{fileId}?alt=media";
+
+            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+
+            HttpStatusCode responseStatusCode = response.StatusCode;
+
+            file = await response.Content.ReadAsStringAsync();
+        }
+
+        return file;
     }
 
     public async Task<string> GetFolders()
