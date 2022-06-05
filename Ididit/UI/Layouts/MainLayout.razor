@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using Ididit.UI.Login
+
+@inherits LayoutComponentBase
 
 @*
     https://getbootstrap.com/docs/4.3/layout/grid/
@@ -59,7 +61,9 @@
 
 <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
     <Row>
-        <Column Border=Border.Is1>Header</Column>
+        <Column Border=Border.Is1>
+            <LoginDisplay />
+        </Column>
     </Row>
     @Body
     <Row>
