@@ -26,6 +26,9 @@ public partial class MainLayout
     YamlBackup _yamlBackup { get; set; } = null!;
 
     [Inject]
+    TsvBackup _tsvBackup { get; set; } = null!;
+
+    [Inject]
     MarkdownBackup _markdownBackup { get; set; } = null!;
 
     [Inject]
@@ -48,6 +51,13 @@ public partial class MainLayout
 
             await _repository.AddData(data);
         }
+
+        if (e.File.Name.EndsWith(".tsv"))
+        {
+            DataModel data = await _tsvBackup.ImportData(stream);
+
+            await _repository.AddData(data);
+        }
     }
 
     async Task ExportJson()
@@ -58,6 +68,11 @@ public partial class MainLayout
     async Task ExportYaml()
     {
         await _yamlBackup.ExportData(_repository);
+    }
+
+    async Task ExportTsv()
+    {
+        await _tsvBackup.ExportData(_repository);
     }
 
     async Task ImportMarkdown(InputFileChangeEventArgs e)

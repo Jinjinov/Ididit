@@ -40,6 +40,8 @@ public class TaskModel
     public long AverageInterval { get; set; }
     public long DesiredInterval { get; set; }
 
+    public Priority Priority { get; set; }
+
     [JsonIgnore]
     internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
     [JsonIgnore]

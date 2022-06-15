@@ -61,6 +61,21 @@ public partial class GoalComponent
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 
+        /*
+
+        // TODO: https://stackoverflow.com/questions/4585939/comparing-strings-and-get-the-first-place-where-they-vary-from-eachother
+
+        go char by char until first difference
+        - add
+        - update
+
+        go char by char from back
+        - delete
+
+        use linked list
+
+        /**/
+
         List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
         List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
 
@@ -139,6 +154,12 @@ public partial class GoalComponent
         }
 
         // TODO: GoogleDriveBackup
+
+        // TODO: task priority
+
+        // TODO: (task tags) (later)
+
+        // TODO: TSV backup
 
         // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 

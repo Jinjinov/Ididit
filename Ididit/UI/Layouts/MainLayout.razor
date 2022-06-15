@@ -78,6 +78,8 @@
 
             <Button Color=Color.Primary Block=false @onclick=ExportYaml>Export Yaml</Button>
 
+            <Button Color=Color.Primary Block=false @onclick=ExportTsv>Export Tsv</Button>
+
             <Label For="notes-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import Markdown</Label>
             <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
 

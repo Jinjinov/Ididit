@@ -25,4 +25,7 @@ internal class TaskEntity
 
     [IndexDbIndex]
     public long DesiredInterval { get; set; }
+
+    [IndexDbIndex]
+    public Priority Priority { get; set; }
 }
