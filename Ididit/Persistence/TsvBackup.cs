@@ -18,7 +18,10 @@ internal class TsvBackup
 
     CsvConfiguration importConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
     {
-        DetectDelimiter = true
+        //DetectDelimiter = true
+        Delimiter = "\t",
+        Quote = (char)1,
+        Mode = CsvMode.NoEscape
     };
 
     CsvConfiguration exportConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -68,13 +71,13 @@ internal class TsvBackup
                     Interval = string.Empty
                 };
 
-                var records = csv.GetRecords(anonymousTypeDefinition);
+                var records = csv.GetRecordsAsync(anonymousTypeDefinition);
 
                 CategoryModel category = new();
                 GoalModel goal = new();
                 TaskModel task = new();
 
-                foreach (var record in records)
+                await foreach (var record in records)
                 {
                     if (data.CategoryList.Any(c => c.Name == record.Category))
                     {
