@@ -34,6 +34,8 @@ internal class TsvBackup
 
     public async Task<DataModel> ImportData(Stream stream)
     {
+        DataModel data = new();
+
         // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
 
         using (StreamReader streamReader = new(stream))
@@ -62,14 +64,49 @@ internal class TsvBackup
                     Goal = string.Empty,
                     Task = string.Empty,
                     Priority = Priority.None,
-                    Interval = TimeSpan.Zero
+                    Interval = string.Empty
                 };
 
                 var records = csv.GetRecords(anonymousTypeDefinition);
+
+                CategoryModel category = new();
+                GoalModel goal = new();
+                TaskModel task = new();
+
+                foreach (var record in records)
+                {
+                    if (category.Name != record.Category)
+                    {
+                        category = new() { Name = record.Category };
+                        data.CategoryList.Add(category);
+                    }
+
+                    if (goal.Name != record.Goal)
+                    {
+                        goal = new() { Name = record.Goal };
+                        category.GoalList.Add(goal);
+                    }
+
+                    task = new() { Name = record.Task, Priority = record.Priority };
+
+                    string[] time = record.Interval.Split(' ');
+
+                    if (time.Length == 2 && int.TryParse(time[0], out int interval))
+                    {
+                        task.DesiredTime = time[1].TrimEnd('s') switch
+                        {
+                            "day" => TimeSpan.FromDays(interval),
+                            "week" => TimeSpan.FromDays(interval * 7),
+                            "month" => TimeSpan.FromDays(interval * 30),
+                            "year" => TimeSpan.FromDays(interval * 365),
+                            _ => TimeSpan.Zero
+                        };
+                    }
+
+                    goal.TaskList.Add(task);
+                }
             }
         }
-
-        DataModel data = new();
 
         return data ?? throw new InvalidDataException("Can't deserialize TSV");
     }
