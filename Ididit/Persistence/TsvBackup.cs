@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -75,13 +76,21 @@ internal class TsvBackup
 
                 foreach (var record in records)
                 {
-                    if (category.Name != record.Category)
+                    if (data.CategoryList.Any(c => c.Name == record.Category))
+                    {
+                        category = data.CategoryList.First(c => c.Name == record.Category);
+                    }
+                    else
                     {
                         category = new() { Name = record.Category };
                         data.CategoryList.Add(category);
                     }
 
-                    if (goal.Name != record.Goal)
+                    if (category.GoalList.Any(g => g.Name == record.Goal))
+                    {
+                        goal = category.GoalList.First(g => g.Name == record.Goal);
+                    }
+                    else
                     {
                         goal = new() { Name = record.Goal };
                         category.GoalList.Add(goal);
