@@ -1,5 +1,5 @@
 ﻿<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
-<CardBody Background=Background.Light Padding=Padding.Is1>
+    <CardBody Background=Background.Light Padding=Padding.Is1>
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
@@ -24,6 +24,24 @@
                     <Div Margin=Margin.Is1.OnX><Icon Name="IconName.Exclamation" /></Div>
                 }
             }
+            @switch(Task.Priority)
+            {
+                case Priority.VeryLow:
+                    <Div>Very low</Div>
+                    break;
+                case Priority.Low:
+                    <Div>Low</Div>
+                    break;
+                case Priority.Medium:
+                    <Div>Medium</Div>
+                    break;
+                case Priority.High:
+                    <Div>High</Div>
+                    break;
+                case Priority.VeryHigh:
+                    <Div>Very high</Div>
+                    break;
+            }
         </Div>
         @if (Task.DesiredInterval == 0)
         {
@@ -34,6 +52,18 @@
 
     @if (Task == SelectedTask)
     {
+        <Inline>
+            <Span Margin=Margin.Is1.FromEnd>Priority:</Span>
+            <Select Size=Size.Small TValue="Priority" SelectedValue="@Task.Priority" SelectedValueChanged="PriorityChanged">
+                <SelectItem Value="Priority.None">None</SelectItem>
+                <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
+                <SelectItem Value="Priority.Low">Low</SelectItem>
+                <SelectItem Value="Priority.Medium">Medium</SelectItem>
+                <SelectItem Value="Priority.High">High</SelectItem>
+                <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
+            </Select>
+        </Inline>
+
         @if (!Task.TimeList.Any())
         {
             <div>

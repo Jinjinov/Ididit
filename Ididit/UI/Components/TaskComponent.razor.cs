@@ -44,6 +44,13 @@ public partial class TaskComponent
         showTime = !showTime;
     }
 
+    async Task PriorityChanged(Priority priority)
+    {
+        Task.Priority = priority;
+
+        await _repository.UpdateTask(Task.Id);
+    }
+
     async Task SetDesiredInterval()
     {
         Task.DesiredInterval = 864000000000;
