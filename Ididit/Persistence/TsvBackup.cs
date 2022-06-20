@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
+using Ididit.App;
 using Ididit.Data;
 using Ididit.Data.Models;
 using System;
@@ -30,16 +31,16 @@ internal class TsvBackup
     };
 
     private readonly JsInterop _jsInterop;
+    private readonly IRepository _repository;
 
-    public TsvBackup(JsInterop jsInterop)
+    public TsvBackup(JsInterop jsInterop, IRepository repository)
     {
         _jsInterop = jsInterop;
+        _repository = repository;
     }
 
-    public async Task<DataModel> ImportData(Stream stream)
+    public async Task ImportData(Stream stream)
     {
-        DataModel data = new();
-
         // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
 
         using (StreamReader streamReader = new(stream))
@@ -73,20 +74,22 @@ internal class TsvBackup
 
                 var records = csv.GetRecordsAsync(anonymousTypeDefinition);
 
-                CategoryModel category = new();
-                GoalModel goal = new();
-                TaskModel task = new();
+                CategoryModel category;
+                GoalModel goal;
+                TaskModel task;
 
                 await foreach (var record in records)
                 {
-                    if (data.CategoryList.Any(c => c.Name == record.Category))
+                    if (_repository.CategoryList.Any(c => c.Name == record.Category))
                     {
-                        category = data.CategoryList.First(c => c.Name == record.Category);
+                        category = _repository.CategoryList.First(c => c.Name == record.Category);
                     }
                     else
                     {
-                        category = new() { Name = record.Category };
-                        data.CategoryList.Add(category);
+                        category = _repository.CreateCategory();
+                        category.Name = record.Category;
+
+                        await _repository.AddCategory(category);
                     }
 
                     if (category.GoalList.Any(g => g.Name == record.Goal))
@@ -95,11 +98,15 @@ internal class TsvBackup
                     }
                     else
                     {
-                        goal = new() { Name = record.Goal };
-                        category.GoalList.Add(goal);
+                        goal = category.CreateGoal(_repository.MaxGoalId + 1);
+                        goal.Name = record.Goal;
+
+                        await _repository.AddGoal(goal);
                     }
 
-                    task = new() { Name = record.Task, Priority = record.Priority };
+                    task = goal.CreateTask(_repository.MaxTaskId + 1);
+                    task.Name = record.Task;
+                    task.Priority = record.Priority;
 
                     string[] time = record.Interval.Split(' ');
 
@@ -107,6 +114,7 @@ internal class TsvBackup
                     {
                         task.DesiredTime = time[1].TrimEnd('s') switch
                         {
+                            "hour" => TimeSpan.FromHours(interval),
                             "day" => TimeSpan.FromDays(interval),
                             "week" => TimeSpan.FromDays(interval * 7),
                             "month" => TimeSpan.FromDays(interval * 30),
@@ -115,12 +123,12 @@ internal class TsvBackup
                         };
                     }
 
-                    goal.TaskList.Add(task);
+                    await _repository.AddTask(task);
                 }
             }
         }
 
-        return data ?? throw new InvalidDataException("Can't deserialize TSV");
+        //return data ?? throw new InvalidDataException("Can't deserialize TSV");
     }
 
     public async Task ExportData(IDataModel data)

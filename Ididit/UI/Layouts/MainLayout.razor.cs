@@ -54,9 +54,9 @@ public partial class MainLayout
 
         if (e.File.Name.EndsWith(".tsv"))
         {
-            DataModel data = await _tsvBackup.ImportData(stream);
+            await _tsvBackup.ImportData(stream);
 
-            await _repository.AddData(data);
+            //await _repository.AddData(data);
         }
     }
 
