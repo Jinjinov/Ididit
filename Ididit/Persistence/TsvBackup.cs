@@ -152,13 +152,16 @@ internal class TsvBackup
 
         List<object> records = new List<object>();
 
-        foreach (CategoryModel category in data.CategoryList)
+        foreach (CategoryModel root in data.CategoryList)
         {
-            foreach (GoalModel goal in category.GoalList)
+            foreach (CategoryModel category in root.CategoryList)
             {
-                foreach (TaskModel task in goal.TaskList)
+                foreach (GoalModel goal in category.GoalList)
                 {
-                    records.Add(new { Category = category.Name, Goal = goal.Name, Task = task.Name, Priority = task.Priority, Interval = task.DesiredTime });
+                    foreach (TaskModel task in goal.TaskList)
+                    {
+                        records.Add(new { Root = root.Name, Category = category.Name, Goal = goal.Name, Task = task.Name, Priority = task.Priority, Interval = task.DesiredTime });
+                    }
                 }
             }
         }
