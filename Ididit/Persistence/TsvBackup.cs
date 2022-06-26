@@ -118,8 +118,10 @@ internal class TsvBackup
                         await _repository.AddGoal(goal);
                     }
 
-                    task = goal.CreateTask(_repository.MaxTaskId + 1);
                     goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
+                    await _repository.UpdateGoal(goal.Id);
+
+                    task = goal.CreateTask(_repository.MaxTaskId + 1);
                     task.Name = record.Task;
                     task.Priority = record.Priority;
 
