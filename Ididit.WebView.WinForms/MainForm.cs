@@ -12,7 +12,10 @@ public partial class MainForm : Form
     public MainForm()
     {
         IServiceCollection serviceCollection = new ServiceCollection();
-        serviceCollection.AddBlazorWebView();
+        serviceCollection.AddWindowsFormsBlazorWebView();
+#if DEBUG
+        serviceCollection.AddBlazorWebViewDeveloperTools();
+#endif
         serviceCollection.AddServices();
 
         InitializeComponent();

@@ -13,7 +13,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         IServiceCollection serviceCollection = new ServiceCollection();
-        serviceCollection.AddBlazorWebView();
+        serviceCollection.AddWpfBlazorWebView();
+#if DEBUG
+        serviceCollection.AddBlazorWebViewDeveloperTools();
+#endif
         serviceCollection.AddServices();
 
         IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();

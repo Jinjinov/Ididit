@@ -10,10 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.4" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.4" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.200-preview.14.5099" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.5" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.5" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.400" />
   </ItemGroup>
 
   <ItemGroup>
