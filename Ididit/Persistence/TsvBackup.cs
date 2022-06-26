@@ -65,6 +65,7 @@ internal class TsvBackup
 
                 var anonymousTypeDefinition = new
                 {
+                    Root = string.Empty,
                     Category = string.Empty,
                     Goal = string.Empty,
                     Task = string.Empty,
@@ -74,19 +75,32 @@ internal class TsvBackup
 
                 var records = csv.GetRecordsAsync(anonymousTypeDefinition);
 
+                CategoryModel root;
                 CategoryModel category;
                 GoalModel goal;
                 TaskModel task;
 
                 await foreach (var record in records)
                 {
-                    if (_repository.CategoryList.Any(c => c.Name == record.Category))
+                    if (_repository.CategoryList.Any(c => c.Name == record.Root))
                     {
-                        category = _repository.CategoryList.First(c => c.Name == record.Category);
+                        root = _repository.CategoryList.First(c => c.Name == record.Root);
                     }
                     else
                     {
-                        category = _repository.CreateCategory();
+                        root = _repository.CreateCategory();
+                        root.Name = record.Root;
+
+                        await _repository.AddCategory(root);
+                    }
+
+                    if (root.CategoryList.Any(c => c.Name == record.Category))
+                    {
+                        category = root.CategoryList.First(c => c.Name == record.Category);
+                    }
+                    else
+                    {
+                        category = root.CreateCategory(_repository.MaxCategoryId + 1);
                         category.Name = record.Category;
 
                         await _repository.AddCategory(category);
@@ -105,6 +119,7 @@ internal class TsvBackup
                     }
 
                     task = goal.CreateTask(_repository.MaxTaskId + 1);
+                    goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
                     task.Name = record.Task;
                     task.Priority = record.Priority;
 
