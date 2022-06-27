@@ -157,14 +157,15 @@ public partial class GoalComponent
         // TODO: tree view toggle all
 
         // TODO: what is a task? "- " what is markdown? titles in text? paragraphs? what are task details? URL, email, phone number?
-        // keep empty lines (markdown, can't toggle)
+        // keep empty lines
+        // task: first character is [0-9,a-z,A-Z]
         // if second char is ' ' space and first character is not [0-9,a-z,A-Z]:
-        // use # for paragraph title (markdown, can't toggle)
+        // use # for paragraph title
         // use > for blockquote
         // use | for table
-        // use - for task details, url, email, ... (markdown, can't toggle)
-        // use : for task tags
-        // everything else is a task
+        // use - for list
+        // use : for task details, url, email, ...
+        // use #tag for task (hash)tags
 
         // TODO: GoogleDriveBackup
 
