@@ -153,13 +153,19 @@ public partial class GoalComponent
             ++indexOfOldLineShouldBe;
         }
 
+        // TODO: tree view width
+        // TODO: tree view toggle all
+
+        // TODO: what is a task? "- " what is markdown? titles in text? paragraphs? what are task details? URL, email, phone number?
+        // keep empty lines (markdown, can't toggle)
+        // use # for paragraph title (markdown, can't toggle)
+        // use - for task details, url, email, ... (markdown, can't toggle)
+        // everything else is a task
+
         // TODO: GoogleDriveBackup
 
-        // TODO: task priority
-
-        // TODO: (task tags) (later)
-
-        // TODO: TSV backup
+        // TODO: (Task Details) (later)
+        // TODO: (Task Tags) (later)
 
         // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 
@@ -190,13 +196,6 @@ public partial class GoalComponent
 
     // TODO: move backup from MainLayout to a component
 
-    // TODO: import - # headers
-    // TODO: import - ### headers
-    // TODO: import - empty lines
-    // TODO: import - notes = lines without "-"
-    // TODO: import - tasks = lines with "-"
-    // TODO: import - nested tasks = lines with "    -"
-
     // TODO: task - times list should load on demand - on Task done - on show Task details
 
     // https://blazorise.com/docs/components/repeater
@@ -214,7 +213,7 @@ public partial class GoalComponent
     // TODO: backup - Dropbox / OneDrive / iCloud
 
     // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
-    // TODO: class Solution - when, where
+    // TODO: (class Solution) --> (class TaskDetails) - when, where
     // name, address, phone number, working hours, website, email
     // possible to do the task:
     // - anytime
