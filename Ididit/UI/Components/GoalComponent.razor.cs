@@ -153,10 +153,10 @@ public partial class GoalComponent
             ++indexOfOldLineShouldBe;
         }
 
-        // TODO: tree view width
-        // TODO: tree view toggle all
+        // TODO: Task Details
+        // TODO: Task Tags
 
-        // TODO: what is a task? "- " what is markdown? titles in text? paragraphs? what are task details? URL, email, phone number?
+        // TODO: 
         // keep empty lines
         // task: first character is [0-9,a-z,A-Z]
         // if second char is ' ' space and first character is not [0-9,a-z,A-Z]:
@@ -169,8 +169,8 @@ public partial class GoalComponent
 
         // TODO: GoogleDriveBackup
 
-        // TODO: (Task Details) (later)
-        // TODO: (Task Tags) (later)
+        // TODO: tree view width
+        // TODO: tree view toggle all
 
         // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 
