@@ -18,6 +18,9 @@ internal class TaskEntity
     public string Name { get; set; } = string.Empty;
 
     [IndexDbIndex]
+    public string Details { get; set; } = string.Empty;
+
+    [IndexDbIndex]
     public DateTime CreatedAt { get; set; }
 
     [IndexDbIndex]

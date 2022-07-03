@@ -32,6 +32,8 @@ public class TaskModel
         }
     }
 
+    public string Details { get; set; } = string.Empty;
+
     [JsonIgnore]
     internal string? MarkdownHtml { get; set; }
 

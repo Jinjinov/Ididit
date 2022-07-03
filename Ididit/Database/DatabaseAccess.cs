@@ -136,6 +136,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 GoalId = task.GoalId,
                 PreviousId = task.PreviousId,
                 Name = task.Name,
+                Details = task.Details,
                 CreatedAt = task.CreatedAt,
                 AverageInterval = task.AverageInterval,
                 DesiredInterval = task.DesiredInterval,
@@ -217,6 +218,7 @@ internal class DatabaseAccess : IDatabaseAccess
                         GoalId = task.GoalId,
                         PreviousId = task.PreviousId,
                         Name = task.Name,
+                        Details = task.Details,
                         CreatedAt = task.CreatedAt,
                         AverageInterval = task.AverageInterval,
                         DesiredInterval = task.DesiredInterval,
@@ -294,6 +296,7 @@ internal class DatabaseAccess : IDatabaseAccess
             GoalId = task.GoalId,
             PreviousId = task.PreviousId,
             Name = task.Name,
+            Details = task.Details,
             CreatedAt = task.CreatedAt,
             AverageInterval = task.AverageInterval,
             DesiredInterval = task.DesiredInterval,
@@ -362,6 +365,7 @@ internal class DatabaseAccess : IDatabaseAccess
             taskEntity.GoalId = task.GoalId;
             taskEntity.PreviousId = task.PreviousId;
             taskEntity.Name = task.Name;
+            taskEntity.Details = task.Details;
             taskEntity.CreatedAt = task.CreatedAt;
             taskEntity.AverageInterval = task.AverageInterval;
             taskEntity.DesiredInterval = task.DesiredInterval;

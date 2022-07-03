@@ -53,8 +53,8 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        List<string> oldLines = Goal.Details.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-        List<string> newLines = text.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
+        List<string> oldLines = Goal.Details.Split('\n').ToList();
+        List<string> newLines = text.Split('\n').ToList();
 
         Goal.Details = text;
         await _repository.UpdateGoal(Goal.Id);
@@ -154,7 +154,6 @@ public partial class GoalComponent
         }
 
         // TODO: Task Details
-        // TODO: Task Tags
 
         // TODO: 
         // keep empty lines
@@ -165,7 +164,6 @@ public partial class GoalComponent
         // use | for table
         // use - for list
         // use : for task details, url, email, ...
-        // use #tag for task (hash)tags
 
         // TODO: GoogleDriveBackup
 
