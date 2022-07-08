@@ -53,8 +53,8 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        List<string> oldLines = Goal.Details.Replace("\r\n", "\n").Split('\n').ToList();
-        List<string> newLines = text.Replace("\r\n", "\n").Split('\n').ToList();
+        LinkedList<string> oldLines = new(Goal.Details.Replace("\r\n", "\n").Split('\n'));
+        LinkedList<string> newLines = new(text.Replace("\r\n", "\n").Split('\n'));
 
         Goal.Details = text;
         await _repository.UpdateGoal(Goal.Id);
@@ -76,98 +76,84 @@ public partial class GoalComponent
 
         /**/
 
-        List<int> indexOfNewLineInOldLines = newLines.Select(newLine => oldLines.IndexOf(newLine)).ToList();
-        List<int> indexOfOldLineInNewLines = oldLines.Select(oldLine => newLines.IndexOf(oldLine)).ToList();
-
-        int indexOfNewLineShouldBe = 0;
-
-        for (int i = indexOfNewLineInOldLines.Count - 1; i >= 0; --i)
+        while (newLines.Any() && oldLines.Any())
         {
+            int i = 0;
+
+            while (newLines.Any() && oldLines.Any())
+            {
+                if (newLines.First() == oldLines.First())
+                {
+                    newLines.RemoveFirst();
+                    oldLines.RemoveFirst();
+                    ++i;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            while (newLines.Any() && oldLines.Any())
+            {
+                if (newLines.Last() == oldLines.Last())
+                {
+                    newLines.RemoveLast();
+                    oldLines.RemoveLast();
+                }
+                else
+                {
+                    break;
+                }
+            }
+
             if (oldLines.Count == newLines.Count) // changed
             {
-                if (indexOfNewLineInOldLines[i] == -1) // this newLine is not in oldLines list
-                {
-                    TaskModel task = Goal.TaskList[i];
-                    task.Name = newLines[i];
-                    await _repository.UpdateTask(task.Id);
-                }
-                else if (indexOfNewLineInOldLines[i] != indexOfNewLineShouldBe) // this newLine is SOMEWHERE in oldLines list
-                {
-                }
+                TaskModel task = Goal.TaskList[i];
+                task.Name = newLines.First();
+                await _repository.UpdateTask(task.Id);
+
+                newLines.RemoveFirst();
+                oldLines.RemoveFirst();
+                ++i;
+
+                continue;
             }
-            else // added
+
+            if (oldLines.Count < newLines.Count) // added
             {
-                if (indexOfNewLineInOldLines[i] == -1) // this newLine is not in oldLines list
-                {
-                    (TaskModel task, TaskModel? changedTask) = Goal.CreateTask(_repository.MaxTaskId + 1, i);
-                    task.Name = newLines[i];
+                (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(_repository.MaxTaskId + 1, i);
+                task.Name = newLines.First();
 
-                    if (changedTask is not null)
-                        await _repository.UpdateTask(changedTask.Id);
+                if (changedTask is not null)
+                    await _repository.UpdateTask(changedTask.Id);
 
-                    await _repository.AddTask(task);
+                await _repository.AddTask(task);
 
-                    --indexOfNewLineShouldBe;
-                }
-                else if (indexOfNewLineInOldLines[i] != indexOfNewLineShouldBe) // this newLine is SOMEWHERE in oldLines list
-                {
-                }
+                newLines.RemoveFirst();
+                ++i;
+
+                continue;
             }
 
-            ++indexOfNewLineShouldBe;
+            if (oldLines.Count > newLines.Count) // deleted
+            {
+                TaskModel task = Goal.TaskList[i];
+                TaskModel? changedTask = Goal.RemoveTask(task);
+
+                if (changedTask is not null)
+                    await _repository.UpdateTask(changedTask.Id);
+
+                await _repository.DeleteTask(task.Id);
+
+                oldLines.RemoveFirst();
+                ++i;
+
+                continue;
+            }
         }
 
-        int indexOfOldLineShouldBe = 0;
-
-        for (int i = indexOfOldLineInNewLines.Count - 1; i >= 0; --i)
-        {
-            if (oldLines.Count == newLines.Count) // changed
-            {
-                if (indexOfOldLineInNewLines[i] == -1) // this oldLine is not in newLines list
-                {
-
-                }
-                else if (indexOfOldLineInNewLines[i] != indexOfOldLineShouldBe) // this oldLine is SOMEWHERE in newLines list
-                {
-                }
-            }
-            else // deleted
-            {
-                if (indexOfOldLineInNewLines[i] == -1) // this oldLine is not in newLines list
-                {
-                    TaskModel task = Goal.TaskList[i];
-                    TaskModel? changedTask = Goal.RemoveTask(task);
-
-                    if (changedTask is not null)
-                        await _repository.UpdateTask(changedTask.Id);
-
-                    await _repository.DeleteTask(task.Id);
-
-                    --indexOfOldLineShouldBe;
-                }
-                else if (indexOfOldLineInNewLines[i] != indexOfOldLineShouldBe) // this oldLine is SOMEWHERE in newLines list
-                {
-                }
-            }
-
-            ++indexOfOldLineShouldBe;
-        }
-
-        // TODO:
-        // OK - everything is a markdown task
-        // OK - every line with first char.IsLetter() is a task
-        // every line that StartsWith("- ") is a task detail
-        // OK - task detail is always markdown
-
-        // TODO: 
-        // keep empty lines
-        // task: first character is [0-9,a-z,A-Z]
-        // if second char is ' ' space and first character is not [0-9,a-z,A-Z]:
-        // use # for paragraph title
-        // use > for blockquote
-        // use | for table
-        // use - for list
-        // use : for task details, url, email, ...
+        // TODO: every line that StartsWith("- ") is a task detail
 
         // TODO: GoogleDriveBackup
 

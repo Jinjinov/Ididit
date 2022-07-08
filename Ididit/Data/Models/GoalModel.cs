@@ -37,7 +37,7 @@ public class GoalModel
         return task;
     }
 
-    public (TaskModel newTask, TaskModel? changedTask) CreateTask(long id, int index)
+    public (TaskModel newTask, TaskModel? changedTask) CreateTaskAt(long id, int index)
     {
         TaskModel? changedTask = null;
 
