@@ -106,7 +106,7 @@ public partial class MainLayout
         NodeContent? directory = await _jsInterop.ReadDirectoryFiles();
 
         if (directory != null)
-            _directoryBackup.ImportData(directory);
+            await _directoryBackup.ImportData(directory);
     }
 
     async Task ExportDirectory()

@@ -1,8 +1,10 @@
 ﻿using Ididit.App;
 using Ididit.Data;
 using Ididit.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
@@ -15,7 +17,7 @@ internal class DirectoryBackup
         _repository = repository;
     }
 
-    public void ImportData(NodeContent directory)
+    public async Task ImportData(NodeContent directory)
     {
         string name = directory.Name;
         NodeContent[] nodes = directory.Nodes;
@@ -27,13 +29,13 @@ internal class DirectoryBackup
             root = _repository.CreateCategory();
             root.Name = name;
 
-            _repository.AddCategory(root);
+            await _repository.AddCategory(root);
         }
 
-        AddNodesToCategory(nodes, root);
+        await AddNodesToCategory(nodes, root);
     }
 
-    private void AddNodesToCategory(NodeContent[] nodes, CategoryModel parent)
+    private async Task AddNodesToCategory(NodeContent[] nodes, CategoryModel parent)
     {
         foreach (NodeContent node in nodes)
         {
@@ -54,12 +56,31 @@ internal class DirectoryBackup
                     goal.Name = name;
                     goal.Details = node.Text;
 
-                    _repository.AddGoal(goal);
+                    await _repository.AddGoal(goal);
                 }
                 else
                 {
                     goal.Details = node.Text;
-                    _repository.UpdateGoal(goal.Id);
+                    await _repository.UpdateGoal(goal.Id);
+                }
+
+                TaskModel? task = null;
+
+                foreach (string line in node.Text.Split(Environment.NewLine))
+                {
+                    if (task != null && line.StartsWith("- "))
+                    {
+                        task.Details += line;
+
+                        await _repository.UpdateTask(task.Id);
+                    }
+                    else
+                    {
+                        task = goal.CreateTask(_repository.MaxTaskId + 1);
+                        task.Name = line;
+
+                        await _repository.AddTask(task);
+                    }
                 }
             }
             else if (node.Kind == "directory")
@@ -74,10 +95,10 @@ internal class DirectoryBackup
                     category = parent.CreateCategory(_repository.MaxCategoryId + 1);
                     category.Name = name;
 
-                    _repository.AddCategory(category);
+                    await _repository.AddCategory(category);
                 }
 
-                AddNodesToCategory(node.Nodes, category);
+                await AddNodesToCategory(node.Nodes, category);
             }
         }
     }

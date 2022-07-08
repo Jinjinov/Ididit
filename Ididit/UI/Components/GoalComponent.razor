@@ -23,6 +23,11 @@
                     {
                         @((MarkupString)task.MarkdownHtml)
                     }
+
+                    @if (!string.IsNullOrEmpty(task.Details))
+                    {
+                        @((MarkupString)task.DetailsMarkdownHtml)
+                    }
                 }
             </Div>
         }

@@ -32,10 +32,23 @@ public class TaskModel
         }
     }
 
-    public string Details { get; set; } = string.Empty;
+    private string _details = string.Empty;
+    public string Details
+    {
+        get => _details;
+        set
+        {
+            _details = value;
+
+            DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+        }
+    }
 
     [JsonIgnore]
     internal string? MarkdownHtml { get; set; }
+
+    [JsonIgnore]
+    internal string DetailsMarkdownHtml { get; set; } = string.Empty;
 
     public DateTime CreatedAt { get; set; }
 

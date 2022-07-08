@@ -53,8 +53,8 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        List<string> oldLines = Goal.Details.Split('\n').ToList();
-        List<string> newLines = text.Split('\n').ToList();
+        List<string> oldLines = Goal.Details.Replace("\r\n", "\n").Split('\n').ToList();
+        List<string> newLines = text.Replace("\r\n", "\n").Split('\n').ToList();
 
         Goal.Details = text;
         await _repository.UpdateGoal(Goal.Id);
@@ -154,10 +154,10 @@ public partial class GoalComponent
         }
 
         // TODO:
-        // everything is a markdown task
-        // every line with first char.IsLetter() is a task
+        // OK - everything is a markdown task
+        // OK - every line with first char.IsLetter() is a task
         // every line that StartsWith("- ") is a task detail
-        // task detail is always markdown
+        // OK - task detail is always markdown
 
         // TODO: 
         // keep empty lines

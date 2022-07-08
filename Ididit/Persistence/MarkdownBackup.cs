@@ -32,12 +32,20 @@ internal class MarkdownBackup
 
         await _repository.AddGoal(goal);
 
+        TaskModel? task = null;
+
         foreach (string line in text.Split(Environment.NewLine))
         {
-            if (line.StartsWith("- "))
+            if (task != null && line.StartsWith("- "))
             {
-                TaskModel task = goal.CreateTask(_repository.MaxTaskId + 1);
-                task.Name = line[2..];
+                task.Details += line;
+
+                await _repository.UpdateTask(task.Id);
+            }
+            else
+            {
+                task = goal.CreateTask(_repository.MaxTaskId + 1);
+                task.Name = line;
 
                 await _repository.AddTask(task);
             }
