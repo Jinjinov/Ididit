@@ -24,8 +24,7 @@ public class CategoryModel
         {
             Id = id,
             CategoryId = Id,
-            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
-            Name = "Category " + CategoryList.Count
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null
         };
 
         CategoryList.Add(category);
@@ -39,8 +38,7 @@ public class CategoryModel
         {
             Id = id,
             CategoryId = Id,
-            PreviousId = GoalList.Any() ? GoalList.Last().Id : null,
-            Name = "Goal " + GoalList.Count
+            PreviousId = GoalList.Any() ? GoalList.Last().Id : null
         };
 
         GoalList.Add(goal);

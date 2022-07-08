@@ -91,8 +91,7 @@ internal class Repository : DataModel, IRepository
         {
             Id = MaxCategoryId + 1,
             CategoryId = null,
-            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
-            Name = "Category " + CategoryList.Count
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null
         };
 
         CategoryList.Add(category);

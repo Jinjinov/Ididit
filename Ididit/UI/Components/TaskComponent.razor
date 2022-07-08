@@ -3,7 +3,7 @@
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-            <Div>@Task.Name.Substring(2)</Div>
+            <Div>@Task.Name</Div>
             <Div Margin=Margin.IsAuto.FromStart.Is1.FromEnd>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
             @if (Task.DesiredInterval > 0)
             {
@@ -15,13 +15,9 @@
                 {
                     <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                 }
-                else if (Task.TimeList.Any())
-                {
-                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                }
                 else
                 {
-                    <Div Margin=Margin.Is1.OnX><Icon Name="IconName.Exclamation" /></Div>
+                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
                 }
             }
             @switch(Task.Priority)

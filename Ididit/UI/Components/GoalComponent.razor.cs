@@ -153,7 +153,11 @@ public partial class GoalComponent
             ++indexOfOldLineShouldBe;
         }
 
-        // TODO: Task Details
+        // TODO:
+        // everything is a markdown task
+        // every line with first char.IsLetter() is a task
+        // every line that StartsWith("- ") is a task detail
+        // task detail is always markdown
 
         // TODO: 
         // keep empty lines

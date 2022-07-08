@@ -29,7 +29,6 @@ public class GoalModel
             Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
-            Name = "Task " + TaskList.Count,
             CreatedAt = DateTime.Now
         };
 
@@ -47,7 +46,6 @@ public class GoalModel
             Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
-            Name = "Task " + TaskList.Count,
             CreatedAt = DateTime.Now
         };
 

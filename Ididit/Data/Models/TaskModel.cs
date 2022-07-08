@@ -25,10 +25,10 @@ public class TaskModel
         {
             _name = value;
 
-            if (!_name.StartsWith("- "))
-                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
-            else
+            if (!string.IsNullOrEmpty(_name) && char.IsLetter(_name.First()))
                 MarkdownHtml = null;
+            else
+                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
         }
     }
 
