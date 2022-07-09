@@ -122,8 +122,6 @@ public partial class GoalComponent
             }
         }
 
-        // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped/sorted by Category)
-
         // TODO: filter: show only ASAP tasks, show only repeating tasks, show only notes - isNote == !char.IsLetter(_name.First())
 
         // TODO: task priority - - - (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)

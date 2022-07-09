@@ -50,7 +50,7 @@
     </Column>
     <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
         @*<ErrorBoundary>*@
-            <GoalsComponent ParentCategory=_selectedCategory />
+            <GoalsComponent @bind-SelectedCategory=_selectedCategory />
         @*</ErrorBoundary>*@
     </Column>
 @*</Row>*@
@@ -62,6 +62,6 @@
     {
         await _repository.Initialize();
 
-        _selectedCategory = _repository.CategoryList.FirstOrDefault();
+        //_selectedCategory = _repository.CategoryList.FirstOrDefault();
     }
 }

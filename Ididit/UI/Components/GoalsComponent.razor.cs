@@ -11,18 +11,27 @@ public partial class GoalsComponent
     IRepository _repository { get; set; } = null!;
 
     [Parameter]
-    [EditorRequired]
-    public CategoryModel? ParentCategory { get; set; } = null!;
+    public CategoryModel? SelectedCategory { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
     public GoalModel? _selectedGoal { get; set; }
 
     public GoalModel? _editGoal { get; set; }
 
+    async Task OnSelectedCategoryChanged(CategoryModel category)
+    {
+        SelectedCategory = category;
+
+        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+    }
+
     async Task NewGoal()
     {
-        if (ParentCategory != null)
+        if (SelectedCategory != null)
         {
-            GoalModel goal = ParentCategory.CreateGoal(_repository.MaxGoalId + 1);
+            GoalModel goal = SelectedCategory.CreateGoal(_repository.MaxGoalId + 1);
 
             await _repository.AddGoal(goal);
 

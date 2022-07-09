@@ -7,9 +7,9 @@
 
         <div>Selected: @_selectedGoal?.Name</div>
 
-        <div>Parent: @ParentCategory?.Name</div>
+        <div>Parent: @SelectedCategory?.Name</div>
 
-        @if (ParentCategory != null)
+        @if (SelectedCategory != null)
         {
             <Button Color=Color.Primary Outline=true @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
         }
@@ -17,9 +17,24 @@
     </CardBody>
     </Card>
 
-    @foreach (GoalModel goal in ParentCategory?.GoalList ?? _repository.AllGoals.Values)
+    @if (SelectedCategory != null)
     {
-        <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
+        @foreach (GoalModel goal in SelectedCategory.GoalList)
+        {
+            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
+        }
+    }
+    else
+    {
+        @foreach (CategoryModel category in _repository.AllCategories.Values)
+        {
+            <Button Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
+
+            @foreach (GoalModel goal in category.GoalList)
+            {
+                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
+            }
+        }
     }
 
 </Div>
