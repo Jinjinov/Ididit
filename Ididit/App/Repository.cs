@@ -13,10 +13,12 @@ internal class Repository : DataModel, IRepository
     public long MaxCategoryId => _categoryDict.Keys.DefaultIfEmpty().Max();
     public long MaxGoalId => _goalDict.Keys.DefaultIfEmpty().Max();
     public long MaxTaskId => _taskDict.Keys.DefaultIfEmpty().Max();
+    public long MaxSettingsId => _settingsDict.Keys.DefaultIfEmpty().Max();
 
     public IReadOnlyDictionary<long, CategoryModel> AllCategories => _categoryDict;
     public IReadOnlyDictionary<long, GoalModel> AllGoals => _goalDict;
     public IReadOnlyDictionary<long, TaskModel> AllTasks => _taskDict;
+    public IReadOnlyDictionary<long, SettingsModel> AllSettings => _settingsDict;
 
     private Dictionary<long, CategoryModel> _categoryDict = new();
     private Dictionary<long, GoalModel> _goalDict = new();
@@ -131,6 +133,15 @@ internal class Repository : DataModel, IRepository
         await _databaseAccess.AddTime(time, taskId);
     }
 
+    public async Task AddSettings(SettingsModel settings)
+    {
+        settings.Id = MaxSettingsId + 1;
+
+        _settingsDict[settings.Id] = settings;
+
+        await _databaseAccess.AddSettings(settings);
+    }
+
     public async Task UpdateCategory(long id)
     {
         if (_categoryDict.TryGetValue(id, out CategoryModel? category))
@@ -170,6 +181,18 @@ internal class Repository : DataModel, IRepository
     public async Task UpdateTime(long id, DateTime time, long taskId)
     {
         await _databaseAccess.UpdateTime(id, time, taskId);
+    }
+
+    public async Task UpdateSettings(long id)
+    {
+        if (_settingsDict.TryGetValue(id, out SettingsModel? settings))
+        {
+            await _databaseAccess.UpdateSettings(settings);
+        }
+        else
+        {
+            throw new ArgumentException($"Settings {id} doesn't exist!");
+        }
     }
 
     public async Task DeleteCategory(long id)
@@ -218,5 +241,14 @@ internal class Repository : DataModel, IRepository
     public async Task DeleteTime(long id)
     {
         await _databaseAccess.DeleteTime(id);
+    }
+
+    public async Task DeleteSettings(long id)
+    {
+        SettingsList.Remove(_settingsDict[id]);
+
+        _settingsDict.Remove(id);
+
+        await _databaseAccess.DeleteSettings(id);
     }
 }

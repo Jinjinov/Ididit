@@ -17,14 +17,17 @@ internal interface IDatabaseAccess
     Task AddGoal(GoalModel goal);
     Task AddTask(TaskModel task);
     Task AddTime(DateTime time, long taskId);
+    Task AddSettings(SettingsModel settings);
 
     Task UpdateCategory(CategoryModel category);
     Task UpdateGoal(GoalModel goal);
     Task UpdateTask(TaskModel task);
     Task UpdateTime(long id, DateTime time, long taskId);
+    Task UpdateSettings(SettingsModel settings);
 
     Task DeleteCategory(long id);
     Task DeleteGoal(long id);
     Task DeleteTask(long id);
     Task DeleteTime(long id);
+    Task DeleteSettings(long id);
 }

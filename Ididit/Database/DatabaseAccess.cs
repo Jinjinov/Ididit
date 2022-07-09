@@ -49,6 +49,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
     private readonly Dictionary<long, CategoryEntity> _categoryDict = new();
     private readonly Dictionary<long, GoalEntity> _goalDict = new();
+    private readonly Dictionary<long, SettingsEntity> _settingsDict = new();
     private readonly Dictionary<long, TaskEntity> _taskDict = new();
     private readonly Dictionary<long, TimeEntity> _timeDict = new();
 
@@ -164,15 +165,34 @@ internal class DatabaseAccess : IDatabaseAccess
             data.TaskDict[time.TaskId].TimeList.Add(time.Time);
         }
 
+        _settingsList = await _indexedDb.GetAll<SettingsEntity>();
+
+        foreach (SettingsEntity settings in _settingsList)
+        {
+            SettingsModel settingsModel = new()
+            {
+                Id = settings.Id,
+                Name = settings.Name,
+                Size = settings.Size,
+                Theme = settings.Theme
+            };
+
+            _settingsDict[settings.Id] = settings;
+
+            data.SettingsList.Add(settingsModel);
+        }
+
         return data;
     }
 
     public async Task AddData(IDataModel data)
     {
         AddCategoryList(data.CategoryList);
+        AddSettingsList(data.SettingsList);
 
         string result = await _indexedDb.UpdateItems(_categoryList);
         result = await _indexedDb.UpdateItems(_goalList);
+        result = await _indexedDb.UpdateItems(_settingsList);
         result = await _indexedDb.UpdateItems(_taskList);
         result = await _indexedDb.UpdateItems(_timeList);
     }
@@ -253,6 +273,25 @@ internal class DatabaseAccess : IDatabaseAccess
         }
     }
 
+    private void AddSettingsList(List<SettingsModel> settingsList)
+    {
+        foreach (SettingsModel settings in settingsList)
+        {
+            SettingsEntity settingsEntity = new()
+            {
+                Id = settings.Id,
+                Name = settings.Name,
+                Size = settings.Size,
+                Theme = settings.Theme
+            };
+
+            if (!_settingsDict.ContainsKey(settingsEntity.Id))
+                _settingsList.Add(settingsEntity);
+
+            _settingsDict[settingsEntity.Id] = settingsEntity;
+        }
+    }
+
     public async Task AddCategory(CategoryModel category)
     {
         CategoryEntity categoryEntity = new()
@@ -325,6 +364,23 @@ internal class DatabaseAccess : IDatabaseAccess
         string result = await _indexedDb.AddItems(new List<TimeEntity>() { timeEntity });
     }
 
+    public async Task AddSettings(SettingsModel settings)
+    {
+        SettingsEntity settingsEntity = new()
+        {
+            Id = settings.Id,
+            Name = settings.Name,
+            Size = settings.Size,
+            Theme = settings.Theme
+        };
+
+        _settingsList.Add(settingsEntity);
+
+        _settingsDict[settingsEntity.Id] = settingsEntity;
+
+        string result = await _indexedDb.AddItems(new List<SettingsEntity>() { settingsEntity });
+    }
+
     public async Task UpdateCategory(CategoryModel category)
     {
         if (_categoryDict.TryGetValue(category.Id, out CategoryEntity? categoryEntity))
@@ -393,6 +449,22 @@ internal class DatabaseAccess : IDatabaseAccess
         }
     }
 
+    public async Task UpdateSettings(SettingsModel settings)
+    {
+        if (_settingsDict.TryGetValue(settings.Id, out SettingsEntity? settingsEntity))
+        {
+            settingsEntity.Name = settings.Name;
+            settingsEntity.Size = settings.Size;
+            settingsEntity.Theme = settings.Theme;
+
+            await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });
+        }
+        else
+        {
+            throw new ArgumentException($"Settings {settings.Id} doesn't exist!");
+        }
+    }
+
     public async Task DeleteCategory(long id)
     {
         _categoryList.Remove(_categoryDict[id]);
@@ -427,6 +499,15 @@ internal class DatabaseAccess : IDatabaseAccess
         _timeDict.Remove(id);
 
         await _indexedDb.DeleteByKey<long, TimeEntity>(id);
+    }
+
+    public async Task DeleteSettings(long id)
+    {
+        _settingsList.Remove(_settingsDict[id]);
+
+        _settingsDict.Remove(id);
+
+        await _indexedDb.DeleteByKey<long, SettingsEntity>(id);
     }
 
     async Task Test()
