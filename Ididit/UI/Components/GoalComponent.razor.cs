@@ -53,8 +53,8 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        LinkedList<string> oldLines = new(Goal.Details.Replace("\r\n", "\n").Split('\n'));
-        LinkedList<string> newLines = new(text.Replace("\r\n", "\n").Split('\n'));
+        List<(TaskModel task, bool done, int idx)> oldLines = Goal.TaskList.Select((task, i) => (task, false, i)).ToList();
+        List<(string line, bool done, int idx)> newLines = text.Split('\n').Select((line, i) => (line, false, i)).ToList();
 
         Goal.Details = text;
         await _repository.UpdateGoal(Goal.Id);
@@ -72,21 +72,19 @@ public partial class GoalComponent
         go char by char from back
         - delete
 
-        use linked list
-
         /**/
 
-        while (newLines.Any() && oldLines.Any())
+        while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
         {
-            int i = 0;
-
-            while (newLines.Any() && oldLines.Any())
+            while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
             {
-                if (newLines.First() == oldLines.First())
+                var newLine = newLines.First(p => !p.done);
+                var oldLine = oldLines.First(p => !p.done);
+
+                if (newLine.line == oldLine.task.Name)
                 {
-                    newLines.RemoveFirst();
-                    oldLines.RemoveFirst();
-                    ++i;
+                    newLine.done = true;
+                    oldLine.done = true;
                 }
                 else
                 {
@@ -94,12 +92,15 @@ public partial class GoalComponent
                 }
             }
 
-            while (newLines.Any() && oldLines.Any())
+            while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
             {
-                if (newLines.Last() == oldLines.Last())
+                var newLine = newLines.Last(p => !p.done);
+                var oldLine = oldLines.Last(p => !p.done);
+
+                if (newLine.line == oldLine.task.Name)
                 {
-                    newLines.RemoveLast();
-                    oldLines.RemoveLast();
+                    newLine.done = true;
+                    oldLine.done = true;
                 }
                 else
                 {
@@ -107,49 +108,38 @@ public partial class GoalComponent
                 }
             }
 
-            if (oldLines.Count == newLines.Count) // changed
+            int newLinesCount = newLines.Count(p => !p.done);
+            int oldLinesCount = oldLines.Count(p => !p.done);
+
+            bool anyNew = newLinesCount > 0;
+            bool anyOld = oldLinesCount > 0;
+
+            if (oldLinesCount == newLinesCount && anyNew) // changed
             {
-                TaskModel task = Goal.TaskList[i];
-                task.Name = newLines.First();
-                await _repository.UpdateTask(task.Id);
+                var newLine = newLines.First(p => !p.done);
+                var oldLine = oldLines.First(p => !p.done);
 
-                newLines.RemoveFirst();
-                oldLines.RemoveFirst();
-                ++i;
+                await UpdateTask(oldLine.task, newLine.line);
 
-                continue;
+                newLine.done = true;
+                oldLine.done = true;
             }
-
-            if (oldLines.Count < newLines.Count) // added
+            else if (oldLinesCount < newLinesCount) // added
             {
-                (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(_repository.MaxTaskId + 1, i);
-                task.Name = newLines.First();
+                var newLine = newLines.First(p => !p.done);
+                int idx = anyOld ? oldLines.First(p => !p.done).idx : 0;
 
-                if (changedTask is not null)
-                    await _repository.UpdateTask(changedTask.Id);
+                await AddTaskAt(idx, newLine.line);
 
-                await _repository.AddTask(task);
-
-                newLines.RemoveFirst();
-                ++i;
-
-                continue;
+                newLine.done = true;
             }
-
-            if (oldLines.Count > newLines.Count) // deleted
+            else if (oldLinesCount > newLinesCount) // deleted
             {
-                TaskModel task = Goal.TaskList[i];
-                TaskModel? changedTask = Goal.RemoveTask(task);
+                var oldLine = oldLines.First(p => !p.done);
 
-                if (changedTask is not null)
-                    await _repository.UpdateTask(changedTask.Id);
+                await DeleteTask(oldLine.task);
 
-                await _repository.DeleteTask(task.Id);
-
-                oldLines.RemoveFirst();
-                ++i;
-
-                continue;
+                oldLine.done = true;
             }
         }
 
@@ -170,6 +160,33 @@ public partial class GoalComponent
         // TODO: mobile: single column, minimized tree view
         // TODO: new import/export page
         // TODO: main menu
+    }
+
+    private async Task UpdateTask(TaskModel task, string line)
+    {
+        task.Name = line;
+        await _repository.UpdateTask(task.Id);
+    }
+
+    private async Task AddTaskAt(int idx, string line)
+    {
+        (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(_repository.MaxTaskId + 1, idx);
+        task.Name = line;
+
+        if (changedTask is not null)
+            await _repository.UpdateTask(changedTask.Id);
+
+        await _repository.AddTask(task);
+    }
+
+    private async Task DeleteTask(TaskModel task)
+    {
+        TaskModel? changedTask = Goal.RemoveTask(task);
+
+        if (changedTask is not null)
+            await _repository.UpdateTask(changedTask.Id);
+
+        await _repository.DeleteTask(task.Id);
     }
 
     // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), edit on click (except on URL link click)
