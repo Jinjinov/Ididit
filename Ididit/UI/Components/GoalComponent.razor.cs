@@ -122,15 +122,12 @@ public partial class GoalComponent
             }
         }
 
-        // TODO: tree view width
-        // TODO: tree view toggle all
+        // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped/sorted by Category)
 
-        // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
-
-        // TODO: show only ASAP tasks, show only repeating tasks, show only notes - isNote == char.IsLetter(_name.First())
+        // TODO: filter: show only ASAP tasks, show only repeating tasks, show only notes - isNote == !char.IsLetter(_name.First())
 
         // TODO: task priority - - - (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
-        // TODO: group by priority - - - (must, should, can) - importance / urgency
+        // TODO: group/sort by priority - - - (must, should, can) - importance / urgency
     }
 
     // TODO: every line that StartsWith("- ") is a task detail

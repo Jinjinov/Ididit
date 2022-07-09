@@ -2,6 +2,7 @@
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -21,6 +22,18 @@ public partial class CategoriesComponent
 
     CategoryModel? _editCategory;
 
+    bool _isFirstToggle;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!_isFirstToggle && _repository.CategoryList.Any() && !_expandedNodes.Any())
+        {
+            _isFirstToggle = true;
+            ToggleAll();
+            StateHasChanged();
+        }
+    }
+
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
         SelectedCategory = category;
@@ -31,6 +44,18 @@ public partial class CategoriesComponent
     void ShowAllGoals()
     {
         SelectedCategory = null;
+    }
+
+    void ToggleAll()
+    {
+        if (_expandedNodes.Any())
+        {
+            _expandedNodes.Clear();
+        }
+        else
+        {
+            _expandedNodes = new List<CategoryModel?>(_repository.CategoryList);
+        }
     }
 
     async Task NewCategory()

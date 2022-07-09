@@ -43,12 +43,12 @@
  *@
 
 @*<Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>*@
-    <Column Height=Height.Max100 Overflow=Overflow.Auto>
+    <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
         @*<ErrorBoundary>*@
             <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
         @*</ErrorBoundary>*@
     </Column>
-    <Column Height=Height.Max100 Overflow=Overflow.Auto>
+    <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
         @*<ErrorBoundary>*@
             <GoalsComponent ParentCategory=_selectedCategory />
         @*</ErrorBoundary>*@
