@@ -51,10 +51,22 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
+    class DoneLine
+    {
+        public string Line = null!;
+        public bool IsDone;
+    }
+
+    class DoneTask
+    {
+        public TaskModel Task = null!;
+        public bool IsDone;
+    }
+
     async Task OnTextChanged(string text)
     {
-        List<(TaskModel task, bool done, int idx)> oldLines = Goal.TaskList.Select((task, i) => (task, false, i)).ToList();
-        List<(string line, bool done, int idx)> newLines = text.Split('\n').Select((line, i) => (line, false, i)).ToList();
+        List<DoneTask> oldLines = Goal.TaskList.Select(task => new DoneTask { Task = task }).ToList();
+        List<DoneLine> newLines = text.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
 
         Goal.Details = text;
         await _repository.UpdateGoal(Goal.Id);
@@ -74,17 +86,17 @@ public partial class GoalComponent
 
         /**/
 
-        while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
+        while (newLines.Any(p => !p.IsDone) || oldLines.Any(p => !p.IsDone))
         {
-            while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
+            while (newLines.Any(p => !p.IsDone) && oldLines.Any(p => !p.IsDone))
             {
-                var newLine = newLines.First(p => !p.done);
-                var oldLine = oldLines.First(p => !p.done);
+                var newLine = newLines.First(p => !p.IsDone);
+                var oldLine = oldLines.First(p => !p.IsDone);
 
-                if (newLine.line == oldLine.task.Name)
+                if (newLine.Line == oldLine.Task.Name)
                 {
-                    newLine.done = true;
-                    oldLine.done = true;
+                    newLine.IsDone = true;
+                    oldLine.IsDone = true;
                 }
                 else
                 {
@@ -92,54 +104,35 @@ public partial class GoalComponent
                 }
             }
 
-            while (newLines.Any(p => !p.done) && oldLines.Any(p => !p.done))
+            int newLinesCount = newLines.Count(p => !p.IsDone);
+            int oldLinesCount = oldLines.Count(p => !p.IsDone);
+
+            if (oldLinesCount == newLinesCount && newLinesCount > 0) // changed
             {
-                var newLine = newLines.Last(p => !p.done);
-                var oldLine = oldLines.Last(p => !p.done);
+                var newLine = newLines.First(p => !p.IsDone);
+                var oldLine = oldLines.First(p => !p.IsDone);
 
-                if (newLine.line == oldLine.task.Name)
-                {
-                    newLine.done = true;
-                    oldLine.done = true;
-                }
-                else
-                {
-                    break;
-                }
-            }
+                await UpdateTask(oldLine.Task, newLine.Line);
 
-            int newLinesCount = newLines.Count(p => !p.done);
-            int oldLinesCount = oldLines.Count(p => !p.done);
-
-            bool anyNew = newLinesCount > 0;
-            bool anyOld = oldLinesCount > 0;
-
-            if (oldLinesCount == newLinesCount && anyNew) // changed
-            {
-                var newLine = newLines.First(p => !p.done);
-                var oldLine = oldLines.First(p => !p.done);
-
-                await UpdateTask(oldLine.task, newLine.line);
-
-                newLine.done = true;
-                oldLine.done = true;
+                newLine.IsDone = true;
+                oldLine.IsDone = true;
             }
             else if (oldLinesCount < newLinesCount) // added
             {
-                var newLine = newLines.First(p => !p.done);
-                int idx = anyOld ? oldLines.First(p => !p.done).idx : 0;
+                var newLine = newLines.First(p => !p.IsDone);
+                int idx = oldLines.FindLastIndex(p => p.IsDone) + 1;
 
-                await AddTaskAt(idx, newLine.line);
+                await AddTaskAt(idx, newLine.Line);
 
-                newLine.done = true;
+                newLine.IsDone = true;
             }
             else if (oldLinesCount > newLinesCount) // deleted
             {
-                var oldLine = oldLines.First(p => !p.done);
+                var oldLine = oldLines.First(p => !p.IsDone);
 
-                await DeleteTask(oldLine.task);
+                await DeleteTask(oldLine.Task);
 
-                oldLine.done = true;
+                oldLine.IsDone = true;
             }
         }
 
