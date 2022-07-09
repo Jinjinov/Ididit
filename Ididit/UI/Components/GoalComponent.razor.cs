@@ -50,6 +50,15 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
+    List<TaskModel> GetTasks()
+    {
+        // TODO: task filter: show only ASAP tasks, show only repeating tasks, show only notes - isNote == !char.IsLetter(_name.First())
+
+        // TODO: task sort by priority
+
+        return Goal.TaskList;
+    }
+
     class DoneLine
     {
         public string Line = null!;
@@ -121,20 +130,17 @@ public partial class GoalComponent
                 oldLine.IsDone = true;
             }
         }
-
-        // TODO: filter: show only ASAP tasks, show only repeating tasks, show only notes - isNote == !char.IsLetter(_name.First())
-
-        // TODO: task priority - - - (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
-        // TODO: group/sort by priority - - - (must, should, can) - importance / urgency
     }
 
     // TODO: every line that StartsWith("- ") is a task detail
 
     // TODO: GoogleDriveBackup
 
+    // TODO: options
     // TODO: mobile: single column, minimized tree view
-    // TODO: new import/export page
-    // TODO: main menu
+    // TODO: move backup from MainLayout to a new import/export page (options?)
+    // TODO: main menu = header & footer
+    // TODO: help
 
     private async Task UpdateTask(TaskModel task, string line)
     {
@@ -163,49 +169,6 @@ public partial class GoalComponent
         await _repository.DeleteTask(task.Id);
     }
 
-    // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
-    // TODO: (class Solution) --> (class TaskDetails) - when, where
-    // name, address, phone number, working hours, website, email
-    // possible to do the task:
-    // - anytime
-    // - free time
-    // - during work week open hours
-    // - during weekend
-    // - when opportunity arises
-
-    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), edit on click (except on URL link click)
-
-    // TODO: remove focused borders
-
-    // TODO: don't add Category / Goal until (name is set) / (Save button is clicked)
-
-    // TODO: use Breadcrumb to show Category/Subcategory in Goal header
-
-    // TODO: show sub-categories in Goal list
-
-    // TODO: use Drag & Drop to move Subcategory into another Category
-    // TODO: use Drag & Drop to move Goal into another Category
-    // TODO: use Drag & Drop to reorder Goals
-    // TODO: use Drag & Drop to reorder Tasks
-
-    // TODO: move backup from MainLayout to a component
-
-    // TODO: task - times list should load on demand - on Task done - on show Task details
-
-    // https://blazorise.com/docs/components/repeater
-    // The repeater component is a helper component that repeats the child content for each element in a collection.
-    // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
-    // Meaning you can do custom actions whenever a data-source changes.
-
-    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
-    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
-
-    // TODO: weekly category goal (do X tasks from this category)
-    // TODO: statistics (did X tasks from this category)
-    // TODO: graphs (num of tasks over time)
-
-    // TODO: backup - Dropbox / OneDrive / iCloud
-
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: bootstrap themes
@@ -216,21 +179,70 @@ public partial class GoalComponent
 
     // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
-    // TODO: use blazor layouts?
-    // @inherits LayoutComponentBase
-    // @page "/users"
-    // @layout MainLayout
-    // @page "/admin"
-    // @layout AdminLayout
+    // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
+    // TODO: (class Solution) --> (class Task.Details) - when, where
+    // name, address, phone number, working hours, website, email
+    // possible to do the task:
+    // - anytime
+    // - free time
+    // - during work week open hours
+    // - during weekend
+    // - when opportunity arises
 
-    // TODO: use route navigation for help, options, settings?
+    // TODO: remove focused borders
 
-    // TODO: options
-    // TODO: help
+    //
+    // MEDIUM PRIORITY:
+    //
+
+    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), start edit on click (except on URL link click)
+
+    // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
+
+    // TODO: use Breadcrumb to show Category/Subcategory in Goal header
+
+    // TODO: show sub-categories in Goal list
 
     // TODO: see all - or collapse to titles
+
+    // TODO: use Drag & Drop to move Subcategory into another Category
+    // TODO: use Drag & Drop to move Goal into another Category
+    // TODO: use Drag & Drop to reorder Goals
+    // TODO: use Drag & Drop to reorder Tasks
+
+    // TODO: task - times list should load on demand - on Task done - on show Task details
+
+    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
+    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
+
+    //
+    // LOW PRIORITY:
+    //
+
+    // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
+    // TODO: sort by priority (must, should, can) - importance / urgency
+
+    // TODO: weekly category goal (do X tasks from this category)
+    // TODO: statistics (did X tasks from this category)
+    // TODO: graphs (num of tasks over time)
+
+    // TODO: backup - Dropbox / OneDrive / iCloud
 
     // TODO: show Times in a Calendar/Scheduler, not a List
 
     // TODO: arrow down can change focus to next textarea
 }
+
+// TODO: use blazor layouts?
+// @inherits LayoutComponentBase
+// @page "/users"
+// @layout MainLayout
+// @page "/admin"
+// @layout AdminLayout
+
+// TODO: use route navigation for help, options, settings?
+
+// https://blazorise.com/docs/components/repeater
+// The repeater component is a helper component that repeats the child content for each element in a collection.
+// One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
+// Meaning you can do custom actions whenever a data-source changes.
