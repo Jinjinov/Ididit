@@ -207,9 +207,16 @@ public partial class GoalComponent
     // - during weekend
     // - when opportunity arises
 
+    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
+
+    // TODO: mobile: show sub-categories in Goal list
+
+    // TODO: task - save "last time done" separately
+    // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
     // TODO: remove focused borders
 
-    // TODO: "save" on Enter key
+    // TODO: "save" (exit edit) on Enter key
 
     //
     // MEDIUM PRIORITY:
@@ -219,10 +226,6 @@ public partial class GoalComponent
 
     // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
 
-    // TODO: use Breadcrumb to show Category/Subcategory in Goal header
-
-    // TODO: show sub-categories in Goal list
-
     // TODO: see all - or collapse to titles
 
     // TODO: use Drag & Drop to move Subcategory into another Category
@@ -230,10 +233,12 @@ public partial class GoalComponent
     // TODO: use Drag & Drop to reorder Goals
     // TODO: use Drag & Drop to reorder Tasks
 
-    // TODO: task - times list should load on demand - on Task done - on show Task details
-
     // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
     // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
+
+    // TODO: arrow down can change focus to next textarea
+
+    // TODO: backup - Dropbox / OneDrive / iCloud
 
     //
     // LOW PRIORITY:
@@ -246,11 +251,7 @@ public partial class GoalComponent
     // TODO: statistics (did X tasks from this category)
     // TODO: graphs (num of tasks over time)
 
-    // TODO: backup - Dropbox / OneDrive / iCloud
-
     // TODO: show Times in a Calendar/Scheduler, not a List
-
-    // TODO: arrow down can change focus to next textarea
 }
 
 // TODO: use blazor layouts?
