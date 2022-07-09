@@ -1,7 +1,6 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -73,19 +72,6 @@ public partial class GoalComponent
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 
-        /*
-
-        // TODO: https://stackoverflow.com/questions/4585939/comparing-strings-and-get-the-first-place-where-they-vary-from-eachother
-
-        go char by char until first difference
-        - add
-        - update
-
-        go char by char from back
-        - delete
-
-        /**/
-
         while (newLines.Any(p => !p.IsDone) || oldLines.Any(p => !p.IsDone))
         {
             while (newLines.Any(p => !p.IsDone) && oldLines.Any(p => !p.IsDone))
@@ -136,24 +122,24 @@ public partial class GoalComponent
             }
         }
 
-        // TODO: every line that StartsWith("- ") is a task detail
-
-        // TODO: GoogleDriveBackup
-
         // TODO: tree view width
         // TODO: tree view toggle all
 
         // TODO: toggle: (only current Category Goals) / (Goals of all sub-categories, grouped by Category)
 
-        // TODO: show only ASAP tasks, show only repeating tasks, show only notes
+        // TODO: show only ASAP tasks, show only repeating tasks, show only notes - isNote == char.IsLetter(_name.First())
 
-        // TODO: task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
-        // TODO: group by (must, should, can) - importance / urgency
-
-        // TODO: mobile: single column, minimized tree view
-        // TODO: new import/export page
-        // TODO: main menu
+        // TODO: task priority - - - (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
+        // TODO: group by priority - - - (must, should, can) - importance / urgency
     }
+
+    // TODO: every line that StartsWith("- ") is a task detail
+
+    // TODO: GoogleDriveBackup
+
+    // TODO: mobile: single column, minimized tree view
+    // TODO: new import/export page
+    // TODO: main menu
 
     private async Task UpdateTask(TaskModel task, string line)
     {
@@ -181,6 +167,16 @@ public partial class GoalComponent
 
         await _repository.DeleteTask(task.Id);
     }
+
+    // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
+    // TODO: (class Solution) --> (class TaskDetails) - when, where
+    // name, address, phone number, working hours, website, email
+    // possible to do the task:
+    // - anytime
+    // - free time
+    // - during work week open hours
+    // - during weekend
+    // - when opportunity arises
 
     // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), edit on click (except on URL link click)
 
@@ -214,16 +210,6 @@ public partial class GoalComponent
     // TODO: graphs (num of tasks over time)
 
     // TODO: backup - Dropbox / OneDrive / iCloud
-
-    // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
-    // TODO: (class Solution) --> (class TaskDetails) - when, where
-    // name, address, phone number, working hours, website, email
-    // possible to do the task:
-    // - anytime
-    // - free time
-    // - during work week open hours
-    // - during weekend
-    // - when opportunity arises
 
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
