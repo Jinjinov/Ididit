@@ -150,11 +150,11 @@ public partial class GoalComponent
 
     // TODO: GoogleDriveBackup
 
-    // TODO: options
+    // TODO: options: size & theme
     // TODO: mobile: single column, minimized tree view
     // TODO: move backup from MainLayout to a new import/export page (options?)
     // TODO: main menu = header & footer
-    // TODO: help
+    // TODO: help + GitHub link
     // TODO: load examples
     // TODO: delete all
 
