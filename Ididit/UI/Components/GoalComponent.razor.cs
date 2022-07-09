@@ -52,9 +52,23 @@ public partial class GoalComponent
 
     List<TaskModel> GetTasks()
     {
-        // TODO: task filter: show only ASAP tasks, show only repeating tasks, show only notes - isNote == !char.IsLetter(_name.First())
+        // TODO: filter: show only ASAP tasks
+        // TODO: filter: show only repeating tasks
+        // TODO: filter: show only notes - isNote == !char.IsLetter(_name.First())
 
-        // TODO: task sort by priority
+        // TODO: sort: by priority
+        // TODO: sort: by index
+        // TODO: sort: by description
+        // TODO: sort: by elapsed time
+        // TODO: sort: by ratio
+
+        // TODO: search filter
+
+        // TODO: date filter
+        // TODO: today filter
+
+        // TODO: filter: show only ratio over % - checkbox
+        // TODO: filter: show only ratio over % - slider
 
         return Goal.TaskList;
     }
@@ -141,6 +155,8 @@ public partial class GoalComponent
     // TODO: move backup from MainLayout to a new import/export page (options?)
     // TODO: main menu = header & footer
     // TODO: help
+    // TODO: load examples
+    // TODO: delete all
 
     private async Task UpdateTask(TaskModel task, string line)
     {
@@ -169,6 +185,8 @@ public partial class GoalComponent
         await _repository.DeleteTask(task.Id);
     }
 
+    // TODO: new settings
+    // TODO: load settings
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: bootstrap themes
@@ -190,6 +208,8 @@ public partial class GoalComponent
     // - when opportunity arises
 
     // TODO: remove focused borders
+
+    // TODO: "save" on Enter key
 
     //
     // MEDIUM PRIORITY:
