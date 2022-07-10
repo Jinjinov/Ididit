@@ -54,7 +54,7 @@ public partial class GoalComponent
     {
         // TODO: filter: show only ASAP tasks
         // TODO: filter: show only repeating tasks
-        // TODO: filter: show only notes - isNote == !char.IsLetter(_name.First())
+        // TODO: filter: hide notes - isNote == !char.IsLetter(_name.First())
 
         // TODO: sort: by priority
         // TODO: sort: by index
@@ -146,17 +146,21 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: every line that StartsWith("- ") is a task detail
-
     // TODO: GoogleDriveBackup
 
     // TODO: options: size & theme
-    // TODO: mobile: single column, minimized tree view
     // TODO: move backup from MainLayout to a new import/export page (options?)
     // TODO: main menu = header & footer
-    // TODO: help + GitHub link
-    // TODO: load examples
-    // TODO: delete all
+
+    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
+
+    // TODO: bootstrap themes
+    // https://cdnjs.com/libraries/bootstrap/5.1.3
+    // https://www.jsdelivr.com/package/npm/bootstrap
+    // https://cdnjs.com/libraries/bootswatch/5.1.3
+    // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
+
+    // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
     private async Task UpdateTask(TaskModel task, string line)
     {
@@ -185,17 +189,24 @@ public partial class GoalComponent
         await _repository.DeleteTask(task.Id);
     }
 
+    // TODO: mobile: single column, minimized tree view
+    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
+    // TODO: mobile: show sub-categories in Goal list
+
+    // TODO: task - save "last time done" separately
+    // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
+    //
+    // HIGH PRIORITY:
+    //
+
     // TODO: new settings
     // TODO: load settings
-    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
+    // TODO: help + GitHub link
+    // TODO: load examples
+    // TODO: delete all
 
-    // TODO: bootstrap themes
-    // https://cdnjs.com/libraries/bootstrap/5.1.3
-    // https://www.jsdelivr.com/package/npm/bootstrap
-    // https://cdnjs.com/libraries/bootswatch/5.1.3
-    // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
-
-    // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
+    // TODO: every line that StartsWith("- ") is a task detail
 
     // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
     // TODO: (class Solution) --> (class Task.Details) - when, where
@@ -206,13 +217,6 @@ public partial class GoalComponent
     // - during work week open hours
     // - during weekend
     // - when opportunity arises
-
-    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
-
-    // TODO: mobile: show sub-categories in Goal list
-
-    // TODO: task - save "last time done" separately
-    // TODO: task - "times list" should load on demand - on Task done - on show Task details
 
     // TODO: remove focused borders
 
