@@ -1,22 +1,22 @@
-﻿using Microsoft.AspNetCore.Components.WebView.Maui;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
+﻿using Ididit.App;
+using Microsoft.AspNetCore.Components.WebView.Maui;
 
-namespace Ididit.Maui
+namespace Ididit.Maui;
+
+public static class MauiProgram
 {
-    public static class MauiProgram
+	public static MauiApp CreateMauiApp()
 	{
-		public static MauiApp CreateMauiApp()
-		{
-			var builder = MauiApp.CreateBuilder();
-			builder
-				.RegisterBlazorMauiWebView()
-				.UseMauiApp<App>();
+		var builder = MauiApp.CreateBuilder();
 
-			builder.Services.AddBlazorWebView();
+		builder.UseMauiApp<App>();
 
-			return builder.Build();
-		}
+		builder.Services.AddMauiBlazorWebView();
+#if DEBUG
+		builder.Services.AddBlazorWebViewDeveloperTools();
+#endif
+        builder.Services.AddServices();
+
+        return builder.Build();
 	}
 }

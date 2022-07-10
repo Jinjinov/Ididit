@@ -1,12 +1,9 @@
-﻿using Microsoft.Maui.Controls;
+﻿namespace Ididit.Maui;
 
-namespace Ididit.Maui
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+	public MainPage()
 	{
-		public MainPage()
-		{
-			InitializeComponent();
-		}
+		InitializeComponent();
 	}
 }

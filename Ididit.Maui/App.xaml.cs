@@ -1,14 +1,11 @@
-﻿using Application = Microsoft.Maui.Controls.Application;
+﻿namespace Ididit.Maui;
 
-namespace Ididit.Maui
+public partial class App : Application
 {
-    public partial class App : Application
+	public App()
 	{
-		public App()
-		{
-			InitializeComponent();
+		InitializeComponent();
 
-			MainPage = new MainPage();
-		}
+		MainPage = new MainPage();
 	}
 }
