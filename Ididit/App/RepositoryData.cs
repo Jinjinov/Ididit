@@ -10,5 +10,6 @@ internal class RepositoryData
 
     public Dictionary<long, CategoryModel> CategoryDict { get; set; } = new();
     public Dictionary<long, GoalModel> GoalDict { get; set; } = new();
+    public Dictionary<long, SettingsModel> SettingsDict { get; set; } = new();
     public Dictionary<long, TaskModel> TaskDict { get; set; } = new();
 }

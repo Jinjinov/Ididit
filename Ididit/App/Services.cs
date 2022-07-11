@@ -25,6 +25,7 @@ public static class Services
         serviceCollection.AddSingleton<IErrorBoundaryLogger, ErrorBoundaryLogger>();
 
         serviceCollection.AddScoped<JsInterop>();
+
         serviceCollection.AddScoped<DirectoryBackup>();
         serviceCollection.AddScoped<GoogleDriveBackup>();
         serviceCollection.AddScoped<JsonBackup>();

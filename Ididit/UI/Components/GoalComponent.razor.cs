@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,17 +51,13 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
-    List<TaskModel> GetTasks()
+    IEnumerable<TaskModel> GetTasks()
     {
+        IEnumerable<TaskModel> tasks = Goal.TaskList;
+
         // TODO: filter: show only ASAP tasks
         // TODO: filter: show only repeating tasks
         // TODO: filter: hide notes - isNote == !char.IsLetter(_name.First())
-
-        // TODO: sort: by priority
-        // TODO: sort: by index
-        // TODO: sort: by description
-        // TODO: sort: by elapsed time
-        // TODO: sort: by ratio
 
         // TODO: search filter
 
@@ -70,7 +67,22 @@ public partial class GoalComponent
         // TODO: filter: show only ratio over % - checkbox
         // TODO: filter: show only ratio over % - slider
 
-        return Goal.TaskList;
+        return GetSorted(tasks);
+    }
+
+    IEnumerable<TaskModel> GetSorted(IEnumerable<TaskModel> tasks)
+    {
+        return _repository.Settings.Sort switch
+        {
+            Sort.None => tasks,
+            Sort.Name => tasks.OrderBy(task => task.Name),
+            Sort.Priority => tasks.OrderByDescending(task => task.Priority),
+            Sort.ElapsedTime => tasks.OrderByDescending(task => task.ElapsedTime),
+            Sort.ElapsedToAverageRatio => tasks.OrderByDescending(task => task.ElapsedToAverageRatio),
+            Sort.ElapsedToDesiredRatio => tasks.OrderByDescending(task => task.ElapsedToDesiredRatio),
+            Sort.AverageToDesiredRatio => tasks.OrderByDescending(task => task.AverageToDesiredRatio),
+            _ => throw new ArgumentException("Invalid argument: " + nameof(_repository.Settings.Sort))
+        };
     }
 
     class DoneLine
@@ -146,11 +158,9 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: GoogleDriveBackup
-
     // TODO: options: size & theme
-    // TODO: move backup from MainLayout to a new import/export page (options?)
-    // TODO: main menu = header & footer
+    // TODO: move backup from footer to a new import/export page (options?)
+    // TODO: main menu - add Options - move Login from header to options
 
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
@@ -161,6 +171,10 @@ public partial class GoalComponent
     // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
 
     // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
+
+    // TODO: UI - sort combo box
+
+    // TODO: GoogleDriveBackup
 
     private async Task UpdateTask(TaskModel task, string line)
     {

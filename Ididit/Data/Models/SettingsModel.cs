@@ -12,4 +12,6 @@ internal class SettingsModel
     public string Size { get; set; } = "medium";
 
     public string Theme { get; set; } = string.Empty;
+
+    public Sort Sort { get; set; }
 }

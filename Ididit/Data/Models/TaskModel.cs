@@ -71,6 +71,8 @@ public class TaskModel
     internal bool IsElapsedOverDesired => ElapsedTime > DesiredTime;
     [JsonIgnore]
     internal double ElapsedToDesiredRatio => ElapsedTime / DesiredTime * 100.0;
+    [JsonIgnore]
+    internal double AverageToDesiredRatio => AverageTime / DesiredTime * 100.0;
 
     public List<DateTime> TimeList = new();
 

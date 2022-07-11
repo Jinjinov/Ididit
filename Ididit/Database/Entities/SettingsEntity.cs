@@ -15,4 +15,7 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public string Theme { get; set; } = string.Empty;
+
+    [IndexDbIndex]
+    public Sort Sort { get; set; }
 }

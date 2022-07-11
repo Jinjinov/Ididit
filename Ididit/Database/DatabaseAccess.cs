@@ -174,12 +174,15 @@ internal class DatabaseAccess : IDatabaseAccess
                 Id = settings.Id,
                 Name = settings.Name,
                 Size = settings.Size,
-                Theme = settings.Theme
+                Theme = settings.Theme,
+                Sort = settings.Sort
             };
 
             _settingsDict[settings.Id] = settings;
 
             data.SettingsList.Add(settingsModel);
+
+            data.SettingsDict.Add(settings.Id, settingsModel);
         }
 
         return data;
@@ -282,7 +285,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Id = settings.Id,
                 Name = settings.Name,
                 Size = settings.Size,
-                Theme = settings.Theme
+                Theme = settings.Theme,
+                Sort = settings.Sort
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -371,7 +375,8 @@ internal class DatabaseAccess : IDatabaseAccess
             Id = settings.Id,
             Name = settings.Name,
             Size = settings.Size,
-            Theme = settings.Theme
+            Theme = settings.Theme,
+            Sort = settings.Sort
         };
 
         _settingsList.Add(settingsEntity);
@@ -456,6 +461,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Name = settings.Name;
             settingsEntity.Size = settings.Size;
             settingsEntity.Theme = settings.Theme;
+            settingsEntity.Sort = settings.Sort;
 
             await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });
         }

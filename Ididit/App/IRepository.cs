@@ -18,6 +18,8 @@ internal interface IRepository : IDataModel
     IReadOnlyDictionary<long, TaskModel> AllTasks { get; }
     IReadOnlyDictionary<long, SettingsModel> AllSettings { get; }
 
+    SettingsModel Settings { get; }
+
     Task Initialize();
     Task AddData(IDataModel data);
 
