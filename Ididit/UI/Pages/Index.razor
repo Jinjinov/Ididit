@@ -6,6 +6,30 @@
 
 <PageTitle>ididit!</PageTitle>
 
+@*<Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>*@
+    <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
+        @*<ErrorBoundary>*@
+            <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
+        @*</ErrorBoundary>*@
+    </Column>
+    <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
+        @*<ErrorBoundary>*@
+            <GoalsComponent @bind-SelectedCategory=_selectedCategory />
+        @*</ErrorBoundary>*@
+    </Column>
+@*</Row>*@
+
+@code {
+    CategoryModel? _selectedCategory;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await _repository.Initialize();
+
+        //_selectedCategory = _repository.CategoryList.FirstOrDefault();
+    }
+}
+
  @*
      row
          - if missing, the second column is not visible 
@@ -41,27 +65,3 @@
         - if missing, no vertical scrollbar
         overflow: auto!important;
  *@
-
-@*<Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>*@
-    <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-        @*<ErrorBoundary>*@
-            <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
-        @*</ErrorBoundary>*@
-    </Column>
-    <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-        @*<ErrorBoundary>*@
-            <GoalsComponent @bind-SelectedCategory=_selectedCategory />
-        @*</ErrorBoundary>*@
-    </Column>
-@*</Row>*@
-
-@code {
-    CategoryModel? _selectedCategory;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await _repository.Initialize();
-
-        //_selectedCategory = _repository.CategoryList.FirstOrDefault();
-    }
-}

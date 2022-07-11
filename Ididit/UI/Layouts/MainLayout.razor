@@ -13,6 +13,39 @@
     }
 </HeadContent>
 
+<Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
+    <Row>
+        <Column Border=Border.Is1>
+            Ididit
+            <LoginDisplay />
+        </Column>
+    </Row>
+    <Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>
+        @Body
+    </Row>
+    <Row>
+        <Column Border=Border.Is1>
+            <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
+            <InputFile id="file-upload" class="d-none" OnChange=Import />
+
+            <Button Color=Color.Primary Block=false @onclick=ExportJson>Export Json</Button>
+
+            <Button Color=Color.Primary Block=false @onclick=ExportYaml>Export Yaml</Button>
+
+            <Button Color=Color.Primary Block=false @onclick=ExportTsv>Export Tsv</Button>
+
+            <Label For="notes-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import Markdown</Label>
+            <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
+
+            <Button Color=Color.Primary Block=false @onclick=ExportMarkdown>Export Markdown</Button>
+
+            <Button Color=Color.Primary Block=false @onclick=ImportDirectory>Import folder</Button>
+
+            <Button Color=Color.Primary Block=false @onclick=ExportDirectory>Export folder</Button>
+        </Column>
+    </Row>
+</Container>
+
 @*
     https://getbootstrap.com/docs/4.3/layout/grid/
     Containers provide a means to center and horizontally pad your site’s contents. Use .container for a responsive pixel width or .container-fluid for width: 100% across all viewport and device sizes.
@@ -69,36 +102,3 @@
         flex: 0 0 100%;
         max-width: 100%;
 *@
-
-<Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
-    <Row>
-        <Column Border=Border.Is1>
-            Ididit
-            <LoginDisplay />
-        </Column>
-    </Row>
-    <Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>
-        @Body
-    </Row>
-    <Row>
-        <Column Border=Border.Is1>
-            <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
-            <InputFile id="file-upload" class="d-none" OnChange=Import />
-
-            <Button Color=Color.Primary Block=false @onclick=ExportJson>Export Json</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportYaml>Export Yaml</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportTsv>Export Tsv</Button>
-
-            <Label For="notes-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import Markdown</Label>
-            <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
-
-            <Button Color=Color.Primary Block=false @onclick=ExportMarkdown>Export Markdown</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ImportDirectory>Import folder</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportDirectory>Export folder</Button>
-        </Column>
-    </Row>
-</Container>

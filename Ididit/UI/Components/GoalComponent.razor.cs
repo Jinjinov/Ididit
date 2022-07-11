@@ -170,12 +170,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: bootstrap themes
-    // https://cdnjs.com/libraries/bootstrap/5.1.3
-    // https://www.jsdelivr.com/package/npm/bootstrap
-    // https://cdnjs.com/libraries/bootswatch/5.1.3
-    // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
-
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: UI - add options page: size & theme
