@@ -170,7 +170,7 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
+    // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
     // TODO: bootstrap themes
     // https://cdnjs.com/libraries/bootstrap/5.1.3
@@ -178,7 +178,7 @@ public partial class GoalComponent
     // https://cdnjs.com/libraries/bootswatch/5.1.3
     // https://www.jsdelivr.com/package/npm/bootswatch?path=dist
 
-    // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
+    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: UI - add options page: size & theme
 
@@ -270,15 +270,15 @@ public partial class GoalComponent
 
     // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
 
+    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
+    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
+
     // TODO: see all - or collapse to titles
 
     // TODO: use Drag & Drop to move Subcategory into another Category
     // TODO: use Drag & Drop to move Goal into another Category
     // TODO: use Drag & Drop to reorder Goals
     // TODO: use Drag & Drop to reorder Tasks
-
-    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
-    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
 
     // TODO: arrow down can change focus to next textarea
 
