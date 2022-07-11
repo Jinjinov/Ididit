@@ -139,6 +139,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = task.Name,
                 Details = task.Details,
                 CreatedAt = task.CreatedAt,
+                LastTimeDoneAt = task.LastTimeDoneAt,
                 AverageInterval = task.AverageInterval,
                 DesiredInterval = task.DesiredInterval,
                 Priority = task.Priority
@@ -175,7 +176,12 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
-                Sort = settings.Sort
+                Sort = settings.Sort,
+                ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
+                ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
+                ShowOnlyRepeating = settings.ShowOnlyRepeating,
+                ShowOnlyAsap = settings.ShowOnlyAsap,
+                AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
             };
 
             _settingsDict[settings.Id] = settings;
@@ -243,6 +249,7 @@ internal class DatabaseAccess : IDatabaseAccess
                         Name = task.Name,
                         Details = task.Details,
                         CreatedAt = task.CreatedAt,
+                        LastTimeDoneAt = task.LastTimeDoneAt,
                         AverageInterval = task.AverageInterval,
                         DesiredInterval = task.DesiredInterval,
                         Priority = task.Priority
@@ -286,7 +293,12 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
-                Sort = settings.Sort
+                Sort = settings.Sort,
+                ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
+                ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
+                ShowOnlyRepeating = settings.ShowOnlyRepeating,
+                ShowOnlyAsap = settings.ShowOnlyAsap,
+                AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -341,6 +353,7 @@ internal class DatabaseAccess : IDatabaseAccess
             Name = task.Name,
             Details = task.Details,
             CreatedAt = task.CreatedAt,
+            LastTimeDoneAt = task.LastTimeDoneAt,
             AverageInterval = task.AverageInterval,
             DesiredInterval = task.DesiredInterval,
             Priority = task.Priority
@@ -376,7 +389,12 @@ internal class DatabaseAccess : IDatabaseAccess
             Name = settings.Name,
             Size = settings.Size,
             Theme = settings.Theme,
-            Sort = settings.Sort
+            Sort = settings.Sort,
+            ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
+            ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
+            ShowOnlyRepeating = settings.ShowOnlyRepeating,
+            ShowOnlyAsap = settings.ShowOnlyAsap,
+            AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
         };
 
         _settingsList.Add(settingsEntity);
@@ -428,6 +446,7 @@ internal class DatabaseAccess : IDatabaseAccess
             taskEntity.Name = task.Name;
             taskEntity.Details = task.Details;
             taskEntity.CreatedAt = task.CreatedAt;
+            taskEntity.LastTimeDoneAt = task.LastTimeDoneAt;
             taskEntity.AverageInterval = task.AverageInterval;
             taskEntity.DesiredInterval = task.DesiredInterval;
             taskEntity.Priority = task.Priority;
@@ -462,6 +481,11 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Size = settings.Size;
             settingsEntity.Theme = settings.Theme;
             settingsEntity.Sort = settings.Sort;
+            settingsEntity.ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin;
+            settingsEntity.ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin;
+            settingsEntity.ShowOnlyRepeating = settings.ShowOnlyRepeating;
+            settingsEntity.ShowOnlyAsap = settings.ShowOnlyAsap;
+            settingsEntity.AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap;
 
             await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });
         }

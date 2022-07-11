@@ -18,4 +18,19 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public Sort Sort { get; set; }
+
+    [IndexDbIndex]
+    public long ElapsedToDesiredRatioMin { get; set; }
+
+    [IndexDbIndex]
+    public bool ShowElapsedToDesiredRatioOverMin { get; set; }
+
+    [IndexDbIndex]
+    public bool ShowOnlyRepeating { get; set; }
+
+    [IndexDbIndex]
+    public bool ShowOnlyAsap { get; set; }
+
+    [IndexDbIndex]
+    public bool AlsoShowCompletedAsap { get; set; }
 }

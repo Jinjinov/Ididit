@@ -29,6 +29,15 @@ public partial class GoalComponent
     [Parameter]
     public EventCallback<GoalModel> EditGoalChanged { get; set; }
 
+    [Parameter]
+    public string SearchFilter { get; set; } = string.Empty;
+
+    [Parameter]
+    public DateTime? DateFilter { get; set; }
+
+    [Parameter]
+    public Priority? PriorityFilter { get; set; }
+
     TaskModel? _selectedTask;
 
     Blazorise.MemoEdit? _memoEdit;
@@ -53,19 +62,22 @@ public partial class GoalComponent
 
     IEnumerable<TaskModel> GetTasks()
     {
-        IEnumerable<TaskModel> tasks = Goal.TaskList;
+        IEnumerable<TaskModel> tasks = Goal.TaskList.Where(task =>
+        {
+            bool isRatioOk = task.ElapsedToDesiredRatio >= _repository.Settings.ElapsedToDesiredRatioMin;
 
-        // TODO: filter: show only ASAP tasks
-        // TODO: filter: show only repeating tasks
-        // TODO: filter: hide notes - isNote == !char.IsLetter(_name.First())
+            bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
 
-        // TODO: search filter
+            bool isDateOk = DateFilter == null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
 
-        // TODO: date filter
-        // TODO: today filter
+            bool isPriorityOk = PriorityFilter == null || task.Priority == PriorityFilter;
 
-        // TODO: filter: show only ratio over % - checkbox
-        // TODO: filter: show only ratio over % - slider
+            return isNameOk && isDateOk && isPriorityOk && 
+                (isRatioOk || !_repository.Settings.ShowElapsedToDesiredRatioOverMin) &&
+                (task.IsRepeating || !_repository.Settings.ShowOnlyRepeating) &&
+                (!task.IsRepeating || !_repository.Settings.ShowOnlyAsap) &&
+                (!task.IsCompleted || _repository.Settings.AlsoShowCompletedAsap);
+        });
 
         return GetSorted(tasks);
     }
@@ -158,10 +170,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: options: size & theme
-    // TODO: move backup from footer to a new import/export page (options?)
-    // TODO: main menu - add Options - move Login from header to options
-
     // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: bootstrap themes
@@ -172,7 +180,26 @@ public partial class GoalComponent
 
     // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
 
+    // TODO: UI - add options page: size & theme
+
+    // TODO: UI - search filter
+
+    // TODO: UI - date filter
+    // TODO: UI - today filter
+
+    // TODO: UI - show only selected priority
+
+    // TODO: UI - show only repeating tasks
+    // TODO: UI - show only ASAP tasks
+    // TODO: UI - also show completed ASAP tasks
+
+    // TODO: UI - show only ratio over % - checkbox
+    // TODO: UI - show only ratio over % - slider
+
     // TODO: UI - sort combo box
+
+    // TODO: UI - move backup from footer to options
+    // TODO: UI - move Login from header to options
 
     // TODO: GoogleDriveBackup
 

@@ -52,17 +52,27 @@ public class TaskModel
 
     public DateTime CreatedAt { get; set; }
 
+    public DateTime? LastTimeDoneAt { get; set; }
+
+    [JsonIgnore]
+    internal bool IsCompleted => !IsRepeating && LastTimeDoneAt != null;
+
+    public Priority Priority { get; set; }
+
     public long AverageInterval { get; set; }
     public long DesiredInterval { get; set; }
 
-    public Priority Priority { get; set; }
+    [JsonIgnore]
+    internal bool IsRepeating => DesiredInterval == 0;
 
     [JsonIgnore]
     internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
     [JsonIgnore]
     internal TimeSpan DesiredTime { get => new(DesiredInterval); set => DesiredInterval = value.Ticks; }
+
     [JsonIgnore]
     internal TimeSpan ElapsedTime => TimeList.Any() ? DateTime.Now - TimeList.Last() : DateTime.Now - CreatedAt;
+
     [JsonIgnore]
     internal bool IsElapsedOverAverage => TimeList.Any() && (ElapsedTime > AverageTime);
     [JsonIgnore]

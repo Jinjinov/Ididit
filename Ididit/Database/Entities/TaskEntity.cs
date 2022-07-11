@@ -24,6 +24,9 @@ internal class TaskEntity
     public DateTime CreatedAt { get; set; }
 
     [IndexDbIndex]
+    public DateTime? LastTimeDoneAt { get; set; }
+
+    [IndexDbIndex]
     public long AverageInterval { get; set; }
 
     [IndexDbIndex]
