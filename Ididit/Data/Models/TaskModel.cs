@@ -55,7 +55,10 @@ public class TaskModel
     public DateTime? LastTimeDoneAt { get; set; }
 
     [JsonIgnore]
-    internal bool IsCompleted => !IsRepeating && LastTimeDoneAt != null;
+    internal bool IsCompleted => !IsRepeating && IsDoneAtLeastOnce;
+
+    [JsonIgnore]
+    internal bool IsDoneAtLeastOnce => LastTimeDoneAt != null;
 
     public Priority Priority { get; set; }
 
@@ -63,7 +66,7 @@ public class TaskModel
     public long DesiredInterval { get; set; }
 
     [JsonIgnore]
-    internal bool IsRepeating => DesiredInterval == 0;
+    internal bool IsRepeating => DesiredInterval != 0;
 
     [JsonIgnore]
     internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
@@ -71,12 +74,12 @@ public class TaskModel
     internal TimeSpan DesiredTime { get => new(DesiredInterval); set => DesiredInterval = value.Ticks; }
 
     [JsonIgnore]
-    internal TimeSpan ElapsedTime => TimeList.Any() ? DateTime.Now - TimeList.Last() : DateTime.Now - CreatedAt;
+    internal TimeSpan ElapsedTime => LastTimeDoneAt.HasValue ? DateTime.Now - LastTimeDoneAt.Value : DateTime.Now - CreatedAt;
 
     [JsonIgnore]
-    internal bool IsElapsedOverAverage => TimeList.Any() && (ElapsedTime > AverageTime);
+    internal bool IsElapsedOverAverage => IsDoneAtLeastOnce && (ElapsedTime > AverageTime);
     [JsonIgnore]
-    internal double ElapsedToAverageRatio => TimeList.Any() ? ElapsedTime / AverageTime * 100.0 : 100.0;
+    internal double ElapsedToAverageRatio => IsDoneAtLeastOnce ? ElapsedTime / AverageTime * 100.0 : 100.0;
     [JsonIgnore]
     internal bool IsElapsedOverDesired => ElapsedTime > DesiredTime;
     [JsonIgnore]
@@ -90,10 +93,7 @@ public class TaskModel
     {
         TimeList.Add(time);
 
-        if (TimeList.Count == 1)
-            AverageTime = TimeList.First() - CreatedAt;
-        else
-            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+        OnTimeListChanged();
 
         return (time, Id);
     }
@@ -103,11 +103,15 @@ public class TaskModel
         TimeList.Remove(time);
 
         if (TimeList.Count == 0)
+        {
             AverageTime = TimeSpan.Zero;
-        else if (TimeList.Count == 1)
-            AverageTime = TimeList.First() - CreatedAt;
+
+            LastTimeDoneAt = null;
+        }
         else
-            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+        {
+            OnTimeListChanged();
+        }
     }
 
     public void UpdateTime(DateTime oldTime, DateTime newTime)
@@ -115,6 +119,13 @@ public class TaskModel
         TimeList.Remove(oldTime);
 
         TimeList.Add(newTime);
+
+        OnTimeListChanged();
+    }
+
+    private void OnTimeListChanged()
+    {
+        LastTimeDoneAt = TimeList.Last();
 
         if (TimeList.Count == 1)
             AverageTime = TimeList.First() - CreatedAt;

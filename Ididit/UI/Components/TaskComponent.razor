@@ -4,7 +4,7 @@
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
             <Div>@Task.Name</Div>
-            <Div Margin=Margin.IsAuto.FromStart.Is1.FromEnd>@(Task.TimeList.Count > 0 ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
+            <Div Margin=Margin.IsAuto.FromStart.Is1.FromEnd>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
             @if (Task.DesiredInterval > 0)
             {
                 @if (Task.ElapsedToDesiredRatio >= 100)
@@ -60,7 +60,7 @@
             </Select>
         </Inline>
 
-        @if (!Task.TimeList.Any())
+        @if (!Task.IsDoneAtLeastOnce)
         {
             <div>
                 @( "Created at: " + Task.CreatedAt )
@@ -103,13 +103,15 @@
             </div>
         }
 
-        @if (Task.TimeList.Any())
+        @if (Task.IsDoneAtLeastOnce)
         {
-            <Button Color="Color.Primary" Block=false Outline="true" Size="@Theme.Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" />@($" I did it: {Task.TimeList.Count}x")</Button>
+            <Button Color="Color.Primary" Block=false Outline="true" Size="@Theme.Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" />Show history</Button>
         }
 
         @if (showTime)
         {
+            <Span>@($" I did it: {Task.TimeList.Count}x")</Span>
+
             @foreach (DateTime time in Task.TimeList.OrderByDescending(t => t))
             {
                 @if (editTime && SelectedTime == time.Ticks)

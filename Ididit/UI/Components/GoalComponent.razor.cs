@@ -234,7 +234,6 @@ public partial class GoalComponent
     // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
     // TODO: mobile: show sub-categories in Goal list
 
-    // TODO: task - save "last time done" separately
     // TODO: task - "times list" should load on demand - on Task done - on show Task details
 
     //
