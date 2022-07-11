@@ -50,7 +50,7 @@ internal class Repository : DataModel, IRepository
 
         if (!SettingsList.Any())
         {
-            SettingsModel settings = new() { Name = "Main" };
+            SettingsModel settings = new() { Name = "Main", Theme = "superhero" };
 
             SettingsList.Add(settings);
 
