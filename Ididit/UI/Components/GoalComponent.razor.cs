@@ -170,8 +170,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: loading intro - https://bootstrapdemo.blazorise.com/tests/spinkit
-
     // TODO: bootstrap themes
     // https://cdnjs.com/libraries/bootstrap/5.1.3
     // https://www.jsdelivr.com/package/npm/bootstrap
