@@ -9,7 +9,7 @@ internal class SettingsModel
 
     public string Name { get; set; } = string.Empty;
 
-    public string Size { get; set; } = "medium";
+    public Blazorise.Size Size { get; set; }
 
     public string Theme { get; set; } = string.Empty;
 

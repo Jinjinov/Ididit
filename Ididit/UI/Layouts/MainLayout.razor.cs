@@ -13,7 +13,7 @@ namespace Ididit.UI.Layouts;
 
 public partial class MainLayout
 {
-    public Blazorise.Size Size { get; set; } = Blazorise.Size.Default;
+    public Blazorise.Size Size => _repository.Settings.Size;
 
     readonly SortedList<string, string> _bootswatchThemes = new()
     {

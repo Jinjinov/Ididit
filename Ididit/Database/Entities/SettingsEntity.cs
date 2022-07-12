@@ -11,7 +11,7 @@ internal class SettingsEntity
     public string Name { get; set; } = string.Empty;
 
     [IndexDbIndex]
-    public string Size { get; set; } = "medium";
+    public Blazorise.Size Size { get; set; }
 
     [IndexDbIndex]
     public string Theme { get; set; } = string.Empty;
