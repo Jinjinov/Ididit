@@ -6,18 +6,12 @@
 
 <PageTitle>ididit!</PageTitle>
 
-@*<Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>*@
-    <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-        @*<ErrorBoundary>*@
-            <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
-        @*</ErrorBoundary>*@
-    </Column>
-    <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-        @*<ErrorBoundary>*@
-            <GoalsComponent @bind-SelectedCategory=_selectedCategory />
-        @*</ErrorBoundary>*@
-    </Column>
-@*</Row>*@
+<Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
+    <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
+</Column>
+<Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
+    <GoalsComponent @bind-SelectedCategory=_selectedCategory />
+</Column>
 
 @code {
     CategoryModel? _selectedCategory;
@@ -25,43 +19,41 @@
     protected override async Task OnInitializedAsync()
     {
         await _repository.Initialize();
-
-        //_selectedCategory = _repository.CategoryList.FirstOrDefault();
     }
 }
 
- @*
-     row
-         - if missing, the second column is not visible 
-         display: flex;
-         flex-wrap: wrap;
-         margin-right: -15px;
-         margin-left: -15px;
-     
-     flex-grow-1
-        - if missing, and content is not 100% height, footer will not be at the bottom
-        flex-grow: 1!important;
-     
-     overflow-hidden
-        - if missing, whole page scrolls, including header and footer
-        overflow: hidden!important;
+@*
+    row
+        - if missing, the second column is not visible 
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    
+    flex-grow-1
+       - if missing, and content is not 100% height, footer will not be at the bottom
+       flex-grow: 1!important;
+    
+    overflow-hidden
+       - if missing, whole page scrolls, including header and footer
+       overflow: hidden!important;
 
-     col
-        - if missing, column is minimum width
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
+    col
+       - if missing, column is minimum width
+       position: relative;
+       width: 100%;
+       padding-right: 15px;
+       padding-left: 15px;
 
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-     
-     mh-100
-        - if missing, height is over 100%, but not scrollable
-        max-height: 100%!important;
-     
-     overflow-auto
-        - if missing, no vertical scrollbar
-        overflow: auto!important;
- *@
+       flex-basis: 0;
+       flex-grow: 1;
+       max-width: 100%;
+    
+    mh-100
+       - if missing, height is over 100%, but not scrollable
+       max-height: 100%!important;
+    
+    overflow-auto
+       - if missing, no vertical scrollbar
+       overflow: auto!important;
+*@
