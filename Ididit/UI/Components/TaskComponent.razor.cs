@@ -11,8 +11,8 @@ public partial class TaskComponent
     [Inject]
     IRepository _repository { get; set; } = null!;
 
-    [Inject]
-    Theme Theme { get; set; } = null!;
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
 
     [Parameter]
     [EditorRequired]

@@ -179,7 +179,7 @@ public partial class GoalComponent
     // TODO: UI - date filter
     // TODO: UI - today filter
 
-    // TODO: UI - show only selected priority
+    // TODO: UI - priority combo box
 
     // TODO: UI - show only repeating tasks
     // TODO: UI - show only ASAP tasks

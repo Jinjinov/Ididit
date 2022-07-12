@@ -1,22 +1,22 @@
 ﻿@if (EditCategory == Category && Category != null)
 {
     <Addons Flex=Flex.NoWrap>
-        <TextEdit @ref=_textEdit Size="@Theme.Size" @bind-Text="@Category.Name" Placeholder="Add new category" />
+        <TextEdit @ref=_textEdit Size="@Size" @bind-Text="@Category.Name" Placeholder="Add new category" />
         <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
         </Addon>
     </Addons>
 }
 else
 {
     <Addons Flex=Flex.NoWrap>
-        <TextEdit Size="@Theme.Size" Text="@Category?.Name" ReadOnly=true />
+        <TextEdit Size="@Size" Text="@Category?.Name" ReadOnly=true />
 
         <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>
 
-            <Button Color="Color.Primary" Outline="true" Size="@Theme.Size" @onclick=DeleteCategory><Icon Name="IconName.Delete" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick=DeleteCategory><Icon Name="IconName.Delete" /></Button>
         </Addon>
     </Addons>
 }

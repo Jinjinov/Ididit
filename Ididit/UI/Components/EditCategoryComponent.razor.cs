@@ -10,8 +10,8 @@ public sealed partial class EditCategoryComponent
     [Inject]
     IRepository _repository { get; set; } = null!;
 
-    [Inject]
-    Theme Theme { get; set; } = null!;
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
 
     [Parameter]
     public CategoryModel? Category { get; set; } = null!;

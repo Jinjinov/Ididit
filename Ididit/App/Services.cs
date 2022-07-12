@@ -33,8 +33,6 @@ public static class Services
         serviceCollection.AddScoped<TsvBackup>();
         serviceCollection.AddScoped<MarkdownBackup>();
 
-        serviceCollection.AddScoped<Theme>();
-
         serviceCollection.AddScoped<IRepository, Repository>();
         serviceCollection.AddScoped<IDatabaseAccess, DatabaseAccess>();
 

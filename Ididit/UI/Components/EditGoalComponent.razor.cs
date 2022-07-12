@@ -10,8 +10,8 @@ public sealed partial class EditGoalComponent
     [Inject]
     IRepository _repository { get; set; } = null!;
 
-    [Inject]
-    Theme Theme { get; set; } = null!;
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
 
     [Parameter]
     public GoalModel? Goal { get; set; } = null!;

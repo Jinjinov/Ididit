@@ -13,6 +13,8 @@ namespace Ididit.UI.Layouts;
 
 public partial class MainLayout
 {
+    public Blazorise.Size Size { get; set; } = Blazorise.Size.Default;
+
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
         { "cerulean", "sha256-RW/ojwB9sS6DzIfFEaDiahxVPN/MupUlrbKrKVkgA9M=" },
