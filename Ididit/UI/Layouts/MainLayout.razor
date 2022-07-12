@@ -3,9 +3,9 @@
 @inherits LayoutComponentBase
 
 <HeadContent>
-    @if (BootswatchThemeDict.ContainsKey(_repository.Settings.Theme))
+    @if (_bootswatchThemes.ContainsKey(_repository.Settings.Theme))
     {
-        <link rel="stylesheet" href="@("https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/" + _repository.Settings.Theme + "/bootstrap.min.css")" integrity="@(BootswatchThemeDict[_repository.Settings.Theme])" crossorigin="anonymous">
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{_repository.Settings.Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[_repository.Settings.Theme])" crossorigin="anonymous">
     }
     else
     {

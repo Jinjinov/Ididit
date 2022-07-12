@@ -13,29 +13,29 @@ namespace Ididit.UI.Layouts;
 
 public partial class MainLayout
 {
-    readonly SortedList<string, string> BootswatchThemeDict = new()
+    readonly SortedList<string, string> _bootswatchThemes = new()
     {
-        { "cerulean", "sha384-3fdgwJw17Bi87e1QQ4fsLn4rUFqWw//KU0g8TvV6quvahISRewev6/EocKNuJmEw" },
-        { "cosmo", "sha384-5QFXyVb+lrCzdN228VS3HmzpiE7ZVwLQtkt+0d9W43LQMzz4HBnnqvVxKg6O+04d" }, /* square corners */
-        { "cyborg", "sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2" },
-        { "darkly", "sha384-nNK9n28pDUDDgIiIqZ/MiyO3F4/9vsMtReZK39klb/MtkZI3/LtjSjlmyVPS3KdN" },
-        { "flatly", "sha384-qF/QmIAj5ZaYFAeQcrQ6bfVMAh4zZlrGwTPY7T/M+iTTLJqJBJjwwnsE5Y0mV7QK" },
-        { "journal", "sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" },
-        { "litera", "sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" },
-        { "lumen", "sha384-GzaBcW6yPIfhF+6VpKMjxbTx6tvR/yRd/yJub90CqoIn2Tz4rRXlSpTFYMKHCifX" },
-        { "lux", "sha384-9+PGKSqjRdkeAU7Eu4nkJU8RFaH8ace8HGXnkiKMP9I9Te0GJ4/km3L1Z8tXigpG" }, /* square corners */
-        /* { "materia", "sha384-B4morbeopVCSpzeC1c4nyV0d0cqvlSAfyXVfrPJa25im5p+yEN/YmhlgQP/OyMZD" }, /* broken select option */
-        { "minty", "sha384-H4X+4tKc7b8s4GoMrylmy2ssQYpDHoqzPa9aKXbDwPoPUA3Ra8PA5dGzijN+ePnH" },
-        { "pulse", "sha384-L7+YG8QLqGvxQGffJ6utDKFwmGwtLcCjtwvonVZR/Ba2VzhpMwBz51GaXnUsuYbj" }, /* square corners */
-        { "sandstone", "sha384-zEpdAL7W11eTKeoBJK1g79kgl9qjP7g84KfK3AZsuonx38n8ad+f5ZgXtoSDxPOh" },
-        { "simplex", "sha384-FYrl2Nk72fpV6+l3Bymt1zZhnQFK75ipDqPXK0sOR0f/zeOSZ45/tKlsKucQyjSp" },
-        { "sketchy", "sha384-RxqHG2ilm4r6aFRpGmBbGTjsqwfqHOKy1ArsMhHusnRO47jcGqpIQqlQK/kmGy9R" },
-        { "slate", "sha384-8iuq0iaMHpnH2vSyvZMSIqQuUnQA7QM+f6srIdlgBrTSEyd//AWNMyEaSF2yPzNQ" },
-        /* { "solar", "sha384-NCwXci5f5ZqlDw+m7FwZSAwboa0svoPPylIW3Nf+GBDsyVum+yArYnaFLE9UDzLd" }, /* transparent card background */
-        { "spacelab", "sha384-F1AY0h4TrtJ8OCUQYOzhcFzUTxSOxuaaJ4BeagvyQL8N9mE4hrXjdDsNx249NpEc" },
-        { "superhero", "sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO" }, /* square corners */
-        { "united", "sha384-JW3PJkbqVWtBhuV/gsuyVVt3m/ecRJjwXC3gCXlTzZZV+zIEEl6AnryAriT7GWYm" },
-        { "yeti", "sha384-mLBxp+1RMvmQmXOjBzRjqqr0dP9VHU2tb3FK6VB0fJN/AOu7/y+CAeYeWJZ4b3ii" }, /* square corners */
+        { "cerulean", "sha256-RW/ojwB9sS6DzIfFEaDiahxVPN/MupUlrbKrKVkgA9M=" },
+        { "cosmo", "sha256-/H81OfRt8XcW5i6dfB86YU8k0XTUbj2ezDqejIrXWs4=" },
+        { "cyborg", "sha256-3FdPvyIyBF62iTAVS30syY0eik+vm4G1fiCPErB7IbQ=" },
+        { "darkly", "sha256-0tZXz4Wl0mk302PbATyRKjsHT1tI5FwnK5gY8DB5SeY=" },
+        { "flatly", "sha256-K0Q0THV+T7huqMhZI87+P0A/uy+tbcyC751i8ScYytw=" },
+        { "journal", "sha256-b9ANi+bPfqDaEOG9y/CZ2+cs5WlO6MdZ85ZEDwp99aw=" },
+        { "litera", "sha256-YwRe9tp/LgR/N/G0wb0GXHfupruWc0Pf6Juel/cY+G8=" },
+        { "lumen", "sha256-jlJkgYQWWRqOYNoAJrtSPAgJ8XzAB5oW8G8/ovdz/x0=" },
+        { "lux", "sha256-v2HsAdJ0L9YjVjheYom4BSraR+nwJDgYj6wI73QIedI=" },
+        { "materia", "sha256-MEhiSVHcxsJGoCn/OncBKfjYzl8Z+gHOA/TJ0s4oTP8=" },
+        { "minty", "sha256-dH/ZJzNkhrTqLl30dAJ0pIDbuNWlF2Fht9I2Q8jhrcs=" },
+        { "pulse", "sha256-1vQy0iTuGRchdjqh8TwEkCeFn81PyVt9KofS69uQxKs=" },
+        { "sandstone", "sha256-Wj8Vq1ER7uigVDcLe8Kfwxu4ieW867kr9HQihUUfnQA=" },
+        { "simplex", "sha256-Xsqt9TSw+DbYFdZSxbG/pMRF/JLdDeG6xFFRU3JwWxs=" },
+        { "sketchy", "sha256-tT30p4dCoDHNDmxveHbPJQSFVn/7a7pDBqplXFNWff4=" },
+        { "slate", "sha256-qdwWE5kCHBJrfGXA4BRFz6ixKw9PCpaYzJWA9260DzY=" },
+        { "solar", "sha256-eeFZTjMs+Fz5lW8l5wrcJztSyJmQNRFu9FtwqSDOcaY=" },
+        { "spacelab", "sha256-VdSljf9GE8Znxpt5oe70r3Yffh2TuRl1m+vMztZP2/4=" },
+        { "superhero", "sha256-ADi3Xne8BjmmGG8K4lQWmU7SegWM4B2xWeapboEdA18=" },
+        { "united", "sha256-7gdx77MsYTQV0shn+8C0CP7lc6xQRexoNubpaigHL6c=" },
+        { "yeti", "sha256-hqMfmPlwrJpRN1EanXFcujx+vGhMfBbeKVyT09X3mIw=" }
     };
 
     [Inject]
