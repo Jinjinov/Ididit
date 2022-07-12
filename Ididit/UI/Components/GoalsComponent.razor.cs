@@ -10,6 +10,9 @@ public partial class GoalsComponent
     [Inject]
     IRepository _repository { get; set; } = null!;
 
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
+
     [Parameter]
     public CategoryModel? SelectedCategory { get; set; } = null!;
 

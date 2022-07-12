@@ -13,6 +13,9 @@ public partial class GoalComponent
     [Inject]
     IRepository _repository { get; set; } = null!;
 
+    [CascadingParameter]
+    Blazorise.Size Size { get; set; }
+
     [Parameter]
     [EditorRequired]
     public GoalModel Goal { get; set; } = null!;
@@ -169,8 +172,6 @@ public partial class GoalComponent
             }
         }
     }
-
-    // TODO: settings with small and large UI: https://bootstrapdemo.blazorise.com/tests/misc-forms
 
     // TODO: UI - add options page: size & theme
 

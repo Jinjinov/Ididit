@@ -41,9 +41,9 @@
         </Div>
         @if (Task.DesiredInterval == 0)
         {
-            <Button Color="Color.Primary" Outline="true" Size="@Size" Margin=Margin.Is0.Is1.OnX Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is0.Is1.OnX Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
         }
-        <Button Color="Color.Primary" Outline="true" Size="@Size" Margin=Margin.Is0 Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is0 Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
     </Div>
 
     @if (Task == SelectedTask)
@@ -85,14 +85,14 @@
                 @( "Desired interval:" )
 
                 <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
-                    <NumericEdit ShowStepButtons="false" Size="@Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
-                    <TextEdit Size="@Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
+                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
+                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
 
-                    <NumericEdit ShowStepButtons="false" Size="@Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
-                    <TextEdit Size="@Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
+                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
+                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
 
                     <Addon AddonType="AddonType.End">
-                        <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick=ClearDesiredInterval><Icon Name="IconName.Times" /></Button>
+                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Name="IconName.Times" /></Button>
                     </Addon>
                 </Addons>
 
@@ -105,7 +105,7 @@
 
         @if (Task.IsDoneAtLeastOnce)
         {
-            <Button Color="Color.Primary" Block=false Outline="true" Size="@Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" />Show history</Button>
+            <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" />Show history</Button>
         }
 
         @if (showTime)
@@ -117,22 +117,22 @@
                 @if (editTime && SelectedTime == time.Ticks)
                 {
                     <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
-                        <DateEdit TValue="DateTime" Size="@Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
-                        <TimeEdit TValue="TimeSpan" Size="@Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
+                        <DateEdit TValue="DateTime" Size="Size" Date="@EditTime" DateChanged="@((dateTime) => { EditTime = dateTime.Date + EditTime.TimeOfDay; })" />
+                        <TimeEdit TValue="TimeSpan" Size="Size" Time="@EditTime.TimeOfDay" TimeChanged="@((timeSpan) => { EditTime = EditTime.Date + timeSpan; })" />
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick="@(async () => await SaveTime(time))"><Icon Name="IconName.Save" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick="@(() => { SelectedTime = 0; editTime = false; })"><Icon Name="IconName.Times" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Name="IconName.Save" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => { SelectedTime = 0; editTime = false; })"><Icon Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
                 }
                 else
                 {
                     <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
-                        <TextEdit Size="@Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+                        <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick="@(() => { SelectedTime = time.Ticks; EditTime = time; editTime = true; })"><Icon Name="IconName.Edit" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="@Size" @onclick="@(async () => await DeleteTime(time))"><Icon Name="IconName.Delete" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => { SelectedTime = time.Ticks; EditTime = time; editTime = true; })"><Icon Name="IconName.Edit" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Name="IconName.Delete" /></Button>
                         </Addon>
                     </Addons>
                 }
