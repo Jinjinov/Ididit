@@ -22,9 +22,9 @@ public partial class GoalsComponent
 
     Filters _filters = new Filters();
 
-    public GoalModel? _selectedGoal { get; set; }
+    GoalModel? _selectedGoal;
 
-    public GoalModel? _editGoal { get; set; }
+    GoalModel? _editGoal;
 
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {

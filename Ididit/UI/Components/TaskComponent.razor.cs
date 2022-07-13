@@ -24,10 +24,10 @@ public partial class TaskComponent
     [Parameter]
     public EventCallback<TaskModel?> SelectedTaskChanged { get; set; }
 
-    public bool showTime;
-    public bool editTime;
-    public long SelectedTime;
-    public DateTime EditTime;
+    bool showTime;
+    bool editTime;
+    long SelectedTime;
+    DateTime EditTime;
 
     async Task ToggleTask()
     {

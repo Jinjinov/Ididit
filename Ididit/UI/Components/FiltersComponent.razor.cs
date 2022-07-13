@@ -19,7 +19,7 @@ public partial class FiltersComponent
     [Parameter]
     public EventCallback<Filters> FiltersChanged { get; set; }
 
-    public string SearchFilter { get; set; } = string.Empty;
+    string SearchFilter = string.Empty;
 
     async Task SearchFilterChanged(string searchFilter)
     {
@@ -35,7 +35,7 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    public DateTime? DateFilter { get; set; }
+    DateTime? DateFilter;
 
     bool? IsTodayChecked => DateFilter == DateTime.Now.Date;
 
@@ -60,7 +60,7 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    public Priority? PriorityFilter { get; set; }
+    Priority? PriorityFilter;
 
     async Task OnPriorityChanged(Priority? priority)
     {
