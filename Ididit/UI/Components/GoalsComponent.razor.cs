@@ -40,6 +40,15 @@ public partial class GoalsComponent
 
     void ClearDateFilter() => DateFilter = null;
 
+    Sort Sort => _repository.Settings.Sort;
+
+    async Task OnSortChanged(Sort sort)
+    {
+        _repository.Settings.Sort = sort;
+
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
+
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
         SelectedCategory = category;

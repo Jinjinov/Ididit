@@ -41,6 +41,9 @@ public partial class GoalComponent
     [Parameter]
     public Priority? PriorityFilter { get; set; }
 
+    [Parameter]
+    public Sort Sort { get; set; }
+
     TaskModel? _selectedTask;
 
     Blazorise.MemoEdit? _memoEdit;
@@ -87,7 +90,7 @@ public partial class GoalComponent
 
     IEnumerable<TaskModel> GetSorted(IEnumerable<TaskModel> tasks)
     {
-        return _repository.Settings.Sort switch
+        return Sort switch
         {
             Sort.None => tasks,
             Sort.Name => tasks.OrderBy(task => task.Name),
@@ -181,8 +184,6 @@ public partial class GoalComponent
 
     // TODO: UI - show only ratio over % - checkbox
     // TODO: UI - show only ratio over % - slider
-
-    // TODO: UI - sort combo box
 
     // TODO: GoogleDriveBackup
 

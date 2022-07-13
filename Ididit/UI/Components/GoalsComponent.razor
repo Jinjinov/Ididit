@@ -34,6 +34,20 @@
 
         <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
 
+        <Field>
+            <FieldLabel>Sort by:</FieldLabel>
+
+            <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">
+                <SelectItem Value="Sort.None">None</SelectItem>
+                <SelectItem Value="Sort.Name">Name</SelectItem>
+                <SelectItem Value="Sort.Priority">Priority</SelectItem>
+                <SelectItem Value="Sort.ElapsedTime">Elapsed time</SelectItem>
+                <SelectItem Value="Sort.ElapsedToAverageRatio">Elapsed to Average ratio</SelectItem>
+                <SelectItem Value="Sort.ElapsedToDesiredRatio">Elapsed to Desired ratio</SelectItem>
+                <SelectItem Value="Sort.AverageToDesiredRatio">Average to Desired ratio</SelectItem>
+            </Select>
+        </Field>
+
     </CardBody>
     </Card>
 
@@ -41,7 +55,7 @@
     {
         @foreach (GoalModel goal in SelectedCategory.GoalList)
         {
-            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter />
+            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter Sort=Sort />
         }
     }
     else
@@ -52,7 +66,7 @@
 
             @foreach (GoalModel goal in category.GoalList)
             {
-                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter />
+                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter Sort=Sort />
             }
         }
     }
