@@ -21,17 +21,17 @@ namespace Ididit.UI.Components
         [Parameter]
         public EventCallback<bool?> CheckedChanged { get; set; }
 
-        private bool internalChecked;
+        private bool _internalChecked;
 
-        private bool isIndeterminate;
+        private bool _isIndeterminate;
 
-        private ElementReference elementReference;
+        private ElementReference _elementReference;
 
-        private readonly string elementId = Guid.NewGuid().ToString();
+        private readonly string _elementId = Guid.NewGuid().ToString();
 
         private void SetInternalChecked()
         {
-            internalChecked = Checked != false;
+            _internalChecked = Checked != false;
         }
 
         protected override void OnParametersSet()
@@ -43,11 +43,11 @@ namespace Ididit.UI.Components
         {
             bool indeterminate = Checked == null;
 
-            if (isIndeterminate != indeterminate)
+            if (_isIndeterminate != indeterminate)
             {
-                isIndeterminate = indeterminate;
+                _isIndeterminate = indeterminate;
 
-                await JsInterop.SetElementProperty(elementReference, "indeterminate", indeterminate);
+                await JsInterop.SetElementProperty(_elementReference, "indeterminate", indeterminate);
             }
         }
 

@@ -28,7 +28,7 @@
     }
     else
     {
-        @foreach (CategoryModel category in _repository.AllCategories.Values)
+        @foreach (CategoryModel category in Repository.AllCategories.Values)
         {
             <Button Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
 

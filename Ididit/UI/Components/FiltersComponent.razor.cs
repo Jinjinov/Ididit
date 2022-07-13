@@ -8,7 +8,7 @@ namespace Ididit.UI.Components;
 public partial class FiltersComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -19,52 +19,52 @@ public partial class FiltersComponent
     [Parameter]
     public EventCallback<Filters> FiltersChanged { get; set; }
 
-    string SearchFilter = string.Empty;
+    string _searchFilter = string.Empty;
 
     async Task SearchFilterChanged(string searchFilter)
     {
-        SearchFilter = searchFilter;
+        _searchFilter = searchFilter;
         Filters.SearchFilter = searchFilter;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
     async Task ClearSearchFilter()
     {
-        SearchFilter = string.Empty;
+        _searchFilter = string.Empty;
         Filters.SearchFilter = string.Empty;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    DateTime? DateFilter;
+    DateTime? _dateFilter;
 
-    bool? IsTodayChecked => DateFilter == DateTime.Now.Date;
+    bool? IsTodayChecked => _dateFilter == DateTime.Now.Date;
 
     async Task TodayCheckedChanged(bool? isToday)
     {
-        DateFilter = isToday == true ? DateTime.Now.Date : null;
+        _dateFilter = isToday == true ? DateTime.Now.Date : null;
         Filters.DateFilter = isToday == true ? DateTime.Now.Date : null;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
     async Task OnDateChanged(DateTime? dateTime)
     {
-        DateFilter = dateTime;
+        _dateFilter = dateTime;
         Filters.DateFilter = dateTime;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
     async Task ClearDateFilter()
     {
-        DateFilter = null;
+        _dateFilter = null;
         Filters.DateFilter = null;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    Priority? PriorityFilter;
+    Priority? _priorityFilter;
 
     async Task OnPriorityChanged(Priority? priority)
     {
-        PriorityFilter = priority;
+        _priorityFilter = priority;
         Filters.PriorityFilter = priority;
         await FiltersChanged.InvokeAsync(Filters);
     }
@@ -73,8 +73,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.Sort = _repository.Settings.Sort;
-            return _repository.Settings.Sort;
+            Filters.Sort = Repository.Settings.Sort;
+            return Repository.Settings.Sort;
         }
     }
 
@@ -82,8 +82,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.ElapsedToDesiredRatioMin = _repository.Settings.ElapsedToDesiredRatioMin;
-            return _repository.Settings.ElapsedToDesiredRatioMin;
+            Filters.ElapsedToDesiredRatioMin = Repository.Settings.ElapsedToDesiredRatioMin;
+            return Repository.Settings.ElapsedToDesiredRatioMin;
         }
     }
 
@@ -91,8 +91,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.ShowElapsedToDesiredRatioOverMin = _repository.Settings.ShowElapsedToDesiredRatioOverMin;
-            return _repository.Settings.ShowElapsedToDesiredRatioOverMin;
+            Filters.ShowElapsedToDesiredRatioOverMin = Repository.Settings.ShowElapsedToDesiredRatioOverMin;
+            return Repository.Settings.ShowElapsedToDesiredRatioOverMin;
         }
     }
 
@@ -100,8 +100,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.ShowOnlyRepeating = _repository.Settings.ShowOnlyRepeating;
-            return _repository.Settings.ShowOnlyRepeating;
+            Filters.ShowOnlyRepeating = Repository.Settings.ShowOnlyRepeating;
+            return Repository.Settings.ShowOnlyRepeating;
         }
     }
 
@@ -109,8 +109,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.ShowOnlyAsap = _repository.Settings.ShowOnlyAsap;
-            return _repository.Settings.ShowOnlyAsap;
+            Filters.ShowOnlyAsap = Repository.Settings.ShowOnlyAsap;
+            return Repository.Settings.ShowOnlyAsap;
         }
     }
 
@@ -118,8 +118,8 @@ public partial class FiltersComponent
     {
         get
         {
-            Filters.AlsoShowCompletedAsap = _repository.Settings.AlsoShowCompletedAsap;
-            return _repository.Settings.AlsoShowCompletedAsap;
+            Filters.AlsoShowCompletedAsap = Repository.Settings.AlsoShowCompletedAsap;
+            return Repository.Settings.AlsoShowCompletedAsap;
         }
     }
 
@@ -128,8 +128,8 @@ public partial class FiltersComponent
         Filters.Sort = sort;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.Sort = sort;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.Sort = sort;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     async Task OnShowOnlyRepeatingChanged(bool? val)
@@ -137,8 +137,8 @@ public partial class FiltersComponent
         Filters.ShowOnlyRepeating = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.ShowOnlyRepeating = val ?? false;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.ShowOnlyRepeating = val ?? false;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     async Task OnShowOnlyAsapChanged(bool? val)
@@ -146,8 +146,8 @@ public partial class FiltersComponent
         Filters.ShowOnlyAsap = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.ShowOnlyAsap = val ?? false;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.ShowOnlyAsap = val ?? false;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     async Task OnAlsoShowCompletedAsapChanged(bool? val)
@@ -155,8 +155,8 @@ public partial class FiltersComponent
         Filters.AlsoShowCompletedAsap = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.AlsoShowCompletedAsap = val ?? false;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.AlsoShowCompletedAsap = val ?? false;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     async Task OnShowElapsedToDesiredRatioOverMinChanged(bool? val)
@@ -164,8 +164,8 @@ public partial class FiltersComponent
         Filters.ShowElapsedToDesiredRatioOverMin = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     async Task OnElapsedToDesiredRatioMinChanged(long val)
@@ -173,7 +173,7 @@ public partial class FiltersComponent
         Filters.ElapsedToDesiredRatioMin = val;
         await FiltersChanged.InvokeAsync(Filters);
 
-        _repository.Settings.ElapsedToDesiredRatioMin = val;
-        await _repository.UpdateSettings(_repository.Settings.Id);
+        Repository.Settings.ElapsedToDesiredRatioMin = val;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 }

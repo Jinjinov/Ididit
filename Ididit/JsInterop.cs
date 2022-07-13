@@ -30,29 +30,29 @@ public class NodeContent
 
 public sealed class JsInterop : IAsyncDisposable
 {
-    private readonly Lazy<Task<IJSObjectReference>> moduleTask;
+    private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
 
     public JsInterop(IJSRuntime jsRuntime)
     {
-        moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+        _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
            "import", "./_content/Ididit/jsInterop.js").AsTask());
     }
 
     public async ValueTask<string> Prompt(string message)
     {
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         return await module.InvokeAsync<string>("showPrompt", message);
     }
 
     public async Task<Dimensions> GetDimensions()
     {
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         return await module.InvokeAsync<Dimensions>("getDimensions");
     }
 
     public async ValueTask SetElementProperty(ElementReference element, string property, object value)
     {
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         await module.InvokeVoidAsync("setElementProperty", element, property, value);
     }
 
@@ -60,13 +60,13 @@ public sealed class JsInterop : IAsyncDisposable
     {
         byte[] data = Encoding.UTF8.GetBytes(content);
 
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         await module.InvokeAsync<object>("saveAsFile", filename, Convert.ToBase64String(data));
     }
 
     public async ValueTask<NodeContent?> ReadDirectoryFiles()
     {
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         try
         {
             return await module.InvokeAsync<NodeContent>("readDirectoryFiles");
@@ -79,7 +79,7 @@ public sealed class JsInterop : IAsyncDisposable
 
     public async ValueTask WriteDirectoryFiles(NodeContent[] nodes)
     {
-        IJSObjectReference module = await moduleTask.Value;
+        IJSObjectReference module = await _moduleTask.Value;
         try
         {
             await module.InvokeVoidAsync("writeDirectoryFiles", (object)nodes); // cast nodes to object to make it a single argument (avoid using "params object?[]? args")
@@ -91,9 +91,9 @@ public sealed class JsInterop : IAsyncDisposable
 
     public async ValueTask DisposeAsync()
     {
-        if (moduleTask.IsValueCreated)
+        if (_moduleTask.IsValueCreated)
         {
-            IJSObjectReference module = await moduleTask.Value;
+            IJSObjectReference module = await _moduleTask.Value;
             await module.DisposeAsync();
         }
     }

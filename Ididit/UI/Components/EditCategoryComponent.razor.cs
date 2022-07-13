@@ -8,7 +8,7 @@ namespace Ididit.UI.Components;
 public sealed partial class EditCategoryComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -56,7 +56,7 @@ public sealed partial class EditCategoryComponent
         await EditCategoryChanged.InvokeAsync(EditCategory);
 
         if (Category != null)
-            await _repository.UpdateCategory(Category.Id);
+            await Repository.UpdateCategory(Category.Id);
 
         await CategoryChanged.InvokeAsync(Category);
     }
@@ -66,10 +66,10 @@ public sealed partial class EditCategoryComponent
         if (Category == null)
             return;
 
-        if (Category.CategoryId.HasValue && _repository.AllCategories.TryGetValue(Category.CategoryId.Value, out CategoryModel? parent))
+        if (Category.CategoryId.HasValue && Repository.AllCategories.TryGetValue(Category.CategoryId.Value, out CategoryModel? parent))
             parent.CategoryList.Remove(Category);
 
-        await _repository.DeleteCategory(Category.Id);
+        await Repository.DeleteCategory(Category.Id);
 
         Category = null;
         await CategoryChanged.InvokeAsync(Category);

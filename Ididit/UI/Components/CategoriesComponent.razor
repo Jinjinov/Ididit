@@ -9,7 +9,7 @@
     <Button Color=Color.Primary Outline=true Size="Size" @onclick=ToggleAll>Toggle all</Button>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
-              Nodes=_repository.CategoryList
+              Nodes=Repository.CategoryList
               GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
               HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
               SelectedNode=SelectedCategory

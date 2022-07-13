@@ -9,7 +9,7 @@ namespace Ididit.UI.Components;
 public partial class GoalsComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -20,7 +20,7 @@ public partial class GoalsComponent
     [Parameter]
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
-    Filters _filters = new Filters();
+    Filters _filters = new();
 
     GoalModel? _selectedGoal;
 
@@ -36,9 +36,9 @@ public partial class GoalsComponent
     {
         if (SelectedCategory != null)
         {
-            GoalModel goal = SelectedCategory.CreateGoal(_repository.MaxGoalId + 1);
+            GoalModel goal = SelectedCategory.CreateGoal(Repository.MaxGoalId + 1);
 
-            await _repository.AddGoal(goal);
+            await Repository.AddGoal(goal);
 
             _selectedGoal = goal;
             _editGoal = goal;

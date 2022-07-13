@@ -112,7 +112,7 @@ internal class GoogleDriveBackup
             string q = "name = 'ididit' and mimeType = 'application/vnd.google-apps.folder'";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
@@ -157,7 +157,7 @@ internal class GoogleDriveBackup
             string q = $"'{folderId}' in parents";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
@@ -198,7 +198,7 @@ internal class GoogleDriveBackup
         {
             string url = $"https://www.googleapis.com/drive/v3/files/{fileId}?alt=media";
 
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
@@ -227,7 +227,7 @@ internal class GoogleDriveBackup
             string q = "mimeType = 'application/vnd.google-apps.folder'";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Get,
                 RequestUri = new Uri(url),
@@ -268,7 +268,7 @@ internal class GoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Post,
                 RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart"),
@@ -278,7 +278,7 @@ internal class GoogleDriveBackup
 
             JsonContent metaContent = JsonContent.Create(new { name = "ididit", description = "ididit backup", mimeType = "application/vnd.google-apps.folder" });
 
-            MultipartContent multipart = new MultipartContent { metaContent };
+            MultipartContent multipart = new() { metaContent };
 
             requestMessage.Content = multipart;
 
@@ -304,7 +304,7 @@ internal class GoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Post,
                 //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
@@ -323,13 +323,13 @@ internal class GoogleDriveBackup
             //var data = new { Title = "Blazor POST Request Example" };
             //string content = JsonSerializer.Serialize(data);
 
-            StringContent fileContent = new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json);
+            StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
             //var fileContent = new StringContent(content);
             fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
             //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
             fileContent.Headers.ContentLength = content.Length;
 
-            MultipartContent multipart = new MultipartContent { metaContent, fileContent };
+            MultipartContent multipart = new() { metaContent, fileContent };
 
             requestMessage.Content = multipart;
 
@@ -353,7 +353,7 @@ internal class GoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            HttpRequestMessage requestMessage = new HttpRequestMessage()
+            HttpRequestMessage requestMessage = new()
             {
                 Method = HttpMethod.Patch,
                 //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
@@ -367,13 +367,13 @@ internal class GoogleDriveBackup
             //var data = new { Title = "Blazor POST Request Example", DateTime = DateTime.Now };
             //string content = JsonSerializer.Serialize(data);
 
-            StringContent fileContent = new StringContent(content, Encoding.UTF8, MediaTypeNames.Application.Json);
+            StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
             //var fileContent = new StringContent(content);
             fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
             //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
             fileContent.Headers.ContentLength = content.Length;
 
-            MultipartContent multipart = new MultipartContent { metaContent, fileContent };
+            MultipartContent multipart = new() { metaContent, fileContent };
 
             requestMessage.Content = multipart;
 

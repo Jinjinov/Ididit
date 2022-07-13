@@ -9,7 +9,7 @@ namespace Ididit.UI.Components;
 public partial class TaskComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -24,10 +24,10 @@ public partial class TaskComponent
     [Parameter]
     public EventCallback<TaskModel?> SelectedTaskChanged { get; set; }
 
-    bool showTime;
-    bool editTime;
-    long SelectedTime;
-    DateTime EditTime;
+    bool _showTime;
+    bool _editTime;
+    long _selectedTime;
+    DateTime _taskTime;
 
     async Task ToggleTask()
     {
@@ -41,21 +41,21 @@ public partial class TaskComponent
 
     void ToggleShowTime()
     {
-        showTime = !showTime;
+        _showTime = !_showTime;
     }
 
     async Task PriorityChanged(Priority priority)
     {
         Task.Priority = priority;
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task SetDesiredInterval()
     {
         Task.DesiredInterval = 864000000000;
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
 
         if (SelectedTask != Task)
         {
@@ -69,48 +69,48 @@ public partial class TaskComponent
     {
         Task.DesiredInterval = 0;
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task OnDone()
     {
         (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 
-        await _repository.AddTime(time, taskId);
+        await Repository.AddTime(time, taskId);
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task SaveTime(DateTime time)
     {
-        Task.UpdateTime(time, EditTime);
+        Task.UpdateTime(time, _taskTime);
 
-        await _repository.UpdateTime(time.Ticks, EditTime, Task.Id);
+        await Repository.UpdateTime(time.Ticks, _taskTime, Task.Id);
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task DeleteTime(DateTime time)
     {
         Task.RemoveTime(time);
 
-        await _repository.DeleteTime(time.Ticks);
+        await Repository.DeleteTime(time.Ticks);
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task SetDesiredIntervalDays(int? days)
     {
         Task.DesiredTime = new TimeSpan(days ?? 0, Task.DesiredTime.Hours, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     async Task SetDesiredIntervalHours(int? hours)
     {
         Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
 
-        await _repository.UpdateTask(Task.Id);
+        await Repository.UpdateTask(Task.Id);
     }
 
     static string ToReadableString(TimeSpan span)

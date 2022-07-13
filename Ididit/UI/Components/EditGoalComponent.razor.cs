@@ -8,7 +8,7 @@ namespace Ididit.UI.Components;
 public sealed partial class EditGoalComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -56,7 +56,7 @@ public sealed partial class EditGoalComponent
         await EditGoalChanged.InvokeAsync(EditGoal);
 
         if (Goal != null)
-            await _repository.UpdateGoal(Goal.Id);
+            await Repository.UpdateGoal(Goal.Id);
 
         await GoalChanged.InvokeAsync(Goal);
     }
@@ -66,10 +66,10 @@ public sealed partial class EditGoalComponent
         if (Goal == null)
             return;
 
-        if (_repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
+        if (Repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
             parent.GoalList.Remove(Goal);
 
-        await _repository.DeleteGoal(Goal.Id);
+        await Repository.DeleteGoal(Goal.Id);
 
         Goal = null;
         await GoalChanged.InvokeAsync(Goal);

@@ -17,7 +17,7 @@ internal class TsvBackup
 {
     // https://stackoverflow.com/questions/66166584/csvhelper-custom-delimiter
 
-    CsvConfiguration importConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+    readonly CsvConfiguration _importConfig = new(CultureInfo.InvariantCulture)
     {
         //DetectDelimiter = true
         Delimiter = "\t",
@@ -25,7 +25,7 @@ internal class TsvBackup
         Mode = CsvMode.NoEscape
     };
 
-    CsvConfiguration exportConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+    readonly CsvConfiguration _exportConfig = new(CultureInfo.InvariantCulture)
     {
         Delimiter = "\t"
     };
@@ -43,106 +43,104 @@ internal class TsvBackup
     {
         // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
 
-        using (StreamReader streamReader = new(stream))
+        using StreamReader streamReader = new(stream);
+
+        using CsvReader csv = new(streamReader, _importConfig);
+
+        /*
+        var records = new List<object>();
+        csv.Read();
+        csv.ReadHeader();
+        while (csv.Read())
         {
-            using (CsvReader csv = new CsvReader(streamReader, importConfig))
+            var record = new
             {
-                /*
-                var records = new List<object>();
-                csv.Read();
-                csv.ReadHeader();
-                while (csv.Read())
-                {
-                    var record = new
-                    {
-                        Id = csv.GetField<int>("Id"),
-                        Name = csv.GetField("Name"),
-                        Tags = new List<string> { csv.GetField(5), csv.GetField(6), csv.GetField(7) }
-                    };
-                    records.Add(record);
-                }
-                /**/
+                Id = csv.GetField<int>("Id"),
+                Name = csv.GetField("Name"),
+                Tags = new List<string> { csv.GetField(5), csv.GetField(6), csv.GetField(7) }
+            };
+            records.Add(record);
+        }
+        /**/
 
-                var anonymousTypeDefinition = new
-                {
-                    Root = string.Empty,
-                    Category = string.Empty,
-                    Goal = string.Empty,
-                    Task = string.Empty,
-                    Priority = Priority.None,
-                    Interval = string.Empty
-                };
+        var anonymousTypeDefinition = new
+        {
+            Root = string.Empty,
+            Category = string.Empty,
+            Goal = string.Empty,
+            Task = string.Empty,
+            Priority = Priority.None,
+            Interval = string.Empty
+        };
 
-                var records = csv.GetRecordsAsync(anonymousTypeDefinition);
+        var records = csv.GetRecordsAsync(anonymousTypeDefinition);
 
-                CategoryModel root;
-                CategoryModel category;
-                GoalModel goal;
-                TaskModel task;
+        CategoryModel root;
+        CategoryModel category;
+        GoalModel goal;
+        TaskModel task;
 
-                await foreach (var record in records)
-                {
-                    if (_repository.CategoryList.Any(c => c.Name == record.Root))
-                    {
-                        root = _repository.CategoryList.First(c => c.Name == record.Root);
-                    }
-                    else
-                    {
-                        root = _repository.CreateCategory();
-                        root.Name = record.Root;
-
-                        await _repository.AddCategory(root);
-                    }
-
-                    if (root.CategoryList.Any(c => c.Name == record.Category))
-                    {
-                        category = root.CategoryList.First(c => c.Name == record.Category);
-                    }
-                    else
-                    {
-                        category = root.CreateCategory(_repository.MaxCategoryId + 1);
-                        category.Name = record.Category;
-
-                        await _repository.AddCategory(category);
-                    }
-
-                    if (category.GoalList.Any(g => g.Name == record.Goal))
-                    {
-                        goal = category.GoalList.First(g => g.Name == record.Goal);
-                    }
-                    else
-                    {
-                        goal = category.CreateGoal(_repository.MaxGoalId + 1);
-                        goal.Name = record.Goal;
-
-                        await _repository.AddGoal(goal);
-                    }
-
-                    goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
-                    await _repository.UpdateGoal(goal.Id);
-
-                    task = goal.CreateTask(_repository.MaxTaskId + 1);
-                    task.Name = record.Task;
-                    task.Priority = record.Priority;
-
-                    string[] time = record.Interval.Split(' ');
-
-                    if (time.Length == 2 && int.TryParse(time[0], out int interval))
-                    {
-                        task.DesiredTime = time[1].TrimEnd('s') switch
-                        {
-                            "hour" => TimeSpan.FromHours(interval),
-                            "day" => TimeSpan.FromDays(interval),
-                            "week" => TimeSpan.FromDays(interval * 7),
-                            "month" => TimeSpan.FromDays(interval * 30),
-                            "year" => TimeSpan.FromDays(interval * 365),
-                            _ => TimeSpan.Zero
-                        };
-                    }
-
-                    await _repository.AddTask(task);
-                }
+        await foreach (var record in records)
+        {
+            if (_repository.CategoryList.Any(c => c.Name == record.Root))
+            {
+                root = _repository.CategoryList.First(c => c.Name == record.Root);
             }
+            else
+            {
+                root = _repository.CreateCategory();
+                root.Name = record.Root;
+
+                await _repository.AddCategory(root);
+            }
+
+            if (root.CategoryList.Any(c => c.Name == record.Category))
+            {
+                category = root.CategoryList.First(c => c.Name == record.Category);
+            }
+            else
+            {
+                category = root.CreateCategory(_repository.MaxCategoryId + 1);
+                category.Name = record.Category;
+
+                await _repository.AddCategory(category);
+            }
+
+            if (category.GoalList.Any(g => g.Name == record.Goal))
+            {
+                goal = category.GoalList.First(g => g.Name == record.Goal);
+            }
+            else
+            {
+                goal = category.CreateGoal(_repository.MaxGoalId + 1);
+                goal.Name = record.Goal;
+
+                await _repository.AddGoal(goal);
+            }
+
+            goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
+            await _repository.UpdateGoal(goal.Id);
+
+            task = goal.CreateTask(_repository.MaxTaskId + 1);
+            task.Name = record.Task;
+            task.Priority = record.Priority;
+
+            string[] time = record.Interval.Split(' ');
+
+            if (time.Length == 2 && int.TryParse(time[0], out int interval))
+            {
+                task.DesiredTime = time[1].TrimEnd('s') switch
+                {
+                    "hour" => TimeSpan.FromHours(interval),
+                    "day" => TimeSpan.FromDays(interval),
+                    "week" => TimeSpan.FromDays(interval * 7),
+                    "month" => TimeSpan.FromDays(interval * 30),
+                    "year" => TimeSpan.FromDays(interval * 365),
+                    _ => TimeSpan.Zero
+                };
+            }
+
+            await _repository.AddTask(task);
         }
 
         //return data ?? throw new InvalidDataException("Can't deserialize TSV");
@@ -152,7 +150,7 @@ internal class TsvBackup
     {
         // https://joshclose.github.io/CsvHelper/examples/writing/write-anonymous-type-objects/
 
-        List<object> records = new List<object>();
+        List<object> records = new();
 
         foreach (CategoryModel root in data.CategoryList)
         {
@@ -168,14 +166,13 @@ internal class TsvBackup
             }
         }
 
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new();
 
-        using (StringWriter writer = new StringWriter(builder))
+        using (StringWriter writer = new(builder))
         {
-            using (CsvWriter csv = new CsvWriter(writer, exportConfig))
-            {
-                csv.WriteRecords(records);
-            }
+            using CsvWriter csv = new(writer, _exportConfig);
+
+            csv.WriteRecords(records);
         }
 
         string tsv = builder.ToString();

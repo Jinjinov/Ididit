@@ -540,9 +540,10 @@ internal class DatabaseAccess : IDatabaseAccess
         await _indexedDb.DeleteByKey<long, SettingsEntity>(id);
     }
 
+    /*
     async Task Test()
     {
-        List<GoalEntity> goalEntities = new List<GoalEntity>();
+        List<GoalEntity> goalEntities = new();
 
         int dbModelId = await _indexedDb.OpenIndexedDb();
 
@@ -575,4 +576,5 @@ internal class DatabaseAccess : IDatabaseAccess
 
         string? result15 = await _indexedDb.DeleteIndexedDb();
     }
+    /**/
 }

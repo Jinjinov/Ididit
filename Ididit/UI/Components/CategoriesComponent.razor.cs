@@ -10,7 +10,7 @@ namespace Ididit.UI.Components;
 public partial class CategoriesComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -29,7 +29,7 @@ public partial class CategoriesComponent
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if (!_isFirstToggle && _repository.CategoryList.Any() && !_expandedNodes.Any())
+        if (!_isFirstToggle && Repository.CategoryList.Any() && !_expandedNodes.Any())
         {
             _isFirstToggle = true;
             ToggleAll();
@@ -57,15 +57,15 @@ public partial class CategoriesComponent
         }
         else
         {
-            _expandedNodes = new List<CategoryModel?>(_repository.CategoryList);
+            _expandedNodes = new List<CategoryModel?>(Repository.CategoryList);
         }
     }
 
     async Task NewCategory()
     {
-        CategoryModel category = SelectedCategory != null ? SelectedCategory.CreateCategory(_repository.MaxCategoryId + 1) : _repository.CreateCategory();
+        CategoryModel category = SelectedCategory != null ? SelectedCategory.CreateCategory(Repository.MaxCategoryId + 1) : Repository.CreateCategory();
 
-        await _repository.AddCategory(category);
+        await Repository.AddCategory(category);
 
         if (SelectedCategory != null)
         {

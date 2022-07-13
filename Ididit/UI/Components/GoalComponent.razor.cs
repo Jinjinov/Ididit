@@ -11,7 +11,7 @@ namespace Ididit.UI.Components;
 public partial class GoalComponent
 {
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -112,7 +112,7 @@ public partial class GoalComponent
         List<DoneLine> newLines = text.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
 
         Goal.Details = text;
-        await _repository.UpdateGoal(Goal.Id);
+        await Repository.UpdateGoal(Goal.Id);
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 
@@ -179,18 +179,18 @@ public partial class GoalComponent
     private async Task UpdateTask(TaskModel task, string line)
     {
         task.Name = line;
-        await _repository.UpdateTask(task.Id);
+        await Repository.UpdateTask(task.Id);
     }
 
     private async Task AddTaskAt(int idx, string line)
     {
-        (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(_repository.MaxTaskId + 1, idx);
+        (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(Repository.MaxTaskId + 1, idx);
         task.Name = line;
 
         if (changedTask is not null)
-            await _repository.UpdateTask(changedTask.Id);
+            await Repository.UpdateTask(changedTask.Id);
 
-        await _repository.AddTask(task);
+        await Repository.AddTask(task);
     }
 
     private async Task DeleteTask(TaskModel task)
@@ -198,9 +198,9 @@ public partial class GoalComponent
         TaskModel? changedTask = Goal.RemoveTask(task);
 
         if (changedTask is not null)
-            await _repository.UpdateTask(changedTask.Id);
+            await Repository.UpdateTask(changedTask.Id);
 
-        await _repository.DeleteTask(task.Id);
+        await Repository.DeleteTask(task.Id);
     }
 
     // TODO: mobile: single column, minimized tree view

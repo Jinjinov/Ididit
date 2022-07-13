@@ -13,7 +13,7 @@ namespace Ididit.UI.Layouts;
 
 public partial class MainLayout
 {
-    public Blazorise.Size Size => _repository.Settings.Size;
+    public Blazorise.Size Size => Repository.Settings.Size;
 
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
@@ -41,25 +41,25 @@ public partial class MainLayout
     };
 
     [Inject]
-    IRepository _repository { get; set; } = null!;
+    IRepository Repository { get; set; } = null!;
 
     [Inject]
-    DirectoryBackup _directoryBackup { get; set; } = null!;
+    DirectoryBackup DirectoryBackup { get; set; } = null!;
 
     [Inject]
-    JsonBackup _jsonBackup { get; set; } = null!;
+    JsonBackup JsonBackup { get; set; } = null!;
 
     [Inject]
-    YamlBackup _yamlBackup { get; set; } = null!;
+    YamlBackup YamlBackup { get; set; } = null!;
 
     [Inject]
-    TsvBackup _tsvBackup { get; set; } = null!;
+    TsvBackup TsvBackup { get; set; } = null!;
 
     [Inject]
-    MarkdownBackup _markdownBackup { get; set; } = null!;
+    MarkdownBackup MarkdownBackup { get; set; } = null!;
 
     [Inject]
-    JsInterop _jsInterop { get; set; } = null!;
+    JsInterop JsInterop { get; set; } = null!;
 
     async Task Import(InputFileChangeEventArgs e)
     {
@@ -67,21 +67,21 @@ public partial class MainLayout
 
         if (e.File.Name.EndsWith(".json"))
         {
-            DataModel data = await _jsonBackup.ImportData(stream);
+            DataModel data = await JsonBackup.ImportData(stream);
 
-            await _repository.AddData(data);
+            await Repository.AddData(data);
         }
 
         if (e.File.Name.EndsWith(".yaml"))
         {
-            DataModel data = await _yamlBackup.ImportData(stream);
+            DataModel data = await YamlBackup.ImportData(stream);
 
-            await _repository.AddData(data);
+            await Repository.AddData(data);
         }
 
         if (e.File.Name.EndsWith(".tsv"))
         {
-            await _tsvBackup.ImportData(stream);
+            await TsvBackup.ImportData(stream);
 
             //await _repository.AddData(data);
         }
@@ -89,24 +89,24 @@ public partial class MainLayout
 
     async Task ExportJson()
     {
-        await _jsonBackup.ExportData(_repository);
+        await JsonBackup.ExportData(Repository);
     }
 
     async Task ExportYaml()
     {
-        await _yamlBackup.ExportData(_repository);
+        await YamlBackup.ExportData(Repository);
     }
 
     async Task ExportTsv()
     {
-        await _tsvBackup.ExportData(_repository);
+        await TsvBackup.ExportData(Repository);
     }
 
     async Task ImportMarkdown(InputFileChangeEventArgs e)
     {
         // TODO: use the real selectedCategory
 
-        CategoryModel? selectedCategory = _repository.CategoryList.FirstOrDefault();
+        CategoryModel? selectedCategory = Repository.CategoryList.FirstOrDefault();
 
         if (selectedCategory != null)
         {
@@ -118,28 +118,28 @@ public partial class MainLayout
 
                 Stream stream = browserFile.OpenReadStream();
 
-                await _markdownBackup.ImportData(selectedCategory, stream, name);
+                await MarkdownBackup.ImportData(selectedCategory, stream, name);
             }
         }
     }
 
     async Task ExportMarkdown()
     {
-        await _markdownBackup.ExportData(_repository);
+        await MarkdownBackup.ExportData(Repository);
     }
 
     async Task ImportDirectory()
     {
-        NodeContent? directory = await _jsInterop.ReadDirectoryFiles();
+        NodeContent? directory = await JsInterop.ReadDirectoryFiles();
 
         if (directory != null)
-            await _directoryBackup.ImportData(directory);
+            await DirectoryBackup.ImportData(directory);
     }
 
     async Task ExportDirectory()
     {
-        NodeContent[] nodes = _directoryBackup.ExportData(_repository);
+        NodeContent[] nodes = DirectoryBackup.ExportData(Repository);
 
-        await _jsInterop.WriteDirectoryFiles(nodes);
+        await JsInterop.WriteDirectoryFiles(nodes);
     }
 }
