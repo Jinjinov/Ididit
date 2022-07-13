@@ -35,6 +35,20 @@
         <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
 
         <Field>
+            <FieldLabel>Priority filter:</FieldLabel>
+
+            <Select TValue="Priority?" Size="Size" SelectedValue="PriorityFilter" SelectedValueChanged="OnPriorityChanged">
+                <SelectItem Value="(Priority?)null">No filter</SelectItem>
+                <SelectItem Value="Priority.None">None</SelectItem>
+                <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
+                <SelectItem Value="Priority.Low">Low</SelectItem>
+                <SelectItem Value="Priority.Medium">Medium</SelectItem>
+                <SelectItem Value="Priority.High">High</SelectItem>
+                <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
+            </Select>
+        </Field>
+
+        <Field>
             <FieldLabel>Sort by:</FieldLabel>
 
             <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">

@@ -40,6 +40,8 @@ public partial class GoalsComponent
 
     void ClearDateFilter() => DateFilter = null;
 
+    void OnPriorityChanged(Priority? priority) => PriorityFilter = priority;
+
     Sort Sort => _repository.Settings.Sort;
 
     async Task OnSortChanged(Sort sort)
