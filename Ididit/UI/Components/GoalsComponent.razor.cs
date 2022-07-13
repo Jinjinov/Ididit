@@ -20,7 +20,8 @@ public partial class GoalsComponent
     [Parameter]
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
-    Filters _filters = new();
+    [Parameter]
+    public Filters Filters { get; set; } = null!;
 
     GoalModel? _selectedGoal;
 

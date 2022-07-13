@@ -14,8 +14,6 @@
             <Button Color=Color.Primary Outline=true Size="Size" @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
         }
 
-        <FiltersComponent @bind-Filters="_filters" />
-
     </CardBody>
     </Card>
 
@@ -23,7 +21,7 @@
     {
         @foreach (GoalModel goal in SelectedCategory.GoalList)
         {
-            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=_filters />
+            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
         }
     }
     else
@@ -34,7 +32,7 @@
 
             @foreach (GoalModel goal in category.GoalList)
             {
-                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=_filters />
+                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
             }
         }
     }

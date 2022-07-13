@@ -7,14 +7,18 @@
 <PageTitle>ididit!</PageTitle>
 
 <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
+    <FiltersComponent @bind-Filters="_filters" />
+
     <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
 </Column>
 <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-    <GoalsComponent @bind-SelectedCategory=_selectedCategory />
+    <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters="_filters" />
 </Column>
 
 @code {
     CategoryModel? _selectedCategory;
+
+    Filters _filters = new();
 
     protected override async Task OnInitializedAsync()
     {
