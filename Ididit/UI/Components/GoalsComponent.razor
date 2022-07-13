@@ -14,68 +14,7 @@
             <Button Color=Color.Primary Outline=true Size="Size" @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
         }
 
-        <Addons Flex=Flex.NoWrap>
-            <TextEdit Size="Size" @bind-Text="SearchFilter" Placeholder="Search" />
-
-            <Addon AddonType="AddonType.End">
-                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Name="IconName.Times" /></Button>
-            </Addon>
-        </Addons>
-
-        <span>Date filter:</span>
-
-        <Addons Flex=Flex.NoWrap>
-            <DateEdit TValue="DateTime?" Size="Size" Date="DateFilter" DateChanged="OnDateChanged" />
-
-            <Addon AddonType="AddonType.End">
-                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Name="IconName.Times" /></Button>
-            </Addon>
-        </Addons>
-
-        <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
-
-        <span>Filters:</span>
-
-        <CheckBox Checked="ShowOnlyRepeating" CheckedChanged="OnShowOnlyRepeatingChanged">Show only repeating</CheckBox>
-
-        <CheckBox Checked="ShowOnlyAsap" CheckedChanged="OnShowOnlyAsapChanged">Show only ASAP</CheckBox>
-
-        <CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed ASAP</CheckBox>
-
-        <Field>
-            <FieldLabel>
-                <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Ratio over @ElapsedToDesiredRatioMin %</CheckBox>
-            </FieldLabel>
-            <Slider Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
-        </Field>
-
-        <Field>
-            <FieldLabel>Priority filter:</FieldLabel>
-
-            <Select TValue="Priority?" Size="Size" SelectedValue="PriorityFilter" SelectedValueChanged="OnPriorityChanged">
-                <SelectItem Value="(Priority?)null">No filter</SelectItem>
-                <SelectItem Value="Priority.None">None</SelectItem>
-                <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
-                <SelectItem Value="Priority.Low">Low</SelectItem>
-                <SelectItem Value="Priority.Medium">Medium</SelectItem>
-                <SelectItem Value="Priority.High">High</SelectItem>
-                <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
-            </Select>
-        </Field>
-
-        <Field>
-            <FieldLabel>Sort by:</FieldLabel>
-
-            <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">
-                <SelectItem Value="Sort.None">None</SelectItem>
-                <SelectItem Value="Sort.Name">Name</SelectItem>
-                <SelectItem Value="Sort.Priority">Priority</SelectItem>
-                <SelectItem Value="Sort.ElapsedTime">Elapsed time</SelectItem>
-                <SelectItem Value="Sort.ElapsedToAverageRatio">Elapsed to Average ratio</SelectItem>
-                <SelectItem Value="Sort.ElapsedToDesiredRatio">Elapsed to Desired ratio</SelectItem>
-                <SelectItem Value="Sort.AverageToDesiredRatio">Average to Desired ratio</SelectItem>
-            </Select>
-        </Field>
+        <FiltersComponent @bind-Filters="_filters" />
 
     </CardBody>
     </Card>
@@ -84,16 +23,7 @@
     {
         @foreach (GoalModel goal in SelectedCategory.GoalList)
         {
-            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal 
-                SearchFilter=@SearchFilter 
-                DateFilter=DateFilter 
-                PriorityFilter=PriorityFilter 
-                Sort=Sort
-                ElapsedToDesiredRatioMin=ElapsedToDesiredRatioMin
-                ShowElapsedToDesiredRatioOverMin=ShowElapsedToDesiredRatioOverMin
-                ShowOnlyRepeating=ShowOnlyRepeating
-                ShowOnlyAsap=ShowOnlyAsap
-                AlsoShowCompletedAsap=AlsoShowCompletedAsap/>
+            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=_filters />
         }
     }
     else
@@ -104,16 +34,7 @@
 
             @foreach (GoalModel goal in category.GoalList)
             {
-                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal 
-                    SearchFilter=@SearchFilter 
-                    DateFilter=DateFilter 
-                    PriorityFilter=PriorityFilter 
-                    Sort=Sort
-                    ElapsedToDesiredRatioMin=ElapsedToDesiredRatioMin
-                    ShowElapsedToDesiredRatioOverMin=ShowElapsedToDesiredRatioOverMin
-                    ShowOnlyRepeating=ShowOnlyRepeating
-                    ShowOnlyAsap=ShowOnlyAsap
-                    AlsoShowCompletedAsap=AlsoShowCompletedAsap/>
+                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=_filters />
             }
         }
     }

@@ -33,31 +33,7 @@ public partial class GoalComponent
     public EventCallback<GoalModel> EditGoalChanged { get; set; }
 
     [Parameter]
-    public string SearchFilter { get; set; } = string.Empty;
-
-    [Parameter]
-    public DateTime? DateFilter { get; set; }
-
-    [Parameter]
-    public Priority? PriorityFilter { get; set; }
-
-    [Parameter]
-    public Sort Sort { get; set; }
-
-    [Parameter]
-    public long ElapsedToDesiredRatioMin { get; set; }
-
-    [Parameter]
-    public bool ShowElapsedToDesiredRatioOverMin { get; set; }
-
-    [Parameter]
-    public bool ShowOnlyRepeating { get; set; }
-
-    [Parameter]
-    public bool ShowOnlyAsap { get; set; }
-
-    [Parameter]
-    public bool AlsoShowCompletedAsap { get; set; }
+    public Filters Filters { get; set; } = null!;
 
     TaskModel? _selectedTask;
 
@@ -85,19 +61,19 @@ public partial class GoalComponent
     {
         IEnumerable<TaskModel> tasks = Goal.TaskList.Where(task =>
         {
-            bool isRatioOk = task.ElapsedToDesiredRatio >= ElapsedToDesiredRatioMin;
+            bool isRatioOk = task.ElapsedToDesiredRatio >= Filters.ElapsedToDesiredRatioMin;
 
-            bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
+            bool isNameOk = string.IsNullOrEmpty(Filters.SearchFilter) || task.Name.Contains(Filters.SearchFilter, StringComparison.OrdinalIgnoreCase);
 
-            bool isDateOk = DateFilter == null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
+            bool isDateOk = Filters.DateFilter == null || task.TimeList.Any(time => time.Date == Filters.DateFilter?.Date);
 
-            bool isPriorityOk = PriorityFilter == null || task.Priority == PriorityFilter;
+            bool isPriorityOk = Filters.PriorityFilter == null || task.Priority == Filters.PriorityFilter;
 
             return isNameOk && isDateOk && isPriorityOk && 
-                (isRatioOk || !ShowElapsedToDesiredRatioOverMin) &&
-                (task.IsRepeating || !ShowOnlyRepeating) &&
-                (!task.IsRepeating || !ShowOnlyAsap) &&
-                (!task.IsCompleted || AlsoShowCompletedAsap);
+                (isRatioOk || !Filters.ShowElapsedToDesiredRatioOverMin) &&
+                (task.IsRepeating || !Filters.ShowOnlyRepeating) &&
+                (!task.IsRepeating || !Filters.ShowOnlyAsap) &&
+                (!task.IsCompleted || Filters.AlsoShowCompletedAsap);
         });
 
         return GetSorted(tasks);
@@ -105,7 +81,7 @@ public partial class GoalComponent
 
     IEnumerable<TaskModel> GetSorted(IEnumerable<TaskModel> tasks)
     {
-        return Sort switch
+        return Filters.Sort switch
         {
             Sort.None => tasks,
             Sort.Name => tasks.OrderBy(task => task.Name),
@@ -190,6 +166,8 @@ public partial class GoalComponent
             }
         }
     }
+
+    // TODO: move filters to new Filters component - Accordion component - CategoriesComponent
 
     // TODO: GoogleDriveBackup
 
