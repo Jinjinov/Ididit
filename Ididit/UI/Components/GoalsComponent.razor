@@ -14,6 +14,26 @@
             <Button Color=Color.Primary Outline=true Size="Size" @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
         }
 
+        <Addons Flex=Flex.NoWrap>
+            <TextEdit Size="Size" @bind-Text="SearchFilter" Placeholder="Search" />
+
+            <Addon AddonType="AddonType.End">
+                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Name="IconName.Times" /></Button>
+            </Addon>
+        </Addons>
+
+        <span>Date filter:</span>
+
+        <Addons Flex=Flex.NoWrap>
+            <DateEdit TValue="DateTime?" Size="Size" Date="DateFilter" DateChanged="OnDateChanged" />
+
+            <Addon AddonType="AddonType.End">
+                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Name="IconName.Times" /></Button>
+            </Addon>
+        </Addons>
+
+        <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
+
     </CardBody>
     </Card>
 
@@ -21,7 +41,7 @@
     {
         @foreach (GoalModel goal in SelectedCategory.GoalList)
         {
-            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
+            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter />
         }
     }
     else
@@ -32,7 +52,7 @@
 
             @foreach (GoalModel goal in category.GoalList)
             {
-                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal />
+                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal SearchFilter=@SearchFilter DateFilter=DateFilter PriorityFilter=PriorityFilter />
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -22,6 +23,22 @@ public partial class GoalsComponent
     public GoalModel? _selectedGoal { get; set; }
 
     public GoalModel? _editGoal { get; set; }
+
+    public string SearchFilter { get; set; } = string.Empty;
+
+    public DateTime? DateFilter { get; set; }
+
+    public Priority? PriorityFilter { get; set; }
+
+    bool? IsTodayChecked => DateFilter == DateTime.Now.Date;
+
+    void TodayCheckedChanged(bool? isToday) => DateFilter = isToday == true ? DateTime.Now.Date : null;
+
+    void ClearSearchFilter() => SearchFilter = string.Empty;
+
+    void OnDateChanged(DateTime? dateTime) => DateFilter = dateTime;
+
+    void ClearDateFilter() => DateFilter = null;
 
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {

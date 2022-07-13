@@ -173,13 +173,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: UI - add options page: size & theme
-
-    // TODO: UI - search filter
-
-    // TODO: UI - date filter
-    // TODO: UI - today filter
-
     // TODO: UI - priority combo box
 
     // TODO: UI - show only repeating tasks
@@ -191,10 +184,12 @@ public partial class GoalComponent
 
     // TODO: UI - sort combo box
 
+    // TODO: GoogleDriveBackup
+
+    // TODO: UI - add options page: size & theme
+
     // TODO: UI - move backup from footer to options
     // TODO: UI - move Login from header to options
-
-    // TODO: GoogleDriveBackup
 
     private async Task UpdateTask(TaskModel task, string line)
     {
