@@ -44,17 +44,55 @@ public partial class GoalsComponent
 
     Sort Sort => _repository.Settings.Sort;
 
+    long ElapsedToDesiredRatioMin => _repository.Settings.ElapsedToDesiredRatioMin;
+
+    bool ShowElapsedToDesiredRatioOverMin => _repository.Settings.ShowElapsedToDesiredRatioOverMin;
+
+    bool ShowOnlyRepeating => _repository.Settings.ShowOnlyRepeating;
+
+    bool ShowOnlyAsap => _repository.Settings.ShowOnlyAsap;
+
+    bool AlsoShowCompletedAsap => _repository.Settings.AlsoShowCompletedAsap;
+
     async Task OnSortChanged(Sort sort)
     {
         _repository.Settings.Sort = sort;
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
 
+    async Task OnShowOnlyRepeatingChanged(bool? val)
+    {
+        _repository.Settings.ShowOnlyRepeating = val ?? false;
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
+
+    async Task OnShowOnlyAsapChanged(bool? val)
+    {
+        _repository.Settings.ShowOnlyAsap = val ?? false;
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
+
+    async Task OnAlsoShowCompletedAsapChanged(bool? val)
+    {
+        _repository.Settings.AlsoShowCompletedAsap = val ?? false;
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
+
+    async Task OnShowElapsedToDesiredRatioOverMinChanged(bool? val)
+    {
+        _repository.Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
+        await _repository.UpdateSettings(_repository.Settings.Id);
+    }
+
+    async Task OnElapsedToDesiredRatioMinChanged(long val)
+    {
+        _repository.Settings.ElapsedToDesiredRatioMin = val;
         await _repository.UpdateSettings(_repository.Settings.Id);
     }
 
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
         SelectedCategory = category;
-
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
     }
 
@@ -67,7 +105,6 @@ public partial class GoalsComponent
             await _repository.AddGoal(goal);
 
             _selectedGoal = goal;
-
             _editGoal = goal;
         }
     }

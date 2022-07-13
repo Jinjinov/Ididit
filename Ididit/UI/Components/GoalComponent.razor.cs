@@ -44,6 +44,21 @@ public partial class GoalComponent
     [Parameter]
     public Sort Sort { get; set; }
 
+    [Parameter]
+    public long ElapsedToDesiredRatioMin { get; set; }
+
+    [Parameter]
+    public bool ShowElapsedToDesiredRatioOverMin { get; set; }
+
+    [Parameter]
+    public bool ShowOnlyRepeating { get; set; }
+
+    [Parameter]
+    public bool ShowOnlyAsap { get; set; }
+
+    [Parameter]
+    public bool AlsoShowCompletedAsap { get; set; }
+
     TaskModel? _selectedTask;
 
     Blazorise.MemoEdit? _memoEdit;
@@ -70,7 +85,7 @@ public partial class GoalComponent
     {
         IEnumerable<TaskModel> tasks = Goal.TaskList.Where(task =>
         {
-            bool isRatioOk = task.ElapsedToDesiredRatio >= _repository.Settings.ElapsedToDesiredRatioMin;
+            bool isRatioOk = task.ElapsedToDesiredRatio >= ElapsedToDesiredRatioMin;
 
             bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
 
@@ -79,10 +94,10 @@ public partial class GoalComponent
             bool isPriorityOk = PriorityFilter == null || task.Priority == PriorityFilter;
 
             return isNameOk && isDateOk && isPriorityOk && 
-                (isRatioOk || !_repository.Settings.ShowElapsedToDesiredRatioOverMin) &&
-                (task.IsRepeating || !_repository.Settings.ShowOnlyRepeating) &&
-                (!task.IsRepeating || !_repository.Settings.ShowOnlyAsap) &&
-                (!task.IsCompleted || _repository.Settings.AlsoShowCompletedAsap);
+                (isRatioOk || !ShowElapsedToDesiredRatioOverMin) &&
+                (task.IsRepeating || !ShowOnlyRepeating) &&
+                (!task.IsRepeating || !ShowOnlyAsap) &&
+                (!task.IsCompleted || AlsoShowCompletedAsap);
         });
 
         return GetSorted(tasks);
@@ -99,7 +114,7 @@ public partial class GoalComponent
             Sort.ElapsedToAverageRatio => tasks.OrderByDescending(task => task.ElapsedToAverageRatio),
             Sort.ElapsedToDesiredRatio => tasks.OrderByDescending(task => task.ElapsedToDesiredRatio),
             Sort.AverageToDesiredRatio => tasks.OrderByDescending(task => task.AverageToDesiredRatio),
-            _ => throw new ArgumentException("Invalid argument: " + nameof(_repository.Settings.Sort))
+            _ => throw new ArgumentException("Invalid argument: " + nameof(Sort))
         };
     }
 
@@ -175,15 +190,6 @@ public partial class GoalComponent
             }
         }
     }
-
-    // TODO: UI - priority combo box
-
-    // TODO: UI - show only repeating tasks
-    // TODO: UI - show only ASAP tasks
-    // TODO: UI - also show completed ASAP tasks
-
-    // TODO: UI - show only ratio over % - checkbox
-    // TODO: UI - show only ratio over % - slider
 
     // TODO: GoogleDriveBackup
 
