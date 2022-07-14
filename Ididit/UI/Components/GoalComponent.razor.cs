@@ -168,18 +168,13 @@ public partial class GoalComponent
     }
 
     // TODO: UI - TaskKind combo box filter
-
-    // TODO: UI - CheckBox - show categories in goal list
-
     // TODO: UI - CheckBox - hide empty goals
+    // TODO: UI - CheckBox - show categories in goal list
+    // TODO: UI - Category Button ---> Breadcrumb
 
     // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
-
     // TODO: UI - 2x Slider - ratio filter
-
     // TODO: UI - 2x Slider - priority filter
-
-    // TODO: UI - Category Button ---> Breadcrumb
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
 

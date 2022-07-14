@@ -1,73 +1,73 @@
 ﻿<Card Margin=Margin.Is2.FromTop>
 <CardBody Padding=Padding.Is1>
 
-<Addons Flex=Flex.NoWrap>
-    <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="Search" />
+    <Addons Flex=Flex.NoWrap>
+        <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="Search" />
 
-    <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Name="IconName.Times" /></Button>
-    </Addon>
-</Addons>
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Name="IconName.Times" /></Button>
+        </Addon>
+    </Addons>
 
-<span>Date filter:</span>
-
-<Addons Flex=Flex.NoWrap>
-    <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
-
-    <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Name="IconName.Times" /></Button>
-    </Addon>
-</Addons>
-
-<CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
-
-<span>Filters:</span>
-
-<CheckBox Checked="ShowOnlyRepeating" CheckedChanged="OnShowOnlyRepeatingChanged">Show only repeating</CheckBox>
-
-<CheckBox Checked="ShowOnlyAsap" CheckedChanged="OnShowOnlyAsapChanged">Show only ASAP</CheckBox>
-
-<CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed ASAP</CheckBox>
-
-<Field Margin=Margin.Is0>
-    <FieldLabel>
-        <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Ratio over @ElapsedToDesiredRatioMin %</CheckBox>
-    </FieldLabel>
-    <Slider Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
-</Field>
-
-<Field Margin=Margin.Is0>
-    <FieldLabel>Priority filter:</FieldLabel>
+    <span>Date filter:</span>
 
     <Addons Flex=Flex.NoWrap>
-    <Select TValue="Priority?" Size="Size" SelectedValue="_priorityFilter" SelectedValueChanged="OnPriorityChanged">
-        @*<SelectItem Value="(Priority?)null">No filter</SelectItem>*@
-        <SelectItem Value="Priority.None">None</SelectItem>
-        <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
-        <SelectItem Value="Priority.Low">Low</SelectItem>
-        <SelectItem Value="Priority.Medium">Medium</SelectItem>
-        <SelectItem Value="Priority.High">High</SelectItem>
-        <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
-    </Select>
-    <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearPriorityFilter"><Icon Name="IconName.Times" /></Button>
-    </Addon>
+        <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
+
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Name="IconName.Times" /></Button>
+        </Addon>
     </Addons>
-</Field>
 
-<Field Margin=Margin.Is0>
-    <FieldLabel>Sort by:</FieldLabel>
+    <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
 
-    <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">
-        <SelectItem Value="Sort.None">None</SelectItem>
-        <SelectItem Value="Sort.Name">Name</SelectItem>
-        <SelectItem Value="Sort.Priority">Priority</SelectItem>
-        <SelectItem Value="Sort.ElapsedTime">Elapsed time</SelectItem>
-        <SelectItem Value="Sort.ElapsedToAverageRatio">Elapsed to Average ratio</SelectItem>
-        <SelectItem Value="Sort.ElapsedToDesiredRatio">Elapsed to Desired ratio</SelectItem>
-        <SelectItem Value="Sort.AverageToDesiredRatio">Average to Desired ratio</SelectItem>
-    </Select>
-</Field>
+    <span>Filters:</span>
+
+    <CheckBox Checked="ShowOnlyRepeating" CheckedChanged="OnShowOnlyRepeatingChanged">Show only repeating</CheckBox>
+
+    <CheckBox Checked="ShowOnlyAsap" CheckedChanged="OnShowOnlyAsapChanged">Show only ASAP</CheckBox>
+
+    <CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed ASAP</CheckBox>
+
+    <Field Margin=Margin.Is0>
+        <FieldLabel>
+            <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Ratio over @ElapsedToDesiredRatioMin %</CheckBox>
+        </FieldLabel>
+        <Slider Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
+    </Field>
+
+    <Field Margin=Margin.Is0>
+        <FieldLabel>Priority filter:</FieldLabel>
+
+        <Addons Flex=Flex.NoWrap>
+        <Select TValue="Priority?" Size="Size" SelectedValue="_priorityFilter" SelectedValueChanged="OnPriorityChanged">
+            @*<SelectItem Value="(Priority?)null">No filter</SelectItem>*@
+            <SelectItem Value="Priority.None">None</SelectItem>
+            <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
+            <SelectItem Value="Priority.Low">Low</SelectItem>
+            <SelectItem Value="Priority.Medium">Medium</SelectItem>
+            <SelectItem Value="Priority.High">High</SelectItem>
+            <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
+        </Select>
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearPriorityFilter"><Icon Name="IconName.Times" /></Button>
+        </Addon>
+        </Addons>
+    </Field>
+
+    <Field Margin=Margin.Is0>
+        <FieldLabel>Sort by:</FieldLabel>
+
+        <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">
+            <SelectItem Value="Sort.None">None</SelectItem>
+            <SelectItem Value="Sort.Name">Name</SelectItem>
+            <SelectItem Value="Sort.Priority">Priority</SelectItem>
+            <SelectItem Value="Sort.ElapsedTime">Elapsed time</SelectItem>
+            <SelectItem Value="Sort.ElapsedToAverageRatio">Elapsed to Average ratio</SelectItem>
+            <SelectItem Value="Sort.ElapsedToDesiredRatio">Elapsed to Desired ratio</SelectItem>
+            <SelectItem Value="Sort.AverageToDesiredRatio">Average to Desired ratio</SelectItem>
+        </Select>
+    </Field>
 
 </CardBody>
 </Card>
