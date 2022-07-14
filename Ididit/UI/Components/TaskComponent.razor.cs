@@ -81,6 +81,16 @@ public partial class TaskComponent
         await Repository.UpdateTask(Task.Id);
     }
 
+    void DateChanged(DateTime dateTime)
+    {
+        _taskTime = dateTime.Date + _taskTime.TimeOfDay;
+    }
+
+    void TimeChanged(TimeSpan timeSpan)
+    {
+        _taskTime = _taskTime.Date + timeSpan;
+    }
+
     async Task SaveTime(DateTime time)
     {
         Task.UpdateTime(time, _taskTime);
@@ -88,6 +98,19 @@ public partial class TaskComponent
         await Repository.UpdateTime(time.Ticks, _taskTime, Task.Id);
 
         await Repository.UpdateTask(Task.Id);
+    }
+
+    void CancelEditTime()
+    {
+        _selectedTime = 0;
+        _editTime = false;
+    }
+
+    void EditTime(DateTime time)
+    {
+        _selectedTime = time.Ticks;
+        _taskTime = time;
+        _editTime = true;
     }
 
     async Task DeleteTime(DateTime time)

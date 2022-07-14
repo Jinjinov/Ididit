@@ -9,13 +9,14 @@
     <Button Color=Color.Primary Outline=true Size="Size" @onclick=ToggleAll>Toggle all</Button>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
+              TNode="CategoryModel"
               Nodes=Repository.CategoryList
-              GetChildNodes="@((CategoryModel? item) => item?.CategoryList)"
-              HasChildNodes="@((CategoryModel? item) => item?.CategoryList?.Any() == true)"
+              GetChildNodes="GetChildNodes"
+              HasChildNodes="HasChildNodes"
               SelectedNode=SelectedCategory
-              SelectedNodeChanged=@(async (CategoryModel category) => await OnSelectedCategoryChanged(category))
-              NodeStyling="@((item, style) => { style.TextColor = (item?.CategoryList?.Any() == true) ? TextColor.Primary : TextColor.Default; style.Style = "font-weight:bold"; })"
-              SelectedNodeStyling="@((item, style) => { style.Style = "padding:0!important"; })"
+              SelectedNodeChanged="OnSelectedCategoryChanged"
+              NodeStyling="NodeStyling"
+              SelectedNodeStyling="SelectedNodeStyling"
               @bind-ExpandedNodes=_expandedNodes>
         <NodeContent>
             @if (context == SelectedCategory)

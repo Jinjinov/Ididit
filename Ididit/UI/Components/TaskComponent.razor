@@ -120,11 +120,11 @@
                 @if (_editTime && _selectedTime == time.Ticks)
                 {
                     <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
-                        <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="@((dateTime) => { _taskTime = dateTime.Date + _taskTime.TimeOfDay; })" />
-                        <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="@((timeSpan) => { _taskTime = _taskTime.Date + timeSpan; })" />
+                        <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
+                        <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
                         <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Name="IconName.Save" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => { _selectedTime = 0; _editTime = false; })"><Icon Name="IconName.Times" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => CancelEditTime())"><Icon Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
                 }
@@ -134,7 +134,7 @@
                         <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => { _selectedTime = time.Ticks; _taskTime = time; _editTime = true; })"><Icon Name="IconName.Edit" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Name="IconName.Edit" /></Button>
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Name="IconName.Delete" /></Button>
                         </Addon>
                     </Addons>

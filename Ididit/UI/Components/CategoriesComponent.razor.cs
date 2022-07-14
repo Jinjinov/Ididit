@@ -37,11 +37,26 @@ public partial class CategoriesComponent
         }
     }
 
-    async Task OnSelectedCategoryChanged(CategoryModel category)
+    IList<CategoryModel>? GetChildNodes(CategoryModel? item) => item?.CategoryList;
+
+    bool HasChildNodes(CategoryModel? item) => item?.CategoryList?.Any() == true;
+
+    async Task OnSelectedCategoryChanged(CategoryModel? category)
     {
         SelectedCategory = category;
 
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+    }
+
+    void NodeStyling(CategoryModel? item, Blazorise.TreeView.NodeStyling style)
+    {
+        style.TextColor = (item?.CategoryList?.Any() == true) ? Blazorise.TextColor.Primary : Blazorise.TextColor.Default;
+        style.Style = "font-weight:bold";
+    }
+
+    void SelectedNodeStyling(CategoryModel? item, Blazorise.TreeView.NodeStyling style)
+    {
+        style.Style = "padding:0!important";
     }
 
     void ShowAllGoals()

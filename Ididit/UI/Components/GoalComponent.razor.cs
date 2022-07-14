@@ -167,8 +167,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: change "@( to methods
-
     // TODO: GoogleDriveBackup
 
     // TODO: UI - add options page: size & theme
