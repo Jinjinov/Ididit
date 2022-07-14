@@ -69,6 +69,13 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
+    async Task ClearPriorityFilter()
+    {
+        _priorityFilter = null;
+        Filters.PriorityFilter = null;
+        await FiltersChanged.InvokeAsync(Filters);
+    }
+
     Sort Sort
     {
         get

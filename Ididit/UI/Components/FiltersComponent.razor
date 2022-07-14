@@ -1,4 +1,7 @@
-﻿<Addons Flex=Flex.NoWrap>
+﻿<Card Margin=Margin.Is2.FromTop>
+<CardBody Padding=Padding.Is1>
+
+<Addons Flex=Flex.NoWrap>
     <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="Search" />
 
     <Addon AddonType="AddonType.End">
@@ -36,8 +39,9 @@
 <Field>
     <FieldLabel>Priority filter:</FieldLabel>
 
+    <Addons Flex=Flex.NoWrap>
     <Select TValue="Priority?" Size="Size" SelectedValue="_priorityFilter" SelectedValueChanged="OnPriorityChanged">
-        <SelectItem Value="(Priority?)null">No filter</SelectItem>
+        @*<SelectItem Value="(Priority?)null">No filter</SelectItem>*@
         <SelectItem Value="Priority.None">None</SelectItem>
         <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
         <SelectItem Value="Priority.Low">Low</SelectItem>
@@ -45,6 +49,10 @@
         <SelectItem Value="Priority.High">High</SelectItem>
         <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
     </Select>
+    <Addon AddonType="AddonType.End">
+        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearPriorityFilter"><Icon Name="IconName.Times" /></Button>
+    </Addon>
+    </Addons>
 </Field>
 
 <Field>
@@ -60,3 +68,6 @@
         <SelectItem Value="Sort.AverageToDesiredRatio">Average to Desired ratio</SelectItem>
     </Select>
 </Field>
+
+</CardBody>
+</Card>
