@@ -167,10 +167,7 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: UI - ididit! font in header
-
     // TODO: UI - Task - move SetDesiredInterval ([] this is a repeating task) to details
-
     // TODO: UI - Task - distinguish between ASAP and always - enum TaskType { Note, Task, RepeatingTask / Habit }
 
     // TODO: UI - CheckBox - show categories in goal list
@@ -183,7 +180,6 @@ public partial class GoalComponent
 
     // TODO: UI - 2x Slider - priority filter
 
-    // TODO: UI - Category Button - if GoalList.Any()
     // TODO: UI - Category Button ---> Breadcrumb
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
