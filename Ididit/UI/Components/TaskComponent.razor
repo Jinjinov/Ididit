@@ -4,12 +4,10 @@
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
             <Div Flex=Flex.Grow.Is1>@Task.Name</Div>
-            @if (@Task.IsRepeating)
-            {
-                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
-            }
             @if (Task.IsRepeating)
             {
+                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
+
                 @if (Task.ElapsedToDesiredRatio >= 100)
                 {
                     <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
@@ -42,7 +40,10 @@
                     break;
             }
         </Div>
-        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+        @if (Task.IsTask)
+        {
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
+        }
     </Div>
 
     @if (Task == SelectedTask)

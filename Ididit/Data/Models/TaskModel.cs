@@ -10,7 +10,7 @@ public enum TaskKind
 {
     Note,
     Task,
-    Habit
+    RepeatingTask
 }
 
 public class TaskModel
@@ -76,11 +76,14 @@ public class TaskModel
     internal bool IsRepeating => DesiredInterval > 0;
 
     [JsonIgnore]
+    internal bool IsTask => DesiredInterval != null;
+
+    [JsonIgnore]
     internal TaskKind TaskKind => DesiredInterval switch
     {
         null => TaskKind.Note,
         0 => TaskKind.Task,
-        _ => TaskKind.Habit
+        _ => TaskKind.RepeatingTask
     };
 
     [JsonIgnore]

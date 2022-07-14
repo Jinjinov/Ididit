@@ -139,6 +139,14 @@ internal class TsvBackup
                     _ => TimeSpan.Zero
                 };
             }
+            else if (record.Interval == "ASAP")
+            {
+                task.DesiredInterval = 0;
+            }
+            else
+            {
+                task.DesiredInterval = null;
+            }
 
             await _repository.AddTask(task);
         }
