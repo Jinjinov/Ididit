@@ -29,14 +29,14 @@
 
 <CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed ASAP</CheckBox>
 
-<Field>
+<Field Margin=Margin.Is0>
     <FieldLabel>
         <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Ratio over @ElapsedToDesiredRatioMin %</CheckBox>
     </FieldLabel>
     <Slider Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
 </Field>
 
-<Field>
+<Field Margin=Margin.Is0>
     <FieldLabel>Priority filter:</FieldLabel>
 
     <Addons Flex=Flex.NoWrap>
@@ -55,7 +55,7 @@
     </Addons>
 </Field>
 
-<Field>
+<Field Margin=Margin.Is0>
     <FieldLabel>Sort by:</FieldLabel>
 
     <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">

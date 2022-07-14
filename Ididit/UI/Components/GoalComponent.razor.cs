@@ -167,8 +167,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: move filters to new Filters component - Accordion component - CategoriesComponent
-
     // TODO: change "@( to methods
 
     // TODO: GoogleDriveBackup
