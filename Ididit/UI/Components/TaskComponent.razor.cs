@@ -51,23 +51,28 @@ public partial class TaskComponent
         await Repository.UpdateTask(Task.Id);
     }
 
-    async Task SetDesiredInterval()
+    async Task OnTaskKindChanged(TaskKind taskKind)
     {
-        Task.DesiredInterval = 864000000000;
+        Task.DesiredInterval = taskKind switch
+        {
+            TaskKind.Note => null,
+            TaskKind.Task => 0,
+            TaskKind.RepeatingTask => 864000000000,
+            _ => throw new ArgumentOutOfRangeException(nameof(taskKind)),
+        };
 
         await Repository.UpdateTask(Task.Id);
-
-        if (SelectedTask != Task)
-        {
-            SelectedTask = Task;
-
-            await SelectedTaskChanged.InvokeAsync(SelectedTask);
-        }
     }
+
+    //async Task SetDesiredInterval()
+    //{
+    //    Task.DesiredInterval = 864000000000;
+    //    await Repository.UpdateTask(Task.Id);
+    //}
 
     async Task ClearDesiredInterval()
     {
-        Task.DesiredInterval = 0;
+        Task.DesiredInterval = null;
 
         await Repository.UpdateTask(Task.Id);
     }

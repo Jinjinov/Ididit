@@ -139,7 +139,7 @@ internal class TsvBackup
                     _ => TimeSpan.Zero
                 };
             }
-            else if (record.Interval == "ASAP")
+            else if (string.Equals(record.Interval, "ASAP", StringComparison.OrdinalIgnoreCase))
             {
                 task.DesiredInterval = 0;
             }

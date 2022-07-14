@@ -1,4 +1,5 @@
-﻿<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
+﻿@using Ididit.Data.Models
+<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
     <CardBody Background=Background.Light Padding=Padding.Is1>
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
@@ -48,14 +49,25 @@
 
     @if (Task == SelectedTask)
     {
+        @*
         @if (!Task.IsRepeating)
         {
             <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" />Set desired interval</Button>
         }
+        *@
+
+        <Inline>
+            <Span Margin=Margin.Is1.FromEnd>Task:</Span>
+            <Select TValue="TaskKind" Size=Size.Small SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
+                <SelectItem Value="TaskKind.Note">Note</SelectItem>
+                <SelectItem Value="TaskKind.Task">Task</SelectItem>
+                <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
+            </Select>
+        </Inline>
 
         <Inline>
             <Span Margin=Margin.Is1.FromEnd>Priority:</Span>
-            <Select Size=Size.Small TValue="Priority" SelectedValue="@Task.Priority" SelectedValueChanged="PriorityChanged">
+            <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
                 <SelectItem Value="Priority.None">None</SelectItem>
                 <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
                 <SelectItem Value="Priority.Low">Low</SelectItem>

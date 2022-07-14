@@ -167,7 +167,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: UI - TaskKind combo box
     // TODO: UI - TaskKind combo box filter
 
     // TODO: UI - CheckBox - show categories in goal list
