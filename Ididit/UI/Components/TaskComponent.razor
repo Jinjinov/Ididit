@@ -8,7 +8,7 @@
             {
                 <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
             }
-            @if (Task.DesiredInterval > 0)
+            @if (Task.IsRepeating)
             {
                 @if (Task.ElapsedToDesiredRatio >= 100)
                 {
@@ -42,15 +42,16 @@
                     break;
             }
         </Div>
-        @if (Task.DesiredInterval == 0)
-        {
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" /></Button>
-        }
         <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Name="IconName.Check" /></Button>
     </Div>
 
     @if (Task == SelectedTask)
     {
+        @if (!Task.IsRepeating)
+        {
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" />Set desired interval</Button>
+        }
+
         <Inline>
             <Span Margin=Margin.Is1.FromEnd>Priority:</Span>
             <Select Size=Size.Small TValue="Priority" SelectedValue="@Task.Priority" SelectedValueChanged="PriorityChanged">
@@ -82,7 +83,7 @@
             </div>
         }
 
-        @if (Task.DesiredInterval > 0)
+        @if (Task.IsRepeating)
         {
             <div>
                 @( "Desired interval:" )

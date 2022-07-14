@@ -167,8 +167,7 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: UI - Task - move SetDesiredInterval ([] this is a repeating task) to details
-    // TODO: UI - Task - distinguish between ASAP and always - enum TaskType { Note, Task, RepeatingTask / Habit }
+    // TODO: UI - TaskKind combo box
 
     // TODO: UI - CheckBox - show categories in goal list
 

@@ -6,6 +6,13 @@ using System.Text.Json.Serialization;
 
 namespace Ididit.Data.Models;
 
+public enum TaskKind
+{
+    Note,
+    Task,
+    Habit
+}
+
 public class TaskModel
 {
     static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
@@ -63,15 +70,23 @@ public class TaskModel
     public Priority Priority { get; set; }
 
     public long AverageInterval { get; set; }
-    public long DesiredInterval { get; set; }
+    public long? DesiredInterval { get; set; }
 
     [JsonIgnore]
-    internal bool IsRepeating => DesiredInterval != 0;
+    internal bool IsRepeating => DesiredInterval > 0;
+
+    [JsonIgnore]
+    internal TaskKind TaskKind => DesiredInterval switch
+    {
+        null => TaskKind.Note,
+        0 => TaskKind.Task,
+        _ => TaskKind.Habit
+    };
 
     [JsonIgnore]
     internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
     [JsonIgnore]
-    internal TimeSpan DesiredTime { get => new(DesiredInterval); set => DesiredInterval = value.Ticks; }
+    internal TimeSpan DesiredTime { get => new(DesiredInterval ?? 0); set => DesiredInterval = value.Ticks; }
 
     [JsonIgnore]
     internal TimeSpan ElapsedTime => LastTimeDoneAt.HasValue ? DateTime.Now - LastTimeDoneAt.Value : DateTime.Now - CreatedAt;
@@ -83,9 +98,9 @@ public class TaskModel
     [JsonIgnore]
     internal bool IsElapsedOverDesired => ElapsedTime > DesiredTime;
     [JsonIgnore]
-    internal double ElapsedToDesiredRatio => ElapsedTime / DesiredTime * 100.0;
+    internal double ElapsedToDesiredRatio => IsRepeating ? ElapsedTime / DesiredTime * 100.0 : 100.0;
     [JsonIgnore]
-    internal double AverageToDesiredRatio => AverageTime / DesiredTime * 100.0;
+    internal double AverageToDesiredRatio => IsRepeating ? AverageTime / DesiredTime * 100.0 : 100.0;
 
     public List<DateTime> TimeList = new();
 

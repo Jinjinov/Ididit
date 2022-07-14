@@ -30,7 +30,7 @@ internal class TaskEntity
     public long AverageInterval { get; set; }
 
     [IndexDbIndex]
-    public long DesiredInterval { get; set; }
+    public long? DesiredInterval { get; set; }
 
     [IndexDbIndex]
     public Priority Priority { get; set; }
