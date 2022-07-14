@@ -167,7 +167,30 @@ public partial class GoalComponent
         }
     }
 
+    // TODO: UI - ididit! font in header
+
+    // TODO: UI - Task - move SetDesiredInterval ([] this is a repeating task) to details
+
+    // TODO: UI - Task - distinguish between ASAP and always - enum TaskType { Note, Task, RepeatingTask / Habit }
+
+    // TODO: UI - CheckBox - show categories in goal list
+
+    // TODO: UI - CheckBox - hide empty goals
+
+    // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
+
+    // TODO: UI - 2x Slider - ratio filter
+
+    // TODO: UI - 2x Slider - priority filter
+
+    // TODO: UI - Category Button - if GoalList.Any()
+    // TODO: UI - Category Button ---> Breadcrumb
+
+    // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
+
     // TODO: GoogleDriveBackup
+
+    // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
     // TODO: UI - add options page: size & theme
 
