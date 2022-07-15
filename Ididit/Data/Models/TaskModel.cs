@@ -90,13 +90,13 @@ public class TaskModel
     [JsonIgnore]
     internal bool IsElapsedOverAverage => IsDoneAtLeastOnce && (ElapsedTime > AverageTime);
     [JsonIgnore]
-    internal double ElapsedToAverageRatio => IsDoneAtLeastOnce ? ElapsedTime / AverageTime * 100.0 : 100.0;
+    internal double ElapsedToAverageRatio => IsDoneAtLeastOnce ? ElapsedTime / AverageTime * 100.0 : 0.0;
     [JsonIgnore]
     internal bool IsElapsedOverDesired => ElapsedTime > DesiredTime;
     [JsonIgnore]
-    internal double ElapsedToDesiredRatio => IsRepeating ? ElapsedTime / DesiredTime * 100.0 : 100.0;
+    internal double ElapsedToDesiredRatio => IsRepeating ? ElapsedTime / DesiredTime * 100.0 : 0.0;
     [JsonIgnore]
-    internal double AverageToDesiredRatio => IsRepeating ? AverageTime / DesiredTime * 100.0 : 100.0;
+    internal double AverageToDesiredRatio => IsRepeating ? AverageTime / DesiredTime * 100.0 : 0.0;
 
     public List<DateTime> TimeList = new();
 
