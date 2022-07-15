@@ -57,31 +57,31 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
-    IEnumerable<TaskModel> GetTasks()
+    static IEnumerable<TaskModel> GetFilteredTasks(IEnumerable<TaskModel> tasks, Filters filters)
     {
-        IEnumerable<TaskModel> tasks = Goal.TaskList.Where(task =>
+        tasks = tasks.Where(task =>
         {
-            bool isRatioOk = task.ElapsedToDesiredRatio >= Filters.ElapsedToDesiredRatioMin;
+            bool isRatioOk = task.ElapsedToDesiredRatio >= filters.ElapsedToDesiredRatioMin;
 
-            bool isNameOk = string.IsNullOrEmpty(Filters.SearchFilter) || task.Name.Contains(Filters.SearchFilter, StringComparison.OrdinalIgnoreCase);
+            bool isNameOk = string.IsNullOrEmpty(filters.SearchFilter) || task.Name.Contains(filters.SearchFilter, StringComparison.OrdinalIgnoreCase);
 
-            bool isDateOk = Filters.DateFilter == null || task.TimeList.Any(time => time.Date == Filters.DateFilter?.Date);
+            bool isDateOk = filters.DateFilter == null || task.TimeList.Any(time => time.Date == filters.DateFilter?.Date);
 
-            bool isPriorityOk = Filters.PriorityFilter == null || task.Priority == Filters.PriorityFilter;
+            bool isPriorityOk = filters.PriorityFilter == null || task.Priority == filters.PriorityFilter;
 
             return isNameOk && isDateOk && isPriorityOk && 
-                (isRatioOk || !Filters.ShowElapsedToDesiredRatioOverMin) &&
-                (task.IsRepeating || !Filters.ShowOnlyRepeating) &&
-                (!task.IsRepeating || !Filters.ShowOnlyAsap) &&
-                (!task.IsCompleted || Filters.AlsoShowCompletedAsap);
+                (isRatioOk || !filters.ShowElapsedToDesiredRatioOverMin) &&
+                (task.IsRepeating || !filters.ShowOnlyRepeating) &&
+                (!task.IsRepeating || !filters.ShowOnlyAsap) &&
+                (!task.IsCompleted || filters.AlsoShowCompletedAsap);
         });
 
-        return GetSorted(tasks);
+        return GetSortedTasks(tasks, filters);
     }
 
-    IEnumerable<TaskModel> GetSorted(IEnumerable<TaskModel> tasks)
+    static IEnumerable<TaskModel> GetSortedTasks(IEnumerable<TaskModel> tasks, Filters filters)
     {
-        return Filters.Sort switch
+        return filters.Sort switch
         {
             Sort.None => tasks,
             Sort.Name => tasks.OrderBy(task => task.Name),
@@ -90,7 +90,7 @@ public partial class GoalComponent
             Sort.ElapsedToAverageRatio => tasks.OrderByDescending(task => task.ElapsedToAverageRatio),
             Sort.ElapsedToDesiredRatio => tasks.OrderByDescending(task => task.ElapsedToDesiredRatio),
             Sort.AverageToDesiredRatio => tasks.OrderByDescending(task => task.AverageToDesiredRatio),
-            _ => throw new ArgumentException("Invalid argument: " + nameof(Sort))
+            _ => throw new ArgumentException("Invalid argument: " + nameof(filters.Sort))
         };
     }
 

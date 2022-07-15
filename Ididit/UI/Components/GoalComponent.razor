@@ -1,35 +1,42 @@
 ﻿@using Ididit.Data.Models
 
-<Card Margin=Margin.Is2.FromTop Border=Border.Is0>
-    <CardBody Padding=Padding.Is0>
-        <div @onclick=SelectGoal>
-            <EditGoalComponent @bind-Goal=Goal EditGoal=EditGoal EditGoalChanged=EditGoalChanged />
-        </div>
+@{
+    IEnumerable<TaskModel> tasks = GetFilteredTasks(Goal.TaskList, Filters);
 
-        @if (SelectedGoal == Goal)
-        {
-            <MemoEdit @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Border=Border.Is0 TextChanged=OnTextChanged />
-        }
-        else
-        {
-            <Div Margin=Margin.Is1.FromTop Padding=Padding.Is1>
-                @foreach (TaskModel task in GetTasks())
-                {
-                    @if (task.MarkdownHtml is null)
-                    {
-                        <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
-                    }
-                    else
-                    {
-                        @((MarkupString)task.MarkdownHtml)
-                    }
+    @if (tasks.Any())
+    {
+    <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
+        <CardBody Padding=Padding.Is0>
+            <div @onclick=SelectGoal>
+                <EditGoalComponent @bind-Goal=Goal EditGoal=EditGoal EditGoalChanged=EditGoalChanged />
+            </div>
 
-                    @if (!string.IsNullOrEmpty(task.Details))
+            @if (SelectedGoal == Goal)
+            {
+                <MemoEdit @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0.Is1.FromTop Padding=Padding.Is1 Border=Border.Is0 TextChanged=OnTextChanged />
+            }
+            else
+            {
+                <Div Margin=Margin.Is1.FromTop Padding=Padding.Is1>
+                    @foreach (TaskModel task in tasks)
                     {
-                        @((MarkupString)task.DetailsMarkdownHtml)
+                        @if (task.MarkdownHtml is null)
+                        {
+                            <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+                        }
+                        else
+                        {
+                            @((MarkupString)task.MarkdownHtml)
+                        }
+
+                        @if (!string.IsNullOrEmpty(task.Details))
+                        {
+                            @((MarkupString)task.DetailsMarkdownHtml)
+                        }
                     }
-                }
-            </Div>
-        }
-    </CardBody>
-</Card>
+                </Div>
+            }
+        </CardBody>
+    </Card>
+    }
+}

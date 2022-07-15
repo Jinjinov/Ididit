@@ -150,8 +150,6 @@ internal class TsvBackup
 
             await _repository.AddTask(task);
         }
-
-        //return data ?? throw new InvalidDataException("Can't deserialize TSV");
     }
 
     public async Task ExportData(IDataModel data)
