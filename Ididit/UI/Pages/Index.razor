@@ -1,8 +1,4 @@
 ﻿@page "/"
-@using Ididit.App
-@using Ididit.Data.Models
-
-@inject IRepository _repository;
 
 <PageTitle>ididit!</PageTitle>
 
@@ -14,19 +10,6 @@
 <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
     <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters="_filters" />
 </Column>
-
-@code {
-    CategoryModel? _selectedCategory;
-
-    Filters _filters = new();
-
-    protected override async Task OnInitializedAsync()
-    {
-        await _repository.Initialize();
-
-        StateHasChanged(); // refresh components with _repository.Settings
-    }
-}
 
 @*
     row

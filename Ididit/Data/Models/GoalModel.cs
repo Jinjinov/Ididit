@@ -124,7 +124,7 @@ public class GoalModel
         return GetSortedTasks(tasks, filters);
     }
 
-    private IEnumerable<TaskModel> GetSortedTasks(IEnumerable<TaskModel> tasks, Filters filters)
+    private static IEnumerable<TaskModel> GetSortedTasks(IEnumerable<TaskModel> tasks, Filters filters)
     {
         return filters.Sort switch
         {
