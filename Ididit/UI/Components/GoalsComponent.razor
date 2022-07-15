@@ -21,7 +21,7 @@
     {
         @foreach (GoalModel goal in SelectedCategory.GoalList)
         {
-            <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
+            <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
         }
     }
     else
@@ -30,12 +30,12 @@
         {
             if (category.GoalList.Where(goal => goal.GetFilteredTasks(Filters).Any()).Any())
             {
-                <Button Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
+                <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
             }
 
             @foreach (GoalModel goal in category.GoalList)
             {
-                <GoalComponent Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
+                <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
             }
         }
     }

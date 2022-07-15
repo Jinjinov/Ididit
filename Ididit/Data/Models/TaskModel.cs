@@ -6,13 +6,6 @@ using System.Text.Json.Serialization;
 
 namespace Ididit.Data.Models;
 
-public enum TaskKind
-{
-    Note,
-    Task,
-    RepeatingTask
-}
-
 public class TaskModel
 {
     static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();

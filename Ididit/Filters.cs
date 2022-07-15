@@ -10,6 +10,8 @@ public class Filters
 
     public Priority? PriorityFilter { get; set; }
 
+    public TaskKind? TaskKindFilter { get; set; }
+
     public Sort Sort { get; set; }
 
     public long ElapsedToDesiredRatioMin { get; set; }

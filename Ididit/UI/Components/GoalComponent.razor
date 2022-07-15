@@ -22,7 +22,7 @@
                     {
                         @if (task.MarkdownHtml is null)
                         {
-                            <TaskComponent Task=task @bind-SelectedTask=_selectedTask />
+                            <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
                         }
                         else
                         {
