@@ -7,8 +7,6 @@ namespace Ididit.UI.Layouts;
 
 public partial class MainLayout
 {
-    public Blazorise.Size Size => Repository.Settings.Size;
-
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
         { "cerulean", "sha256-RW/ojwB9sS6DzIfFEaDiahxVPN/MupUlrbKrKVkgA9M=" },
@@ -33,6 +31,22 @@ public partial class MainLayout
         { "united", "sha256-7gdx77MsYTQV0shn+8C0CP7lc6xQRexoNubpaigHL6c=" },
         { "yeti", "sha256-hqMfmPlwrJpRN1EanXFcujx+vGhMfBbeKVyT09X3mIw=" }
     };
+
+    Blazorise.Size Size => Repository.Settings.Size;
+
+    string Theme => Repository.Settings.Theme;
+
+    async Task OnSizeChanged(Blazorise.Size size)
+    {
+        Repository.Settings.Size = size;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
+
+    async Task OnThemeChanged(string theme)
+    {
+        Repository.Settings.Theme = theme;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
 
     [Inject]
     IRepository Repository { get; set; } = null!;

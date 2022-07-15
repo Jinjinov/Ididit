@@ -3,9 +3,9 @@
 @inherits LayoutComponentBase
 
 <HeadContent>
-    @if (_bootswatchThemes.ContainsKey(Repository.Settings.Theme))
+    @if (_bootswatchThemes.ContainsKey(Theme))
     {
-        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Repository.Settings.Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Repository.Settings.Theme])" crossorigin="anonymous">
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
     }
     else
     {
@@ -27,7 +27,7 @@
     <Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>
         @if (_showOptions)
         {
-            <Options Themes="_bootswatchThemes.Keys" />
+            <Options Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
         }
         else
         {

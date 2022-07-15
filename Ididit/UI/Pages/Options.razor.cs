@@ -19,20 +19,28 @@ public partial class Options
     [Parameter]
     public IList<string> Themes { get; set; } = null!;
 
-    Blazorise.Size Size => Repository.Settings.Size;
+    [Parameter]
+    public Blazorise.Size Size { get; set; }
 
-    string Theme => Repository.Settings.Theme;
+    [Parameter]
+    public string Theme { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<Blazorise.Size> SizeChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ThemeChanged { get; set; }
 
     async Task OnSizeChanged(Blazorise.Size size)
     {
-        Repository.Settings.Size = size;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        Size = size;
+        await SizeChanged.InvokeAsync(Size);
     }
 
     async Task OnThemeChanged(string theme)
     {
-        Repository.Settings.Theme = theme;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        Theme = theme;
+        await ThemeChanged.InvokeAsync(Theme);
     }
 
     [Inject]
