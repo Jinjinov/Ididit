@@ -1,5 +1,4 @@
-﻿@using Ididit.UI.Login
-@using Ididit.UI.Pages
+﻿@using Ididit.UI.Pages
 
 @inherits LayoutComponentBase
 
@@ -22,9 +21,7 @@
             <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is3.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions"><Icon Name="IconName.Wrench" /></Button>
 
             <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
-            <Span Margin="Margin.IsAuto.FromTop.IsAuto.FromBottom">
-                <LoginDisplay />
-            </Span>
+
         </Column>
     </Row>
     <Row Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden Background=Background.Secondary>
@@ -39,23 +36,7 @@
     </Row>
     <Row>
         <Column Border=Border.Is1>
-            <Label For="file-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import</Label>
-            <InputFile id="file-upload" class="d-none" OnChange=Import />
-
-            <Button Color=Color.Primary Block=false @onclick=ExportJson>Export Json</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportYaml>Export Yaml</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportTsv>Export Tsv</Button>
-
-            <Label For="notes-upload" Display=Display.Inline Margin=Margin.Is0.FromBottom class="btn btn-primary">Import Markdown</Label>
-            <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
-
-            <Button Color=Color.Primary Block=false @onclick=ExportMarkdown>Export Markdown</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ImportDirectory>Import folder</Button>
-
-            <Button Color=Color.Primary Block=false @onclick=ExportDirectory>Export folder</Button>
+            <span>&#169; 2022</span>
         </Column>
     </Row>
 </Container>
