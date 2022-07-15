@@ -1,7 +1,7 @@
 ﻿@using Ididit.Data.Models
 
 @{
-    IEnumerable<TaskModel> tasks = GetFilteredTasks(Goal.TaskList, Filters);
+    IEnumerable<TaskModel> tasks = Goal.GetFilteredTasks(Filters);
 
     @if (tasks.Any())
     {

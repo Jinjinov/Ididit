@@ -57,43 +57,6 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
-    static IEnumerable<TaskModel> GetFilteredTasks(IEnumerable<TaskModel> tasks, Filters filters)
-    {
-        tasks = tasks.Where(task =>
-        {
-            bool isRatioOk = task.ElapsedToDesiredRatio >= filters.ElapsedToDesiredRatioMin;
-
-            bool isNameOk = string.IsNullOrEmpty(filters.SearchFilter) || task.Name.Contains(filters.SearchFilter, StringComparison.OrdinalIgnoreCase);
-
-            bool isDateOk = filters.DateFilter == null || task.TimeList.Any(time => time.Date == filters.DateFilter?.Date);
-
-            bool isPriorityOk = filters.PriorityFilter == null || task.Priority == filters.PriorityFilter;
-
-            return isNameOk && isDateOk && isPriorityOk && 
-                (isRatioOk || !filters.ShowElapsedToDesiredRatioOverMin) &&
-                (task.IsRepeating || !filters.ShowOnlyRepeating) &&
-                (!task.IsRepeating || !filters.ShowOnlyAsap) &&
-                (!task.IsCompleted || filters.AlsoShowCompletedAsap);
-        });
-
-        return GetSortedTasks(tasks, filters);
-    }
-
-    static IEnumerable<TaskModel> GetSortedTasks(IEnumerable<TaskModel> tasks, Filters filters)
-    {
-        return filters.Sort switch
-        {
-            Sort.None => tasks,
-            Sort.Name => tasks.OrderBy(task => task.Name),
-            Sort.Priority => tasks.OrderByDescending(task => task.Priority),
-            Sort.ElapsedTime => tasks.OrderByDescending(task => task.ElapsedTime),
-            Sort.ElapsedToAverageRatio => tasks.OrderByDescending(task => task.ElapsedToAverageRatio),
-            Sort.ElapsedToDesiredRatio => tasks.OrderByDescending(task => task.ElapsedToDesiredRatio),
-            Sort.AverageToDesiredRatio => tasks.OrderByDescending(task => task.AverageToDesiredRatio),
-            _ => throw new ArgumentException("Invalid argument: " + nameof(filters.Sort))
-        };
-    }
-
     class DoneLine
     {
         public string Line = null!;
