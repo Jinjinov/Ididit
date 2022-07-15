@@ -23,6 +23,8 @@
     protected override async Task OnInitializedAsync()
     {
         await _repository.Initialize();
+
+        StateHasChanged(); // refresh components with _repository.Settings
     }
 }
 
