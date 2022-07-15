@@ -27,11 +27,11 @@
 
     <CheckBox Checked="HideEmptyGoals" CheckedChanged="OnHideEmptyGoalsChanged">Hide empty goals</CheckBox>
 
-    <CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed ASAP</CheckBox>
+    <CheckBox Checked="AlsoShowCompletedAsap" CheckedChanged="OnAlsoShowCompletedAsapChanged">Also show completed tasks</CheckBox>
 
     <Field Margin=Margin.Is0>
         <FieldLabel>
-            <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Ratio over @ElapsedToDesiredRatioMin %</CheckBox>
+            <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Show tasks with ratio over @ElapsedToDesiredRatioMin %</CheckBox>
         </FieldLabel>
         <Slider Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
     </Field>
@@ -41,7 +41,7 @@
 
         <Addons Flex=Flex.NoWrap>
         <Select TValue="Priority?" Size="Size" SelectedValue="_priorityFilter" SelectedValueChanged="OnPriorityChanged">
-            @*<SelectItem Value="(Priority?)null">No filter</SelectItem>*@
+            <SelectItem Value="(Priority?)null"></SelectItem>
             <SelectItem Value="Priority.None">None</SelectItem>
             <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
             <SelectItem Value="Priority.Low">Low</SelectItem>
@@ -51,6 +51,22 @@
         </Select>
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearPriorityFilter"><Icon Name="IconName.Times" /></Button>
+        </Addon>
+        </Addons>
+    </Field>
+
+    <Field Margin=Margin.Is0>
+        <FieldLabel>Task filter:</FieldLabel>
+
+        <Addons Flex=Flex.NoWrap>
+        <Select TValue="TaskKind?" Size="Size" SelectedValue="_taskKindFilter" SelectedValueChanged="OnTaskKindChanged">
+            <SelectItem Value="(TaskKind?)null"></SelectItem>
+            <SelectItem Value="TaskKind.Note">Note</SelectItem>
+            <SelectItem Value="TaskKind.Task">Task</SelectItem>
+            <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
+        </Select>
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearTaskKindFilter"><Icon Name="IconName.Times" /></Button>
         </Addon>
         </Addons>
     </Field>

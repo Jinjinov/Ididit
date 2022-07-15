@@ -76,6 +76,22 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
+    TaskKind? _taskKindFilter;
+
+    async Task OnTaskKindChanged(TaskKind? taskKind)
+    {
+        _taskKindFilter = taskKind;
+        Filters.TaskKindFilter = taskKind;
+        await FiltersChanged.InvokeAsync(Filters);
+    }
+
+    async Task ClearTaskKindFilter()
+    {
+        _taskKindFilter = null;
+        Filters.TaskKindFilter = null;
+        await FiltersChanged.InvokeAsync(Filters);
+    }
+
     Sort Sort
     {
         get

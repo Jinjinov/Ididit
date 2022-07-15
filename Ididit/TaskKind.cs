@@ -4,6 +4,5 @@ public enum TaskKind
 {
     Note,
     Task,
-    RepeatingTask,
-    All
+    RepeatingTask
 }

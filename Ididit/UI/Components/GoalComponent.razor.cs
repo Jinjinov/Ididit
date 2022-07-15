@@ -130,10 +130,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: UI - TaskKind combo box filter
-    // TODO: UI - CheckBox - hide empty goals
-    // TODO: UI - CheckBox - show categories in goal list
-
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
 
     // TODO: GoogleDriveBackup
