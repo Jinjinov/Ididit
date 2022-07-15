@@ -62,11 +62,10 @@ public static class Services
     public static IServiceProvider UseServices(this IServiceProvider serviceProvider)
     {
         //IRepository repository = serviceProvider.GetRequiredService<IRepository>();
-        //IDatabaseAccess databaseAccess = serviceProvider.GetRequiredService<IDatabaseAccess>();
 
         // Works only in Wasm - doesn't work in WinForms or Wpf:
 
-        //databaseAccess.Load(repository);
+        //repository.Initialize();
 
         return serviceProvider;
     }

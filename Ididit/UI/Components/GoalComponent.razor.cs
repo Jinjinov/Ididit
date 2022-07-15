@@ -170,11 +170,6 @@ public partial class GoalComponent
     // TODO: UI - TaskKind combo box filter
     // TODO: UI - CheckBox - hide empty goals
     // TODO: UI - CheckBox - show categories in goal list
-    // TODO: UI - Category Button ---> Breadcrumb
-
-    // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
-    // TODO: UI - 2x Slider - ratio filter
-    // TODO: UI - 2x Slider - priority filter
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
 
@@ -215,10 +210,13 @@ public partial class GoalComponent
     }
 
     // TODO: mobile: single column, minimized tree view
-    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
+
     // TODO: mobile: show sub-categories in Goal list
 
     // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
+    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
+    // https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
 
     //
     // HIGH PRIORITY:
@@ -229,6 +227,10 @@ public partial class GoalComponent
     // TODO: help + GitHub link
     // TODO: load examples
     // TODO: delete all
+
+    // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
+    // TODO: UI - 2x Slider - ratio filter
+    // TODO: UI - 2x Slider - priority filter
 
     // TODO: every line that StartsWith("- ") is a task detail
 
