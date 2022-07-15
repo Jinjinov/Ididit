@@ -130,16 +130,13 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
-
-    // TODO: GoogleDriveBackup
-
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
-
     // TODO: UI - add options page: size & theme
-
     // TODO: UI - move backup from footer to options
     // TODO: UI - move Login from header to options
+
+    // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
+    // TODO: GoogleDriveBackup
 
     private async Task UpdateTask(TaskModel task, string line)
     {
