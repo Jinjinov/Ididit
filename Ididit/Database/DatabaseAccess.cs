@@ -179,8 +179,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Sort = settings.Sort,
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
-                ShowOnlyRepeating = settings.ShowOnlyRepeating,
-                ShowOnlyAsap = settings.ShowOnlyAsap,
+                HideEmptyGoals = settings.HideEmptyGoals,
+                ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
             };
 
@@ -296,8 +296,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Sort = settings.Sort,
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
-                ShowOnlyRepeating = settings.ShowOnlyRepeating,
-                ShowOnlyAsap = settings.ShowOnlyAsap,
+                HideEmptyGoals = settings.HideEmptyGoals,
+                ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
             };
 
@@ -392,8 +392,8 @@ internal class DatabaseAccess : IDatabaseAccess
             Sort = settings.Sort,
             ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
             ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
-            ShowOnlyRepeating = settings.ShowOnlyRepeating,
-            ShowOnlyAsap = settings.ShowOnlyAsap,
+            HideEmptyGoals = settings.HideEmptyGoals,
+            ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
             AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
         };
 
@@ -483,8 +483,8 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Sort = settings.Sort;
             settingsEntity.ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin;
             settingsEntity.ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin;
-            settingsEntity.ShowOnlyRepeating = settings.ShowOnlyRepeating;
-            settingsEntity.ShowOnlyAsap = settings.ShowOnlyAsap;
+            settingsEntity.HideEmptyGoals = settings.HideEmptyGoals;
+            settingsEntity.ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList;
             settingsEntity.AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap;
 
             await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });

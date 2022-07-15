@@ -114,10 +114,10 @@ public class GoalModel
 
             bool isPriorityOk = filters.PriorityFilter == null || task.Priority == filters.PriorityFilter;
 
-            return isNameOk && isDateOk && isPriorityOk &&
+            bool isTaskKindOk = filters.TaskKindFilter == null || task.TaskKind == filters.TaskKindFilter;
+
+            return isNameOk && isDateOk && isPriorityOk && isTaskKindOk &&
                 (isRatioOk || !filters.ShowElapsedToDesiredRatioOverMin) &&
-                (task.IsRepeating || !filters.ShowOnlyRepeating) &&
-                (!task.IsRepeating || !filters.ShowOnlyAsap) &&
                 (!task.IsCompleted || filters.AlsoShowCompletedAsap);
         });
 

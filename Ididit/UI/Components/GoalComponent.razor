@@ -3,7 +3,7 @@
 @{
     IEnumerable<TaskModel> tasks = Goal.GetFilteredTasks(Filters);
 
-    @if (tasks.Any())
+    @if (tasks.Any() || !Filters.HideEmptyGoals)
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
         <CardBody Padding=Padding.Is0>

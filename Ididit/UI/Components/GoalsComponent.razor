@@ -28,7 +28,7 @@
     {
         @foreach (CategoryModel category in Repository.AllCategories.Values)
         {
-            if (category.GoalList.Where(goal => goal.GetFilteredTasks(Filters).Any()).Any())
+            if (Filters.ShowCategoriesInGoalList && category.GoalList.Where(goal => goal.GetFilteredTasks(Filters).Any()).Any())
             {
                 <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
             }

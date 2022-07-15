@@ -103,21 +103,21 @@ public partial class FiltersComponent
         }
     }
 
-    bool ShowOnlyRepeating
+    bool HideEmptyGoals
     {
         get
         {
-            Filters.ShowOnlyRepeating = Repository.Settings.ShowOnlyRepeating;
-            return Repository.Settings.ShowOnlyRepeating;
+            Filters.HideEmptyGoals = Repository.Settings.HideEmptyGoals;
+            return Repository.Settings.HideEmptyGoals;
         }
     }
 
-    bool ShowOnlyAsap
+    bool ShowCategoriesInGoalList
     {
         get
         {
-            Filters.ShowOnlyAsap = Repository.Settings.ShowOnlyAsap;
-            return Repository.Settings.ShowOnlyAsap;
+            Filters.ShowCategoriesInGoalList = Repository.Settings.ShowCategoriesInGoalList;
+            return Repository.Settings.ShowCategoriesInGoalList;
         }
     }
 
@@ -139,21 +139,21 @@ public partial class FiltersComponent
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    async Task OnShowOnlyRepeatingChanged(bool? val)
+    async Task OnHideEmptyGoalsChanged(bool? val)
     {
-        Filters.ShowOnlyRepeating = val ?? false;
+        Filters.HideEmptyGoals = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        Repository.Settings.ShowOnlyRepeating = val ?? false;
+        Repository.Settings.HideEmptyGoals = val ?? false;
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    async Task OnShowOnlyAsapChanged(bool? val)
+    async Task OnShowCategoriesInGoalListChanged(bool? val)
     {
-        Filters.ShowOnlyAsap = val ?? false;
+        Filters.ShowCategoriesInGoalList = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        Repository.Settings.ShowOnlyAsap = val ?? false;
+        Repository.Settings.ShowCategoriesInGoalList = val ?? false;
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 

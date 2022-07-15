@@ -26,10 +26,10 @@ internal class SettingsEntity
     public bool ShowElapsedToDesiredRatioOverMin { get; set; }
 
     [IndexDbIndex]
-    public bool ShowOnlyRepeating { get; set; }
+    public bool HideEmptyGoals { get; set; }
 
     [IndexDbIndex]
-    public bool ShowOnlyAsap { get; set; }
+    public bool ShowCategoriesInGoalList { get; set; }
 
     [IndexDbIndex]
     public bool AlsoShowCompletedAsap { get; set; }

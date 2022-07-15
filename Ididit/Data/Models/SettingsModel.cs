@@ -19,9 +19,9 @@ internal class SettingsModel
 
     public bool ShowElapsedToDesiredRatioOverMin { get; set; }
 
-    public bool ShowOnlyRepeating { get; set; }
+    public bool HideEmptyGoals { get; set; }
 
-    public bool ShowOnlyAsap { get; set; }
+    public bool ShowCategoriesInGoalList { get; set; }
 
     public bool AlsoShowCompletedAsap { get; set; }
 }
