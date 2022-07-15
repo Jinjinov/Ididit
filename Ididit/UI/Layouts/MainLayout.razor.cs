@@ -61,6 +61,11 @@ public partial class MainLayout
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
+    void ToggleOptions()
+    {
+
+    }
+
     async Task Import(InputFileChangeEventArgs e)
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);

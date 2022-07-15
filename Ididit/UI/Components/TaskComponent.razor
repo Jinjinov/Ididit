@@ -50,13 +50,6 @@
 
     @if (Task == SelectedTask)
     {
-        @*
-        @if (!Task.IsRepeating)
-        {
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="SetDesiredInterval"><Icon Name="IconName.SyncAlt" />Set desired interval</Button>
-        }
-        *@
-
         <Inline>
             <Span Margin=Margin.Is1.FromEnd>Task:</Span>
             <Select TValue="TaskKind" Size=Size.Small SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">

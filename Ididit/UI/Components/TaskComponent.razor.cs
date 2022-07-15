@@ -64,12 +64,6 @@ public partial class TaskComponent
         await Repository.UpdateTask(Task.Id);
     }
 
-    //async Task SetDesiredInterval()
-    //{
-    //    Task.DesiredInterval = 864000000000;
-    //    await Repository.UpdateTask(Task.Id);
-    //}
-
     async Task ClearDesiredInterval()
     {
         Task.DesiredInterval = null;
