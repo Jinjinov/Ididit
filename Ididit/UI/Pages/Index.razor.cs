@@ -7,17 +7,17 @@ namespace Ididit.UI.Pages;
 
 public partial class Index
 {
-    [Inject]
-    IRepository Repository { get; set; } = null!;
+    //[Inject]
+    //IRepository Repository { get; set; } = null!;
 
     CategoryModel? _selectedCategory;
 
     Filters _filters = new();
 
-    protected override async Task OnInitializedAsync()
-    {
-        await Repository.Initialize();
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    await Repository.Initialize();
 
-        StateHasChanged(); // refresh components with _repository.Settings
-    }
+    //    StateHasChanged(); // refresh components with _repository.Settings
+    //}
 }

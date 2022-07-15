@@ -61,9 +61,18 @@ public partial class MainLayout
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
+    bool _showOptions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Repository.Initialize();
+
+        StateHasChanged(); // refresh components with _repository.Settings
+    }
+
     void ToggleOptions()
     {
-
+        _showOptions = !_showOptions;
     }
 
     async Task Import(InputFileChangeEventArgs e)

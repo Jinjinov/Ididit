@@ -1,6 +1,6 @@
 ﻿@*@page "/options"*@
 
-<Card Margin=Margin.Is2.FromTop>
+<Card Margin=Margin.Is2>
 <CardBody Padding=Padding.Is1>
 
     <Field Margin=Margin.Is0>
@@ -17,14 +17,14 @@
     </Field>
 
     <Field Margin=Margin.Is0>
-        <FieldLabel>Sort by:</FieldLabel>
+        <FieldLabel>Themes:</FieldLabel>
 
         <Select TValue="string" Size="Size" SelectedValue="Theme" SelectedValueChanged="OnThemeChanged">
             <SelectItem Value="@("default")">default</SelectItem>
-@*            @foreach (string theme in BootswatchThemeDict.Keys)
+            @foreach (string theme in Themes)
             {
                 <SelectItem Value="theme">@theme</SelectItem>
-            }*@
+            }
         </Select>
     </Field>
 

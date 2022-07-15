@@ -1,5 +1,6 @@
 ﻿using Ididit.App;
 using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Pages;
@@ -8,6 +9,9 @@ public partial class Options
 {
     [Inject]
     IRepository Repository { get; set; } = null!;
+
+    [Parameter]
+    public IList<string> Themes { get; set; } = null!;
 
     Blazorise.Size Size => Repository.Settings.Size;
 
