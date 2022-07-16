@@ -130,7 +130,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: apply filters on screen change
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
