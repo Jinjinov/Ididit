@@ -1,12 +1,12 @@
 ﻿@using Blazorise.TreeView
 @using Ididit.Data.Models
 
-<Card Margin=Margin.Is2.OnY>
-<CardBody Padding=Padding.Is1>
+@*<Card Margin=Margin.Is2.OnY>
+<CardBody Padding=Padding.Is1>*@
 
-    <Button Color=Color.Primary Outline=true Size="Size" @onclick=ShowAllGoals><Icon Name="IconName.Remove" />Show all goals</Button>
-    <Button Color=Color.Primary Outline=true Size="Size" @onclick=NewCategory><Icon Name="IconName.Add" />Add category</Button>
-    <Button Color=Color.Primary Outline=true Size="Size" @onclick=ToggleAll>Toggle all</Button>
+    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ShowAllGoals>Show all goals</Button>
+    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category</Button>
+    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
               TNode="CategoryModel"
@@ -30,5 +30,5 @@
         </NodeContent>
     </TreeView>
 
-</CardBody>
-</Card>
+@*</CardBody>
+</Card>*@

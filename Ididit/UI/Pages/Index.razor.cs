@@ -12,6 +12,9 @@ public partial class Index
 
     CategoryModel? _selectedCategory;
 
+    bool collapse1Visible = true;
+    bool collapse2Visible = true;
+
     Filters _filters = new();
 
     protected override void OnInitialized()

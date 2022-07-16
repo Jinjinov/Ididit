@@ -3,9 +3,34 @@
 <PageTitle>ididit!</PageTitle>
 
 <Column ColumnSize=ColumnSize.IsQuarter Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
-    <FiltersComponent @bind-Filters="_filters" />
 
-    <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
+    <Accordion Margin=Margin.Is2.OnY>
+        <Collapse Visible="@collapse1Visible">
+            <CollapseHeader Padding=Padding.Is0>
+
+                <Button Size=Size.Small Block=true Clicked="@(()=>collapse1Visible = !collapse1Visible)">Filters</Button>
+
+            </CollapseHeader>
+            <CollapseBody Padding=Padding.Is0>
+
+                <FiltersComponent @bind-Filters="_filters" />
+
+            </CollapseBody>
+        </Collapse>
+        <Collapse Visible="@collapse2Visible">
+            <CollapseHeader Padding=Padding.Is0>
+
+                <Button Size=Size.Small Block=true Clicked="@(()=>collapse2Visible = !collapse2Visible)">Categories</Button>
+
+            </CollapseHeader>
+            <CollapseBody Padding=Padding.Is0>
+
+                <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
+
+            </CollapseBody>
+        </Collapse>
+    </Accordion>
+
 </Column>
 <Column Height=Height.Max100 Padding=Padding.Is2.OnX Overflow=Overflow.Auto>
     <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters="_filters" />
