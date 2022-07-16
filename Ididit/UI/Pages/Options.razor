@@ -35,20 +35,20 @@
     <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import</Label>
     <InputFile id="file-upload" class="d-none" OnChange=Import />
 
-    <Button Color=Color.Primary Block=true @onclick=ExportJson>Export Json</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportJson>Export Json</Button>
 
-    <Button Color=Color.Primary Block=true @onclick=ExportYaml>Export Yaml</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportYaml>Export Yaml</Button>
 
-    <Button Color=Color.Primary Block=true @onclick=ExportTsv>Export Tsv</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportTsv>Export Tsv</Button>
 
     <Label For="notes-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Markdown</Label>
     <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
 
-    <Button Color=Color.Primary Block=true @onclick=ExportMarkdown>Export Markdown</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportMarkdown>Export Markdown</Button>
 
-    <Button Color=Color.Primary Block=true @onclick=ImportDirectory>Import folder</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportDirectory>Import folder</Button>
 
-    <Button Color=Color.Primary Block=true @onclick=ExportDirectory>Export folder</Button>
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportDirectory>Export folder</Button>
 
 </CardBody>
 </Card>

@@ -36,6 +36,8 @@ public partial class MainLayout
 
     string Theme => Repository.Settings.Theme;
 
+    int _workaround;
+
     async Task OnSizeChanged(Blazorise.Size size)
     {
         Repository.Settings.Size = size;
@@ -44,6 +46,8 @@ public partial class MainLayout
 
     async Task OnThemeChanged(string theme)
     {
+        _workaround = 1 - _workaround;
+
         Repository.Settings.Theme = theme;
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
