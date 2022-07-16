@@ -135,6 +135,10 @@ public partial class GoalComponent
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
     // TODO: GoogleDriveBackup
 
+    // TODO: mobile: single column, minimized tree view
+
+    // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
     private async Task UpdateTask(TaskModel task, string line)
     {
         task.Name = line;
@@ -162,15 +166,6 @@ public partial class GoalComponent
         await Repository.DeleteTask(task.Id);
     }
 
-    // TODO: mobile: single column, minimized tree view
-
-    // TODO: mobile: show sub-categories in Goal list
-
-    // TODO: task - "times list" should load on demand - on Task done - on show Task details
-
-    // TODO: mobile: use Breadcrumb to show Category/Subcategory in Goal header
-    // https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
-
     //
     // HIGH PRIORITY:
     //
@@ -180,6 +175,10 @@ public partial class GoalComponent
     // TODO: help + GitHub link
     // TODO: load examples
     // TODO: delete all
+
+    // TODO: mobile: show sub-categories in Goal list
+    // TODO: mobile: use recursion to show Category/Subcategory in Goal header
+    // https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
 
     // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
     // TODO: UI - 2x Slider - ratio filter
@@ -237,14 +236,12 @@ public partial class GoalComponent
     // TODO: show Times in a Calendar/Scheduler, not a List
 }
 
-// TODO: use blazor layouts?
+// TODO: use blazor layouts for Login and Authentication ?
 // @inherits LayoutComponentBase
 // @page "/users"
 // @layout MainLayout
 // @page "/admin"
 // @layout AdminLayout
-
-// TODO: use route navigation for help, options, settings?
 
 // https://blazorise.com/docs/components/repeater
 // The repeater component is a helper component that repeats the child content for each element in a collection.
