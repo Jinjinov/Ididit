@@ -130,12 +130,17 @@ public partial class GoalComponent
         }
     }
 
+    // TODO: fix Task details UI
+    // TODO: better Theme colors
+
+    // TODO: mobile: Accordion
+    // TODO: mobile: no X margins
+    // TODO: mobile: single column, minimized tree view
+
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
     // TODO: GoogleDriveBackup
-
-    // TODO: mobile: single column, minimized tree view
 
     // TODO: task - "times list" should load on demand - on Task done - on show Task details
 
@@ -176,13 +181,17 @@ public partial class GoalComponent
     // TODO: load examples
     // TODO: delete all
 
-    // TODO: mobile: show sub-categories in Goal list
-    // TODO: mobile: use recursion to show Category/Subcategory in Goal header
-    // https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
+    // TODO: remove focused borders
 
-    // TODO: UI - DateEdit ---> DatePicker - range <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
-    // TODO: UI - 2x Slider - ratio filter
-    // TODO: UI - 2x Slider - priority filter
+    // TODO: "save" (exit edit) on Enter key
+
+    // TODO: see all - or collapse to titles
+
+    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), start edit on click (except on URL link click)
+
+    // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
+
+    // TODO: mobile: show sub-categories in Goal list
 
     // TODO: every line that StartsWith("- ") is a task detail
 
@@ -196,27 +205,24 @@ public partial class GoalComponent
     // - during weekend
     // - when opportunity arises
 
-    // TODO: remove focused borders
-
-    // TODO: "save" (exit edit) on Enter key
-
     //
     // MEDIUM PRIORITY:
     //
-
-    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), start edit on click (except on URL link click)
-
-    // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
-
-    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
-    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
-
-    // TODO: see all - or collapse to titles
 
     // TODO: use Drag & Drop to move Subcategory into another Category
     // TODO: use Drag & Drop to move Goal into another Category
     // TODO: use Drag & Drop to reorder Goals
     // TODO: use Drag & Drop to reorder Tasks
+
+    // TODO: mobile: use recursion to show Category/Subcategory in Goal header
+    // https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
+
+    // TODO: UI - range DateEdit - <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
+    // TODO: UI - range ratio filter - 2x Slider
+    // TODO: UI - range priority filter - 2x Slider
+
+    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
+    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
 
     // TODO: arrow down can change focus to next textarea
 
