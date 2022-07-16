@@ -133,7 +133,6 @@ public partial class GoalComponent
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
-    // TODO: mobile: Accordion
     // TODO: mobile: no X margins
     // TODO: mobile: single column, minimized tree view
 

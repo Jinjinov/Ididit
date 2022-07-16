@@ -11,7 +11,7 @@
                 <Button Size=Size.Small Block=true Clicked="@(()=>collapse1Visible = !collapse1Visible)">Filters</Button>
 
             </CollapseHeader>
-            <CollapseBody Padding=Padding.Is0>
+            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
                 <FiltersComponent @bind-Filters="_filters" />
 
@@ -23,7 +23,7 @@
                 <Button Size=Size.Small Block=true Clicked="@(()=>collapse2Visible = !collapse2Visible)">Categories</Button>
 
             </CollapseHeader>
-            <CollapseBody Padding=Padding.Is0>
+            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
                 <CategoriesComponent @bind-SelectedCategory=_selectedCategory />
 
