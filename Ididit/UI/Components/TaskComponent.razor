@@ -52,16 +52,14 @@
     {
         <Inline>
             <Span Margin=Margin.Is1.FromEnd>Task:</Span>
-            <Select TValue="TaskKind" Size=Size.Small SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
+            <Select Margin=Margin.Is1.FromEnd Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
                 <SelectItem Value="TaskKind.Note">Note</SelectItem>
                 <SelectItem Value="TaskKind.Task">Task</SelectItem>
                 <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
             </Select>
-        </Inline>
 
-        <Inline>
             <Span Margin=Margin.Is1.FromEnd>Priority:</Span>
-            <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
+            <Select Margin=Margin.Is1.FromEnd Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
                 <SelectItem Value="Priority.None">None</SelectItem>
                 <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
                 <SelectItem Value="Priority.Low">Low</SelectItem>
@@ -69,14 +67,12 @@
                 <SelectItem Value="Priority.High">High</SelectItem>
                 <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
             </Select>
-        </Inline>
 
-        @if (!Task.IsDoneAtLeastOnce)
-        {
-            <div>
+            @if (!Task.IsDoneAtLeastOnce)
+            {
                 @( "Created at: " + Task.CreatedAt )
-            </div>
-        }
+            }
+        </Inline>
 
         @if (Task.AverageInterval > 0)
         {
@@ -93,9 +89,8 @@
         @if (Task.IsRepeating)
         {
             <div>
-                @( "Desired interval:" )
-
                 <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                    <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
                     <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
                     <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
 
@@ -116,7 +111,7 @@
 
         @if (Task.IsDoneAtLeastOnce)
         {
-            <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" />Show history</Button>
+            <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
         }
 
         @if (_showTime)

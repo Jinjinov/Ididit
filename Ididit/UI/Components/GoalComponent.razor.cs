@@ -132,8 +132,6 @@ public partial class GoalComponent
     // TODO: mobile: enable Sidebar toggling
     // TODO: mobile: set Height and Overflow for Row and Column
 
-    // TODO: fix Task details UI
-    // TODO: better Theme colors
 
 
 
