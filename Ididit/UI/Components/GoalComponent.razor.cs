@@ -133,6 +133,11 @@ public partial class GoalComponent
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
+    // TODO: fix Overflow.Hidden for Options
+
+    // TODO: mobile: enable Sidebar toggling
+    // TODO: mobile: set Height and Overflow
+
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046

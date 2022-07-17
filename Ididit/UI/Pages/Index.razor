@@ -2,7 +2,7 @@
 
 <PageTitle>ididit!</PageTitle>
 
-<Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Height=Height.Max100 Padding=Padding.Is0 Overflow=Overflow.Auto>
+<Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 Height=Height.Max100 Overflow=Overflow.Auto>
 
     <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
         <Collapse Visible="@collapse1Visible">
@@ -32,7 +32,7 @@
     </Accordion>
 
 </Column>
-<Column ColumnSize=ColumnSize.Is12.OnMobile.Is9.OnDesktop Height=Height.Max100 Padding=Padding.Is0 Overflow=Overflow.Auto>
+<Column ColumnSize=ColumnSize.Is12.OnMobile.Is9.OnDesktop Padding=Padding.Is0 Height=Height.Max100 Overflow=Overflow.Auto>
     <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters="_filters" />
 </Column>
 
