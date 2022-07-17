@@ -22,11 +22,13 @@
     <Row>
         <Column Border=Border.Is1 Display=Display.Flex>
 
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is3.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions"><Icon Name="IconName.Wrench" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions"><Icon Name="IconName.Wrench" /></Button>
 
             <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
 
-            <LoginComponent />
+            <Span Margin=Margin.IsAuto.OnY>
+                <LoginComponent />
+            </Span>
 
         </Column>
     </Row>

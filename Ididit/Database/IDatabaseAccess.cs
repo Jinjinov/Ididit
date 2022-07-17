@@ -8,6 +8,8 @@ namespace Ididit.Database;
 
 internal interface IDatabaseAccess
 {
+    bool IsInitialized { get; }
+
     Task Initialize();
 
     Task<RepositoryData> GetData();

@@ -55,6 +55,8 @@ internal class DatabaseAccess : IDatabaseAccess
 
     private int _dbModelId = -1;
 
+    public bool IsInitialized => _dbModelId != -1;
+
     private readonly IndexedDb _indexedDb;
 
     public DatabaseAccess(IndexedDb indexedDb)
