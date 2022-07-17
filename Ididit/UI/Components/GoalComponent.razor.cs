@@ -133,8 +133,6 @@ public partial class GoalComponent
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
-    // TODO: mobile: single column, minimized tree view
-
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
