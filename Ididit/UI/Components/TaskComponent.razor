@@ -1,10 +1,10 @@
 ﻿@using Ididit.Data.Models
 
-<Card Border=Border.Is0.OnEnd.Is0.OnStart.Is1.OnTop.Is1.OnBottom.RoundedZero Class="mx-n1">
+<Card Border=Border.Is1.RoundedZero Class="mx-n1">
     <CardBody Padding=Padding.Is1>
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
-        <Div Display=Display.Flex Flex=Flex.Grow.Is1 Border=Border.Is0 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
+        <Div Display=Display.Flex Flex=Flex.Grow.Is1 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
             <Div Flex=Flex.Grow.Is1>@Task.Name</Div>
             @if (Task.IsRepeating)
             {
