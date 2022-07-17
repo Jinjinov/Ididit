@@ -133,7 +133,7 @@ public partial class GoalComponent
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
-    // TODO: fix Overflow.Hidden for Options
+    // TODO: fix Overflow.Hidden for any @Body that is not Index
 
     // TODO: mobile: enable Sidebar toggling
     // TODO: mobile: set Height and Overflow

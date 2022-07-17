@@ -28,16 +28,18 @@
 
         </Column>
     </Row>
-    <Row Background=Background.Secondary Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden>
-        @if (_showOptions)
-        {
+    @if (_showOptions)
+    {
+        <Row Background=Background.Secondary Flex=Flex.Grow.Is1 Overflow=Overflow.Auto>
             <Options Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
-        }
-        else
-        {
+        </Row>
+    }
+    else
+    {
+        <Row Background=Background.Secondary Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden>
             @Body
-        }
-    </Row>
+        </Row>
+    }
     <Row>
         <Column Border=Border.Is1>
             <span>&#169; 2022</span>
