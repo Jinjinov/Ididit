@@ -1,7 +1,6 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -129,9 +128,6 @@ public partial class GoalComponent
             }
         }
     }
-
-    // TODO: fix Overflow.Hidden for any @Body that is not Index
-    // TODO: move header and footer to index
 
     // TODO: mobile: enable Sidebar toggling
     // TODO: mobile: set Height and Overflow for Row and Column
