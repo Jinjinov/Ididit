@@ -132,23 +132,34 @@ public partial class GoalComponent
     // TODO: mobile: enable Sidebar toggling
     // TODO: mobile: set Height and Overflow for Row and Column
 
-    // TODO: load db before start in wasm
-
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
-    // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
-    // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
+
+
+
+
+
+    // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046
     // TODO: GoogleDriveBackup
 
-    // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
+
 
     // TODO: https://www.ididit.com - no blazor, better seo
     // TODO: https://app.ididit.com
     // TODO: https://old.ididit.com
+
+
+
+
+    // TODO: load db before start in wasm
+    // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
+
+    // TODO: task - "times list" should load on demand - on Task done - on show Task details
 
     private async Task UpdateTask(TaskModel task, string line)
     {
