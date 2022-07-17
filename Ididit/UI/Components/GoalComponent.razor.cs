@@ -130,13 +130,18 @@ public partial class GoalComponent
         }
     }
 
+    // TODO: fix Overflow.Hidden for any @Body that is not Index
+    // TODO: move header and footer to index
+
+    // TODO: mobile: enable Sidebar toggling
+    // TODO: mobile: set Height and Overflow for Row and Column
+
+    // TODO: load db before start in wasm
+
     // TODO: fix Task details UI
     // TODO: better Theme colors
 
-    // TODO: fix Overflow.Hidden for any @Body that is not Index
-
-    // TODO: mobile: enable Sidebar toggling
-    // TODO: mobile: set Height and Overflow
+    // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
 
@@ -144,6 +149,10 @@ public partial class GoalComponent
     // TODO: GoogleDriveBackup
 
     // TODO: task - "times list" should load on demand - on Task done - on show Task details
+
+    // TODO: https://www.ididit.com - no blazor, better seo
+    // TODO: https://app.ididit.com
+    // TODO: https://old.ididit.com
 
     private async Task UpdateTask(TaskModel task, string line)
     {

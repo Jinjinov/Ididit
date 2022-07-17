@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System.Threading.Tasks;
 
-namespace Ididit.UI.Login;
+namespace Ididit.UI.Components;
 
-public partial class LoginDisplay
+public partial class LoginComponent
 {
     [Inject]
     NavigationManager Navigation { get; set; } = null!;
