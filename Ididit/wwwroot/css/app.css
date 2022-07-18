@@ -13,6 +13,29 @@ iframe {
     display: block;
 }
 
+.parent-row {
+    overflow: auto !important;
+    max-height: 100% !important;
+}
+
+.child-column {
+    overflow: visible !important;
+    max-height: none !important;
+}
+
+@media (min-width: 768px) {
+
+    .parent-row {
+        overflow: hidden !important;
+        max-height: none !important;
+    }
+
+    .child-column {
+        overflow: auto !important;
+        max-height: 100% !important;
+    }
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;

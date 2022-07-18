@@ -130,12 +130,6 @@ public partial class GoalComponent
     }
 
     // TODO: mobile: enable Sidebar toggling
-    // TODO: mobile: set Height and Overflow for Row and Column
-
-
-
-
-
 
 
 
@@ -146,11 +140,9 @@ public partial class GoalComponent
 
 
 
-
     // TODO: https://www.ididit.com - no blazor, better seo
     // TODO: https://app.ididit.com
     // TODO: https://old.ididit.com
-
 
 
 

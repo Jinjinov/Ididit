@@ -40,9 +40,9 @@
     }
     else
     {
-        <Row Background=Background.Light Flex=Flex.Grow.Is1 Overflow=Overflow.Hidden>
+        <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
 
-            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 Height=Height.Max100 Overflow=Overflow.Auto>
+            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="child-column" style="min-width: 330px">
 
                 <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
                     <Collapse Visible="@collapse1Visible">
@@ -72,7 +72,7 @@
                 </Accordion>
 
             </Column>
-            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is9.OnDesktop Padding=Padding.Is0 Height=Height.Max100 Overflow=Overflow.Auto>
+            <Column Padding=Padding.Is0 class="child-column">
                 <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters="_filters" />
             </Column>
 
