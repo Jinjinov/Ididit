@@ -5,14 +5,14 @@
     <Card>
     <CardBody Padding=Padding.Is1>
 
-        <div>Selected goal: @_selectedGoal?.Name</div>
+        <span>Selected category: @SelectedCategory?.Name</span>
 
-        <div>Selected category: @SelectedCategory?.Name</div>
-
-        @if (SelectedCategory != null)
+        @if (SelectedCategory != null && _selectedGoal == null)
         {
-            <Button Color=Color.Primary Outline=true Size="Size" @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
+            <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
         }
+
+        <div>Selected goal: @_selectedGoal?.Name</div>
 
     </CardBody>
     </Card>
