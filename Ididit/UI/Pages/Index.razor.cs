@@ -62,8 +62,13 @@ public partial class Index
 
     CategoryModel? _selectedCategory;
 
-    bool collapse1Visible = true;
-    bool collapse2Visible = true;
+    bool _filtersVisible = true;
+    bool _categoriesVisible = true;
+
+    bool _sidebarVisible = false;
+    string? SidebarVisibilityCss => _sidebarVisible ? null : "sidebar-visible";
+
+    void ToggleSidebar() => _sidebarVisible = !_sidebarVisible;
 
     Filters _filters = new();
 

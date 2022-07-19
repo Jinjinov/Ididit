@@ -22,7 +22,13 @@
     <Row>
         <Column Border=Border.Is1 Display=Display.Flex>
 
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions"><Icon Name="IconName.Wrench" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
+                <Icon Name="IconName.Bars" />
+            </Button>
+
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions">
+                <Icon Name="IconName.Wrench" />
+            </Button>
 
             <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
 
@@ -42,13 +48,13 @@
     {
         <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
 
-            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="child-column" style="min-width: 330px">
+            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 330px">
 
                 <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
-                    <Collapse Visible="@collapse1Visible">
+                    <Collapse Visible="@_filtersVisible">
                         <CollapseHeader Padding=Padding.Is0>
 
-                            <Button Size=Size.Small Block=true Clicked="@(()=>collapse1Visible = !collapse1Visible)">Filters</Button>
+                            <Button Size=Size.Small Block=true Clicked="@(() => _filtersVisible = !_filtersVisible)">Filters</Button>
 
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
@@ -57,10 +63,10 @@
 
                         </CollapseBody>
                     </Collapse>
-                    <Collapse Visible="@collapse2Visible">
+                    <Collapse Visible="@_categoriesVisible">
                         <CollapseHeader Padding=Padding.Is0>
 
-                            <Button Size=Size.Small Block=true Clicked="@(()=>collapse2Visible = !collapse2Visible)">Categories</Button>
+                            <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Categories</Button>
 
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">

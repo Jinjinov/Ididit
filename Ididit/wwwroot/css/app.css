@@ -23,6 +23,14 @@ iframe {
     max-height: none !important;
 }
 
+.sidebar-visible {
+    display: none !important;
+}
+
+.sidebar-toggle-visible {
+    display: block !important;
+}
+
 @media (min-width: 768px) {
 
     .parent-row {
@@ -34,6 +42,15 @@ iframe {
         overflow: auto !important;
         max-height: 100% !important;
     }
+
+    .sidebar-visible {
+        display: block !important;
+    }
+
+    .sidebar-toggle-visible {
+        display: none !important;
+    }
+
 }
 
 #blazor-error-ui {
