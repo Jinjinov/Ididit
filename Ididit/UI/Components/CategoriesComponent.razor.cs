@@ -12,9 +12,6 @@ public partial class CategoriesComponent
     [Inject]
     IRepository Repository { get; set; } = null!;
 
-    [CascadingParameter]
-    Blazorise.Size Size { get; set; }
-
     [Parameter]
     public CategoryModel? SelectedCategory { get; set; } = null!;
 
