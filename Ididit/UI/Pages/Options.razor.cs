@@ -17,6 +17,9 @@ public partial class Options
     IRepository Repository { get; set; } = null!;
 
     [Parameter]
+    public CategoryModel? SelectedCategory { get; set; } = null!;
+
+    [Parameter]
     public IList<string> Themes { get; set; } = null!;
 
     [Parameter]
@@ -104,11 +107,7 @@ public partial class Options
 
     async Task ImportMarkdown(InputFileChangeEventArgs e)
     {
-        // TODO: use the real selectedCategory
-
-        CategoryModel? selectedCategory = Repository.CategoryList.FirstOrDefault();
-
-        if (selectedCategory != null)
+        if (SelectedCategory != null)
         {
             IEnumerable<IBrowserFile> browserFiles = e.GetMultipleFiles(e.FileCount).Where(browserFile => browserFile.Name.EndsWith(".md"));
 
@@ -118,7 +117,7 @@ public partial class Options
 
                 Stream stream = browserFile.OpenReadStream();
 
-                await MarkdownBackup.ImportData(selectedCategory, stream, name);
+                await MarkdownBackup.ImportData(SelectedCategory, stream, name);
             }
         }
     }

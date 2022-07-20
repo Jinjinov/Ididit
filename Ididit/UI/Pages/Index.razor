@@ -41,7 +41,7 @@
     @if (_showOptions)
     {
         <Row Background=Background.Light Flex=Flex.Grow.Is1 Overflow=Overflow.Auto>
-            <Options Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+            <Options SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
         </Row>
     }
     else
