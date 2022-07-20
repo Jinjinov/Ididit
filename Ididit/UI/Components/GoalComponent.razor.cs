@@ -129,6 +129,21 @@ public partial class GoalComponent
         }
     }
 
+    // TODO: fix category creation
+    // enter saves title @KeyDown
+    // lost focus saves title @FocusOut
+    // root category always exists
+
+    // TODO: fix goal creation
+    // enter saves title @KeyDown
+    // lost focus saves title @FocusOut
+    // fixed width icons
+    // merge "toggle goal details edit" with "edit goal title"
+    // remove "selected goal"
+    // merge "selected category" and "add goal"
+    // "add goal" is always possible
+
+
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
     // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
