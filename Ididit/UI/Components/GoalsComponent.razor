@@ -5,11 +5,9 @@
     <Card>
     <CardBody Padding=Padding.Is1>
 
-        <span>Selected category: @SelectedCategory?.Name</span>
-
-        @if (SelectedCategory != null && _selectedGoal == null)
+        @if (SelectedCategory != null)
         {
-            <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal><Icon Name="IconName.Add" />Add goal</Button>
+            <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory?.Name</Button>
         }
 
     </CardBody>

@@ -139,8 +139,6 @@ public partial class GoalComponent
     // lost focus saves title @FocusOut
     // fixed width icons
     // merge "toggle goal details edit" with "edit goal title"
-    // remove "selected goal"
-    // merge "selected category" and "add goal"
     // "add goal" is always possible
 
 
