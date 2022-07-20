@@ -134,6 +134,8 @@ public partial class GoalComponent
     // lost focus saves title @FocusOut
     // root category always exists
 
+    // TODO: "save" (exit edit) on Enter key
+
     // TODO: fix goal creation
     // enter saves title @KeyDown
     // lost focus saves title @FocusOut
@@ -144,7 +146,7 @@ public partial class GoalComponent
 
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
-    // TODO: fix login auth - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
+    // TODO: fix login auth in BlazorWebView - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
 
     // TODO: GoogleDriveBackup
 
@@ -200,11 +202,7 @@ public partial class GoalComponent
 
     // TODO: remove focused borders
 
-    // TODO: "save" (exit edit) on Enter key
-
     // TODO: see all - or collapse to titles
-
-    // TODO: user friendly "edit" "save" - remove Edit name buttons, remove Toggle buttons (click on Goal to toggle edit mode), start edit on click (except on URL link click)
 
     // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
 
@@ -258,13 +256,6 @@ public partial class GoalComponent
 
     // TODO: show Times in a Calendar/Scheduler, not a List
 }
-
-// TODO: use blazor layouts for Login and Authentication ?
-// @inherits LayoutComponentBase
-// @page "/users"
-// @layout MainLayout
-// @page "/admin"
-// @layout AdminLayout
 
 // https://blazorise.com/docs/components/repeater
 // The repeater component is a helper component that repeats the child content for each element in a collection.
