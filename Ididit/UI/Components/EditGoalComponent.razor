@@ -3,8 +3,8 @@
     <Addons Flex=Flex.NoWrap @onclick:stopPropagation>
         <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@Goal.Name" Placeholder="Add new goal" />
         <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Name="IconName.Save" /></Button>
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Name="IconName.Times" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>
         </Addon>
     </Addons>
 }
@@ -14,8 +14,8 @@ else
         <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true />
 
         <Addon AddonType="AddonType.End" @onclick:stopPropagation>
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Name="IconName.Edit" /></Button>
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Name="IconName.Delete" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
         </Addon>
     </Addons>
 }

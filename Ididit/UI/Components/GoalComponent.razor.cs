@@ -137,9 +137,9 @@ public partial class GoalComponent
     // TODO: fix goal creation
     // enter saves title @KeyDown
     // lost focus saves title @FocusOut
-    // fixed width icons
     // merge "toggle goal details edit" with "edit goal title"
-    // "add goal" is always possible
+    // "add goal" is always possible (root category always exists)
+
 
 
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
