@@ -5,22 +5,12 @@
     <Card>
     <CardBody Padding=Padding.Is1>
 
-        @if (SelectedCategory != null)
-        {
-            <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory?.Name</Button>
-        }
+        <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory.Name</Button>
 
     </CardBody>
     </Card>
 
-    @if (SelectedCategory != null)
-    {
-        @foreach (GoalModel goal in SelectedCategory.GoalList)
-        {
-            <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
-        }
-    }
-    else
+    @if (ShowAllGoals)
     {
         @foreach (CategoryModel category in Repository.AllCategories.Values)
         {
@@ -33,6 +23,13 @@
             {
                 <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
             }
+        }
+    }
+    else
+    {
+        @foreach (GoalModel goal in SelectedCategory.GoalList)
+        {
+            <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
         }
     }
 

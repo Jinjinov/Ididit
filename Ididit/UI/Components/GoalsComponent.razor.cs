@@ -15,10 +15,13 @@ public partial class GoalsComponent
     Blazorise.Size Size { get; set; }
 
     [Parameter]
-    public CategoryModel? SelectedCategory { get; set; } = null!;
+    public CategoryModel SelectedCategory { get; set; } = null!;
 
     [Parameter]
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
+
+    [Parameter]
+    public bool ShowAllGoals { get; set; }
 
     [Parameter]
     public Filters Filters { get; set; } = null!;
@@ -36,14 +39,11 @@ public partial class GoalsComponent
 
     async Task NewGoal()
     {
-        if (SelectedCategory != null)
-        {
-            GoalModel goal = SelectedCategory.CreateGoal(Repository.MaxGoalId + 1);
+        GoalModel goal = SelectedCategory.CreateGoal(Repository.MaxGoalId + 1);
 
-            await Repository.AddGoal(goal);
+        await Repository.AddGoal(goal);
 
-            _selectedGoal = goal;
-            _editGoal = goal;
-        }
+        _selectedGoal = goal;
+        _editGoal = goal;
     }
 }

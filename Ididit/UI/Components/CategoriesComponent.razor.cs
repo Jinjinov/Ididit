@@ -13,12 +13,18 @@ public partial class CategoriesComponent
     IRepository Repository { get; set; } = null!;
 
     [Parameter]
-    public CategoryModel? SelectedCategory { get; set; } = null!;
+    public CategoryModel SelectedCategory { get; set; } = null!;
 
     [Parameter]
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
-    IList<CategoryModel?> _expandedNodes = new List<CategoryModel?>();
+    [Parameter]
+    public bool ShowAllGoals { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowAllGoalsChanged { get; set; }
+
+    IList<CategoryModel> _expandedNodes = new List<CategoryModel>();
 
     CategoryModel? _editCategory;
 
@@ -34,33 +40,45 @@ public partial class CategoriesComponent
         }
     }
 
-    static IList<CategoryModel>? GetChildNodes(CategoryModel? item) => item?.CategoryList;
+    static IList<CategoryModel> GetChildNodes(CategoryModel item) => item.CategoryList;
 
-    static bool HasChildNodes(CategoryModel? item) => item?.CategoryList?.Any() == true;
+    static bool HasChildNodes(CategoryModel item) => item.CategoryList.Any();
 
-    async Task OnSelectedCategoryChanged(CategoryModel? category)
+    async Task OnSelectedCategoryChanged(CategoryModel category)
     {
-        SelectedCategory = category;
+        if (SelectedCategory != category)
+        {
+            SelectedCategory = category;
+            await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
 
-        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+            ShowAllGoals = false;
+            await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+        }
     }
 
-    static void NodeStyling(CategoryModel? item, Blazorise.TreeView.NodeStyling style)
+    static void NodeStyling(CategoryModel item, Blazorise.TreeView.NodeStyling style)
     {
-        style.TextColor = (item?.CategoryList?.Any() == true) ? Blazorise.TextColor.Primary : Blazorise.TextColor.Default;
+        style.TextColor = item.CategoryList.Any() ? Blazorise.TextColor.Primary : Blazorise.TextColor.Default;
         style.Style = "font-weight:bold";
     }
 
-    static void SelectedNodeStyling(CategoryModel? item, Blazorise.TreeView.NodeStyling style)
+    static void SelectedNodeStyling(CategoryModel item, Blazorise.TreeView.NodeStyling style)
     {
         style.Style = "padding:0!important";
     }
 
-    async Task ShowAllGoals()
+    async Task OnShowAllGoalsChanged(bool? val)
     {
-        SelectedCategory = null;
+        bool showAllGoals = val ?? false;
 
-        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+        if (ShowAllGoals != showAllGoals)
+        {
+            ShowAllGoals = showAllGoals;
+            await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+
+            SelectedCategory = Repository.Category;
+            await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+        }
     }
 
     void ToggleAll()
@@ -71,22 +89,19 @@ public partial class CategoriesComponent
         }
         else
         {
-            _expandedNodes = new List<CategoryModel?>(Repository.CategoryList);
+            _expandedNodes = new List<CategoryModel>(Repository.CategoryList);
         }
     }
 
     async Task NewCategory()
     {
-        CategoryModel category = SelectedCategory != null ? SelectedCategory.CreateCategory(Repository.MaxCategoryId + 1) : Repository.CreateCategory();
+        CategoryModel category = SelectedCategory.CreateCategory(Repository.MaxCategoryId + 1);
 
         await Repository.AddCategory(category);
 
-        if (SelectedCategory != null)
+        if (!_expandedNodes.Contains(SelectedCategory))
         {
-            if (!_expandedNodes.Contains(SelectedCategory))
-            {
-                _expandedNodes.Add(SelectedCategory);
-            }
+            _expandedNodes.Add(SelectedCategory);
         }
 
         _editCategory = category;

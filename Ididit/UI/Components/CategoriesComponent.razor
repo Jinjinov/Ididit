@@ -4,9 +4,10 @@
 @*<Card Margin=Margin.Is2.OnY>
 <CardBody Padding=Padding.Is1>*@
 
-    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ShowAllGoals>Show all goals</Button>
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category</Button>
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
+
+    <CheckBox Checked="ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">Show all goals</CheckBox>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
               TNode="CategoryModel"

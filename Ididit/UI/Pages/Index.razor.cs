@@ -60,7 +60,9 @@ public partial class Index
     [Inject]
     IRepository Repository { get; set; } = null!;
 
-    CategoryModel? _selectedCategory;
+    CategoryModel _selectedCategory = new();
+
+    bool _showAllGoals;
 
     bool _filtersVisible = true;
     bool _categoriesVisible = true;
@@ -85,6 +87,8 @@ public partial class Index
         };
 
         await Repository.Initialize();
+
+        _selectedCategory = Repository.Category;
 
         StateHasChanged(); // refresh components with _repository.Settings
     }

@@ -20,6 +20,7 @@ internal class Repository : DataModel, IRepository
     public IReadOnlyDictionary<long, TaskModel> AllTasks => _taskDict;
     public IReadOnlyDictionary<long, SettingsModel> AllSettings => _settingsDict;
 
+    public CategoryModel Category { get; set; } = new();
     public SettingsModel Settings { get; set; } = new();
 
     private Dictionary<long, CategoryModel> _categoryDict = new();
@@ -48,9 +49,20 @@ internal class Repository : DataModel, IRepository
         _settingsDict = data.SettingsDict;
         _taskDict = data.TaskDict;
 
+        if (!CategoryList.Any())
+        {
+            CategoryModel category = CreateCategory();
+
+            category.Name = "ididit!";
+
+            await AddCategory(category);
+        }
+
+        Category = CategoryList.First();
+
         if (!SettingsList.Any())
         {
-            SettingsModel settings = new() { Name = "Main", Theme = "default" };
+            SettingsModel settings = new() { Name = "ididit!", Theme = "default" };
 
             SettingsList.Add(settings);
 

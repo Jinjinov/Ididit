@@ -15,7 +15,10 @@ else
 
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-            <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=DeleteCategory><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+            @if (Category?.Id != 1)
+            {
+                <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=DeleteCategory><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+            }
         </Addon>
     </Addons>
 }

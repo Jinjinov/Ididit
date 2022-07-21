@@ -129,12 +129,7 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: fix category creation
-    // root category always exists
-
-    // TODO: fix goal creation
-    // merge "toggle goal details edit" with "edit goal title"
-    // "add goal" is always possible (root category always exists)
+    // TODO: fix goal creation - merge "toggle goal details edit" with "edit goal title"
 
 
 
