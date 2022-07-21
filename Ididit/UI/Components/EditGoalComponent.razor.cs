@@ -57,6 +57,11 @@ public sealed partial class EditGoalComponent
         }
     }
 
+    async Task FocusOut(FocusEventArgs eventArgs)
+    {
+        await SaveName();
+    }
+
     async Task CancelEdit()
     {
         EditGoal = null;

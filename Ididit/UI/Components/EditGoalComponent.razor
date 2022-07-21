@@ -1,7 +1,7 @@
 ﻿@if (EditGoal == Goal && Goal != null)
 {
     <Addons Flex=Flex.NoWrap @onclick:stopPropagation>
-        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@Goal.Name" KeyUp=KeyUp Placeholder="Add new goal" />
+        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@Goal.Name" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>

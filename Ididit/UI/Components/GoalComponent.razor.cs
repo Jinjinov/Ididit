@@ -130,11 +130,9 @@ public partial class GoalComponent
     }
 
     // TODO: fix category creation
-    // lost focus saves title @FocusOut
     // root category always exists
 
     // TODO: fix goal creation
-    // lost focus saves title @FocusOut
     // merge "toggle goal details edit" with "edit goal title"
     // "add goal" is always possible (root category always exists)
 

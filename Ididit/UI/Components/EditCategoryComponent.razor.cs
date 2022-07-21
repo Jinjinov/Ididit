@@ -57,6 +57,11 @@ public sealed partial class EditCategoryComponent
         }
     }
 
+    async Task FocusOut(FocusEventArgs eventArgs)
+    {
+        await SaveName();
+    }
+
     async Task CancelEdit()
     {
         EditCategory = null;
