@@ -130,14 +130,10 @@ public partial class GoalComponent
     }
 
     // TODO: fix category creation
-    // enter saves title @KeyDown
     // lost focus saves title @FocusOut
     // root category always exists
 
-    // TODO: "save" (exit edit) on Enter key
-
     // TODO: fix goal creation
-    // enter saves title @KeyDown
     // lost focus saves title @FocusOut
     // merge "toggle goal details edit" with "edit goal title"
     // "add goal" is always possible (root category always exists)
@@ -261,3 +257,23 @@ public partial class GoalComponent
 // The repeater component is a helper component that repeats the child content for each element in a collection.
 // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
 // Meaning you can do custom actions whenever a data-source changes.
+
+/*
+advertise on: facebook, reddit, twitter, instagram, linkedin
+
+google store - $25
+https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
+
+apple store - $99 annually
+https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
+
+windows store - $19
+https://www.youtube.com/watch?v=N6jPl3tBNfg
+https://stackoverflow.com/questions/63369727/not-seeing-any-alternative-option-for-publish-create-app-packages-in-my-wpf
+
+linux software repository
+https://help.ubuntu.com/community/Repositories/Ubuntu
+https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
+
+help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
+/**/

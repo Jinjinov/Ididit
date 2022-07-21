@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -41,6 +42,18 @@ public sealed partial class EditCategoryComponent
         {
             EditCategory = Category;
             await EditCategoryChanged.InvokeAsync(EditCategory);
+        }
+    }
+
+    async Task KeyUp(KeyboardEventArgs eventArgs)
+    {
+        if (eventArgs.Code == "Escape")
+        {
+            await CancelEdit();
+        }
+        else if (eventArgs.Code == "Enter" || eventArgs.Code == "NumpadEnter")
+        {
+            await SaveName();
         }
     }
 
