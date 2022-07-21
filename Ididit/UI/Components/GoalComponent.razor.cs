@@ -129,7 +129,16 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: fix goal creation - merge "toggle goal details edit" with "edit goal title"
+    // TODO: fix goal creation
+    // fix first goal creation (title focus lost)
+    // fix The given key '6' was not present in the dictionary in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
+    // update category name in "add goal to ..." on save
+    // merge "toggle goal details edit" with "edit goal title"
+
+    // remove "Also show completed tasks"
+    // remove "Average interval" for non-repeating tasks
+    // remove "show history" for non-repeating tasks
+    // remove "completed at" for non-repeating tasks
 
 
 
