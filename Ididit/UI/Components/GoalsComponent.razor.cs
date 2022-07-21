@@ -30,6 +30,7 @@ public partial class GoalsComponent
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
         SelectedCategory = category;
+
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
     }
 

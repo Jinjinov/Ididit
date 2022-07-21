@@ -56,9 +56,11 @@ public partial class CategoriesComponent
         style.Style = "padding:0!important";
     }
 
-    void ShowAllGoals()
+    async Task ShowAllGoals()
     {
         SelectedCategory = null;
+
+        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
     }
 
     void ToggleAll()
