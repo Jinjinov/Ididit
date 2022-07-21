@@ -83,7 +83,7 @@ public partial class Index
             ShowElapsedToDesiredRatioOverMin = Repository.Settings.ShowElapsedToDesiredRatioOverMin,
             HideEmptyGoals = Repository.Settings.HideEmptyGoals,
             ShowCategoriesInGoalList = Repository.Settings.ShowCategoriesInGoalList,
-            AlsoShowCompletedAsap = Repository.Settings.AlsoShowCompletedAsap,
+            HideCompletedTasks = Repository.Settings.HideCompletedTasks,
         };
 
         await Repository.Initialize();

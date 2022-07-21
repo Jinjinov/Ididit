@@ -122,7 +122,7 @@ public class GoalModel
 
             return isNameOk && isDateOk && isPriorityOk && isTaskKindOk &&
                 (isRatioOk || !filters.ShowElapsedToDesiredRatioOverMin) &&
-                (!task.IsCompleted || filters.AlsoShowCompletedAsap);
+                (!task.IsCompleted || !filters.HideCompletedTasks);
         });
 
         return GetSortedTasks(tasks, filters);

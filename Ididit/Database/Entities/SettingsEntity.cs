@@ -32,5 +32,5 @@ internal class SettingsEntity
     public bool ShowCategoriesInGoalList { get; set; }
 
     [IndexDbIndex]
-    public bool AlsoShowCompletedAsap { get; set; }
+    public bool HideCompletedTasks { get; set; }
 }

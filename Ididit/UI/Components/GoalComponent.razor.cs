@@ -135,8 +135,6 @@ public partial class GoalComponent
     // update category name in "add goal to ..." on save
     // merge "toggle goal details edit" with "edit goal title"
 
-    // remove "Also show completed tasks"
-
 
 
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout

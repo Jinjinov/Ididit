@@ -137,12 +137,12 @@ public partial class FiltersComponent
         }
     }
 
-    bool AlsoShowCompletedAsap
+    bool HideCompletedTasks
     {
         get
         {
-            Filters.AlsoShowCompletedAsap = Repository.Settings.AlsoShowCompletedAsap;
-            return Repository.Settings.AlsoShowCompletedAsap;
+            Filters.HideCompletedTasks = Repository.Settings.HideCompletedTasks;
+            return Repository.Settings.HideCompletedTasks;
         }
     }
 
@@ -173,12 +173,12 @@ public partial class FiltersComponent
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    async Task OnAlsoShowCompletedAsapChanged(bool? val)
+    async Task OnHideCompletedTasksChanged(bool? val)
     {
-        Filters.AlsoShowCompletedAsap = val ?? false;
+        Filters.HideCompletedTasks = val ?? false;
         await FiltersChanged.InvokeAsync(Filters);
 
-        Repository.Settings.AlsoShowCompletedAsap = val ?? false;
+        Repository.Settings.HideCompletedTasks = val ?? false;
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 

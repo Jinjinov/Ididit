@@ -22,5 +22,5 @@ public class Filters
 
     public bool ShowCategoriesInGoalList { get; set; }
 
-    public bool AlsoShowCompletedAsap { get; set; }
+    public bool HideCompletedTasks { get; set; }
 }

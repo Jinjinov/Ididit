@@ -183,7 +183,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
                 HideEmptyGoals = settings.HideEmptyGoals,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-                AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
+                HideCompletedTasks = settings.HideCompletedTasks
             };
 
             _settingsDict[settings.Id] = settings;
@@ -300,7 +300,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
                 HideEmptyGoals = settings.HideEmptyGoals,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-                AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
+                HideCompletedTasks = settings.HideCompletedTasks
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -396,7 +396,7 @@ internal class DatabaseAccess : IDatabaseAccess
             ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
             HideEmptyGoals = settings.HideEmptyGoals,
             ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-            AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap
+            HideCompletedTasks = settings.HideCompletedTasks
         };
 
         _settingsList.Add(settingsEntity);
@@ -487,7 +487,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin;
             settingsEntity.HideEmptyGoals = settings.HideEmptyGoals;
             settingsEntity.ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList;
-            settingsEntity.AlsoShowCompletedAsap = settings.AlsoShowCompletedAsap;
+            settingsEntity.HideCompletedTasks = settings.HideCompletedTasks;
 
             await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });
         }
