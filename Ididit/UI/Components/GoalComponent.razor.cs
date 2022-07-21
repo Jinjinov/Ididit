@@ -136,9 +136,6 @@ public partial class GoalComponent
     // merge "toggle goal details edit" with "edit goal title"
 
     // remove "Also show completed tasks"
-    // remove "Average interval" for non-repeating tasks
-    // remove "show history" for non-repeating tasks
-    // add "completed at" for non-repeating tasks
 
 
 

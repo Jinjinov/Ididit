@@ -5,7 +5,14 @@
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-            <Div Flex=Flex.Grow.Is1>@Task.Name</Div>
+            @if (Task.IsCompleted)
+            {
+                <Div Flex=Flex.Grow.Is1><s>@Task.Name</s></Div>
+            }
+            else
+            {
+                <Div Flex=Flex.Grow.Is1>@Task.Name</Div>
+            }
             @if (Task.IsRepeating)
             {
                 <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>

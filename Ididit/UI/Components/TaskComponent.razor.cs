@@ -73,11 +73,14 @@ public partial class TaskComponent
 
     async Task OnDone()
     {
-        (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
+        if (!Task.IsCompleted)
+        {
+            (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 
-        await Repository.AddTime(time, taskId);
+            await Repository.AddTime(time, taskId);
 
-        await Repository.UpdateTask(Task.Id);
+            await Repository.UpdateTask(Task.Id);
+        }
     }
 
     void DateChanged(DateTime dateTime)
