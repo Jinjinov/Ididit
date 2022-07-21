@@ -72,9 +72,14 @@
             {
                 @( "Created at: " + Task.CreatedAt )
             }
+
+            @if (Task.IsCompleted)
+            {
+                @( "Completed at: " + Task.LastTimeDoneAt )
+            }
         </Inline>
 
-        @if (Task.AverageInterval > 0)
+        @if (Task.IsRepeating && Task.AverageInterval > 0)
         {
             <div>
                 @( "Average interval: " + ToReadableString(Task.AverageTime) )
@@ -109,7 +114,7 @@
             </div>
         }
 
-        @if (Task.IsDoneAtLeastOnce)
+        @if (Task.IsRepeating && Task.IsDoneAtLeastOnce)
         {
             <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
         }

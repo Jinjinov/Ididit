@@ -29,7 +29,9 @@ public class GoalModel
             Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now,
+            DesiredInterval = 0,
+            Priority = Priority.Medium
         };
 
         TaskList.Add(task);
@@ -46,7 +48,9 @@ public class GoalModel
             Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
-            CreatedAt = DateTime.Now
+            CreatedAt = DateTime.Now,
+            DesiredInterval = 0,
+            Priority = Priority.Medium
         };
 
         if (index > 0)
