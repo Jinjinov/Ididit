@@ -92,11 +92,16 @@ public partial class TaskComponent
 
     async Task SaveTime(DateTime time)
     {
-        Task.UpdateTime(time, _taskTime);
+        if (time != _taskTime)
+        {
+            Task.UpdateTime(time, _taskTime);
 
-        await Repository.UpdateTime(time.Ticks, _taskTime, Task.Id);
+            await Repository.UpdateTime(time.Ticks, _taskTime, Task.Id);
 
-        await Repository.UpdateTask(Task.Id);
+            await Repository.UpdateTask(Task.Id);
+        }
+
+        CancelEditTime();
     }
 
     void CancelEditTime()

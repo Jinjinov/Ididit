@@ -526,11 +526,13 @@ internal class DatabaseAccess : IDatabaseAccess
 
     public async Task DeleteTime(long id)
     {
+        DateTime time = _timeDict[id].Time;
+
         _timeList.Remove(_timeDict[id]);
 
         _timeDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<long, TimeEntity>(id);
+        await _indexedDb.DeleteByKey<DateTime, TimeEntity>(time);
     }
 
     public async Task DeleteSettings(long id)
