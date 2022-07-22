@@ -132,10 +132,11 @@ public partial class GoalComponent
     // TODO: fix goal creation
     // fix first goal creation (title focus lost)
     // fix The given key '6' was not present in the dictionary in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
-    // update category name in "add goal to ..." on save
     // merge "toggle goal details edit" with "edit goal title"
 
 
+
+    // TODO: import Google Keep notes
 
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 

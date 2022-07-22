@@ -22,7 +22,7 @@
         <NodeContent>
             @if (context == SelectedCategory)
             {
-                <EditCategoryComponent @bind-Category=context @bind-EditCategory=_editCategory />
+                <EditCategoryComponent Category=context CategoryChanged="async (category) => { context = category; await OnCategoryChanged(category); }" @bind-EditCategory=_editCategory />
             }
             else
             {

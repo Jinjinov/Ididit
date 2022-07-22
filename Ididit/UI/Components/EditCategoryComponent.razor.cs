@@ -28,6 +28,8 @@ public sealed partial class EditCategoryComponent
 
     Blazorise.TextEdit? _textEdit;
 
+    string _categoryName = string.Empty;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (EditCategory == Category && _textEdit != null)
@@ -40,6 +42,8 @@ public sealed partial class EditCategoryComponent
     {
         if (Category != null)
         {
+            _categoryName = Category.Name;
+
             EditCategory = Category;
             await EditCategoryChanged.InvokeAsync(EditCategory);
         }
@@ -64,6 +68,8 @@ public sealed partial class EditCategoryComponent
 
     async Task CancelEdit()
     {
+        _categoryName = Category?.Name ?? string.Empty;
+
         EditCategory = null;
         await EditCategoryChanged.InvokeAsync(EditCategory);
     }
@@ -73,10 +79,16 @@ public sealed partial class EditCategoryComponent
         EditCategory = null;
         await EditCategoryChanged.InvokeAsync(EditCategory);
 
-        if (Category != null)
-            await Repository.UpdateCategory(Category.Id);
+        if (_categoryName != Category?.Name)
+        {
+            if (Category != null)
+            {
+                Category.Name = _categoryName;
+                await Repository.UpdateCategory(Category.Id);
+            }
 
-        await CategoryChanged.InvokeAsync(Category);
+            await CategoryChanged.InvokeAsync(Category);
+        }
     }
 
     async Task DeleteCategory()

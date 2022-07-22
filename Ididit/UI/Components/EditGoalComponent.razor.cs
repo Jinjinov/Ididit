@@ -28,6 +28,8 @@ public sealed partial class EditGoalComponent
 
     Blazorise.TextEdit? _textEdit;
 
+    string _goalName = string.Empty;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (EditGoal == Goal && _textEdit != null)
@@ -40,6 +42,8 @@ public sealed partial class EditGoalComponent
     {
         if (Goal != null)
         {
+            _goalName = Goal.Name;
+
             EditGoal = Goal;
             await EditGoalChanged.InvokeAsync(EditGoal);
         }
@@ -64,6 +68,8 @@ public sealed partial class EditGoalComponent
 
     async Task CancelEdit()
     {
+        _goalName = Goal?.Name ?? string.Empty;
+
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
     }
@@ -73,10 +79,16 @@ public sealed partial class EditGoalComponent
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
 
-        if (Goal != null)
-            await Repository.UpdateGoal(Goal.Id);
+        if (_goalName != Goal?.Name)
+        {
+            if (Goal != null)
+            {
+                Goal.Name = _goalName;
+                await Repository.UpdateGoal(Goal.Id);
+            }
 
-        await GoalChanged.InvokeAsync(Goal);
+            await GoalChanged.InvokeAsync(Goal);
+        }
     }
 
     async Task DeleteGoal()

@@ -56,6 +56,16 @@ public partial class CategoriesComponent
         }
     }
 
+    async Task OnCategoryChanged(CategoryModel category)
+    {
+        if (category == null)
+        {
+            SelectedCategory = Repository.Category;
+        }
+
+        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+    }
+
     static void NodeStyling(CategoryModel item, Blazorise.TreeView.NodeStyling style)
     {
         style.TextColor = item.CategoryList.Any() ? Blazorise.TextColor.Primary : Blazorise.TextColor.Default;
