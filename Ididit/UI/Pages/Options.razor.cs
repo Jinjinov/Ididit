@@ -64,6 +64,9 @@ public partial class Options
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
+    [Inject]
+    GoogleKeepImport GoogleKeepImport { get; set; } = null!;
+
     async Task Import(InputFileChangeEventArgs e)
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
@@ -85,6 +88,13 @@ public partial class Options
         if (e.File.Name.EndsWith(".tsv"))
         {
             await TsvBackup.ImportData(stream);
+
+            //await _repository.AddData(data);
+        }
+
+        if (e.File.Name.EndsWith(".zip"))
+        {
+            await GoogleKeepImport.ImportData(SelectedCategory, stream);
 
             //await _repository.AddData(data);
         }

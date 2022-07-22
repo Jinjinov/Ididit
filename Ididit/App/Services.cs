@@ -32,6 +32,7 @@ public static class Services
         serviceCollection.AddScoped<YamlBackup>();
         serviceCollection.AddScoped<TsvBackup>();
         serviceCollection.AddScoped<MarkdownBackup>();
+        serviceCollection.AddScoped<GoogleKeepImport>();
 
         serviceCollection.AddScoped<IRepository, Repository>();
         serviceCollection.AddScoped<IDatabaseAccess, DatabaseAccess>();

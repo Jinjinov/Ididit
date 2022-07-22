@@ -136,15 +136,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: fix goal creation
-    // fix The given key '6' was not present in the dictionary in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
-
-
-
-    // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
-
-
-
     // TODO: import Google Keep notes
 
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
@@ -159,7 +150,7 @@ public partial class GoalComponent
     // TODO: https://app.ididit.com
     // TODO: https://old.ididit.com
 
-
+    // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
     // TODO: load db before start in wasm
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
@@ -258,6 +249,8 @@ public partial class GoalComponent
     // TODO: graphs (num of tasks over time)
 
     // TODO: show Times in a Calendar/Scheduler, not a List
+
+    // TODO: fix "The given key '6' was not present in the dictionary" in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
 }
 
 // https://blazorise.com/docs/components/repeater
