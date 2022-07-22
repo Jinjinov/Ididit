@@ -7,14 +7,15 @@
     @if (tasks.Any() || !Filters.HideEmptyGoals)
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
-        <CardBody Padding=Padding.Is0>
+        <CardBody Padding=Padding.Is0 Class="overlay-parent">
             <div @onclick=SelectGoal>
                 <EditGoalComponent @bind-Goal=Goal EditGoal=EditGoal EditGoalChanged=EditGoalChanged />
             </div>
 
             @if (SelectedGoal == Goal)
             {
-                <MemoEdit @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 TextChanged=OnTextChanged />
+                <Div Class="overlay"></Div>
+                <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
             }
             else
             {

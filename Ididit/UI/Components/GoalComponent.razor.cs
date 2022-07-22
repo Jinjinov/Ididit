@@ -56,6 +56,13 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
+    async Task OnFocusOut()
+    {
+        SelectedGoal = null;
+
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+    }
+
     class DoneLine
     {
         public string Line = null!;
@@ -134,7 +141,6 @@ public partial class GoalComponent
 
 
 
-    // TODO: add "goal details edit" FocusOut
     // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
 

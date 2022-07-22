@@ -13,6 +13,24 @@ iframe {
     display: block;
 }
 
+.overlay-parent {
+    position: relative;
+}
+
+.overlay {
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay-content {
+    z-index: 20;
+    position: relative;
+}
+
 .parent-row {
     overflow: auto !important;
     max-height: 100% !important;
