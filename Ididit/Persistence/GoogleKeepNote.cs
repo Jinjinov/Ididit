@@ -1,6 +1,28 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Ididit.Persistence;
+
+internal class Annotation
+{
+    [JsonPropertyName("description")]
+    public string Description { get; set; } = string.Empty;
+
+    [JsonPropertyName("source")]
+    public string Source { get; set; } = string.Empty;
+
+    [JsonPropertyName("title")]
+    public string Title { get; set; } = string.Empty;
+
+    [JsonPropertyName("url")]
+    public string Url { get; set; } = string.Empty;
+}
+
+internal class Label
+{
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
+}
 
 internal class GoogleKeepNote
 {
@@ -16,6 +38,9 @@ internal class GoogleKeepNote
     [JsonPropertyName("isArchived")]
     public bool IsArchived { get; set; }
 
+    [JsonPropertyName("annotations")]
+    public List<Annotation> Annotations { get; set; } = new();
+
     [JsonPropertyName("textContent")]
     public string TextContent { get; set; } = string.Empty;
 
@@ -27,4 +52,7 @@ internal class GoogleKeepNote
 
     [JsonPropertyName("createdTimestampUsec")]
     public long CreatedTimestampUsec { get; set; }
+
+    [JsonPropertyName("labels")]
+    public List<Label> Labels { get; set; } = new();
 }

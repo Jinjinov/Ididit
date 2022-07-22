@@ -136,8 +136,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: import Google Keep notes
-
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
 
     // TODO: fix login auth in BlazorWebView - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
