@@ -1,6 +1,7 @@
 ﻿@using Ididit.Data.Models
 
-@{
+@if (Goal != null)
+{
     IEnumerable<TaskModel> tasks = Goal.GetFilteredTasks(Filters);
 
     @if (tasks.Any() || !Filters.HideEmptyGoals)

@@ -40,7 +40,7 @@ public partial class GoalComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (SelectedGoal == Goal && _memoEdit != null)
+        if (SelectedGoal == Goal && EditGoal == null && _memoEdit != null)
         {
             await _memoEdit.Focus();
         }
@@ -130,9 +130,12 @@ public partial class GoalComponent
     }
 
     // TODO: fix goal creation
-    // fix first goal creation (title focus lost)
     // fix The given key '6' was not present in the dictionary in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
-    // merge "toggle goal details edit" with "edit goal title"
+
+
+
+    // TODO: add "goal details edit" FocusOut
+    // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
 
 
