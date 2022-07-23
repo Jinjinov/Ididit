@@ -37,6 +37,9 @@ internal class Repository : DataModel, IRepository
 
     public async Task Initialize()
     {
+        if (_databaseAccess.IsInitialized)
+            return;
+
         await _databaseAccess.Initialize();
 
         RepositoryData data = await _databaseAccess.GetData();
