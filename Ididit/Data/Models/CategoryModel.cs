@@ -46,14 +46,46 @@ public class CategoryModel
         return goal;
     }
 
-    public void RemoveCategory()
+    public CategoryModel? RemoveCategory(CategoryModel category)
     {
-        // TODO:: fix PreviousId
+        CategoryModel? changedCategory = null;
+
+        int index = CategoryList.IndexOf(category);
+
+        if (index < CategoryList.Count - 1)
+        {
+            changedCategory = CategoryList[index + 1];
+
+            if (index > 0)
+                changedCategory.PreviousId = CategoryList[index - 1].Id;
+            else
+                changedCategory.PreviousId = null;
+        }
+
+        CategoryList.Remove(category);
+
+        return changedCategory;
     }
 
-    public void RemoveGoal()
+    public GoalModel? RemoveGoal(GoalModel goal)
     {
-        // TODO:: fix PreviousId
+        GoalModel? changedGoal = null;
+
+        int index = GoalList.IndexOf(goal);
+
+        if (index < GoalList.Count - 1)
+        {
+            changedGoal = GoalList[index + 1];
+
+            if (index > 0)
+                changedGoal.PreviousId = GoalList[index - 1].Id;
+            else
+                changedGoal.PreviousId = null;
+        }
+
+        GoalList.Remove(goal);
+
+        return changedGoal;
     }
 
     public void OrderCategories()

@@ -136,10 +136,6 @@ public partial class GoalComponent
         }
     }
 
-    // TODO:: fix PreviousId
-
-
-
     // TODO: implement IGoogleDriveBackup - GoogleDriveBackup https://developers.google.com/drive/api/quickstart/dotnet
     // https://github.com/googleworkspace/dotnet-samples/blob/master/drive/DriveQuickstart/DriveQuickstart.cs
 

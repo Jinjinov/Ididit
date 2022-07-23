@@ -98,8 +98,10 @@ public sealed partial class EditGoalComponent
 
         if (Repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
         {
-            // TODO:: fix PreviousId
-            parent.GoalList.Remove(Goal);
+            GoalModel? changedGoal = parent.RemoveGoal(Goal);
+
+            if (changedGoal is not null)
+                await Repository.UpdateGoal(changedGoal.Id);
         }
 
         await Repository.DeleteGoal(Goal.Id);

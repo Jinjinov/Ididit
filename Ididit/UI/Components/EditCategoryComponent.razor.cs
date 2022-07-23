@@ -98,8 +98,10 @@ public sealed partial class EditCategoryComponent
 
         if (Category.CategoryId.HasValue && Repository.AllCategories.TryGetValue(Category.CategoryId.Value, out CategoryModel? parent))
         {
-            // TODO:: fix PreviousId
-            parent.CategoryList.Remove(Category);
+            CategoryModel? changedCategory = parent.RemoveCategory(Category);
+
+            if (changedCategory is not null)
+                await Repository.UpdateCategory(changedCategory.Id);
         }
 
         await Repository.DeleteCategory(Category.Id);
