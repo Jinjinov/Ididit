@@ -1,4 +1,7 @@
-﻿<CascadingAuthenticationState>
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Routing
+
+<CascadingAuthenticationState>
     <Router AppAssembly="@GetType().Assembly">
         <Found Context="routeData">
             <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layouts.MainLayout)" />
