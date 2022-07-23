@@ -16,11 +16,22 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 {
     public async Task<DataModel> ImportData()
     {
+        // https://developers.google.com/drive/api/guides/manage-downloads#.net
+
         return null;
     }
 
     public void ExportData(IDataModel data)
     {
+        // https://stackoverflow.com/questions/60774277/check-if-folder-exist-in-google-drive-by-folder-name-c
+
+        // https://stackoverflow.com/questions/47136576/google-drive-api-v3-c-net-searching-folders-files-by-title-throws-requesterr
+
+        // https://stackoverflow.com/questions/72733152/google-drive-api-search-by-file-name-only-finds-the-file-if-it-has-recently-be
+
+        // https://developers.google.com/drive/api/guides/folder#.net
+
+        // https://developers.google.com/drive/api/guides/manage-uploads#.net
     }
 
     /* Global instance of the scopes required by this quickstart. If modifying these scopes, delete your previously saved token.json/ folder. */
