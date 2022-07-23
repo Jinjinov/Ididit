@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System.Threading.Tasks;
 
-namespace Ididit.UI.Components;
+namespace Ididit.Wasm.UI.Components;
 
 public partial class LoginComponent
 {
