@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.WinForms", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Wpf", "Ididit.WebView.Wpf\Ididit.WebView.Wpf.csproj", "{48BAB0C2-C5C8-43F0-A324-E3E1268DF8D8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Maui", "Ididit.Maui\Ididit.WebView.Maui.csproj", "{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Maui", "Ididit.WebView.Maui\Ididit.WebView.Maui.csproj", "{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.Maui", "Ididit.Maui\Ididit.Maui.csproj", "{DE250823-BDF7-4945-8630-4EAD8A3EBEE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Maui", "Ididit.WebView.Maui\Ididit.WebView.Maui.csproj", "{DE250823-BDF7-4945-8630-4EAD8A3EBEE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit", "Ididit\Ididit.csproj", "{B393E936-8470-4962-AF43-6402A4CDD26B}"
 EndProject
