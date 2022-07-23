@@ -147,7 +147,7 @@ public partial class GoalComponent
 
     // TODO: fix login auth in BlazorWebView - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
 
-    // TODO: GoogleDriveBackup is using Microsoft.AspNetCore.Components.WebAssembly.Authentication; https://developers.google.com/drive/api/quickstart/dotnet
+    // TODO: GoogleDriveBackup https://developers.google.com/drive/api/quickstart/dotnet
     // https://github.com/googleworkspace/dotnet-samples/blob/master/drive/DriveQuickstart/DriveQuickstart.cs
 
 
