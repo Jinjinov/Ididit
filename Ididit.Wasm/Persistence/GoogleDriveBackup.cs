@@ -12,7 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace Ididit.Persistence;
+namespace Ididit.Wasm.Persistence;
 
 internal class GoogleDriveBackup
 {

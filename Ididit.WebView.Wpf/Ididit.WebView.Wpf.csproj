@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ididit.WebView\Ididit.WebView.csproj" />
     <ProjectReference Include="..\Ididit\Ididit.csproj" />
   </ItemGroup>
 

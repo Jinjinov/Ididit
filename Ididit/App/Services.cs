@@ -27,7 +27,6 @@ public static class Services
         serviceCollection.AddScoped<JsInterop>();
 
         serviceCollection.AddScoped<DirectoryBackup>();
-        serviceCollection.AddScoped<GoogleDriveBackup>();
         serviceCollection.AddScoped<JsonBackup>();
         serviceCollection.AddScoped<YamlBackup>();
         serviceCollection.AddScoped<TsvBackup>();

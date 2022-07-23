@@ -1,5 +1,6 @@
 using Ididit.App;
 using Ididit.UI;
+using Ididit.WebView.Persistence;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ public partial class MainForm : Form
         serviceCollection.AddBlazorWebViewDeveloperTools();
 #endif
         serviceCollection.AddServices();
+        serviceCollection.AddScoped<GoogleDriveBackup>();
 
         InitializeComponent();
 

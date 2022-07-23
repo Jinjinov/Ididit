@@ -2,7 +2,7 @@
 
 namespace Ididit.Data.Models;
 
-internal class SettingsModel
+public class SettingsModel
 {
     [JsonIgnore]
     public long Id { get; set; }

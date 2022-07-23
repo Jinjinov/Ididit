@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.WebView.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
@@ -18,6 +19,7 @@ public partial class MainWindow : Window
         serviceCollection.AddBlazorWebViewDeveloperTools();
 #endif
         serviceCollection.AddServices();
+        serviceCollection.AddScoped<GoogleDriveBackup>();
 
         IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
         Resources.Add("services", serviceProvider);

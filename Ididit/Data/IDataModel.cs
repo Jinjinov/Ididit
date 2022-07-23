@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ididit.Data;
 
-internal interface IDataModel
+public interface IDataModel
 {
     List<CategoryModel> CategoryList { get; set; }
     List<SettingsModel> SettingsList { get; set; }
