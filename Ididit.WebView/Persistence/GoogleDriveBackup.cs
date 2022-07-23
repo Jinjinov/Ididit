@@ -2,15 +2,27 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using Ididit.Data;
+using Ididit.Persistence;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Ididit.WebView.Persistence;
 
-public class GoogleDriveBackup
+public class GoogleDriveBackup : IGoogleDriveBackup
 {
+    public async Task<DataModel> ImportData()
+    {
+        return null;
+    }
+
+    public void ExportData(IDataModel data)
+    {
+    }
+
     /* Global instance of the scopes required by this quickstart. If modifying these scopes, delete your previously saved token.json/ folder. */
     static string[] Scopes = { DriveService.Scope.DriveReadonly };
     static string ApplicationName = "Drive API .NET Quickstart";

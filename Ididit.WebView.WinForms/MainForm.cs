@@ -1,4 +1,5 @@
 using Ididit.App;
+using Ididit.Persistence;
 using Ididit.WebView.Persistence;
 using Ididit.WebView.UI;
 using Microsoft.AspNetCore.Components.Web;
@@ -19,7 +20,7 @@ public partial class MainForm : Form
         serviceCollection.AddBlazorWebViewDeveloperTools();
 #endif
         serviceCollection.AddServices();
-        serviceCollection.AddScoped<GoogleDriveBackup>();
+        serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
 
         InitializeComponent();
 

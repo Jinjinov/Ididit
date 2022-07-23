@@ -1,4 +1,5 @@
 ﻿using Ididit.Data;
+using Ididit.Persistence;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
 using System.IO;
@@ -14,7 +15,7 @@ using System.Timers;
 
 namespace Ididit.Wasm.Persistence;
 
-internal class GoogleDriveBackup
+internal class GoogleDriveBackup : IGoogleDriveBackup
 {
     public async Task<DataModel> ImportData()
     {

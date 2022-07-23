@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.Persistence;
 using Ididit.WebView.Persistence;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 
@@ -17,7 +18,7 @@ public static class MauiProgram
 		builder.Services.AddBlazorWebViewDeveloperTools();
 #endif
         builder.Services.AddServices();
-		builder.Services.AddScoped<GoogleDriveBackup>();
+		builder.Services.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
 
 		return builder.Build();
 	}
