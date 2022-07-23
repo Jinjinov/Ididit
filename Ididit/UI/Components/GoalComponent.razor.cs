@@ -136,7 +136,13 @@ public partial class GoalComponent
         }
     }
 
+    // TODO:: fix PreviousId
+
+
+
     // TODO: fix 'The logout was not initiated from within the page.' // This prevents regular links to <app>/authentication/logout from triggering a logout
+    // https://github.com/dotnet/aspnetcore/issues/31088
+    // https://docs.microsoft.com/en-us/aspnet/core/blazor/security/webassembly/standalone-with-authentication-library?view=aspnetcore-6.0&tabs=visual-studio
 
     // TODO: fix login auth in BlazorWebView - https://github.com/dotnet/aspnetcore/issues/42046 - https://docs.microsoft.com/en-us/aspnet/core/blazor/hybrid/security/?view=aspnetcore-6.0&pivots=maui
 

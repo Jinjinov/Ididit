@@ -46,6 +46,16 @@ public class CategoryModel
         return goal;
     }
 
+    public void RemoveCategory()
+    {
+        // TODO:: fix PreviousId
+    }
+
+    public void RemoveGoal()
+    {
+        // TODO:: fix PreviousId
+    }
+
     public void OrderCategories()
     {
         List<CategoryModel> categoryList = new();
