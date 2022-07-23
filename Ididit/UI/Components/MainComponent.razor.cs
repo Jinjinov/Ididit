@@ -4,10 +4,13 @@ using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Ididit.UI.Pages;
+namespace Ididit.UI.Components;
 
-public partial class Index
+public partial class MainComponent
 {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
+
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
         { "cerulean", "sha256-RW/ojwB9sS6DzIfFEaDiahxVPN/MupUlrbKrKVkgA9M=" },

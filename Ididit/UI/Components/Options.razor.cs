@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ididit.UI.Pages;
+namespace Ididit.UI.Components;
 
 public partial class Options
 {

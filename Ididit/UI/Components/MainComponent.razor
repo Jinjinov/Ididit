@@ -1,0 +1,182 @@
+﻿<PageTitle>ididit!</PageTitle>
+
+<HeadContent>
+    @if (_bootswatchThemes.ContainsKey(Theme) && _workaround == 0)
+    {
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
+    }
+    else if (_bootswatchThemes.ContainsKey(Theme) && _workaround == 1)
+    {
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
+    }
+    else
+    {
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    }
+</HeadContent>
+
+<CascadingValue Value=Size>
+<Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
+    <Row>
+        <Column Border=Border.Is1 Display=Display.Flex>
+
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
+                <Icon Class="fa-fw" Name="IconName.Bars" />
+            </Button>
+
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions">
+                <Icon Class="fa-fw" Name="IconName.Wrench" />
+            </Button>
+
+            <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
+
+            @ChildContent
+
+        </Column>
+    </Row>
+    @if (_showOptions)
+    {
+        <Row Background=Background.Light Flex=Flex.Grow.Is1 Overflow=Overflow.Auto>
+            <Options SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+        </Row>
+    }
+    else
+    {
+        <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
+
+            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 330px">
+
+                <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
+                    <Collapse Visible="@_filtersVisible">
+                        <CollapseHeader Padding=Padding.Is0>
+
+                            <Button Size=Size.Small Block=true Clicked="@(() => _filtersVisible = !_filtersVisible)">Filters</Button>
+
+                        </CollapseHeader>
+                        <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+
+                            <FiltersComponent @bind-Filters="_filters" />
+
+                        </CollapseBody>
+                    </Collapse>
+                    <Collapse Visible="@_categoriesVisible">
+                        <CollapseHeader Padding=Padding.Is0>
+
+                            <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Categories</Button>
+
+                        </CollapseHeader>
+                        <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+
+                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory @bind-ShowAllGoals=_showAllGoals />
+
+                        </CollapseBody>
+                    </Collapse>
+                </Accordion>
+
+            </Column>
+            <Column Padding=Padding.Is0 class="child-column">
+                <GoalsComponent @bind-SelectedCategory=_selectedCategory ShowAllGoals=_showAllGoals Filters="_filters" />
+            </Column>
+
+        </Row>
+    }
+    <Row>
+        <Column Border=Border.Is1>
+            <span>&#169; 2022</span>
+        </Column>
+    </Row>
+</Container>
+</CascadingValue>
+
+@*
+    https://getbootstrap.com/docs/4.3/layout/grid/
+    Containers provide a means to center and horizontally pad your site’s contents. Use .container for a responsive pixel width or .container-fluid for width: 100% across all viewport and device sizes.
+    In a grid layout, content must be placed within columns and only columns may be immediate children of rows.
+
+    https://getbootstrap.com/docs/4.3/utilities/flex/
+
+    https://getbootstrap.com/docs/4.3/utilities/borders/
+
+    https://getbootstrap.com/docs/4.3/utilities/sizing/
+
+    https://getbootstrap.com/docs/4.3/utilities/overflow/
+
+    https://blazorise.com/docs/components/grid
+
+    https://blazorise.com/docs/helpers/utilities
+
+    https://bootstrapdemo.blazorise.com/tests/utilities/sizing
+
+    flex-column 
+        flex-direction: column!important; 
+        - if missing, all child nodes are in a row
+    d-flex 
+        display: flex!important; 
+        - if missing, whole page scrolls, including header and footer
+    h-100 
+        height: 100%!important; 
+        - if missing, whole page scrolls, including header and footer
+    container-fluid 
+        - if missing, page width is not 100% and horizontal scrollbar is visible
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+
+    flex-shrink-0
+        - if missing, ???
+        flex-shrink: 0!important;
+    row 
+        - if missing, header and footer have 15px margin
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+
+    col-12
+        - if missing, header and footer don't have 100% width
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+
+        flex: 0 0 100%;
+        max-width: 100%;
+*@
+
+@*
+    row
+        - if missing, the second column is not visible 
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    
+    flex-grow-1
+       - if missing, and content is not 100% height, footer will not be at the bottom
+       flex-grow: 1!important;
+    
+    overflow-hidden
+       - if missing, whole page scrolls, including header and footer
+       overflow: hidden!important;
+
+    col
+       - if missing, column is minimum width
+       position: relative;
+       width: 100%;
+       padding-right: 15px;
+       padding-left: 15px;
+
+       flex-basis: 0;
+       flex-grow: 1;
+       max-width: 100%;
+    
+    mh-100
+       - if missing, height is over 100%, but not scrollable
+       max-height: 100%!important;
+    
+    overflow-auto
+       - if missing, no vertical scrollbar
+       overflow: auto!important;
+*@
