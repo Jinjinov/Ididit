@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Wpf", "Ididi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Maui", "Ididit.WebView.Maui\Ididit.WebView.Maui.csproj", "{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ididit.WebView", "Ididit.WebView\Ididit.WebView.csproj", "{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{189AB26B-3E4E-4E1C-A1B3-79E611731CD0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
