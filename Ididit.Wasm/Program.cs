@@ -1,6 +1,6 @@
 using Ididit.App;
-using Ididit.UI;
 using Ididit.Wasm.Persistence;
+using Ididit.Wasm.UI;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;

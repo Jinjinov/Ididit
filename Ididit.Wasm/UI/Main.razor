@@ -4,12 +4,10 @@
 <CascadingAuthenticationState>
     <Router AppAssembly="@GetType().Assembly">
         <Found Context="routeData">
-            <RouteView RouteData="@routeData" DefaultLayout="@typeof(Layouts.MainLayout)" />
+            <RouteView RouteData="@routeData" />
         </Found>
         <NotFound>
-            <LayoutView Layout="@typeof(Layouts.MainLayout)">
-                <p role="alert">Sorry, there's nothing at this address.</p>
-            </LayoutView>
+            <p role="alert">Sorry, there's nothing at this address.</p>
         </NotFound>
     </Router>
 </CascadingAuthenticationState>

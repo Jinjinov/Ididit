@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:ididit="clr-namespace:Ididit.UI;assembly=Ididit"
+             xmlns:ididit="clr-namespace:Ididit.WebView.UI;assembly=Ididit.WebView"
              x:Class="Ididit.WebView.Maui.MainPage">
 
     <BlazorWebView HostPage="wwwroot/index.html">
