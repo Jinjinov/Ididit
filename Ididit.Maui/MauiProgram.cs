@@ -1,7 +1,7 @@
 ﻿using Ididit.App;
 using Microsoft.AspNetCore.Components.WebView.Maui;
 
-namespace Ididit.Maui;
+namespace Ididit.WebView.Maui;
 
 public static class MauiProgram
 {

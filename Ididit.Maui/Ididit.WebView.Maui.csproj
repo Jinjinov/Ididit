@@ -8,17 +8,17 @@
     <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
     <!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
     <OutputType>Exe</OutputType>
-    <RootNamespace>Ididit.Maui</RootNamespace>
+    <RootNamespace>Ididit.WebView.Maui</RootNamespace>
     <UseMaui>true</UseMaui>
     <SingleProject>true</SingleProject>
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
 
     <!-- Display name -->
-    <ApplicationTitle>Ididit.Maui</ApplicationTitle>
+    <ApplicationTitle>Ididit.WebView.Maui</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>com.companyname.ididit.maui</ApplicationId>
+    <ApplicationId>com.companyname.Ididit.WebView.Maui</ApplicationId>
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->

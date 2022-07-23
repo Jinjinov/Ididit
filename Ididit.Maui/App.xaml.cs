@@ -1,4 +1,4 @@
-﻿namespace Ididit.Maui;
+﻿namespace Ididit.WebView.Maui;
 
 public partial class App : Application
 {

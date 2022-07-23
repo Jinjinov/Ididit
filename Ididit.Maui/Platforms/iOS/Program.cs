@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace Ididit.Maui;
+namespace Ididit.WebView.Maui;
 
 public class Program
 {

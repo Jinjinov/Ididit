@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace Ididit.Maui;
+namespace Ididit.WebView.Maui;
 
 class Program : MauiApplication
 {

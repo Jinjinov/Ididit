@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace Ididit.Maui;
+namespace Ididit.WebView.Maui;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate

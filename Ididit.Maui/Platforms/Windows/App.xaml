@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="Ididit.Maui.WinUI.App"
+    x:Class="Ididit.WebView.Maui.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:Ididit.Maui.WinUI">
+    xmlns:local="using:Ididit.WebView.Maui.WinUI">
 
 </maui:MauiWinUIApplication>

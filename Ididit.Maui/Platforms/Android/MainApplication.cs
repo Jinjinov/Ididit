@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace Ididit.Maui;
+namespace Ididit.WebView.Maui;
 
 [Application]
 public class MainApplication : MauiApplication
