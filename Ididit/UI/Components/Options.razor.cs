@@ -67,6 +67,9 @@ public partial class Options
     [Inject]
     GoogleKeepImport GoogleKeepImport { get; set; } = null!;
 
+    [Inject]
+    IGoogleDriveBackup GoogleDriveBackup { get; set; } = null!;
+
     async Task Import(InputFileChangeEventArgs e)
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
@@ -147,5 +150,17 @@ public partial class Options
         NodeContent[] nodes = DirectoryBackup.ExportData(Repository);
 
         await JsInterop.WriteDirectoryFiles(nodes);
+    }
+
+    async Task ImportGoogleDrive()
+    {
+        DataModel data = await GoogleDriveBackup.ImportData();
+
+        await Repository.AddData(data);
+    }
+
+    void ExportGoogleDrive()
+    {
+        GoogleDriveBackup.ExportData(Repository);
     }
 }

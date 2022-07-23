@@ -140,11 +140,7 @@ public partial class GoalComponent
 
 
 
-    // TODO: add IGoogleDriveBackup
-    // TODO: implement IGoogleDriveBackup
-    // TODO: use IGoogleDriveBackup
-
-    // TODO: GoogleDriveBackup https://developers.google.com/drive/api/quickstart/dotnet
+    // TODO: implement IGoogleDriveBackup - GoogleDriveBackup https://developers.google.com/drive/api/quickstart/dotnet
     // https://github.com/googleworkspace/dotnet-samples/blob/master/drive/DriveQuickstart/DriveQuickstart.cs
 
 
