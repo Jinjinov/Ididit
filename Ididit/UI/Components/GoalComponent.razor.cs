@@ -140,10 +140,8 @@ public partial class GoalComponent
 
 
 
-    // TODO: https://www.ididit.com - no blazor, better seo
+    // TODO: https://www.ididit.com - list of all features, list of platforms, list of import/export formats, screenshots of examples
     // TODO: https://app.ididit.com - 2.0
-    // TODO: https://old.ididit.com - 1.0
-    // TODO: https://new.ididit.com - beta
 
     // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
