@@ -320,22 +320,55 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         }
     }
 
+    public static string CreateFolder(DriveService service, string folderName)
+    {
+        Google.Apis.Drive.v3.Data.File newFile = new() { Name = folderName, MimeType = "application/vnd.google-apps.folder" };
+
+        FilesResource.ListRequest listRequest = service.Files.List();
+        listRequest.PageSize = 10;
+        listRequest.Fields = "nextPageToken, files(id, name)";
+
+        IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
+
+        if (files != null && files.Count > 0)
+        {
+            foreach (Google.Apis.Drive.v3.Data.File file in files)
+            {
+                if (file.Name == newFile.Name)
+                {
+                    Console.WriteLine("File already existing... Skip creation");
+                    return file.Id;
+                }
+            }
+        }
+        else
+        {
+            Console.WriteLine("No files found.");
+        }
+
+        Console.WriteLine("Creating new file...");
+
+        Google.Apis.Drive.v3.Data.File result = service.Files.Create(newFile).Execute();
+
+        return result.Id;
+    }
+
     /*
     public static void DownloadFile(string filename)
     {
-        DriveService GetDriveService()
+        static DriveService GetDriveService()
         {
             string[] scopes = new string[] { DriveService.Scope.Drive }; // Full access
 
             GoogleDrive cr = Newtonsoft.Json.JsonConvert.DeserializeObject<GoogleDrive>(System.IO.File.ReadAllText(@"\\PATH_TO_JSONFILE\GoogleAPI.json"));
 
-            ServiceAccountCredential xCred = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(cr.client_email)
+            ServiceAccountCredential xCred = new(new ServiceAccountCredential.Initializer(cr.client_email)
             {
                 User = "xxxxx@xxxx.xx",
                 Scopes = new[] { DriveService.Scope.Drive }
             }.FromPrivateKey(cr.private_key));
 
-            DriveService service = new DriveService(new BaseClientService.Initializer()
+            DriveService service = new(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = xCred,
                 ApplicationName = "APPLICATION_NAME",
@@ -354,10 +387,10 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         listRequest.Q = "name = '" + filename + ".pdf'";
         Google.Apis.Drive.v3.Data.FileList files = listRequest.Execute();
 
-        if (files.Files.Count > 0) //the file exists, DOWNLOAD
+        if (files.Files.Count > 0) // the file exists, DOWNLOAD
         {
-            var request = service.Files.Get(files.Files[0].Id);
-            var stream = new System.IO.MemoryStream();
+            FilesResource.GetRequest request = service.Files.Get(files.Files[0].Id);
+            MemoryStream stream = new();
             request.Download(stream);
         }
     }
