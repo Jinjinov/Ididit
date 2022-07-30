@@ -38,11 +38,12 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
     private IDataModel _data = null!;
 
-    private readonly string _fileName = "ididit.json";
-    private readonly string _fileDescription = "ididit backup";
+    private const string _fileName = "ididit.json";
+    private const string _fileDescription = "ididit backup";
 
-    private readonly string _folderName = "ididit";
-    private readonly string _folderDescription = "ididit backup";
+    private const string _folderName = "ididit";
+    private const string _folderDescription = "ididit backup";
+    private const string _folderMimeType = "application/vnd.google-apps.folder";
 
     private readonly HttpClient _httpClient;
 
@@ -118,7 +119,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            string q = $"name = '{_folderName}' and mimeType = 'application/vnd.google-apps.folder'";
+            string q = $"name = '{_folderName}' and mimeType = '{_folderMimeType}'";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
             HttpRequestMessage requestMessage = new()
@@ -233,7 +234,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            string q = "mimeType = 'application/vnd.google-apps.folder'";
+            string q = $"mimeType = '{_folderMimeType}'";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
             HttpRequestMessage requestMessage = new()
@@ -285,7 +286,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
             requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
-            JsonContent metaContent = JsonContent.Create(new { name = _folderName, description = _folderDescription, mimeType = "application/vnd.google-apps.folder" });
+            JsonContent metaContent = JsonContent.Create(new { name = _folderName, description = _folderDescription, mimeType = _folderMimeType });
 
             MultipartContent multipart = new() { metaContent };
 

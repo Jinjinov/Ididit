@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,26 +23,82 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 {
     // If modifying these scopes, delete your previously saved token.json/ folder
     readonly string[] _scopes = { DriveService.Scope.DriveFile };
-    readonly string _applicationName = "ididit";
-    readonly string _folderName = "ididit";
+    const string _applicationName = "ididit";
+
+    const string _fileName = "ididit.json";
+    const string _fileDescription = "ididit backup";
+    const string _fileMimeType = "application/json";
+
+    const string _folderName = "ididit";
+    const string _folderDescription = "ididit backup";
+    const string _folderMimeType = "application/vnd.google-apps.folder";
+
+    readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
     public async Task<DataModel> ImportData()
     {
+        string text = await LoadFile();
 
-        return null;
+        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
+
+        return data ?? throw new InvalidDataException("Can't deserialize JSON");
     }
 
     public async Task ExportData(IDataModel data)
     {
+        string jsonString = JsonSerializer.Serialize(data, _options);
 
+        await SaveFile(jsonString);
     }
 
-    async Task<MemoryStream?> DriveDownloadFile(string fileId)
+    private async Task SaveFile(string content)
+    {
+        string folderId = await GetFolderId();
+
+        if (string.IsNullOrEmpty(folderId))
+        {
+            folderId = await CreateFolder();
+        }
+
+        string fileId = await GetFileId(folderId);
+
+        if (string.IsNullOrEmpty(fileId))
+        {
+            fileId = await CreateFile(folderId, content);
+        }
+        else
+        {
+            await UpdateFile(fileId, content);
+        }
+    }
+
+    private async Task<string> LoadFile()
+    {
+        string folderId = await GetFolderId();
+
+        if (string.IsNullOrEmpty(folderId))
+        {
+            return string.Empty;
+        }
+
+        string fileId = await GetFileId(folderId);
+
+        if (string.IsNullOrEmpty(fileId))
+        {
+            return string.Empty;
+        }
+        else
+        {
+            return await GetFile(fileId);
+        }
+    }
+
+    async Task<string> GetFile(string fileId)
     {
         DriveService? service = await GetDriveService();
 
         if (service is null)
-            return null;
+            return string.Empty;
 
         FilesResource.GetRequest request = service.Files.Get(fileId);
         MemoryStream stream = new();
@@ -75,10 +132,14 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
         request.Download(stream);
 
-        return stream;
+        using StreamReader streamReader = new(stream);
+
+        string text = await streamReader.ReadToEndAsync();
+
+        return text;
     }
 
-    async Task<string> DriveCreateFolder(string name)
+    async Task<string> CreateFolder()
     {
         DriveService? service = await GetDriveService();
 
@@ -87,8 +148,9 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
         Google.Apis.Drive.v3.Data.File fileMetadata = new()
         {
-            Name = name,
-            MimeType = "application/vnd.google-apps.folder"
+            Name = _folderName,
+            Description = _folderDescription,
+            MimeType = _folderMimeType
         };
 
         FilesResource.CreateRequest request = service.Files.Create(fileMetadata);
@@ -98,11 +160,8 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return file.Id;
     }
 
-    async Task<string> DriveUploadToFolder(string filePath, string fileName, string folderId)
+    async Task<string> CreateFile(string folderId, string content)
     {
-        if (!File.Exists(filePath))
-            return string.Empty;
-
         DriveService? service = await GetDriveService();
 
         if (service is null)
@@ -110,51 +169,49 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
         Google.Apis.Drive.v3.Data.File fileMetadata = new()
         {
-            Name = fileName,
+            Name = _fileName,
+            Description = _fileDescription,
+            MimeType = _fileMimeType,
             Parents = new List<string> { folderId }
         };
 
-        FilesResource.CreateMediaUpload request;
+        MemoryStream stream = new();
+        StreamWriter writer = new(stream);
+        writer.Write(content);
+        writer.Flush();
+        stream.Position = 0;
 
-        using (FileStream stream = new(filePath, FileMode.Open))
-        {
-            request = service.Files.Create(fileMetadata, stream, "application/json");
-            request.Fields = "id";
-            request.Upload();
-        }
+        FilesResource.CreateMediaUpload request = service.Files.Create(fileMetadata, stream, _fileMimeType);
+        request.Fields = "id";
+        request.Upload();
 
         Google.Apis.Drive.v3.Data.File file = request.ResponseBody;
 
         return file.Id;
     }
 
-    async Task<string> DriveUpload(string filePath, string fileName)
+    async Task<string> UpdateFile(string fileId, string content)
     {
-        if (!File.Exists(filePath))
-            return string.Empty;
-
         DriveService? service = await GetDriveService();
 
         if (service is null)
             return string.Empty;
 
-        Google.Apis.Drive.v3.Data.File fileMetadata = new()
-        {
-            Name = fileName
-        };
+        Google.Apis.Drive.v3.Data.File file = service.Files.Get(fileId).Execute();
 
-        FilesResource.CreateMediaUpload request;
+        MemoryStream stream = new();
+        StreamWriter writer = new(stream);
+        writer.Write(content);
+        writer.Flush();
+        stream.Position = 0;
 
-        using (FileStream stream = new(filePath, FileMode.Open))
-        {
-            request = service.Files.Create(fileMetadata, stream, "application/json");
-            request.Fields = "id";
-            request.Upload();
-        }
+        FilesResource.UpdateMediaUpload request = service.Files.Update(file, fileId, stream, _fileMimeType);
+        request.Fields = "id";
+        request.Upload();
 
-        Google.Apis.Drive.v3.Data.File file = request.ResponseBody;
+        Google.Apis.Drive.v3.Data.File updatedFile = request.ResponseBody;
 
-        return file.Id;
+        return updatedFile.Id;
     }
 
     async Task<string> GetFolderId()
@@ -167,7 +224,24 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         FilesResource.ListRequest listRequest = service.Files.List();
         listRequest.PageSize = 10; // Acceptable values are 1 to 1000, inclusive. (Default: 100)
         listRequest.Fields = "files(id, name)";
-        listRequest.Q = $"mimeType = 'application/vnd.google-apps.folder' and name = '{_folderName}'";
+        listRequest.Q = $"name = '{_folderName}' and mimeType = '{_folderMimeType}'";
+
+        IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
+
+        return files.Any() ? files.First().Id : string.Empty;
+    }
+
+    async Task<string> GetFileId(string folderId)
+    {
+        DriveService? service = await GetDriveService();
+
+        if (service is null)
+            return string.Empty;
+
+        FilesResource.ListRequest listRequest = service.Files.List();
+        listRequest.PageSize = 10; // Acceptable values are 1 to 1000, inclusive. (Default: 100)
+        listRequest.Fields = "files(id, name)";
+        listRequest.Q = $"name = '{_fileName}' and '{folderId}' in parents";
 
         IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
 
