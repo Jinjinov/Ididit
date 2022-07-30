@@ -1,6 +1,5 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
-using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -19,11 +18,11 @@ internal class GoogleKeepImport
 
     public async Task ImportData(CategoryModel category, Stream stream)
     {
-        MemoryStream memoryStream = new MemoryStream();
+        MemoryStream memoryStream = new();
 
         await stream.CopyToAsync(memoryStream);
 
-        ZipArchive archive = new ZipArchive(memoryStream);
+        ZipArchive archive = new(memoryStream);
 
         foreach (ZipArchiveEntry entry in archive.Entries)
         {

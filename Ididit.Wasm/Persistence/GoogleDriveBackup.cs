@@ -321,13 +321,12 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
             else
                 metaContent = JsonContent.Create(new { name = "ididit.json", description = "ididit backup", parents = new[] { folderId } });
 
-            //var data = new { Title = "Blazor POST Request Example" };
-            //string content = JsonSerializer.Serialize(data);
+            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example" });
+            //StringContent fileContent = new StringContent(content);
+            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
 
             StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
-            //var fileContent = new StringContent(content);
             fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
-            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
             fileContent.Headers.ContentLength = content.Length;
 
             MultipartContent multipart = new() { metaContent, fileContent };
@@ -365,13 +364,12 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
             JsonContent metaContent = JsonContent.Create(new { name = "ididit.json", description = "ididit backup" });
 
-            //var data = new { Title = "Blazor POST Request Example", DateTime = DateTime.Now };
-            //string content = JsonSerializer.Serialize(data);
+            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example", DateTime = DateTime.Now });
+            //StringContent fileContent = new StringContent(content);
+            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
 
             StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
-            //var fileContent = new StringContent(content);
             fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
-            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
             fileContent.Headers.ContentLength = content.Length;
 
             MultipartContent multipart = new() { metaContent, fileContent };

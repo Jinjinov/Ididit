@@ -89,8 +89,8 @@ public partial class GoalComponent
         {
             while (newLines.Any(p => !p.IsDone) && oldLines.Any(p => !p.IsDone))
             {
-                var newLine = newLines.First(p => !p.IsDone);
-                var oldLine = oldLines.First(p => !p.IsDone);
+                DoneLine newLine = newLines.First(p => !p.IsDone);
+                DoneTask oldLine = oldLines.First(p => !p.IsDone);
 
                 if (newLine.Line == oldLine.Task.Name)
                 {
@@ -108,8 +108,8 @@ public partial class GoalComponent
 
             if (oldLinesCount == newLinesCount && newLinesCount > 0) // changed
             {
-                var newLine = newLines.First(p => !p.IsDone);
-                var oldLine = oldLines.First(p => !p.IsDone);
+                DoneLine newLine = newLines.First(p => !p.IsDone);
+                DoneTask oldLine = oldLines.First(p => !p.IsDone);
 
                 await UpdateTask(oldLine.Task, newLine.Line);
 
@@ -118,7 +118,7 @@ public partial class GoalComponent
             }
             else if (oldLinesCount < newLinesCount) // added
             {
-                var newLine = newLines.First(p => !p.IsDone);
+                DoneLine newLine = newLines.First(p => !p.IsDone);
                 int idx = oldLines.FindLastIndex(p => p.IsDone) + 1;
 
                 await AddTaskAt(idx, newLine.Line);
@@ -127,7 +127,7 @@ public partial class GoalComponent
             }
             else if (oldLinesCount > newLinesCount) // deleted
             {
-                var oldLine = oldLines.First(p => !p.IsDone);
+                DoneTask oldLine = oldLines.First(p => !p.IsDone);
 
                 await DeleteTask(oldLine.Task);
 
