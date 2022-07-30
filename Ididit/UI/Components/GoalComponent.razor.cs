@@ -136,14 +136,13 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: implement IGoogleDriveBackup - GoogleDriveBackup
-
-
-
     // TODO: https://www.ididit.com - list of all features, list of platforms, list of import/export formats, screenshots of examples
     // TODO: https://app.ididit.com - 2.0
 
     // TODO: Bootstrap 4.6 ---> 5.2
+
+    // TODO: GoogleDriveBackup - remove timer in WASM ? or add timer in WebView ?
+    // TODO: GoogleDriveBackup - auto restore backup ?
 
 
 
