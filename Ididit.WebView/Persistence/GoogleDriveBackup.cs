@@ -18,6 +18,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
     // If modifying these scopes, delete your previously saved token.json/ folder
     readonly string[] _scopes = { DriveService.Scope.DriveFile };
     readonly string _applicationName = "ididit";
+    readonly string _folderName = "ididit";
 
     public async Task<DataModel> ImportData()
     {
@@ -269,7 +270,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return null;
     }
 
-    public void Login()
+    public async Task Login()
     {
         try
         {
@@ -280,12 +281,12 @@ public class GoogleDriveBackup : IGoogleDriveBackup
                 // The file token.json stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
                 string credPath = "token.json";
 
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.FromStream(stream).Secrets,
                     _scopes,
                     "user",
                     CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                    new FileDataStore(credPath, true));
 
                 Console.WriteLine("Credential file saved to: " + credPath);
             }
@@ -297,8 +298,9 @@ public class GoogleDriveBackup : IGoogleDriveBackup
             });
 
             FilesResource.ListRequest listRequest = service.Files.List();
-            listRequest.PageSize = 10;
-            listRequest.Fields = "nextPageToken, files(id, name)";
+            //listRequest.PageSize = 10;
+            //listRequest.Fields = "nextPageToken, files(id, name)";
+            listRequest.Q = $"mimeType = 'application/vnd.google-apps.folder' and name = '{_folderName}'";
 
             IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
 
@@ -317,4 +319,47 @@ public class GoogleDriveBackup : IGoogleDriveBackup
             Console.WriteLine(e.Message);
         }
     }
+
+    /*
+    public static void DownloadFile(string filename)
+    {
+        DriveService GetDriveService()
+        {
+            string[] scopes = new string[] { DriveService.Scope.Drive }; // Full access
+
+            GoogleDrive cr = Newtonsoft.Json.JsonConvert.DeserializeObject<GoogleDrive>(System.IO.File.ReadAllText(@"\\PATH_TO_JSONFILE\GoogleAPI.json"));
+
+            ServiceAccountCredential xCred = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(cr.client_email)
+            {
+                User = "xxxxx@xxxx.xx",
+                Scopes = new[] { DriveService.Scope.Drive }
+            }.FromPrivateKey(cr.private_key));
+
+            DriveService service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = xCred,
+                ApplicationName = "APPLICATION_NAME",
+            });
+
+            return service;
+        }
+
+        DriveService service = GetDriveService();
+
+        //check if file exists and grab id 
+        FilesResource.ListRequest listRequest = service.Files.List();
+        listRequest.SupportsAllDrives = true;
+        listRequest.IncludeItemsFromAllDrives = true;
+        listRequest.PageSize = 1000;
+        listRequest.Q = "name = '" + filename + ".pdf'";
+        Google.Apis.Drive.v3.Data.FileList files = listRequest.Execute();
+
+        if (files.Files.Count > 0) //the file exists, DOWNLOAD
+        {
+            var request = service.Files.Get(files.Files[0].Id);
+            var stream = new System.IO.MemoryStream();
+            request.Download(stream);
+        }
+    }
+    /**/
 }

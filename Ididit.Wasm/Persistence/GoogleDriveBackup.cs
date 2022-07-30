@@ -36,6 +36,12 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
     private IDataModel _data = null!;
 
+    private readonly string _fileName = "ididit.json";
+    private readonly string _fileDescription = "ididit backup";
+
+    private readonly string _folderName = "ididit";
+    private readonly string _folderDescription = "ididit backup";
+
     private readonly HttpClient _httpClient;
 
     private readonly IAccessTokenProvider _tokenProvider;
@@ -110,7 +116,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
         if (tokenResult.TryGetToken(out AccessToken token))
         {
-            string q = "name = 'ididit' and mimeType = 'application/vnd.google-apps.folder'";
+            string q = $"name = '{_folderName}' and mimeType = 'application/vnd.google-apps.folder'";
             string url = "https://www.googleapis.com/drive/v3/files?q=" + Uri.EscapeDataString(q);
 
             HttpRequestMessage requestMessage = new()
@@ -137,7 +143,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
                 string? name = file.GetProperty("name").GetString();
 
-                if (name == "ididit")
+                if (name == _folderName)
                 {
                     folderId = file.GetProperty("id").GetString() ?? string.Empty;
                 }
@@ -277,7 +283,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
             requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
-            JsonContent metaContent = JsonContent.Create(new { name = "ididit", description = "ididit backup", mimeType = "application/vnd.google-apps.folder" });
+            JsonContent metaContent = JsonContent.Create(new { name = _folderName, description = _folderDescription, mimeType = "application/vnd.google-apps.folder" });
 
             MultipartContent multipart = new() { metaContent };
 
@@ -317,9 +323,9 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
             JsonContent metaContent;
 
             if (string.IsNullOrEmpty(folderId))
-                metaContent = JsonContent.Create(new { name = "ididit.json", description = "ididit backup" });
+                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
             else
-                metaContent = JsonContent.Create(new { name = "ididit.json", description = "ididit backup", parents = new[] { folderId } });
+                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription, parents = new[] { folderId } });
 
             //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example" });
             //StringContent fileContent = new StringContent(content);
@@ -362,7 +368,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
             requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
 
-            JsonContent metaContent = JsonContent.Create(new { name = "ididit.json", description = "ididit backup" });
+            JsonContent metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
 
             //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example", DateTime = DateTime.Now });
             //StringContent fileContent = new StringContent(content);
