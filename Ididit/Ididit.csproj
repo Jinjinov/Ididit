@@ -11,14 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.5" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.5" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.0.5" />
-    <PackageReference Include="CsvHelper" Version="27.2.1" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.6" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.6" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.0.6" />
+    <PackageReference Include="CsvHelper" Version="28.0.1" />
     <PackageReference Include="DnetIndexedDb" Version="2.4.1" />
     <PackageReference Include="Markdig" Version="0.30.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.6" />
-    <PackageReference Include="YamlDotNet" Version="11.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7" />
+    <PackageReference Include="YamlDotNet" Version="12.0.0" />
   </ItemGroup>
 
 </Project>

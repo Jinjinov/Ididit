@@ -143,10 +143,14 @@ public partial class GoalComponent
     // TODO: https://www.ididit.com - list of all features, list of platforms, list of import/export formats, screenshots of examples
     // TODO: https://app.ididit.com - 2.0
 
+    // TODO: Bootstrap 4.6 ---> 5.2
+
+
+
     // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
     // TODO: load db before start in wasm
-    // TODO: read Theme from IndexedDb and apply the stylesheet in MainLayout HeadContent
+    // TODO: read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
 
     // TODO: task - "times list" should load on demand - on Task done - on show Task details
 
@@ -195,7 +199,7 @@ public partial class GoalComponent
 
     // TODO: mobile: show sub-categories in Goal list
 
-    // TODO: every line that StartsWith("- ") is a task detail
+    // TODO: every line that StartsWith("- ") is a task detail - edit in another MemoEdit inside TaskComponent
 
     // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
     // TODO: (class Solution) --> (class Task.Details) - when, where
