@@ -26,12 +26,14 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         return data ?? throw new InvalidDataException("Can't deserialize JSON");
     }
 
-    public void ExportData(IDataModel data)
+    public Task ExportData(IDataModel data)
     {
         _data = data;
 
         _timer.Stop();
         _timer.Start();
+
+        return Task.CompletedTask;
     }
 
     private IDataModel _data = null!;

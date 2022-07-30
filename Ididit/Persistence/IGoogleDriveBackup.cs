@@ -6,5 +6,5 @@ namespace Ididit.Persistence;
 public interface IGoogleDriveBackup
 {
     Task<DataModel> ImportData();
-    void ExportData(IDataModel data);
+    Task ExportData(IDataModel data);
 }
