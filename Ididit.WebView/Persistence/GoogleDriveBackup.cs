@@ -47,9 +47,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
             // TODO(developer) - See https://developers.google.com/identity for guides on implementing OAuth2 for your application
 
-            GoogleCredential credential = GoogleCredential
-                .GetApplicationDefault()
-                .CreateScoped(DriveService.Scope.Drive);
+            GoogleCredential credential = GoogleCredential.GetApplicationDefault().CreateScoped(DriveService.Scope.Drive);
 
             DriveService service = new(new BaseClientService.Initializer
             {
@@ -86,6 +84,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
                             }
                     }
                 };
+
             request.Download(stream);
 
             return stream;
@@ -114,8 +113,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
             // TODO(developer) - See https://developers.google.com/identity for guides on implementing OAuth2 for your application
 
-            GoogleCredential credential = GoogleCredential.GetApplicationDefault()
-                .CreateScoped(DriveService.Scope.Drive);
+            GoogleCredential credential = GoogleCredential.GetApplicationDefault().CreateScoped(DriveService.Scope.Drive);
 
             DriveService service = new(new BaseClientService.Initializer
             {
@@ -161,8 +159,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
             // TODO(developer) - See https://developers.google.com/identity for guides on implementing OAuth2 for your application
 
-            GoogleCredential credential = GoogleCredential.GetApplicationDefault()
-                .CreateScoped(DriveService.Scope.Drive);
+            GoogleCredential credential = GoogleCredential.GetApplicationDefault().CreateScoped(DriveService.Scope.Drive);
 
             DriveService service = new(new BaseClientService.Initializer
             {
@@ -223,8 +220,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
 
             // TODO(developer) - See https://developers.google.com/identity for guides on implementing OAuth2 for your application
 
-            GoogleCredential credential = GoogleCredential.GetApplicationDefault()
-                .CreateScoped(DriveService.Scope.Drive);
+            GoogleCredential credential = GoogleCredential.GetApplicationDefault().CreateScoped(DriveService.Scope.Drive);
 
             DriveService service = new(new BaseClientService.Initializer
             {
