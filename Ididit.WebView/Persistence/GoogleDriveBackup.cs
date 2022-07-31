@@ -279,6 +279,20 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return service;
     }
 
+    public async Task<string> GetUserDisplayName()
+    {
+        DriveService? service = await GetDriveService();
+
+        if (service is null)
+            return string.Empty;
+
+        AboutResource.GetRequest getRequest = service.About.Get();
+        getRequest.Fields = "user";
+        Google.Apis.Drive.v3.Data.About about = getRequest.Execute();
+
+        return about.User.DisplayName;
+    }
+
     /*
     DriveService GetDriveService()
     {
