@@ -148,7 +148,8 @@ public partial class GoalComponent
     // TODO: Bootstrap 4.6 ---> 5.2
 
     // TODO: GoogleDriveBackup - remove timer in WASM / add timer in WebView
-    // TODO: GoogleDriveBackup - auto restore backup
+    // TODO: GoogleDriveBackup - abstract base class
+    // TODO: GoogleDriveBackup - auto save, auto restore backup
 
     // TODO: interface GetUserDisplayName()
 
