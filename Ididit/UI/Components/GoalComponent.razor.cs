@@ -141,17 +141,17 @@ public partial class GoalComponent
 
     // TODO: Bootstrap 4.6 ---> 5.2
 
-    // TODO: GoogleDriveBackup - remove timer in WASM ? or add timer in WebView ?
-    // TODO: GoogleDriveBackup - auto restore backup ?
+    // TODO: GoogleDriveBackup - remove timer in WASM / add timer in WebView
+    // TODO: GoogleDriveBackup - auto restore backup
 
 
 
     // TODO: merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
-    // TODO: load db before start in wasm
+    // TODO: load db before app start in wasm
     // TODO: read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
 
-    // TODO: task - "times list" should load on demand - on Task done - on show Task details
+    // TODO: task - "done times list" should load on demand - on Task done - on show Task details
 
     private async Task UpdateTask(TaskModel task, string line)
     {
@@ -190,9 +190,9 @@ public partial class GoalComponent
     // TODO: load examples
     // TODO: delete all
 
-    // TODO: remove focused borders
+    // TODO: UI - remove focused borders
 
-    // TODO: see all - or collapse to titles
+    // TODO: toggle: see all Tasks / collapse to Goal titles
 
     // TODO: don't add Category/Goal until (name is set) / (Save button is clicked) - no need to undo adding empty objects = easy discard
 
@@ -201,7 +201,7 @@ public partial class GoalComponent
     // TODO: every line that StartsWith("- ") is a task detail - edit in another MemoEdit inside TaskComponent
 
     // TODO: task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
-    // TODO: (class Solution) --> (class Task.Details) - when, where
+    // TODO: solution = Task.Details - when, where
     // name, address, phone number, working hours, website, email
     // possible to do the task:
     // - anytime
@@ -226,12 +226,12 @@ public partial class GoalComponent
     // TODO: UI - range ratio filter - 2x Slider
     // TODO: UI - range priority filter - 2x Slider
 
-    // TODO: desired task duration - set (i want to exercise 15 min) / countdown timer + alarm
-    // TODO: average task duration - start / stop timer (how long does it take to clean the floor)
+    // TODO: desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
+    // TODO: average task duration - start / stop timer (how long does it take to wash the dishes)
 
-    // TODO: arrow down can change focus to next textarea
+    // TODO: keyboard arrow down can change focus to next textarea
 
-    // TODO: backup - Dropbox / OneDrive / iCloud
+    // TODO: backup on: Dropbox / OneDrive / iCloud
 
     //
     // LOW PRIORITY:
@@ -242,9 +242,9 @@ public partial class GoalComponent
 
     // TODO: weekly category goal (do X tasks from this category)
     // TODO: statistics (did X tasks from this category)
-    // TODO: graphs (num of tasks over time)
+    // TODO: graphs (number of tasks over time)
 
-    // TODO: show Times in a Calendar/Scheduler, not a List
+    // TODO: show "Task done times" in a Calendar/Scheduler, not a List
 
     // TODO: fix "The given key '6' was not present in the dictionary" in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
 }
@@ -254,22 +254,20 @@ public partial class GoalComponent
 // One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
 // Meaning you can do custom actions whenever a data-source changes.
 
-/*
-advertise on: facebook, reddit, twitter, instagram, linkedin
+// release news on: facebook, reddit, twitter, instagram, linkedin
 
-google store - $25
-https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
+// google store - $25
+// https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
 
-apple store - $99 annually
-https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
+// apple store - $99 annually
+// https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
-windows store - $19
-https://www.youtube.com/watch?v=N6jPl3tBNfg
-https://stackoverflow.com/questions/63369727/not-seeing-any-alternative-option-for-publish-create-app-packages-in-my-wpf
+// windows store - $19
+// https://www.youtube.com/watch?v=N6jPl3tBNfg
+// https://stackoverflow.com/questions/63369727/not-seeing-any-alternative-option-for-publish-create-app-packages-in-my-wpf
 
-linux software repository
-https://help.ubuntu.com/community/Repositories/Ubuntu
-https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
+// linux software repository
+// https://help.ubuntu.com/community/Repositories/Ubuntu
+// https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
 
-help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
-/**/
+// help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
