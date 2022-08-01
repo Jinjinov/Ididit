@@ -29,11 +29,11 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 #### Current version (2022.07.31):
 
-[Download version 2.0.1 installer](https://ididit.today/IdiditSetup.exe)
+[Download version 2.0.1](https://ididit.today/ididit.zip) and run setup.exe
 
 #### Beta version (2022.08.01):
 
-[Download version 2.1.0-beta installer](https://ididit.today/IdiditBetaSetup.exe)
+[Download version 2.1.0-beta](https://ididit.today/ididit.zip) and run setup.exe
 
 ### Android:
 

@@ -136,12 +136,7 @@ public partial class GoalComponent
         }
     }
 
-    // TODO: Setup "Microsoft Visual Studio Installer Projects" - "Setup Project" - Visual Studio 2022
-
-    // TODO: Setup "MSIX Packaging Tools" - "Windows Application Packaging Project" - Visual Studio 2022 Preview
-
-    // TODO: https://www.ididit.com - screenshots of examples
-    // TODO: https://app.ididit.com - 2.0
+    // TODO: screenshots of examples
 
 
 
