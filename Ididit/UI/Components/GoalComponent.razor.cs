@@ -140,7 +140,7 @@ public partial class GoalComponent
 
     // TODO: Setup "MSIX Packaging Tools" - "Windows Application Packaging Project" - Visual Studio 2022 Preview
 
-    // TODO: https://www.ididit.com - list of all features, list of platforms, list of import/export formats, list of all versions with screenshots of examples
+    // TODO: https://www.ididit.com - screenshots of examples
     // TODO: https://app.ididit.com - 2.0
 
 
