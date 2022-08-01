@@ -74,7 +74,7 @@
 - [ ] mobile: use recursion to show Category/Subcategory in Goal header
     - https://stackoverflow.com/questions/57091756/can-i-write-a-function-in-blazor-that-dynamically-renders-elements-in-a-view
 
-- [ ] UI - range DateEdit - <DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />
+- [ ] UI - range DateEdit - `<DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />`
 - [ ] UI - range ratio filter - 2x Slider
 - [ ] UI - range priority filter - 2x Slider
 
