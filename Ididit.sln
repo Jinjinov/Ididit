@@ -15,10 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView.Maui", "Idid
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ididit.WebView", "Ididit.WebView\Ididit.WebView.csproj", "{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ididit.WebView.WinForms.Setup", "Ididit.WebView.WinForms.Setup\Ididit.WebView.WinForms.Setup.vdproj", "{FB069937-E68B-4835-85C5-61DD8E39EEB0}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Ididit.WebView.Wpf.Setup", "Ididit.WebView.Wpf.Setup\Ididit.WebView.Wpf.Setup.vdproj", "{B5DCCA38-A624-4206-BBF2-DDB8E6FABBF3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,10 +47,6 @@ Global
 		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3D0D799-B3BE-40FD-BC84-0CB82FDC54A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB069937-E68B-4835-85C5-61DD8E39EEB0}.Debug|Any CPU.ActiveCfg = Debug
-		{FB069937-E68B-4835-85C5-61DD8E39EEB0}.Release|Any CPU.ActiveCfg = Release
-		{B5DCCA38-A624-4206-BBF2-DDB8E6FABBF3}.Debug|Any CPU.ActiveCfg = Debug
-		{B5DCCA38-A624-4206-BBF2-DDB8E6FABBF3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
