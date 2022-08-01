@@ -15,25 +15,25 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 #### Current version (2022.07.31):
 
-[Use version 2.0 online](https://app.ididit.today)
+[Use version 2.0.1 online](https://app.ididit.today)
 
 #### Beta version (2022.08.01):
 
-[Use version 2.1-beta online](https://new.ididit.today)
+[Use version 2.1.0-beta online](https://new.ididit.today)
 
 #### Old version (2021.11.09):
 
-[Use version 1.3 online](https://old.ididit.today)
+[Use version 1.3.7 online](https://old.ididit.today)
 
 ### Windows:
 
 #### Current version (2022.07.31):
 
-[Download version 2.0 installer](https://ididit.today/favicon.ico)
+[Download version 2.0.1 installer](https://ididit.today/IdiditSetup.exe)
 
 #### Beta version (2022.08.01):
 
-[Download version 2.1-beta installer](https://ididit.today/favicon.ico)
+[Download version 2.1.0-beta installer](https://ididit.today/IdiditBetaSetup.exe)
 
 ### Android:
 
