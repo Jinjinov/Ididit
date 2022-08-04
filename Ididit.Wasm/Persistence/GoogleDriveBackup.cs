@@ -11,7 +11,6 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Ididit.Wasm.Persistence;
 
@@ -26,17 +25,12 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         return data ?? throw new InvalidDataException("Can't deserialize JSON");
     }
 
-    public Task ExportData(IDataModel data)
+    public async Task ExportData(IDataModel data)
     {
-        _data = data;
+        string jsonString = JsonSerializer.Serialize(data, _options);
 
-        _timer.Stop();
-        _timer.Start();
-
-        return Task.CompletedTask;
+        await SaveFile(jsonString);
     }
-
-    private IDataModel _data = null!;
 
     private const string _fileName = "ididit.json";
     private const string _fileDescription = "ididit backup";
@@ -49,8 +43,6 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
 
     private readonly IAccessTokenProvider _tokenProvider;
 
-    private readonly Timer _timer = new() { AutoReset = false, Interval = 30 * 1000 };
-
     private readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
     public GoogleDriveBackup(HttpClient httpClient, IAccessTokenProvider tokenProvider)
@@ -58,15 +50,6 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         _httpClient = httpClient;
 
         _tokenProvider = tokenProvider;
-
-        _timer.Elapsed += async (object? sender, ElapsedEventArgs e) => await Backup();
-    }
-
-    private async Task Backup()
-    {
-        string jsonString = JsonSerializer.Serialize(_data, _options);
-
-        await SaveFile(jsonString);
     }
 
     private async Task SaveFile(string content)
