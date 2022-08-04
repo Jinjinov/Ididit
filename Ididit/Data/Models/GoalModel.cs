@@ -22,13 +22,14 @@ public class GoalModel
 
     public List<TaskModel> TaskList = new();
 
-    public TaskModel CreateTask(long id)
+    public TaskModel CreateTask(long id, string name)
     {
         TaskModel task = new()
         {
             Id = id,
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
+            Name = name,
             CreatedAt = DateTime.Now,
             DesiredInterval = 0,
             Priority = Priority.Medium

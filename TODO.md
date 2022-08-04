@@ -1,7 +1,6 @@
 # TODO:
 
 - [ ] load examples
-- [ ] delete all
 - [ ] screenshots of examples
 - [ ] GoogleDriveBackup - remove timer in WASM / add timer in WebView
 - [ ] GoogleDriveBackup - abstract base class

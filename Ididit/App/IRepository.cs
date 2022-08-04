@@ -24,7 +24,7 @@ internal interface IRepository : IDataModel
     Task Initialize();
     Task AddData(IDataModel data);
 
-    CategoryModel CreateCategory();
+    CategoryModel CreateCategory(string name);
     Task AddCategory(CategoryModel category);
     Task AddGoal(GoalModel goal);
     Task AddTask(TaskModel task);

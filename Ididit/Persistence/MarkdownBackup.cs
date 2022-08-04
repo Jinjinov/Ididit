@@ -26,8 +26,7 @@ internal class MarkdownBackup
 
         string text = await streamReader.ReadToEndAsync();
 
-        GoalModel goal = category.CreateGoal(_repository.MaxGoalId + 1);
-        goal.Name = name;
+        GoalModel goal = category.CreateGoal(_repository.MaxGoalId + 1, name);
         goal.Details = text;
 
         await _repository.AddGoal(goal);
@@ -44,8 +43,7 @@ internal class MarkdownBackup
             }
             else
             {
-                task = goal.CreateTask(_repository.MaxTaskId + 1);
-                task.Name = line;
+                task = goal.CreateTask(_repository.MaxTaskId + 1, line);
 
                 await _repository.AddTask(task);
             }

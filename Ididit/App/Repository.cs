@@ -54,9 +54,7 @@ internal class Repository : DataModel, IRepository
 
         if (!CategoryList.Any())
         {
-            CategoryModel category = CreateCategory();
-
-            category.Name = "ididit!";
+            CategoryModel category = CreateCategory("ididit!");
 
             await AddCategory(category);
         }
@@ -121,13 +119,14 @@ internal class Repository : DataModel, IRepository
         }
     }
 
-    public CategoryModel CreateCategory()
+    public CategoryModel CreateCategory(string name)
     {
         CategoryModel category = new()
         {
             Id = MaxCategoryId + 1,
             CategoryId = null,
-            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
+            Name = name
         };
 
         CategoryList.Add(category);

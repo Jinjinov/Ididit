@@ -18,13 +18,14 @@ public class CategoryModel
     public List<CategoryModel> CategoryList = new();
     public List<GoalModel> GoalList = new();
 
-    public CategoryModel CreateCategory(long id)
+    public CategoryModel CreateCategory(long id, string name)
     {
         CategoryModel category = new()
         {
             Id = id,
             CategoryId = Id,
-            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null
+            PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
+            Name = name
         };
 
         CategoryList.Add(category);
@@ -32,13 +33,14 @@ public class CategoryModel
         return category;
     }
 
-    public GoalModel CreateGoal(long id)
+    public GoalModel CreateGoal(long id, string name)
     {
         GoalModel goal = new()
         {
             Id = id,
             CategoryId = Id,
-            PreviousId = GoalList.Any() ? GoalList.Last().Id : null
+            PreviousId = GoalList.Any() ? GoalList.Last().Id : null,
+            Name = name
         };
 
         GoalList.Add(goal);

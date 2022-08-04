@@ -88,8 +88,7 @@ internal class TsvBackup
             }
             else
             {
-                root = _repository.CreateCategory();
-                root.Name = record.Root;
+                root = _repository.CreateCategory(record.Root);
 
                 await _repository.AddCategory(root);
             }
@@ -100,8 +99,7 @@ internal class TsvBackup
             }
             else
             {
-                category = root.CreateCategory(_repository.MaxCategoryId + 1);
-                category.Name = record.Category;
+                category = root.CreateCategory(_repository.MaxCategoryId + 1, record.Category);
 
                 await _repository.AddCategory(category);
             }
@@ -112,8 +110,7 @@ internal class TsvBackup
             }
             else
             {
-                goal = category.CreateGoal(_repository.MaxGoalId + 1);
-                goal.Name = record.Goal;
+                goal = category.CreateGoal(_repository.MaxGoalId + 1, record.Goal);
 
                 await _repository.AddGoal(goal);
             }
@@ -121,8 +118,7 @@ internal class TsvBackup
             goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
             await _repository.UpdateGoal(goal.Id);
 
-            task = goal.CreateTask(_repository.MaxTaskId + 1);
-            task.Name = record.Task;
+            task = goal.CreateTask(_repository.MaxTaskId + 1, record.Task);
             task.Priority = record.Priority;
 
             string[] time = record.Interval.Split(' ');

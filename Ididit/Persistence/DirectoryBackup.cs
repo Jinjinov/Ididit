@@ -26,8 +26,7 @@ internal class DirectoryBackup
 
         if (root == null)
         {
-            root = _repository.CreateCategory();
-            root.Name = name;
+            root = _repository.CreateCategory(name);
 
             await _repository.AddCategory(root);
         }
@@ -52,8 +51,7 @@ internal class DirectoryBackup
 
                 if (goal == null)
                 {
-                    goal = parent.CreateGoal(_repository.MaxGoalId + 1);
-                    goal.Name = name;
+                    goal = parent.CreateGoal(_repository.MaxGoalId + 1, name);
                     goal.Details = node.Text;
 
                     await _repository.AddGoal(goal);
@@ -76,8 +74,7 @@ internal class DirectoryBackup
                     }
                     else
                     {
-                        task = goal.CreateTask(_repository.MaxTaskId + 1);
-                        task.Name = line;
+                        task = goal.CreateTask(_repository.MaxTaskId + 1, line);
 
                         await _repository.AddTask(task);
                     }
@@ -92,8 +89,7 @@ internal class DirectoryBackup
 
                 if (category == null)
                 {
-                    category = parent.CreateCategory(_repository.MaxCategoryId + 1);
-                    category.Name = name;
+                    category = parent.CreateCategory(_repository.MaxCategoryId + 1, name);
 
                     await _repository.AddCategory(category);
                 }

@@ -105,7 +105,7 @@ public partial class CategoriesComponent
 
     async Task NewCategory()
     {
-        CategoryModel category = SelectedCategory.CreateCategory(Repository.MaxCategoryId + 1);
+        CategoryModel category = SelectedCategory.CreateCategory(Repository.MaxCategoryId + 1, string.Empty);
 
         await Repository.AddCategory(category);
 
