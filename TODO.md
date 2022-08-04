@@ -32,6 +32,9 @@
 
 - [ ] Bootstrap 4.6 ---> 5.2
 
+- [ ] add https://github.com/Jinjinov/Ididit link `<a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a>`
+- [ ] add https://ididit.today/ link `<a href="https://github.com/Jinjinov/Ididit" target="_blank">ididit!</a>`
+
 - [ ] interface GetUserDisplayName()
 
 
@@ -47,7 +50,7 @@
 
 - [ ] new settings
 - [ ] load settings
-- [ ] help + GitHub link
+- [ ] help
 
 - [ ] UI - remove focused borders
 
