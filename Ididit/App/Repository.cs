@@ -42,6 +42,11 @@ internal class Repository : DataModel, IRepository
 
         await _databaseAccess.Initialize();
 
+        await GetData();
+    }
+
+    private async Task GetData()
+    {
         RepositoryData data = await _databaseAccess.GetData();
 
         CategoryList = data.CategoryList;
@@ -347,5 +352,7 @@ internal class Repository : DataModel, IRepository
         await AddTime(DateTime.Now.AddDays(-12), 16);
 
         await AddTime(DateTime.Now.AddDays(-300), 17);
+
+        await GetData();
     }
 }
