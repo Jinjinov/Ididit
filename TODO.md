@@ -1,8 +1,14 @@
 # TODO:
 
+- [ ] load examples
+- [ ] delete all
 - [ ] screenshots of examples
+- [ ] GoogleDriveBackup - remove timer in WASM / add timer in WebView
+- [ ] GoogleDriveBackup - abstract base class
+- [ ] GoogleDriveBackup - auto save backup
+- [ ] GoogleDriveBackup - auto restore backup
 
-- [ ] release news on: facebook, reddit, twitter, instagram, linkedin
+
 
 - [ ] google store - $25
     - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
@@ -20,15 +26,15 @@
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
 
-- [ ] help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
+- [ ] release news on: facebook, reddit, twitter, instagram, linkedin
+
+
 
 - [ ] Bootstrap 4.6 ---> 5.2
 
-- [ ] GoogleDriveBackup - remove timer in WASM / add timer in WebView
-- [ ] GoogleDriveBackup - abstract base class
-- [ ] GoogleDriveBackup - auto save, auto restore backup
-
 - [ ] interface GetUserDisplayName()
+
+
 
 - [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
@@ -42,8 +48,6 @@
 - [ ] new settings
 - [ ] load settings
 - [ ] help + GitHub link
-- [ ] load examples
-- [ ] delete all
 
 - [ ] UI - remove focused borders
 
@@ -95,6 +99,8 @@
 - [ ] graphs (number of tasks over time)
 
 - [ ] show "Task done times" in a Calendar/Scheduler, not a List
+
+- [ ] help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
 
 - [ ] fix "The given key '6' was not present in the dictionary" in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
 
