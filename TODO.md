@@ -1,6 +1,9 @@
 # TODO:
 
 - [ ] screenshots of examples
+
+- [ ] interface GetUserDisplayName()
+
 - [ ] GoogleDriveBackup - auto save backup
 - [ ] GoogleDriveBackup - auto restore backup
 
@@ -27,11 +30,6 @@
 
 
 - [ ] Bootstrap 4.6 ---> 5.2
-
-- [ ] add https://github.com/Jinjinov/Ididit link `<a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a>`
-- [ ] add https://ididit.today link `<a href="https://ididit.today" target="_blank">ididit!</a>`
-
-- [ ] interface GetUserDisplayName()
 
 
 
