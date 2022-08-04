@@ -19,6 +19,16 @@ public partial class Options
     [Parameter]
     public CategoryModel SelectedCategory { get; set; } = null!;
 
+    async Task LoadExamples()
+    {
+
+    }
+
+    async Task DeleteAll()
+    {
+        await Repository.DeleteAll();
+    }
+
     [Parameter]
     public IList<string> Themes { get; set; } = null!;
 
