@@ -3,13 +3,11 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using Ididit.Data;
 using Ididit.Persistence;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,81 +17,13 @@ namespace Ididit.WebView.Persistence;
 // https://developers.google.com/drive/api/guides/manage-uploads#.net
 // https://developers.google.com/drive/api/guides/manage-downloads#.net
 
-public class GoogleDriveBackup : IGoogleDriveBackup
+public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
     // If modifying these scopes, delete your previously saved token.json/ folder
     readonly string[] _scopes = { DriveService.Scope.DriveFile };
     const string _applicationName = "ididit";
 
-    const string _fileName = "ididit.json";
-    const string _fileDescription = "ididit backup";
-    const string _fileMimeType = "application/json";
-
-    const string _folderName = "ididit";
-    const string _folderDescription = "ididit backup";
-    const string _folderMimeType = "application/vnd.google-apps.folder";
-
-    readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
-
-    public async Task<DataModel> ImportData()
-    {
-        string text = await LoadFile();
-
-        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
-
-        return data ?? throw new InvalidDataException("Can't deserialize JSON");
-    }
-
-    public async Task ExportData(IDataModel data)
-    {
-        string jsonString = JsonSerializer.Serialize(data, _options);
-
-        await SaveFile(jsonString);
-    }
-
-    private async Task SaveFile(string content)
-    {
-        string folderId = await GetFolderId();
-
-        if (string.IsNullOrEmpty(folderId))
-        {
-            folderId = await CreateFolder();
-        }
-
-        string fileId = await GetFileId(folderId);
-
-        if (string.IsNullOrEmpty(fileId))
-        {
-            fileId = await CreateFile(folderId, content);
-        }
-        else
-        {
-            await UpdateFile(fileId, content);
-        }
-    }
-
-    private async Task<string> LoadFile()
-    {
-        string folderId = await GetFolderId();
-
-        if (string.IsNullOrEmpty(folderId))
-        {
-            return string.Empty;
-        }
-
-        string fileId = await GetFileId(folderId);
-
-        if (string.IsNullOrEmpty(fileId))
-        {
-            return string.Empty;
-        }
-        else
-        {
-            return await GetFile(fileId);
-        }
-    }
-
-    async Task<string> GetFile(string fileId)
+    protected override async Task<string> GetFile(string fileId)
     {
         DriveService? service = await GetDriveService();
 
@@ -139,7 +69,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return text;
     }
 
-    async Task<string> CreateFolder()
+    protected override async Task<string> CreateFolder()
     {
         DriveService? service = await GetDriveService();
 
@@ -160,7 +90,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return file.Id;
     }
 
-    async Task<string> CreateFile(string folderId, string content)
+    protected override async Task<string> CreateFile(string folderId, string content)
     {
         DriveService? service = await GetDriveService();
 
@@ -190,7 +120,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return file.Id;
     }
 
-    async Task<string> UpdateFile(string fileId, string content)
+    protected override async Task<string> UpdateFile(string fileId, string content)
     {
         DriveService? service = await GetDriveService();
 
@@ -214,7 +144,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return updatedFile.Id;
     }
 
-    async Task<string> GetFolderId()
+    protected override async Task<string> GetFolderId()
     {
         DriveService? service = await GetDriveService();
 
@@ -231,7 +161,7 @@ public class GoogleDriveBackup : IGoogleDriveBackup
         return files.Any() ? files.First().Id : string.Empty;
     }
 
-    async Task<string> GetFileId(string folderId)
+    protected override async Task<string> GetFileId(string folderId)
     {
         DriveService? service = await GetDriveService();
 

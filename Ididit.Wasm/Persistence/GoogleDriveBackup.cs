@@ -1,49 +1,21 @@
-﻿using Ididit.Data;
-using Ididit.Persistence;
+﻿using Ididit.Persistence;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
-using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Ididit.Wasm.Persistence;
 
-internal class GoogleDriveBackup : IGoogleDriveBackup
+internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
-    public async Task<DataModel> ImportData()
-    {
-        string text = await LoadFile();
-
-        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
-
-        return data ?? throw new InvalidDataException("Can't deserialize JSON");
-    }
-
-    public async Task ExportData(IDataModel data)
-    {
-        string jsonString = JsonSerializer.Serialize(data, _options);
-
-        await SaveFile(jsonString);
-    }
-
-    private const string _fileName = "ididit.json";
-    private const string _fileDescription = "ididit backup";
-
-    private const string _folderName = "ididit";
-    private const string _folderDescription = "ididit backup";
-    private const string _folderMimeType = "application/vnd.google-apps.folder";
-
     private readonly HttpClient _httpClient;
 
     private readonly IAccessTokenProvider _tokenProvider;
-
-    private readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
     public GoogleDriveBackup(HttpClient httpClient, IAccessTokenProvider tokenProvider)
     {
@@ -52,49 +24,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         _tokenProvider = tokenProvider;
     }
 
-    private async Task SaveFile(string content)
-    {
-        string folderId = await GetFolderId();
-
-        if (string.IsNullOrEmpty(folderId))
-        {
-            folderId = await CreateFolder();
-        }
-
-        string fileId = await GetFileId(folderId);
-
-        if (string.IsNullOrEmpty(fileId))
-        {
-            fileId = await CreateFile(folderId, content);
-        }
-        else
-        {
-            await UpdateFile(fileId, content);
-        }
-    }
-
-    private async Task<string> LoadFile()
-    {
-        string folderId = await GetFolderId();
-
-        if (string.IsNullOrEmpty(folderId))
-        {
-            return string.Empty;
-        }
-
-        string fileId = await GetFileId(folderId);
-
-        if (string.IsNullOrEmpty(fileId))
-        {
-            return string.Empty;
-        }
-        else
-        {
-            return await GetFile(fileId);
-        }
-    }
-
-    private async Task<string> GetFolderId()
+    protected override async Task<string> GetFolderId()
     {
         string folderId = string.Empty;
 
@@ -139,7 +69,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         return folderId;
     }
 
-    private async Task<string> GetFileId(string folderId)
+    protected override async Task<string> GetFileId(string folderId)
     {
         string fileId = string.Empty;
 
@@ -181,7 +111,7 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         return fileId;
     }
 
-    private async Task<string> GetFile(string fileId)
+    protected override async Task<string> GetFile(string fileId)
     {
         string file = string.Empty;
 
@@ -207,6 +137,137 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         }
 
         return file;
+    }
+
+    protected override async Task<string> CreateFolder()
+    {
+        string folderId = string.Empty;
+
+        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out AccessToken token))
+        {
+            HttpRequestMessage requestMessage = new()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart"),
+            };
+
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+
+            JsonContent metaContent = JsonContent.Create(new { name = _folderName, description = _folderDescription, mimeType = _folderMimeType });
+
+            MultipartContent multipart = new() { metaContent };
+
+            requestMessage.Content = multipart;
+
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+
+            HttpStatusCode responseStatusCode = response.StatusCode;
+
+            //responseBody = await response.Content.ReadAsStringAsync();
+
+            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+            folderId = data.GetProperty("id").GetString() ?? string.Empty;
+        }
+
+        return folderId;
+    }
+
+    protected override async Task<string> CreateFile(string folderId, string content)
+    {
+        string fileId = string.Empty;
+
+        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out AccessToken token))
+        {
+            HttpRequestMessage requestMessage = new()
+            {
+                Method = HttpMethod.Post,
+                //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
+                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart"),
+            };
+
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+
+            JsonContent metaContent;
+
+            if (string.IsNullOrEmpty(folderId))
+                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
+            else
+                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription, parents = new[] { folderId } });
+
+            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example" });
+            //StringContent fileContent = new StringContent(content);
+            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
+
+            StringContent fileContent = new(content, Encoding.UTF8, _fileMimeType);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(_fileMimeType);
+            fileContent.Headers.ContentLength = content.Length;
+
+            MultipartContent multipart = new() { metaContent, fileContent };
+
+            requestMessage.Content = multipart;
+
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+
+            HttpStatusCode responseStatusCode = response.StatusCode;
+
+            //responseBody = await response.Content.ReadAsStringAsync();
+
+            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+            fileId = data.GetProperty("id").GetString() ?? string.Empty;
+        }
+
+        return fileId;
+    }
+
+    protected override async Task<string> UpdateFile(string fileId, string content)
+    {
+        string updatedFileId = string.Empty;
+
+        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out AccessToken token))
+        {
+            HttpRequestMessage requestMessage = new()
+            {
+                Method = HttpMethod.Patch,
+                //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
+                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files/" + fileId + "?uploadType=multipart"),
+            };
+
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+
+            JsonContent metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
+
+            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example", DateTime = DateTime.Now });
+            //StringContent fileContent = new StringContent(content);
+            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
+
+            StringContent fileContent = new(content, Encoding.UTF8, _fileMimeType);
+            fileContent.Headers.ContentType = new MediaTypeHeaderValue(_fileMimeType);
+            fileContent.Headers.ContentLength = content.Length;
+
+            MultipartContent multipart = new() { metaContent, fileContent };
+
+            requestMessage.Content = multipart;
+
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+
+            HttpStatusCode responseStatusCode = response.StatusCode;
+
+            //responseBody = await response.Content.ReadAsStringAsync();
+
+            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+            updatedFileId = data.GetProperty("id").GetString() ?? string.Empty;
+        }
+
+        return updatedFileId;
     }
 
     public async Task<string> GetFolders()
@@ -251,128 +312,5 @@ internal class GoogleDriveBackup : IGoogleDriveBackup
         }
 
         return folders;
-    }
-
-    private async Task<string> CreateFolder()
-    {
-        string folderId = string.Empty;
-
-        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out AccessToken token))
-        {
-            HttpRequestMessage requestMessage = new()
-            {
-                Method = HttpMethod.Post,
-                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart"),
-            };
-
-            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
-
-            JsonContent metaContent = JsonContent.Create(new { name = _folderName, description = _folderDescription, mimeType = _folderMimeType });
-
-            MultipartContent multipart = new() { metaContent };
-
-            requestMessage.Content = multipart;
-
-            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
-
-            HttpStatusCode responseStatusCode = response.StatusCode;
-
-            //responseBody = await response.Content.ReadAsStringAsync();
-
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
-
-            folderId = data.GetProperty("id").GetString() ?? string.Empty;
-        }
-
-        return folderId;
-    }
-
-    private async Task<string> CreateFile(string folderId, string content)
-    {
-        string fileId = string.Empty;
-
-        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out AccessToken token))
-        {
-            HttpRequestMessage requestMessage = new()
-            {
-                Method = HttpMethod.Post,
-                //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
-                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart"),
-            };
-
-            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
-
-            JsonContent metaContent;
-
-            if (string.IsNullOrEmpty(folderId))
-                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
-            else
-                metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription, parents = new[] { folderId } });
-
-            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example" });
-            //StringContent fileContent = new StringContent(content);
-            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
-
-            StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
-            fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
-            fileContent.Headers.ContentLength = content.Length;
-
-            MultipartContent multipart = new() { metaContent, fileContent };
-
-            requestMessage.Content = multipart;
-
-            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
-
-            HttpStatusCode responseStatusCode = response.StatusCode;
-
-            //responseBody = await response.Content.ReadAsStringAsync();
-
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
-
-            fileId = data.GetProperty("id").GetString() ?? string.Empty;
-        }
-
-        return fileId;
-    }
-
-    private async Task UpdateFile(string fileId, string content)
-    {
-        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
-
-        if (tokenResult.TryGetToken(out AccessToken token))
-        {
-            HttpRequestMessage requestMessage = new()
-            {
-                Method = HttpMethod.Patch,
-                //RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files?uploadType=media"),
-                RequestUri = new Uri("https://www.googleapis.com/upload/drive/v3/files/" + fileId + "?uploadType=multipart"),
-            };
-
-            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
-
-            JsonContent metaContent = JsonContent.Create(new { name = _fileName, description = _fileDescription });
-
-            //string content = JsonSerializer.Serialize(new { Title = "Blazor POST Request Example", DateTime = DateTime.Now });
-            //StringContent fileContent = new StringContent(content);
-            //fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Text.Plain);
-
-            StringContent fileContent = new(content, Encoding.UTF8, MediaTypeNames.Application.Json);
-            fileContent.Headers.ContentType = new MediaTypeHeaderValue(MediaTypeNames.Application.Json);
-            fileContent.Headers.ContentLength = content.Length;
-
-            MultipartContent multipart = new() { metaContent, fileContent };
-
-            requestMessage.Content = multipart;
-
-            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
-
-            HttpStatusCode responseStatusCode = response.StatusCode;
-
-            //responseBody = await response.Content.ReadAsStringAsync();
-        }
     }
 }

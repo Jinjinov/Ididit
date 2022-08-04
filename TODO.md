@@ -1,7 +1,6 @@
 # TODO:
 
 - [ ] screenshots of examples
-- [ ] GoogleDriveBackup - abstract base class
 - [ ] GoogleDriveBackup - auto save backup
 - [ ] GoogleDriveBackup - auto restore backup
 
