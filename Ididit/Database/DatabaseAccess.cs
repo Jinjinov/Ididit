@@ -544,6 +544,26 @@ internal class DatabaseAccess : IDatabaseAccess
         await _indexedDb.DeleteByKey<long, SettingsEntity>(id);
     }
 
+    public async Task DeleteAll()
+    {
+        _categoryList.Clear();
+        _goalList.Clear();
+        _taskList.Clear();
+        _timeList.Clear();
+
+        _categoryDict.Clear();
+        _goalDict.Clear();
+        _taskDict.Clear();
+        _timeDict.Clear();
+
+        await _indexedDb.DeleteAll<CategoryEntity>();
+        await _indexedDb.DeleteAll<GoalEntity>();
+        await _indexedDb.DeleteAll<TaskEntity>();
+        await _indexedDb.DeleteAll<TimeEntity>();
+
+        _dbModelId = -1;
+    }
+
     /*
     async Task Test()
     {

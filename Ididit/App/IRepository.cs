@@ -42,4 +42,6 @@ internal interface IRepository : IDataModel
     Task DeleteTask(long id);
     Task DeleteTime(long id);
     Task DeleteSettings(long id);
+
+    Task DeleteAll();
 }

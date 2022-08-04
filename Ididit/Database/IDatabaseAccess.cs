@@ -32,4 +32,6 @@ internal interface IDatabaseAccess
     Task DeleteTask(long id);
     Task DeleteTime(long id);
     Task DeleteSettings(long id);
+
+    Task DeleteAll();
 }

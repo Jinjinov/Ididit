@@ -280,4 +280,16 @@ internal class Repository : DataModel, IRepository
 
         await _databaseAccess.DeleteSettings(id);
     }
+
+    public async Task DeleteAll()
+    {
+        CategoryList.Clear();
+        _categoryDict.Clear();
+        _goalDict.Clear();
+        _taskDict.Clear();
+
+        await _databaseAccess.DeleteAll();
+
+        await Initialize();
+    }
 }
