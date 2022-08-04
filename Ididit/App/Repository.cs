@@ -292,4 +292,64 @@ internal class Repository : DataModel, IRepository
 
         await Initialize();
     }
+
+    public async Task LoadExamples()
+    {
+        await AddCategory(new CategoryModel() { Id = 2, CategoryId = 1, Name = "Accomplishments" });
+        await AddCategory(new CategoryModel() { Id = 3, CategoryId = 1, Name = "Health" });
+        await AddCategory(new CategoryModel() { Id = 4, CategoryId = 1, Name = "Well-being" });
+
+        await AddGoal(new GoalModel() { Id = 5, CategoryId = 2, Name = "Chores" });
+        await AddGoal(new GoalModel() { Id = 6, CategoryId = 2, Name = "Hobbies" });
+        await AddGoal(new GoalModel() { Id = 7, CategoryId = 2, Name = "Personal growth" });
+
+        await AddGoal(new GoalModel() { Id = 8, CategoryId = 3, Name = "Appearance" });
+        await AddGoal(new GoalModel() { Id = 9, CategoryId = 3, Name = "Food" });
+        await AddGoal(new GoalModel() { Id = 10, CategoryId = 3, Name = "Sports" });
+
+        await AddGoal(new GoalModel() { Id = 11, CategoryId = 4, Name = "Peace of mind" });
+        await AddGoal(new GoalModel() { Id = 12, CategoryId = 4, Name = "Relationships" });
+        await AddGoal(new GoalModel() { Id = 13, CategoryId = 4, Name = "Relaxation" });
+
+        await AddTask(new TaskModel() { Id = 1, GoalId = 5, Name = "Clean dust under the bed", DesiredTime = new TimeSpan(14, 0, 0, 0) });
+        await AddTask(new TaskModel() { Id = 2, GoalId = 5, Name = "Clean the windows", DesiredTime = new TimeSpan(56, 0, 0, 0) });
+
+        await AddTask(new TaskModel() { Id = 3, GoalId = 6, Name = "Go salsa dancing" });
+        await AddTask(new TaskModel() { Id = 4, GoalId = 6, Name = "Play the piano" });
+
+        await AddTask(new TaskModel() { Id = 5, GoalId = 7, Name = "Attend a cooking workshop", DesiredTime = new TimeSpan(182, 0, 0, 0), Priority = Priority.Low });
+        await AddTask(new TaskModel() { Id = 6, GoalId = 7, Name = "Learn Spanish", DesiredTime = new TimeSpan(0, 8, 0, 0), Priority = Priority.High });
+
+        await AddTask(new TaskModel() { Id = 7, GoalId = 8, Name = "Go to a hairdresser", DesiredTime = new TimeSpan(21, 0, 0, 0) });
+        await AddTask(new TaskModel() { Id = 8, GoalId = 8, Name = "Buy new clothes", DesiredTime = new TimeSpan(56, 0, 0, 0) });
+
+        await AddTask(new TaskModel() { Id = 9, GoalId = 9, Name = "Drink a glass of water", DesiredTime = new TimeSpan(0, 8, 0, 0), Priority = Priority.VeryHigh });
+        await AddTask(new TaskModel() { Id = 10, GoalId = 9, Name = "Eat a piece of fruit", DesiredTime = new TimeSpan(0, 12, 0, 0), Priority = Priority.High });
+
+        await AddTask(new TaskModel() { Id = 11, GoalId = 10, Name = "Stretch & workout", Priority = Priority.High });
+        await AddTask(new TaskModel() { Id = 12, GoalId = 10, Name = "Go hiking", DesiredTime = new TimeSpan(7, 0, 0, 0) });
+
+        await AddTask(new TaskModel() { Id = 13, GoalId = 11, Name = "Take a walk" });
+        await AddTask(new TaskModel() { Id = 14, GoalId = 11, Name = "Meditate", Priority = Priority.Low });
+
+        await AddTask(new TaskModel() { Id = 15, GoalId = 12, Name = "Call parents", Priority = Priority.High });
+        await AddTask(new TaskModel() { Id = 16, GoalId = 12, Name = "Do someone a favor", DesiredTime = new TimeSpan(14, 0, 0, 0) });
+
+        await AddTask(new TaskModel() { Id = 17, GoalId = 13, Name = "Read a book", Priority = Priority.High });
+        await AddTask(new TaskModel() { Id = 18, GoalId = 13, Name = "Get a massage", DesiredTime = new TimeSpan(28, 0, 0, 0), Priority = Priority.Low });
+
+        await AddTime(DateTime.Now.AddDays(-50), 5);
+        await AddTime(DateTime.Now.AddDays(-28), 5);
+
+        await AddTime(DateTime.Now.AddDays(-28), 12);
+        await AddTime(DateTime.Now.AddDays(-7), 12);
+
+        await AddTime(DateTime.Now.AddDays(-27), 15);
+        await AddTime(DateTime.Now.AddDays(-13), 15);
+
+        await AddTime(DateTime.Now.AddDays(-70), 16);
+        await AddTime(DateTime.Now.AddDays(-12), 16);
+
+        await AddTime(DateTime.Now.AddDays(-300), 17);
+    }
 }

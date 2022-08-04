@@ -44,4 +44,6 @@ internal interface IRepository : IDataModel
     Task DeleteSettings(long id);
 
     Task DeleteAll();
+
+    Task LoadExamples();
 }

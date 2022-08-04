@@ -21,7 +21,7 @@ public partial class Options
 
     async Task LoadExamples()
     {
-
+        await Repository.LoadExamples();
     }
 
     async Task DeleteAll()
