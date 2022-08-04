@@ -20,8 +20,9 @@ namespace Ididit.WebView.Persistence;
 public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
     // If modifying these scopes, delete your previously saved token.json/ folder
-    readonly string[] _scopes = { DriveService.Scope.DriveFile };
-    const string _applicationName = "ididit";
+    private readonly string[] _scopes = { DriveService.Scope.DriveFile };
+
+    private const string _applicationName = "ididit";
 
     protected override async Task<string> GetFile(string fileId)
     {
@@ -178,7 +179,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
         return files.Any() ? files.First().Id : string.Empty;
     }
 
-    async Task<DriveService?> GetDriveService()
+    private async Task<DriveService?> GetDriveService()
     {
         if (!File.Exists("credentials.json"))
             return null;
