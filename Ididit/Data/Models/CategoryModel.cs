@@ -7,7 +7,7 @@ namespace Ididit.Data.Models;
 public class CategoryModel
 {
     [JsonIgnore]
-    internal long Id { get; set; }
+    internal long Id { get; init; }
     [JsonIgnore]
     internal long? CategoryId { get; set; }
 

@@ -65,7 +65,12 @@ internal class Repository : DataModel, IRepository
 
         if (!SettingsList.Any())
         {
-            SettingsModel settings = new() { Name = "ididit!", Theme = "default" };
+            SettingsModel settings = new()
+            {
+                Id = MaxSettingsId + 1,
+                Name = "ididit!",
+                Theme = "default"
+            };
 
             SettingsList.Add(settings);
 
@@ -132,8 +137,6 @@ internal class Repository : DataModel, IRepository
 
     public async Task AddCategory(CategoryModel category)
     {
-        category.Id = MaxCategoryId + 1;
-
         _categoryDict[category.Id] = category;
 
         await _databaseAccess.AddCategory(category);
@@ -141,8 +144,6 @@ internal class Repository : DataModel, IRepository
 
     public async Task AddGoal(GoalModel goal)
     {
-        goal.Id = MaxGoalId + 1;
-
         _goalDict[goal.Id] = goal;
 
         await _databaseAccess.AddGoal(goal);
@@ -150,8 +151,6 @@ internal class Repository : DataModel, IRepository
 
     public async Task AddTask(TaskModel task)
     {
-        task.Id = MaxTaskId + 1;
-
         _taskDict[task.Id] = task;
 
         await _databaseAccess.AddTask(task);
@@ -164,8 +163,6 @@ internal class Repository : DataModel, IRepository
 
     public async Task AddSettings(SettingsModel settings)
     {
-        settings.Id = MaxSettingsId + 1;
-
         _settingsDict[settings.Id] = settings;
 
         await _databaseAccess.AddSettings(settings);

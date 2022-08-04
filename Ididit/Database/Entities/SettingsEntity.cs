@@ -5,7 +5,7 @@ namespace Ididit.Database.Entities;
 internal class SettingsEntity
 {
     [IndexDbKey]
-    public long Id { get; set; }
+    public long Id { get; init; }
 
     [IndexDbIndex]
     public string Name { get; set; } = string.Empty;

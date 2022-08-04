@@ -5,7 +5,7 @@ namespace Ididit.Data.Models;
 public class SettingsModel
 {
     [JsonIgnore]
-    public long Id { get; set; }
+    public long Id { get; init; }
 
     public string Name { get; set; } = string.Empty;
 

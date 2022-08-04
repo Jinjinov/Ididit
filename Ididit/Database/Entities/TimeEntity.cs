@@ -9,5 +9,5 @@ internal class TimeEntity
     public DateTime Time { get; set; }
 
     [IndexDbIndex]
-    public long TaskId { get; set; }
+    public long TaskId { get; init; }
 }

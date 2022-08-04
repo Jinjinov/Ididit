@@ -6,7 +6,7 @@ namespace Ididit.Database.Entities;
 internal class TaskEntity
 {
     [IndexDbKey]
-    public long Id { get; set; }
+    public long Id { get; init; }
 
     [IndexDbIndex]
     public long GoalId { get; set; }
