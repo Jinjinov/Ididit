@@ -1,5 +1,7 @@
 # TODO:
 
+- [ ] refactor LoadExamples()
+
 - [ ] screenshots of examples
 
 - [ ] interface GetUserDisplayName()

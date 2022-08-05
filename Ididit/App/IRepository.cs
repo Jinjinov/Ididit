@@ -8,10 +8,10 @@ namespace Ididit.App;
 
 internal interface IRepository : IDataModel
 {
-    long MaxCategoryId { get; }
-    long MaxGoalId { get; }
-    long MaxTaskId { get; }
-    long MaxSettingsId { get; }
+    long NextCategoryId { get; }
+    long NextGoalId { get; }
+    long NextTaskId { get; }
+    long NextSettingsId { get; }
 
     IReadOnlyDictionary<long, CategoryModel> AllCategories { get; }
     IReadOnlyDictionary<long, GoalModel> AllGoals { get; }

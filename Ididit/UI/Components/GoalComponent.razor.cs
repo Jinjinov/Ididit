@@ -144,7 +144,7 @@ public partial class GoalComponent
 
     private async Task AddTaskAt(int idx, string line)
     {
-        (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(Repository.MaxTaskId + 1, idx);
+        (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(Repository.NextTaskId, idx);
         task.Name = line;
 
         if (changedTask is not null)

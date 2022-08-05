@@ -38,7 +38,7 @@ internal class GoogleKeepImport
 
                 if (googleKeepNote != null)
                 {
-                    GoalModel goal = category.CreateGoal(_repository.MaxGoalId + 1, googleKeepNote.Title);
+                    GoalModel goal = category.CreateGoal(_repository.NextGoalId, googleKeepNote.Title);
                     goal.Details = googleKeepNote.TextContent;
 
                     await _repository.AddGoal(goal);
@@ -55,7 +55,7 @@ internal class GoogleKeepImport
                         }
                         else
                         {
-                            task = goal.CreateTask(_repository.MaxTaskId + 1, line);
+                            task = goal.CreateTask(_repository.NextTaskId, line);
 
                             await _repository.AddTask(task);
                         }

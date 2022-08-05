@@ -10,10 +10,10 @@ namespace Ididit.App;
 
 internal class Repository : DataModel, IRepository
 {
-    public long MaxCategoryId => _categoryDict.Keys.DefaultIfEmpty().Max();
-    public long MaxGoalId => _goalDict.Keys.DefaultIfEmpty().Max();
-    public long MaxTaskId => _taskDict.Keys.DefaultIfEmpty().Max();
-    public long MaxSettingsId => _settingsDict.Keys.DefaultIfEmpty().Max();
+    public long NextCategoryId => _categoryDict.Keys.DefaultIfEmpty().Max() + 1;
+    public long NextGoalId => _goalDict.Keys.DefaultIfEmpty().Max() + 1;
+    public long NextTaskId => _taskDict.Keys.DefaultIfEmpty().Max() + 1;
+    public long NextSettingsId => _settingsDict.Keys.DefaultIfEmpty().Max() + 1;
 
     public IReadOnlyDictionary<long, CategoryModel> AllCategories => _categoryDict;
     public IReadOnlyDictionary<long, GoalModel> AllGoals => _goalDict;
@@ -70,7 +70,7 @@ internal class Repository : DataModel, IRepository
         {
             SettingsModel settings = new()
             {
-                Id = MaxSettingsId + 1,
+                Id = NextSettingsId,
                 Name = "ididit!",
                 Theme = "default"
             };
@@ -128,7 +128,7 @@ internal class Repository : DataModel, IRepository
     {
         CategoryModel category = new()
         {
-            Id = MaxCategoryId + 1,
+            Id = NextCategoryId,
             CategoryId = null,
             PreviousId = CategoryList.Any() ? CategoryList.Last().Id : null,
             Name = name
@@ -296,9 +296,15 @@ internal class Repository : DataModel, IRepository
 
     public async Task LoadExamples()
     {
-        await AddCategory(new CategoryModel() { Id = 2, PreviousId = null, CategoryId = 1, Name = "Accomplishments" });
-        await AddCategory(new CategoryModel() { Id = 3, PreviousId = 2, CategoryId = 1, Name = "Health" });
-        await AddCategory(new CategoryModel() { Id = 4, PreviousId = 3, CategoryId = 1, Name = "Well-being" });
+        List<CategoryModel> categories = new()
+        {
+            { Category.CreateCategory(NextCategoryId, "Accomplishments") },
+            { Category.CreateCategory(NextCategoryId, "Health") },
+            { Category.CreateCategory(NextCategoryId, "Well-being") }
+        };
+
+        foreach (CategoryModel category in categories)
+            await AddCategory(category);
 
         await AddGoal(new GoalModel() { Id = 5, PreviousId = null, CategoryId = 2, Name = "Chores" });
         await AddGoal(new GoalModel() { Id = 6, PreviousId = 5, CategoryId = 2, Name = "Hobbies" });

@@ -39,7 +39,7 @@ public partial class GoalsComponent
 
     async Task NewGoal()
     {
-        GoalModel goal = SelectedCategory.CreateGoal(Repository.MaxGoalId + 1, string.Empty);
+        GoalModel goal = SelectedCategory.CreateGoal(Repository.NextGoalId, string.Empty);
 
         await Repository.AddGoal(goal);
 
