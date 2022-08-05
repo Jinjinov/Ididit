@@ -1,6 +1,6 @@
 # TODO:
 
-- [ ] screenshots of examples
+- [ ] exe icon
 
 - [ ] interface GetUserDisplayName()
 
