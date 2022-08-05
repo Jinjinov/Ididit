@@ -381,6 +381,9 @@ internal class Repository : DataModel, IRepository
         };
 
         foreach ((DateTime time, long taskId) in times)
+        {
             await AddTime(time, taskId);
+            await UpdateTask(taskId);
+        }
     }
 }

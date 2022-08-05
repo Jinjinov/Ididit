@@ -78,7 +78,6 @@ public partial class TaskComponent
             (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 
             await Repository.AddTime(time, taskId);
-
             await Repository.UpdateTask(Task.Id);
         }
     }
