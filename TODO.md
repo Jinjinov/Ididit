@@ -25,6 +25,7 @@
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
 
+- [ ] add Google Analytics
 - [ ] release news on: facebook, reddit, twitter, instagram, linkedin
 
 
