@@ -17,8 +17,8 @@
 
 <CascadingValue Value=Size>
 <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
-    <Row>
-        <Column Border=Border.Is1 Display=Display.Flex>
+    <Row Border=Border.Is1.OnTop.Dark>
+        <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
             <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
                 <Icon Class="fa-fw" Name="IconName.Bars" />
@@ -83,7 +83,7 @@
         </Row>
     }
     <Row>
-        <Column Border=Border.Is1>
+        <Column Border=Border.Is1.OnTop.Primary>
             <a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a>
             <span>&#169; 2022</span>
         </Column>
