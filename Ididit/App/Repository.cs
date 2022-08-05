@@ -306,59 +306,75 @@ internal class Repository : DataModel, IRepository
         foreach (CategoryModel category in categories)
             await AddCategory(category);
 
-        await AddGoal(new GoalModel() { Id = 5, PreviousId = null, CategoryId = 2, Name = "Chores" });
-        await AddGoal(new GoalModel() { Id = 6, PreviousId = 5, CategoryId = 2, Name = "Hobbies" });
-        await AddGoal(new GoalModel() { Id = 7, PreviousId = 6, CategoryId = 2, Name = "Personal growth" });
+        List<GoalModel> goals = new()
+        {
+            { categories[0].CreateGoal(NextGoalId, "Chores") },
+            { categories[0].CreateGoal(NextGoalId, "Hobbies") },
+            { categories[0].CreateGoal(NextGoalId, "Personal growth") },
 
-        await AddGoal(new GoalModel() { Id = 8, PreviousId = null, CategoryId = 3, Name = "Appearance" });
-        await AddGoal(new GoalModel() { Id = 9, PreviousId = 8, CategoryId = 3, Name = "Food" });
-        await AddGoal(new GoalModel() { Id = 10, PreviousId = 9, CategoryId = 3, Name = "Sports" });
+            { categories[1].CreateGoal(NextGoalId, "Appearance") },
+            { categories[1].CreateGoal(NextGoalId, "Food") },
+            { categories[1].CreateGoal(NextGoalId, "Sports") },
 
-        await AddGoal(new GoalModel() { Id = 11, PreviousId = null, CategoryId = 4, Name = "Peace of mind" });
-        await AddGoal(new GoalModel() { Id = 12, PreviousId = 11, CategoryId = 4, Name = "Relationships" });
-        await AddGoal(new GoalModel() { Id = 13, PreviousId = 12, CategoryId = 4, Name = "Relaxation" });
+            { categories[2].CreateGoal(NextGoalId, "Peace of mind") },
+            { categories[2].CreateGoal(NextGoalId, "Relationships") },
+            { categories[2].CreateGoal(NextGoalId, "Relaxation") }
+        };
 
-        await AddTask(new TaskModel() { Id = 1, PreviousId = null, GoalId = 5, Name = "Clean dust under the bed", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(14, 0, 0, 0) });
-        await AddTask(new TaskModel() { Id = 2, PreviousId = 1, GoalId = 5, Name = "Clean the windows", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(56, 0, 0, 0) });
+        foreach (GoalModel goal in goals)
+            await AddGoal(goal);
 
-        await AddTask(new TaskModel() { Id = 3, PreviousId = null, GoalId = 6, Name = "Go salsa dancing", CreatedAt = DateTime.Now });
-        await AddTask(new TaskModel() { Id = 4, PreviousId = 3, GoalId = 6, Name = "Play the piano", CreatedAt = DateTime.Now });
+        List<TaskModel> tasks = new()
+        {
+            { goals[0].CreateTask(NextTaskId, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High) },
+            { goals[0].CreateTask(NextTaskId, "Clean the windows", TimeSpan.FromDays(90), Priority.High) },
 
-        await AddTask(new TaskModel() { Id = 5, PreviousId = null, GoalId = 7, Name = "Attend a cooking workshop", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(182, 0, 0, 0), Priority = Priority.Low });
-        await AddTask(new TaskModel() { Id = 6, PreviousId = 5, GoalId = 7, Name = "Learn Spanish", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(0, 8, 0, 0), Priority = Priority.High });
+            { goals[1].CreateTask(NextTaskId, "Go salsa dancing") },
+            { goals[1].CreateTask(NextTaskId, "Play the piano", TimeSpan.FromDays(7), Priority.Medium) },
 
-        await AddTask(new TaskModel() { Id = 7, PreviousId = null, GoalId = 8, Name = "Go to a hairdresser", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(21, 0, 0, 0) });
-        await AddTask(new TaskModel() { Id = 8, PreviousId = 7, GoalId = 8, Name = "Buy new clothes", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(56, 0, 0, 0) });
+            { goals[2].CreateTask(NextTaskId, "Attend a cooking workshop") },
+            { goals[2].CreateTask(NextTaskId, "Learn Spanish", TimeSpan.FromDays(1), Priority.High) },
 
-        await AddTask(new TaskModel() { Id = 9, PreviousId = null, GoalId = 9, Name = "Drink a glass of water", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(0, 8, 0, 0), Priority = Priority.VeryHigh });
-        await AddTask(new TaskModel() { Id = 10, PreviousId = 9, GoalId = 9, Name = "Eat a piece of fruit", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(0, 12, 0, 0), Priority = Priority.High });
+            { goals[3].CreateTask(NextTaskId, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.High) },
+            { goals[3].CreateTask(NextTaskId, "Buy new clothes") },
 
-        await AddTask(new TaskModel() { Id = 11, PreviousId = null, GoalId = 10, Name = "Stretch & workout", CreatedAt = DateTime.Now, Priority = Priority.High });
-        await AddTask(new TaskModel() { Id = 12, PreviousId = 11, GoalId = 10, Name = "Go hiking", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(7, 0, 0, 0) });
+            { goals[4].CreateTask(NextTaskId, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh) },
+            { goals[4].CreateTask(NextTaskId, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.High) },
 
-        await AddTask(new TaskModel() { Id = 13, PreviousId = null, GoalId = 11, Name = "Take a walk", CreatedAt = DateTime.Now });
-        await AddTask(new TaskModel() { Id = 14, PreviousId = 13, GoalId = 11, Name = "Meditate", CreatedAt = DateTime.Now, Priority = Priority.Low });
+            { goals[5].CreateTask(NextTaskId, "Stretch & workout", TimeSpan.FromDays(1), Priority.High) },
+            { goals[5].CreateTask(NextTaskId, "Go hiking", TimeSpan.FromDays(7), Priority.Medium) },
 
-        await AddTask(new TaskModel() { Id = 15, PreviousId = null, GoalId = 12, Name = "Call parents", CreatedAt = DateTime.Now, Priority = Priority.High });
-        await AddTask(new TaskModel() { Id = 16, PreviousId = 15, GoalId = 12, Name = "Do someone a favor", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(14, 0, 0, 0) });
+            { goals[6].CreateTask(NextTaskId, "Take a walk", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[6].CreateTask(NextTaskId, "Meditate", TimeSpan.FromDays(7), Priority.Medium) },
 
-        await AddTask(new TaskModel() { Id = 17, PreviousId = null, GoalId = 13, Name = "Read a book", CreatedAt = DateTime.Now, Priority = Priority.High });
-        await AddTask(new TaskModel() { Id = 18, PreviousId = 17, GoalId = 13, Name = "Get a massage", CreatedAt = DateTime.Now, DesiredTime = new TimeSpan(28, 0, 0, 0), Priority = Priority.Low });
+            { goals[7].CreateTask(NextTaskId, "Call parents", TimeSpan.FromDays(7), Priority.High) },
+            { goals[7].CreateTask(NextTaskId, "Do someone a favor") },
 
-        await AddTime(DateTime.Now.AddDays(-50), 5);
-        await AddTime(DateTime.Now.AddDays(-28), 5);
+            { goals[8].CreateTask(NextTaskId, "Read a book", TimeSpan.FromDays(1), Priority.High) },
+            { goals[8].CreateTask(NextTaskId, "Get a massage", TimeSpan.FromDays(28), Priority.Low) }
+        };
 
-        await AddTime(DateTime.Now.AddDays(-28), 12);
-        await AddTime(DateTime.Now.AddDays(-7), 12);
+        foreach (TaskModel task in tasks)
+            await AddTask(task);
 
-        await AddTime(DateTime.Now.AddDays(-27), 15);
-        await AddTime(DateTime.Now.AddDays(-13), 15);
+        List<(DateTime time, long taskId)> times = new()
+        {
+            { tasks[0].AddTime(DateTime.Now.AddDays(-50)) },
+            { tasks[0].AddTime(DateTime.Now.AddDays(-28)) },
 
-        await AddTime(DateTime.Now.AddDays(-70), 16);
-        await AddTime(DateTime.Now.AddDays(-12), 16);
+            { tasks[3].AddTime(DateTime.Now.AddDays(-28)) },
+            { tasks[3].AddTime(DateTime.Now.AddDays(-7)) },
 
-        await AddTime(DateTime.Now.AddDays(-300), 17);
+            { tasks[6].AddTime(DateTime.Now.AddDays(-27)) },
+            { tasks[6].AddTime(DateTime.Now.AddDays(-13)) },
 
-        await GetData();
+            { tasks[11].AddTime(DateTime.Now.AddDays(-70)) },
+            { tasks[11].AddTime(DateTime.Now.AddDays(-12)) },
+
+            { tasks[17].AddTime(DateTime.Now.AddDays(-300)) }
+        };
+
+        foreach ((DateTime time, long taskId) in times)
+            await AddTime(time, taskId);
     }
 }

@@ -118,14 +118,13 @@ internal class TsvBackup
             goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
             await _repository.UpdateGoal(goal.Id);
 
-            task = goal.CreateTask(_repository.NextTaskId, record.Task);
-            task.Priority = record.Priority;
-
             string[] time = record.Interval.Split(' ');
+
+            TimeSpan? desiredTime = null;
 
             if (time.Length == 2 && int.TryParse(time[0], out int interval))
             {
-                task.DesiredTime = time[1].TrimEnd('s') switch
+                desiredTime = time[1].TrimEnd('s') switch
                 {
                     "hour" => TimeSpan.FromHours(interval),
                     "day" => TimeSpan.FromDays(interval),
@@ -137,12 +136,10 @@ internal class TsvBackup
             }
             else if (string.Equals(record.Interval, "ASAP", StringComparison.OrdinalIgnoreCase))
             {
-                task.DesiredInterval = 0;
+                desiredTime = TimeSpan.Zero;
             }
-            else
-            {
-                task.DesiredInterval = null;
-            }
+
+            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredTime, record.Priority);
 
             await _repository.AddTask(task);
         }
