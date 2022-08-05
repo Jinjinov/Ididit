@@ -296,62 +296,68 @@ internal class Repository : DataModel, IRepository
 
     public async Task LoadExamples()
     {
+        long nextCategoryId = NextCategoryId;
+
         List<CategoryModel> categories = new()
         {
-            { Category.CreateCategory(NextCategoryId, "Accomplishments") },
-            { Category.CreateCategory(NextCategoryId, "Health") },
-            { Category.CreateCategory(NextCategoryId, "Well-being") }
+            { Category.CreateCategory(nextCategoryId++, "Accomplishments") },
+            { Category.CreateCategory(nextCategoryId++, "Health") },
+            { Category.CreateCategory(nextCategoryId++, "Well-being") }
         };
 
         foreach (CategoryModel category in categories)
             await AddCategory(category);
 
+        long nextGoalId = NextGoalId;
+
         List<GoalModel> goals = new()
         {
-            { categories[0].CreateGoal(NextGoalId, "Chores") },
-            { categories[0].CreateGoal(NextGoalId, "Hobbies") },
-            { categories[0].CreateGoal(NextGoalId, "Personal growth") },
+            { categories[0].CreateGoal(nextGoalId++, "Chores") },
+            { categories[0].CreateGoal(nextGoalId++, "Hobbies") },
+            { categories[0].CreateGoal(nextGoalId++, "Personal growth") },
 
-            { categories[1].CreateGoal(NextGoalId, "Appearance") },
-            { categories[1].CreateGoal(NextGoalId, "Food") },
-            { categories[1].CreateGoal(NextGoalId, "Sports") },
+            { categories[1].CreateGoal(nextGoalId++, "Appearance") },
+            { categories[1].CreateGoal(nextGoalId++, "Food") },
+            { categories[1].CreateGoal(nextGoalId++, "Sports") },
 
-            { categories[2].CreateGoal(NextGoalId, "Peace of mind") },
-            { categories[2].CreateGoal(NextGoalId, "Relationships") },
-            { categories[2].CreateGoal(NextGoalId, "Relaxation") }
+            { categories[2].CreateGoal(nextGoalId++, "Peace of mind") },
+            { categories[2].CreateGoal(nextGoalId++, "Relationships") },
+            { categories[2].CreateGoal(nextGoalId++, "Relaxation") }
         };
 
         foreach (GoalModel goal in goals)
             await AddGoal(goal);
 
+        long nextTaskId = NextTaskId;
+
         List<TaskModel> tasks = new()
         {
-            { goals[0].CreateTask(NextTaskId, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High) },
-            { goals[0].CreateTask(NextTaskId, "Clean the windows", TimeSpan.FromDays(90), Priority.High) },
+            { goals[0].CreateTask(nextTaskId++, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High) },
+            { goals[0].CreateTask(nextTaskId++, "Clean the windows", TimeSpan.FromDays(90), Priority.High) },
 
-            { goals[1].CreateTask(NextTaskId, "Go salsa dancing") },
-            { goals[1].CreateTask(NextTaskId, "Play the piano", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[1].CreateTask(nextTaskId++, "Go salsa dancing") },
+            { goals[1].CreateTask(nextTaskId++, "Play the piano", TimeSpan.FromDays(7), Priority.Medium) },
 
-            { goals[2].CreateTask(NextTaskId, "Attend a cooking workshop") },
-            { goals[2].CreateTask(NextTaskId, "Learn Spanish", TimeSpan.FromDays(1), Priority.High) },
+            { goals[2].CreateTask(nextTaskId++, "Attend a cooking workshop") },
+            { goals[2].CreateTask(nextTaskId++, "Learn Spanish", TimeSpan.FromDays(1), Priority.High) },
 
-            { goals[3].CreateTask(NextTaskId, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.High) },
-            { goals[3].CreateTask(NextTaskId, "Buy new clothes") },
+            { goals[3].CreateTask(nextTaskId++, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.VeryHigh) },
+            { goals[3].CreateTask(nextTaskId++, "Buy new clothes") },
 
-            { goals[4].CreateTask(NextTaskId, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh) },
-            { goals[4].CreateTask(NextTaskId, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.High) },
+            { goals[4].CreateTask(nextTaskId++, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh) },
+            { goals[4].CreateTask(nextTaskId++, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.VeryHigh) },
 
-            { goals[5].CreateTask(NextTaskId, "Stretch & workout", TimeSpan.FromDays(1), Priority.High) },
-            { goals[5].CreateTask(NextTaskId, "Go hiking", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[5].CreateTask(nextTaskId++, "Stretch & workout", TimeSpan.FromDays(1), Priority.High) },
+            { goals[5].CreateTask(nextTaskId++, "Go hiking", TimeSpan.FromDays(7), Priority.High) },
 
-            { goals[6].CreateTask(NextTaskId, "Take a walk", TimeSpan.FromDays(7), Priority.Medium) },
-            { goals[6].CreateTask(NextTaskId, "Meditate", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[6].CreateTask(nextTaskId++, "Take a walk", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[6].CreateTask(nextTaskId++, "Meditate", TimeSpan.FromDays(7), Priority.Medium) },
 
-            { goals[7].CreateTask(NextTaskId, "Call parents", TimeSpan.FromDays(7), Priority.High) },
-            { goals[7].CreateTask(NextTaskId, "Do someone a favor") },
+            { goals[7].CreateTask(nextTaskId++, "Call parents", TimeSpan.FromDays(7), Priority.VeryHigh) },
+            { goals[7].CreateTask(nextTaskId++, "Do someone a favor") },
 
-            { goals[8].CreateTask(NextTaskId, "Read a book", TimeSpan.FromDays(1), Priority.High) },
-            { goals[8].CreateTask(NextTaskId, "Get a massage", TimeSpan.FromDays(28), Priority.Low) }
+            { goals[8].CreateTask(nextTaskId++, "Read a book", TimeSpan.FromDays(1), Priority.High) },
+            { goals[8].CreateTask(nextTaskId++, "Get a massage", TimeSpan.FromDays(28), Priority.Low) }
         };
 
         foreach (TaskModel task in tasks)
@@ -360,10 +366,10 @@ internal class Repository : DataModel, IRepository
         List<(DateTime time, long taskId)> times = new()
         {
             { tasks[0].AddTime(DateTime.Now.AddDays(-50)) },
-            { tasks[0].AddTime(DateTime.Now.AddDays(-28)) },
+            { tasks[0].AddTime(DateTime.Now.AddDays(-25)) },
 
             { tasks[3].AddTime(DateTime.Now.AddDays(-28)) },
-            { tasks[3].AddTime(DateTime.Now.AddDays(-7)) },
+            { tasks[3].AddTime(DateTime.Now.AddDays(-8)) },
 
             { tasks[6].AddTime(DateTime.Now.AddDays(-27)) },
             { tasks[6].AddTime(DateTime.Now.AddDays(-13)) },
