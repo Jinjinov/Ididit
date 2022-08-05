@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Ididit.WebView.WinForms;
@@ -23,6 +24,7 @@ public partial class MainForm : Form
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
 
         InitializeComponent();
+        Icon = new Icon("favicon.ico");
 
         blazorWebView.HostPage = @"wwwroot\index.html";
         IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
