@@ -1,7 +1,5 @@
 # TODO:
 
-- [ ] exe icon
-
 - [ ] interface GetUserDisplayName()
 
 - [ ] GoogleDriveBackup - auto save backup
