@@ -34,6 +34,7 @@ iframe {
 .parent-row {
     overflow: auto !important;
     max-height: 100% !important;
+    display: block !important;
 }
 
 .child-column {
@@ -54,6 +55,7 @@ iframe {
     .parent-row {
         overflow: hidden !important;
         max-height: none !important;
+        display: flex !important;
     }
 
     .child-column {
