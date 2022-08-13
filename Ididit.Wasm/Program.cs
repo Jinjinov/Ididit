@@ -1,5 +1,6 @@
 using Ididit.App;
 using Ididit.Persistence;
+using Ididit.Wasm.App;
 using Ididit.Wasm.Persistence;
 using Ididit.Wasm.UI;
 using Microsoft.AspNetCore.Components.Web;
@@ -16,6 +17,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddServices();
 builder.Services.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
+builder.Services.AddScoped<IUserDisplayName, UserDisplayName>();
 builder.Services.AddOidcAuthentication(options =>
 {
     options.ProviderOptions.Authority = "https://accounts.google.com/";

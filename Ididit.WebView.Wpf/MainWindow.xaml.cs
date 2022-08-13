@@ -1,5 +1,6 @@
 ﻿using Ididit.App;
 using Ididit.Persistence;
+using Ididit.WebView.App;
 using Ididit.WebView.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -21,6 +22,7 @@ public partial class MainWindow : Window
 #endif
         serviceCollection.AddServices();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
+        serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
 
         IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
         Resources.Add("services", serviceProvider);

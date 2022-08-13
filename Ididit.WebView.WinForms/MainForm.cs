@@ -1,5 +1,6 @@
 using Ididit.App;
 using Ididit.Persistence;
+using Ididit.WebView.App;
 using Ididit.WebView.Persistence;
 using Ididit.WebView.UI;
 using Microsoft.AspNetCore.Components.Web;
@@ -22,6 +23,7 @@ public partial class MainForm : Form
 #endif
         serviceCollection.AddServices();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
+        serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
 
         InitializeComponent();
         Icon = new Icon("favicon.ico");

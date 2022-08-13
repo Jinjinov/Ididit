@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.WebView.App;
 
-internal class UserDisplayName : IUserDisplayName
+public class UserDisplayName : IUserDisplayName
 {
     readonly IGoogleDriveService _googleDriveService;
 
