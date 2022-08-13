@@ -4,6 +4,10 @@
 <AuthorizeView>
     <Authorized>
         @context.User.Identity?.Name
+        1:
+        @GetUserDisplayName1().Result
+        2:
+        @GetUserDisplayName2().Result
         <button class="nav-link btn btn-link p-0 m-0 d-inline align-baseline shadow-none" @onclick="BeginSignOut">Log out</button>
     </Authorized>
     <NotAuthorized>
