@@ -1,7 +1,5 @@
 # TODO:
 
-- [ ] change 1 import button to 4 import buttons
-
 - [ ] interface GetUserDisplayName()
 
 - [ ] GoogleDriveBackup - auto save backup
@@ -27,6 +25,7 @@
 
 - [ ] add Google Analytics
 - [ ] release news on: facebook, reddit, twitter, instagram, linkedin
+- [ ] add Google Ads
 
 
 

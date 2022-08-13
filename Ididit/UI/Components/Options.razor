@@ -34,14 +34,23 @@
         </Select>
     </Field>
 
-    <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import</Label>
+    <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import JSON</Label>
     <InputFile id="file-upload" class="d-none" OnChange=Import />
 
-    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportJson>Export Json</Button>
+    <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import YAML</Label>
+    <InputFile id="file-upload" class="d-none" OnChange=Import />
 
-    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportYaml>Export Yaml</Button>
+    <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import TSV</Label>
+    <InputFile id="file-upload" class="d-none" OnChange=Import />
 
-    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportTsv>Export Tsv</Button>
+    <Label For="file-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Google Keep Takeout ZIP</Label>
+    <InputFile id="file-upload" class="d-none" OnChange=Import />
+
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportJson>Export JSON</Button>
+
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportYaml>Export YAML</Button>
+
+    <Button Color=Color.Primary Size="Size" Block=true @onclick=ExportTsv>Export TSV</Button>
 
     <Label For="notes-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Markdown</Label>
     <InputFile id="notes-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />
