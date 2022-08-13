@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.WebView.App;
 
-internal class GoogleDriveService : IGoogleDriveService
+public class GoogleDriveService : IGoogleDriveService
 {
     // If modifying these scopes, delete your previously saved token.json/ folder
     private readonly string[] _scopes = { DriveService.Scope.DriveFile };

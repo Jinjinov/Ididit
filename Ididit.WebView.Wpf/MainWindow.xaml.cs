@@ -23,6 +23,7 @@ public partial class MainWindow : Window
         serviceCollection.AddServices();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
         serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
+        serviceCollection.AddScoped<IGoogleDriveService, GoogleDriveService>();
 
         IServiceProvider serviceProvider = serviceCollection.BuildServiceProvider();
         Resources.Add("services", serviceProvider);

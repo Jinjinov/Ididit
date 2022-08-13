@@ -24,6 +24,7 @@ public partial class MainForm : Form
         serviceCollection.AddServices();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
         serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
+        serviceCollection.AddScoped<IGoogleDriveService, GoogleDriveService>();
 
         InitializeComponent();
         Icon = new Icon("favicon.ico");
