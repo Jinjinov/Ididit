@@ -11,6 +11,9 @@ public partial class MainComponent
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
 
+    [Inject]
+    IUserDisplayName UserDisplayName { get; set; } = null!;
+
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
         { "cerulean", "sha256-RW/ojwB9sS6DzIfFEaDiahxVPN/MupUlrbKrKVkgA9M=" },

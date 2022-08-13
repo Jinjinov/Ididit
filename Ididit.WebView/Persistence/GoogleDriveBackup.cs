@@ -1,14 +1,9 @@
-﻿using Google.Apis.Auth.OAuth2;
-//using Google.Apis.Download;
-using Google.Apis.Drive.v3;
-using Google.Apis.Services;
-using Google.Apis.Util.Store;
+﻿using Google.Apis.Drive.v3;
 using Ididit.Persistence;
-using System;
+using Ididit.WebView.App;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ididit.WebView.Persistence;
@@ -19,14 +14,16 @@ namespace Ididit.WebView.Persistence;
 
 public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
-    // If modifying these scopes, delete your previously saved token.json/ folder
-    private readonly string[] _scopes = { DriveService.Scope.DriveFile };
+    readonly IGoogleDriveService _googleDriveService;
 
-    private const string _applicationName = "ididit";
+    public GoogleDriveBackup(IGoogleDriveService googleDriveService)
+    {
+        _googleDriveService = googleDriveService;
+    }
 
     protected override async Task<string> GetFile(string fileId)
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -72,7 +69,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     protected override async Task<string> CreateFolder()
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -93,7 +90,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     protected override async Task<string> CreateFile(string folderId, string content)
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -123,7 +120,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     protected override async Task<string> UpdateFile(string fileId, string content)
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -147,7 +144,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     protected override async Task<string> GetFolderId()
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -164,7 +161,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     protected override async Task<string> GetFileId(string folderId)
     {
-        DriveService? service = await GetDriveService();
+        DriveService? service = await _googleDriveService.GetDriveService();
 
         if (service is null)
             return string.Empty;
@@ -177,51 +174,6 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
         IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
 
         return files.Any() ? files.First().Id : string.Empty;
-    }
-
-    private async Task<DriveService?> GetDriveService()
-    {
-        if (!File.Exists("credentials.json"))
-            return null;
-
-        UserCredential credential;
-
-        using (FileStream stream = new("credentials.json", FileMode.Open, FileAccess.Read))
-        {
-            // The file token.json stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
-            string credPath = "token.json";
-
-            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                GoogleClientSecrets.FromStream(stream).Secrets,
-                _scopes,
-                "user",
-                CancellationToken.None,
-                new FileDataStore(credPath, true));
-
-            Console.WriteLine("Credential file saved to: " + credPath);
-        }
-
-        DriveService service = new(new BaseClientService.Initializer
-        {
-            HttpClientInitializer = credential,
-            ApplicationName = _applicationName
-        });
-
-        return service;
-    }
-
-    public async Task<string> GetUserDisplayName()
-    {
-        DriveService? service = await GetDriveService();
-
-        if (service is null)
-            return string.Empty;
-
-        AboutResource.GetRequest getRequest = service.About.Get();
-        getRequest.Fields = "user";
-        Google.Apis.Drive.v3.Data.About about = getRequest.Execute();
-
-        return about.User.DisplayName;
     }
 
     /*
