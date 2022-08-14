@@ -2,11 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ididit="clr-namespace:Ididit.WebView.UI;assembly=Ididit.WebView"
+             xmlns:web="clr-namespace:Microsoft.AspNetCore.Components.Web;assembly=Microsoft.AspNetCore.Components.Web"
              x:Class="Ididit.WebView.Maui.MainPage">
 
     <BlazorWebView HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type ididit:Main}" />
+            <RootComponent Selector="head::after" ComponentType="{x:Type web:HeadOutlet}" />
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 
