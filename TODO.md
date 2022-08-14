@@ -1,7 +1,5 @@
 # TODO:
 
-- [ ] interface GetUserDisplayName()
-
 - [ ] GoogleDriveBackup - auto save backup
 - [ ] GoogleDriveBackup - auto restore backup
 
