@@ -1,5 +1,9 @@
 # TODO:
 
+- [ ] MAUI themes - `<HeadContent>` - Microsoft.AspNetCore.Components.Web.HeadContent
+
+
+
 - [ ] Publish a .NET MAUI app for Windows
     - https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
 
