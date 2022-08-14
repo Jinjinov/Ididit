@@ -4,7 +4,7 @@
 
 @inject NavigationManager Navigation
 
-<RemoteAuthenticatorView Action="@Action" />
+<RemoteAuthenticatorView Action="@Action" OnLogInSucceeded="OnLogInSucceeded" OnLogOutSucceeded="OnLogOutSucceeded" />
 
 @code{
     [Parameter]
@@ -13,6 +13,20 @@
     protected override void OnParametersSet()
     {
         if (Action == "logged-out")
+        {
             Navigation.NavigateTo("/");
+        }
+
+        if (Action == "logged-in")
+        {
+        }
+    }
+
+    void OnLogInSucceeded()
+    {
+    }
+
+    void OnLogOutSucceeded()
+    {
     }
 }

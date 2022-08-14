@@ -1,7 +1,7 @@
 # TODO:
 
-- [ ] GoogleDriveBackup - auto save backup
-- [ ] GoogleDriveBackup - auto restore backup
+- [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
+- [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
 
 
