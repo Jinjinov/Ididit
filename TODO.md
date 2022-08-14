@@ -1,6 +1,9 @@
 # TODO:
 
-- [ ] MAUI GoogleDriveBackup
+- [ ] MAUI GoogleDriveBackup - C# maui google drive api
+    - https://stackoverflow.com/questions/59821427/google-drive-api-v3-migration-for-xamrin-android
+    - https://docs.microsoft.com/en-us/dotnet/maui/platform-integration/communication/authentication?tabs=windows
+    - https://auth0.com/blog/add-authentication-to-dotnet-maui-apps-with-auth0/
 
 
 
