@@ -1,7 +1,5 @@
 using Ididit.App;
-using Ididit.Persistence;
 using Ididit.WebView.App;
-using Ididit.WebView.Persistence;
 using Ididit.WebView.UI;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebView.WindowsForms;
@@ -22,9 +20,7 @@ public partial class MainForm : Form
         serviceCollection.AddBlazorWebViewDeveloperTools();
 #endif
         serviceCollection.AddServices();
-        serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
-        serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
-        serviceCollection.AddScoped<IGoogleDriveService, GoogleDriveService>();
+        serviceCollection.AddWebViewServices();
 
         InitializeComponent();
         Icon = new Icon("favicon.ico");

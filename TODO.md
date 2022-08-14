@@ -1,7 +1,5 @@
 # TODO:
 
-- [ ] WebView AddServices();
-
 - [ ] MAUI GoogleDriveBackup
 
 
@@ -51,8 +49,21 @@
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
 
 - [ ] add Google Analytics
-- [ ] release news on: facebook, reddit, twitter, instagram, linkedin
+    - https://analytics.google.com/
+
+- [ ] release news on: 
+    - facebook - https://www.facebook.com/
+    - reddit - https://www.reddit.com/
+    - twitter - https://twitter.com/
+    - instagram - https://www.instagram.com/
+    - linkedin - https://www.linkedin.com/
+    - https://www.youtube.com/
+    - https://stackoverflow.com/
+    - https://github.com/
+    - https://alternativeto.net/
+
 - [ ] add Google Ads
+    - https://ads.google.com/
 
 
 
