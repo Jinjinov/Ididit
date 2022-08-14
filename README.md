@@ -1,6 +1,8 @@
 ididit!
 =======
 
+https://ididit.today/
+
 Take notes, manage tasks, track habits.
 
 * * *
@@ -33,7 +35,7 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 #### Beta version (2022.08.01):
 
-[Download version 2.1.0-beta](https://ididit.today/ididit.zip) and run setup.exe
+[Download version 2.1.0-beta](https://ididit.today/ididit-beta.zip) and run setup.exe
 
 ### Android:
 
