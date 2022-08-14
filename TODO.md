@@ -1,5 +1,29 @@
 # TODO:
 
+- [ ] WebView AddServices();
+
+- [ ] MAUI windows title
+
+- [ ] MAUI exe icon
+
+- [ ] MAUI GoogleDriveBackup
+
+
+
+- [ ] Publish a .NET MAUI app for Windows
+    - https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
+
+- [ ] Debug on the Android Emulator
+    - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
+
+- [ ] Set up Android device for debugging
+    - https://docs.microsoft.com/en-us/dotnet/maui/android/device/setup
+
+- [ ] Publish a .NET MAUI app for Android
+    - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
+
+
+
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
@@ -9,6 +33,15 @@
     - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
 
 - [ ] apple store - $99 annually
+    - https://www.mimovrste.com/apple-prenosniki
+    - https://www.mimovrste.com/apple-macbook-air
+    - https://www.mimovrste.com/apple-macbook-pro
+
+    - https://www.mimovrste.com/namizni-racunalniki?b%5B%5D=apple
+    - https://www.mimovrste.com/nettopi?b%5B%5D=apple
+    - https://www.mimovrste.com/poslovni-racunalniki?b%5B%5D=apple
+    - https://www.mimovrste.com/racunalniki-za-vsakdanjo-rabo?b%5B%5D=apple
+
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
 - [ ] windows store - $19
