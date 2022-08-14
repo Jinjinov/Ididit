@@ -2,8 +2,6 @@
 
 - [ ] WebView AddServices();
 
-- [ ] MAUI exe icon
-
 - [ ] MAUI GoogleDriveBackup
 
 
