@@ -18,15 +18,18 @@ public class GoogleDriveService : IGoogleDriveService
 
     public async Task<DriveService?> GetDriveService()
     {
-        if (!File.Exists("credentials.json"))
+        string baseDirectory = AppContext.BaseDirectory; // = AppDomain.CurrentDomain.BaseDirectory; //  = Environment.CurrentDirectory; // = Directory.GetCurrentDirectory();
+        string path = Path.Combine(baseDirectory, "credentials.json");
+
+        if (!File.Exists(path))
             return null;
 
         UserCredential credential;
 
-        using (FileStream stream = new("credentials.json", FileMode.Open, FileAccess.Read))
+        using (FileStream stream = new(path, FileMode.Open, FileAccess.Read))
         {
             // The file token.json stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
-            string credPath = "token.json";
+            string credPath = Path.Combine(baseDirectory, "token.json");
 
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.FromStream(stream).Secrets,
