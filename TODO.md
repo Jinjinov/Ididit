@@ -1,14 +1,16 @@
 # TODO:
 
+- [?] current status / satisfaction / success
+- [?] does benifit / is different with app / reminders
 
+- [ ] UI - priority filter - show all at once with checkbox
+- [ ] UI - task filter - show all at once with checkbox
 
-- [ ] toggle: category tree - one table for all tasks, so sorting and filtering can work
-- [X] priority
-- [X] repeat interval
-- [ ] current status / satisfaction / success
-- [ ] toggle: convert whole goal to markup - convert each line to a task
-- [ ] does benifit / is different with app / reminders
-- [ ] estimated duration
+- [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
+- [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
+
+- [ ] toggle: convert whole goal to markup /-/ convert each line to a task
+- [ ] toggle: category tree /-/ one table for all tasks, so sorting and filtering can work
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 
@@ -25,6 +27,9 @@
 - [ ] Publish a .NET MAUI app for Android
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
+
+- [ ] Bootstrap 4.6 ---> 5.2
+- [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
 
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
@@ -76,12 +81,6 @@
 
 
 
-- [ ] Bootstrap 4.6 ---> 5.2
-
-
-
-- [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
-
 - [ ] load db before app start in wasm
 - [ ] read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
 
@@ -124,10 +123,6 @@
 
 - [ ] UI - range DateEdit - `<DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />`
 - [ ] UI - range ratio filter - 2x Slider
-- [ ] UI - range priority filter - 2x Slider
-
-- [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
-- [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
 
 - [ ] keyboard arrow down can change focus to next textarea
 
