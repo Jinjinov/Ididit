@@ -36,40 +36,19 @@
         <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
     </Field>
 
-    <Field Margin=Margin.Is0>
-        <FieldLabel>Priority filter:</FieldLabel>
+    <span>Priority:</span>
 
-        <Addons Flex=Flex.NoWrap>
-        <Select TValue="Priority?" Size="Size" SelectedValue="_priorityFilter" SelectedValueChanged="OnPriorityChanged">
-            <SelectItem Value="(Priority?)null"></SelectItem>
-            <SelectItem Value="Priority.None">None</SelectItem>
-            <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
-            <SelectItem Value="Priority.Low">Low</SelectItem>
-            <SelectItem Value="Priority.Medium">Medium</SelectItem>
-            <SelectItem Value="Priority.High">High</SelectItem>
-            <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
-        </Select>
-        <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearPriorityFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-        </Addon>
-        </Addons>
-    </Field>
+    @foreach(Priority priority in Enum.GetValues<Priority>())
+    {
+        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">Show tasks with @priority priority</CheckBox>
+    }
 
-    <Field Margin=Margin.Is0>
-        <FieldLabel>Task filter:</FieldLabel>
+    <span>Kind:</span>
 
-        <Addons Flex=Flex.NoWrap>
-        <Select TValue="TaskKind?" Size="Size" SelectedValue="_taskKindFilter" SelectedValueChanged="OnTaskKindChanged">
-            <SelectItem Value="(TaskKind?)null"></SelectItem>
-            <SelectItem Value="TaskKind.Note">Note</SelectItem>
-            <SelectItem Value="TaskKind.Task">Task</SelectItem>
-            <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
-        </Select>
-        <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearTaskKindFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-        </Addon>
-        </Addons>
-    </Field>
+    @foreach(TaskKind taskKind in Enum.GetValues<TaskKind>())
+    {
+        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">Show @taskKind</CheckBox>
+    }
 
     <Field Margin=Margin.Is0>
         <FieldLabel>Sort by:</FieldLabel>

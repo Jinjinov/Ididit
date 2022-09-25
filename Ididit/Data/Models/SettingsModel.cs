@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Ididit.Data.Models;
 
@@ -12,6 +13,23 @@ public class SettingsModel
     public Blazorise.Size Size { get; set; }
 
     public string Theme { get; set; } = string.Empty;
+
+    public Dictionary<Priority, bool> ShowPriority { get; set; } = new()
+    {
+        { Priority.None, true },
+        { Priority.VeryLow, true },
+        { Priority.Low, true },
+        { Priority.Medium, true },
+        { Priority.High, true },
+        { Priority.VeryHigh, true }
+    };
+
+    public Dictionary<TaskKind, bool> ShowTaskKind { get; set; } = new()
+    {
+        { TaskKind.Note, true },
+        { TaskKind.Task, true },
+        { TaskKind.RepeatingTask, true }
+    };
 
     public Sort Sort { get; set; }
 

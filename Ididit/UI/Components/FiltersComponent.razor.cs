@@ -60,36 +60,34 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    Priority? _priorityFilter;
-
-    async Task OnPriorityChanged(Priority? priority)
+    bool GetShowPriority(Priority priority)
     {
-        _priorityFilter = priority;
-        Filters.PriorityFilter = priority;
-        await FiltersChanged.InvokeAsync(Filters);
+        Filters.ShowPriority[priority] = Repository.Settings.ShowPriority[priority];
+        return Repository.Settings.ShowPriority[priority];
     }
 
-    async Task ClearPriorityFilter()
+    async Task OnShowPriorityChanged(Priority priority, bool show)
     {
-        _priorityFilter = null;
-        Filters.PriorityFilter = null;
+        Filters.ShowPriority[priority] = show;
         await FiltersChanged.InvokeAsync(Filters);
+
+        Repository.Settings.ShowPriority[priority] = show;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    TaskKind? _taskKindFilter;
-
-    async Task OnTaskKindChanged(TaskKind? taskKind)
+    bool GetShowTaskKind(TaskKind taskKind)
     {
-        _taskKindFilter = taskKind;
-        Filters.TaskKindFilter = taskKind;
-        await FiltersChanged.InvokeAsync(Filters);
+        Filters.ShowTaskKind[taskKind] = Repository.Settings.ShowTaskKind[taskKind];
+        return Repository.Settings.ShowTaskKind[taskKind];
     }
 
-    async Task ClearTaskKindFilter()
+    async Task OnShowTaskKindChanged(TaskKind taskKind, bool show)
     {
-        _taskKindFilter = null;
-        Filters.TaskKindFilter = null;
+        Filters.ShowTaskKind[taskKind] = show;
         await FiltersChanged.InvokeAsync(Filters);
+
+        Repository.Settings.ShowTaskKind[taskKind] = show;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     Sort Sort

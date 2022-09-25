@@ -84,6 +84,8 @@ public partial class MainComponent
     {
         _filters = new()
         {
+            ShowPriority = Repository.Settings.ShowPriority,
+            ShowTaskKind = Repository.Settings.ShowTaskKind,
             Sort = Repository.Settings.Sort,
             ElapsedToDesiredRatioMin = Repository.Settings.ElapsedToDesiredRatioMin,
             ShowElapsedToDesiredRatioOverMin = Repository.Settings.ShowElapsedToDesiredRatioOverMin,

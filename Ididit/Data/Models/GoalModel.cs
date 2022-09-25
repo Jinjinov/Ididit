@@ -24,10 +24,10 @@ public class GoalModel
 
     public TaskModel CreateTask(long id, string name)
     {
-        return CreateTask(id, name, TimeSpan.Zero, Priority.Medium);
+        return CreateTask(id, name, TimeSpan.Zero, Priority.Medium, TaskKind.Task);
     }
 
-    public TaskModel CreateTask(long id, string name, TimeSpan desiredInterval, Priority priority, TaskKind taskKind = TaskKind.Task)
+    public TaskModel CreateTask(long id, string name, TimeSpan desiredInterval, Priority priority, TaskKind taskKind)
     {
         TaskModel task = new()
         {
@@ -124,9 +124,9 @@ public class GoalModel
 
             bool isDateOk = filters.DateFilter == null || task.TimeList.Any(time => time.Date == filters.DateFilter?.Date);
 
-            bool isPriorityOk = filters.PriorityFilter == null || task.Priority == filters.PriorityFilter;
+            bool isPriorityOk = filters.ShowPriority[task.Priority];
 
-            bool isTaskKindOk = filters.TaskKindFilter == null || task.TaskKind == filters.TaskKindFilter;
+            bool isTaskKindOk = filters.ShowTaskKind[task.TaskKind];
 
             return isNameOk && isDateOk && isPriorityOk && isTaskKindOk &&
                 (isRatioOk || !filters.ShowElapsedToDesiredRatioOverMin) &&

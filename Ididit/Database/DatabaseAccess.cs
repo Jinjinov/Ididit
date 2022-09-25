@@ -179,6 +179,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
+                ShowPriority = settings.ShowPriority,
+                ShowTaskKind = settings.ShowTaskKind,
                 Sort = settings.Sort,
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
@@ -297,6 +299,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
+                ShowPriority = settings.ShowPriority,
+                ShowTaskKind = settings.ShowTaskKind,
                 Sort = settings.Sort,
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
@@ -394,6 +398,8 @@ internal class DatabaseAccess : IDatabaseAccess
             Name = settings.Name,
             Size = settings.Size,
             Theme = settings.Theme,
+            ShowPriority = settings.ShowPriority,
+            ShowTaskKind = settings.ShowTaskKind,
             Sort = settings.Sort,
             ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
             ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
@@ -486,6 +492,8 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Name = settings.Name;
             settingsEntity.Size = settings.Size;
             settingsEntity.Theme = settings.Theme;
+            settingsEntity.ShowPriority = settings.ShowPriority;
+            settingsEntity.ShowTaskKind = settings.ShowTaskKind;
             settingsEntity.Sort = settings.Sort;
             settingsEntity.ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin;
             settingsEntity.ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin;

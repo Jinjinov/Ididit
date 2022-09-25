@@ -332,32 +332,32 @@ internal class Repository : DataModel, IRepository
 
         List<TaskModel> tasks = new()
         {
-            { goals[0].CreateTask(nextTaskId++, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High) },
-            { goals[0].CreateTask(nextTaskId++, "Clean the windows", TimeSpan.FromDays(90), Priority.High) },
+            { goals[0].CreateTask(nextTaskId++, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High, TaskKind.RepeatingTask) },
+            { goals[0].CreateTask(nextTaskId++, "Clean the windows", TimeSpan.FromDays(90), Priority.High, TaskKind.RepeatingTask) },
 
             { goals[1].CreateTask(nextTaskId++, "Go salsa dancing") },
-            { goals[1].CreateTask(nextTaskId++, "Play the piano", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[1].CreateTask(nextTaskId++, "Play the piano", TimeSpan.FromDays(7), Priority.Medium, TaskKind.RepeatingTask) },
 
             { goals[2].CreateTask(nextTaskId++, "Attend a cooking workshop") },
-            { goals[2].CreateTask(nextTaskId++, "Learn Spanish", TimeSpan.FromDays(1), Priority.High) },
+            { goals[2].CreateTask(nextTaskId++, "Learn Spanish", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask) },
 
-            { goals[3].CreateTask(nextTaskId++, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.VeryHigh) },
+            { goals[3].CreateTask(nextTaskId++, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.VeryHigh, TaskKind.RepeatingTask) },
             { goals[3].CreateTask(nextTaskId++, "Buy new clothes") },
 
-            { goals[4].CreateTask(nextTaskId++, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh) },
-            { goals[4].CreateTask(nextTaskId++, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.VeryHigh) },
+            { goals[4].CreateTask(nextTaskId++, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh, TaskKind.RepeatingTask) },
+            { goals[4].CreateTask(nextTaskId++, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.VeryHigh, TaskKind.RepeatingTask) },
 
-            { goals[5].CreateTask(nextTaskId++, "Stretch & workout", TimeSpan.FromDays(1), Priority.High) },
-            { goals[5].CreateTask(nextTaskId++, "Go hiking", TimeSpan.FromDays(7), Priority.High) },
+            { goals[5].CreateTask(nextTaskId++, "Stretch & workout", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask) },
+            { goals[5].CreateTask(nextTaskId++, "Go hiking", TimeSpan.FromDays(7), Priority.High, TaskKind.RepeatingTask) },
 
-            { goals[6].CreateTask(nextTaskId++, "Take a walk", TimeSpan.FromDays(7), Priority.Medium) },
-            { goals[6].CreateTask(nextTaskId++, "Meditate", TimeSpan.FromDays(7), Priority.Medium) },
+            { goals[6].CreateTask(nextTaskId++, "Take a walk", TimeSpan.FromDays(7), Priority.Medium, TaskKind.RepeatingTask) },
+            { goals[6].CreateTask(nextTaskId++, "Meditate", TimeSpan.FromDays(7), Priority.Medium, TaskKind.RepeatingTask) },
 
-            { goals[7].CreateTask(nextTaskId++, "Call parents", TimeSpan.FromDays(7), Priority.VeryHigh) },
+            { goals[7].CreateTask(nextTaskId++, "Call parents", TimeSpan.FromDays(7), Priority.VeryHigh, TaskKind.RepeatingTask) },
             { goals[7].CreateTask(nextTaskId++, "Do someone a favor") },
 
-            { goals[8].CreateTask(nextTaskId++, "Read a book", TimeSpan.FromDays(1), Priority.High) },
-            { goals[8].CreateTask(nextTaskId++, "Get a massage", TimeSpan.FromDays(28), Priority.Low) }
+            { goals[8].CreateTask(nextTaskId++, "Read a book", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask) },
+            { goals[8].CreateTask(nextTaskId++, "Get a massage", TimeSpan.FromDays(28), Priority.Low, TaskKind.RepeatingTask) }
         };
 
         foreach (TaskModel task in tasks)
