@@ -120,11 +120,12 @@ internal class TsvBackup
 
             string[] time = record.Interval.Split(' ');
 
-            TimeSpan? desiredTime = null;
+            TimeSpan desiredInterval = TimeSpan.Zero;
+            TaskKind taskKind = TaskKind.Note;
 
             if (time.Length == 2 && int.TryParse(time[0], out int interval))
             {
-                desiredTime = time[1].TrimEnd('s') switch
+                desiredInterval = time[1].TrimEnd('s') switch
                 {
                     "hour" => TimeSpan.FromHours(interval),
                     "day" => TimeSpan.FromDays(interval),
@@ -133,13 +134,15 @@ internal class TsvBackup
                     "year" => TimeSpan.FromDays(interval * 365),
                     _ => TimeSpan.Zero
                 };
+                taskKind = TaskKind.RepeatingTask;
             }
             else if (string.Equals(record.Interval, "ASAP", StringComparison.OrdinalIgnoreCase))
             {
-                desiredTime = TimeSpan.Zero;
+                desiredInterval = TimeSpan.Zero;
+                taskKind = TaskKind.Task;
             }
 
-            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredTime, record.Priority);
+            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind);
 
             await _repository.AddTask(task);
         }
@@ -159,7 +162,7 @@ internal class TsvBackup
                 {
                     foreach (TaskModel task in goal.TaskList)
                     {
-                        records.Add(new { Root = root.Name, Category = category.Name, Goal = goal.Name, Task = task.Name, Priority = task.Priority, Interval = task.DesiredTime });
+                        records.Add(new { Root = root.Name, Category = category.Name, Goal = goal.Name, Task = task.Name, Priority = task.Priority, Interval = task.DesiredInterval });
                     }
                 }
             }

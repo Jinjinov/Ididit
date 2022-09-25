@@ -27,7 +27,7 @@ public class GoalModel
         return CreateTask(id, name, TimeSpan.Zero, Priority.Medium);
     }
 
-    public TaskModel CreateTask(long id, string name, TimeSpan? desiredTime, Priority priority)
+    public TaskModel CreateTask(long id, string name, TimeSpan desiredInterval, Priority priority, TaskKind taskKind = TaskKind.Task)
     {
         TaskModel task = new()
         {
@@ -36,8 +36,9 @@ public class GoalModel
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
             Name = name,
             CreatedAt = DateTime.Now,
-            DesiredInterval = desiredTime?.Ticks,
-            Priority = priority
+            DesiredInterval = desiredInterval,
+            Priority = priority,
+            TaskKind = taskKind
         };
 
         TaskList.Add(task);
@@ -55,8 +56,9 @@ public class GoalModel
             GoalId = Id,
             PreviousId = TaskList.Any() ? TaskList.Last().Id : null,
             CreatedAt = DateTime.Now,
-            DesiredInterval = 0,
-            Priority = Priority.Medium
+            DesiredInterval = TimeSpan.Zero,
+            Priority = Priority.Medium,
+            TaskKind = TaskKind.Task
         };
 
         if (index > 0)

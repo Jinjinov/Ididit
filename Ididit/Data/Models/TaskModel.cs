@@ -62,41 +62,30 @@ public class TaskModel
 
     public Priority Priority { get; set; }
 
-    public long AverageInterval { get; set; }
-    public long? DesiredInterval { get; set; }
+    public TimeSpan AverageInterval { get; set; }
+    public TimeSpan DesiredInterval { get; set; }
 
     [JsonIgnore]
-    internal bool IsRepeating => DesiredInterval > 0;
+    internal bool IsRepeating => DesiredInterval.Ticks > 0;
 
     [JsonIgnore]
-    internal bool IsTask => DesiredInterval != null;
+    internal bool IsTask => TaskKind != TaskKind.Note;
 
-    [JsonIgnore]
-    internal TaskKind TaskKind => DesiredInterval switch
-    {
-        null => TaskKind.Note,
-        0 => TaskKind.Task,
-        _ => TaskKind.RepeatingTask
-    };
-
-    [JsonIgnore]
-    internal TimeSpan AverageTime { get => new(AverageInterval); set => AverageInterval = value.Ticks; }
-    [JsonIgnore]
-    internal TimeSpan DesiredTime { get => new(DesiredInterval ?? 0); set => DesiredInterval = value.Ticks; }
+    public TaskKind TaskKind { get; set; }
 
     [JsonIgnore]
     internal TimeSpan ElapsedTime => LastTimeDoneAt.HasValue ? DateTime.Now - LastTimeDoneAt.Value : DateTime.Now - CreatedAt;
 
     [JsonIgnore]
-    internal bool IsElapsedOverAverage => IsDoneAtLeastOnce && (ElapsedTime > AverageTime);
+    internal bool IsElapsedOverAverage => IsDoneAtLeastOnce && (ElapsedTime > AverageInterval);
     [JsonIgnore]
-    internal double ElapsedToAverageRatio => IsDoneAtLeastOnce ? ElapsedTime / AverageTime * 100.0 : 0.0;
+    internal double ElapsedToAverageRatio => IsDoneAtLeastOnce ? ElapsedTime / AverageInterval * 100.0 : 0.0;
     [JsonIgnore]
-    internal bool IsElapsedOverDesired => ElapsedTime > DesiredTime;
+    internal bool IsElapsedOverDesired => ElapsedTime > DesiredInterval;
     [JsonIgnore]
-    internal double ElapsedToDesiredRatio => IsRepeating ? ElapsedTime / DesiredTime * 100.0 : 0.0;
+    internal double ElapsedToDesiredRatio => IsRepeating ? ElapsedTime / DesiredInterval * 100.0 : 0.0;
     [JsonIgnore]
-    internal double AverageToDesiredRatio => IsRepeating ? AverageTime / DesiredTime * 100.0 : 0.0;
+    internal double AverageToDesiredRatio => IsRepeating ? AverageInterval / DesiredInterval * 100.0 : 0.0;
 
     public List<DateTime> TimeList = new();
 
@@ -115,7 +104,7 @@ public class TaskModel
 
         if (TimeList.Count == 0)
         {
-            AverageTime = TimeSpan.Zero;
+            AverageInterval = TimeSpan.Zero;
 
             LastTimeDoneAt = null;
         }
@@ -139,8 +128,8 @@ public class TaskModel
         LastTimeDoneAt = TimeList.Last();
 
         if (TimeList.Count == 1)
-            AverageTime = TimeList.First() - CreatedAt;
+            AverageInterval = TimeList.First() - CreatedAt;
         else
-            AverageTime = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+            AverageInterval = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
     }
 }

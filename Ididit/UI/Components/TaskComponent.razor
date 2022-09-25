@@ -86,14 +86,14 @@
             }
         </Inline>
 
-        @if (Task.IsRepeating && Task.AverageInterval > 0)
+        @if (Task.IsRepeating && Task.IsDoneAtLeastOnce)
         {
             <div>
-                @( "Average interval: " + ToReadableString(Task.AverageTime) )
+                    @("Average interval: " + ToReadableString(Task.AverageInterval))
 
                 @if (Task.IsElapsedOverAverage)
                 {
-                    <Div TextWeight=TextWeight.Bold>@( $"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageTime)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )" )</Div>
+                        <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
                 }
             </div>
         }
@@ -103,11 +103,11 @@
             <div>
                 <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                     <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
-                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredTime.Days" ValueChanged="SetDesiredIntervalDays" />
-                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredTime.Days == 1 ? "day" : "days")" />
+                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
+                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
 
-                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredTime.Hours" ValueChanged="SetDesiredIntervalHours" />
-                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredTime.Hours == 1 ? "hour" : "hours")" />
+                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
+                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")" />
 
                     <Addon AddonType="AddonType.End">
                         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
@@ -116,7 +116,7 @@
 
                 @if (Task.IsElapsedOverDesired)
                 {
-                    <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredTime)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
+                    <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredInterval)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
                 }
             </div>
         }

@@ -27,11 +27,14 @@ internal class TaskEntity
     public DateTime? LastTimeDoneAt { get; set; }
 
     [IndexDbIndex]
-    public long AverageInterval { get; set; }
+    public TimeSpan AverageInterval { get; set; }
 
     [IndexDbIndex]
-    public long? DesiredInterval { get; set; }
+    public TimeSpan DesiredInterval { get; set; }
 
     [IndexDbIndex]
     public Priority Priority { get; set; }
+
+    [IndexDbIndex]
+    public TaskKind TaskKind { get; set; }
 }

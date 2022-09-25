@@ -1,5 +1,18 @@
 # TODO:
 
+
+
+- [ ] toggle: category tree - one table for all tasks, so sorting and filtering can work
+- [X] priority
+- [X] repeat interval
+- [ ] current status / satisfaction / success
+- [ ] toggle: convert whole goal to markup - convert each line to a task
+- [ ] does benifit / is different with app / reminders
+- [ ] estimated duration
+- [ ] separate import column, select line in textarea, search selected line, copy selected line
+
+
+
 - [ ] Publish a .NET MAUI app for Windows
     - https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
 

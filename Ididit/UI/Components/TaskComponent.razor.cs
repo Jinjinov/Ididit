@@ -53,11 +53,13 @@ public partial class TaskComponent
 
     async Task OnTaskKindChanged(TaskKind taskKind)
     {
+        Task.TaskKind = taskKind;
+
         Task.DesiredInterval = taskKind switch
         {
-            TaskKind.Note => null,
-            TaskKind.Task => 0,
-            TaskKind.RepeatingTask => 864000000000,
+            TaskKind.Note => TimeSpan.Zero,
+            TaskKind.Task => TimeSpan.Zero,
+            TaskKind.RepeatingTask => new(864000000000),
             _ => throw new ArgumentOutOfRangeException(nameof(taskKind)),
         };
 
@@ -66,7 +68,8 @@ public partial class TaskComponent
 
     async Task ClearDesiredInterval()
     {
-        Task.DesiredInterval = null;
+        Task.TaskKind = TaskKind.Note;
+        Task.DesiredInterval = TimeSpan.Zero;
 
         await Repository.UpdateTask(Task.Id);
     }
@@ -130,14 +133,14 @@ public partial class TaskComponent
 
     async Task SetDesiredIntervalDays(int? days)
     {
-        Task.DesiredTime = new TimeSpan(days ?? 0, Task.DesiredTime.Hours, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
+        Task.DesiredInterval = new TimeSpan(days ?? 0, Task.DesiredInterval.Hours, Task.DesiredInterval.Minutes, Task.DesiredInterval.Seconds);
 
         await Repository.UpdateTask(Task.Id);
     }
 
     async Task SetDesiredIntervalHours(int? hours)
     {
-        Task.DesiredTime = new TimeSpan(Task.DesiredTime.Days, hours ?? 0, Task.DesiredTime.Minutes, Task.DesiredTime.Seconds);
+        Task.DesiredInterval = new TimeSpan(Task.DesiredInterval.Days, hours ?? 0, Task.DesiredInterval.Minutes, Task.DesiredInterval.Seconds);
 
         await Repository.UpdateTask(Task.Id);
     }
