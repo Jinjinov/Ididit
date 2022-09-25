@@ -24,7 +24,12 @@ public partial class GoalsComponent
     public bool ShowAllGoals { get; set; }
 
     [Parameter]
+    public bool ShowAllTasks { get; set; }
+
+    [Parameter]
     public Filters Filters { get; set; } = null!;
+
+    TaskModel? _selectedTask;
 
     GoalModel? _selectedGoal;
 

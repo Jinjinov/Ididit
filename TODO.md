@@ -16,6 +16,9 @@
 - [ ] toggle: category tree /-/ one table for all tasks, so sorting and filtering can work
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
+- [ ] save _showAllGoals to Settings
+- [ ] save _showAllTasks to Settings
+
 - [ ] Bootstrap 4.6 ---> 5.2
 
 

@@ -2,7 +2,7 @@
 
 @if (Goal != null)
 {
-    IEnumerable<TaskModel> tasks = Goal.GetFilteredTasks(Filters);
+    IList<TaskModel> tasks = Filters.FilterTasks(Goal.TaskList);
 
     @if (tasks.Any() || !Filters.HideEmptyGoals)
     {

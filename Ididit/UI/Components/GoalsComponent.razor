@@ -10,11 +10,18 @@
     </CardBody>
     </Card>
 
-    @if (ShowAllGoals)
+    @if (ShowAllTasks)
+    {
+        @foreach (TaskModel task in Filters.FilterTasks(Repository.AllTasks.Values))
+        {
+            <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
+        }
+    }
+    else if (ShowAllGoals)
     {
         @foreach (CategoryModel category in Repository.AllCategories.Values)
         {
-            if (Filters.ShowCategoriesInGoalList && category.GoalList.Where(goal => goal.GetFilteredTasks(Filters).Any()).Any())
+            if (Filters.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterTasks(goal.TaskList).Any()).Any())
             {
                 <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
             }

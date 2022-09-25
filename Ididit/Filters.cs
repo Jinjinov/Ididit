@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Ididit.Data.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Ididit;
 
@@ -37,4 +39,41 @@ public class Filters
     public bool ShowCategoriesInGoalList { get; set; }
 
     public bool HideCompletedTasks { get; set; }
+
+    public IList<TaskModel> FilterTasks(IEnumerable<TaskModel> tasks)
+    {
+        IEnumerable<TaskModel> filteredTasks = tasks.Where(task =>
+        {
+            bool isRatioOk = task.ElapsedToDesiredRatio >= ElapsedToDesiredRatioMin;
+
+            bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
+
+            bool isDateOk = DateFilter == null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
+
+            bool isPriorityOk = ShowPriority[task.Priority];
+
+            bool isTaskKindOk = ShowTaskKind[task.TaskKind];
+
+            return isNameOk && isDateOk && isPriorityOk && isTaskKindOk &&
+                (isRatioOk || !ShowElapsedToDesiredRatioOverMin) &&
+                (!task.IsCompletedTask || !HideCompletedTasks);
+        });
+
+        return SortTasks(filteredTasks).ToList();
+    }
+
+    private IEnumerable<TaskModel> SortTasks(IEnumerable<TaskModel> tasks)
+    {
+        return Sort switch
+        {
+            Sort.None => tasks,
+            Sort.Name => tasks.OrderBy(task => task.Name),
+            Sort.Priority => tasks.OrderByDescending(task => task.Priority),
+            Sort.ElapsedTime => tasks.OrderByDescending(task => task.ElapsedTime),
+            Sort.ElapsedToAverageRatio => tasks.OrderByDescending(task => task.ElapsedToAverageRatio),
+            Sort.ElapsedToDesiredRatio => tasks.OrderByDescending(task => task.ElapsedToDesiredRatio),
+            Sort.AverageToDesiredRatio => tasks.OrderByDescending(task => task.AverageToDesiredRatio),
+            _ => throw new ArgumentException("Invalid argument: " + nameof(Sort))
+        };
+    }
 }
