@@ -53,6 +53,9 @@ public partial class TaskComponent
 
     async Task OnTaskKindChanged(TaskKind taskKind)
     {
+        if (taskKind != TaskKind.RepeatingTask)
+            _showTime = false;
+
         Task.TaskKind = taskKind;
 
         Task.DesiredInterval = taskKind switch
@@ -76,7 +79,7 @@ public partial class TaskComponent
 
     async Task OnDone()
     {
-        if (!Task.IsCompleted)
+        if (!Task.IsCompletedTask)
         {
             (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
 

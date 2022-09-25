@@ -5,7 +5,7 @@
 
     <Div Flex=Flex.NoWrap.AlignItems.Start>
         <Div Display=Display.Flex Flex=Flex.Grow.Is1 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-            @if (Task.IsCompleted)
+            @if (Task.IsCompletedTask)
             {
                 <Div Flex=Flex.Grow.Is1><s>@Task.Name</s></Div>
             }
@@ -80,7 +80,7 @@
                 @( "Created at: " + Task.CreatedAt )
             }
 
-            @if (Task.IsCompleted)
+            @if (Task.IsCompletedTask)
             {
                 @( "Completed at: " + Task.LastTimeDoneAt )
             }
@@ -89,11 +89,11 @@
         @if (Task.IsRepeating && Task.IsDoneAtLeastOnce)
         {
             <div>
-                    @("Average interval: " + ToReadableString(Task.AverageInterval))
+                @("Average interval: " + ToReadableString(Task.AverageInterval))
 
                 @if (Task.IsElapsedOverAverage)
                 {
-                        <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
+                    <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
                 }
             </div>
         }

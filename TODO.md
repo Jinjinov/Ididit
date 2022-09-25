@@ -6,14 +6,17 @@
 - [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
 - [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
 
-- [ ] remove bottom margin from `<p>`
+- [ ] remove bottom margin from `<p>` and remove `.Replace("<p>", "<div>").Replace("</p>", "</div>")`
 - [ ] remove bottom margin from `<pre>`
 
 - [ ] EditName, ToggleCreateTaskFromEachLine should not trigger OnFocusOut
 - [ ] EditName, ToggleCreateTaskFromEachLine should not be visible during Details edit
+- [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
 - [ ] toggle: category tree /-/ one table for all tasks, so sorting and filtering can work
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
+
+- [ ] Bootstrap 4.6 ---> 5.2
 
 
 
@@ -30,9 +33,6 @@
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
 
-
-- [ ] Bootstrap 4.6 ---> 5.2
-- [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`

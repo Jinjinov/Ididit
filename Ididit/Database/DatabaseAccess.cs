@@ -146,7 +146,9 @@ internal class DatabaseAccess : IDatabaseAccess
                 AverageInterval = task.AverageInterval,
                 DesiredInterval = task.DesiredInterval,
                 Priority = task.Priority,
-                TaskKind = task.TaskKind
+                TaskKind = task.TaskKind,
+                AverageDuration = task.AverageDuration,
+                DesiredDuration = task.DesiredDuration
             };
 
             _taskDict[task.Id] = task;
@@ -260,7 +262,9 @@ internal class DatabaseAccess : IDatabaseAccess
                         AverageInterval = task.AverageInterval,
                         DesiredInterval = task.DesiredInterval,
                         Priority = task.Priority,
-                        TaskKind = task.TaskKind
+                        TaskKind = task.TaskKind,
+                        AverageDuration = task.AverageDuration,
+                        DesiredDuration = task.DesiredDuration
                     };
 
                     if (!_taskDict.ContainsKey(taskEntity.Id))
@@ -368,7 +372,9 @@ internal class DatabaseAccess : IDatabaseAccess
             AverageInterval = task.AverageInterval,
             DesiredInterval = task.DesiredInterval,
             Priority = task.Priority,
-            TaskKind = task.TaskKind
+            TaskKind = task.TaskKind,
+            AverageDuration = task.AverageDuration,
+            DesiredDuration = task.DesiredDuration
         };
 
         _taskList.Add(taskEntity);
@@ -466,6 +472,8 @@ internal class DatabaseAccess : IDatabaseAccess
             taskEntity.DesiredInterval = task.DesiredInterval;
             taskEntity.Priority = task.Priority;
             taskEntity.TaskKind = task.TaskKind;
+            taskEntity.AverageDuration = task.AverageDuration;
+            taskEntity.DesiredDuration = task.DesiredDuration;
 
             await _indexedDb.UpdateItems(new List<TaskEntity> { taskEntity });
         }

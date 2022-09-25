@@ -33,6 +33,12 @@ internal class TaskEntity
     public TimeSpan DesiredInterval { get; set; }
 
     [IndexDbIndex]
+    public TimeSpan? AverageDuration { get; set; }
+
+    [IndexDbIndex]
+    public TimeSpan? DesiredDuration { get; set; }
+
+    [IndexDbIndex]
     public Priority Priority { get; set; }
 
     [IndexDbIndex]
