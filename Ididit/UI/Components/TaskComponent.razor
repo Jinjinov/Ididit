@@ -90,12 +90,15 @@
         {
             <div>
                 Desired duration: @ToReadableString(Task.DesiredDuration ?? TimeSpan.Zero)
+                <TimeEdit TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
+                Start countdown and call OnDone() when finished
             </div>
 
             @if (Task.IsRepeating)
             {
                 <div>
                     Average duration: @ToReadableString(Task.AverageDuration ?? TimeSpan.Zero)
+                    Remember Start time and calculate elapsed time in OnDone()
                 </div>
 
                 <div>
