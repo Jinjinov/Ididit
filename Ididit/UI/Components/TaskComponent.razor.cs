@@ -54,24 +54,23 @@ public partial class TaskComponent
     async Task OnTaskKindChanged(TaskKind taskKind)
     {
         if (taskKind != TaskKind.RepeatingTask)
+        {
             _showTime = false;
+            Task.DesiredInterval = TimeSpan.Zero;
+        }
+        else if (Task.TaskKind != TaskKind.RepeatingTask)
+        {
+            Task.DesiredInterval = new(864000000000);
+        }
 
         Task.TaskKind = taskKind;
-
-        Task.DesiredInterval = taskKind switch
-        {
-            TaskKind.Note => TimeSpan.Zero,
-            TaskKind.Task => TimeSpan.Zero,
-            TaskKind.RepeatingTask => new(864000000000),
-            _ => throw new ArgumentOutOfRangeException(nameof(taskKind)),
-        };
 
         await Repository.UpdateTask(Task.Id);
     }
 
     async Task ClearDesiredInterval()
     {
-        Task.TaskKind = TaskKind.Note;
+        Task.TaskKind = TaskKind.Task;
         Task.DesiredInterval = TimeSpan.Zero;
 
         await Repository.UpdateTask(Task.Id);

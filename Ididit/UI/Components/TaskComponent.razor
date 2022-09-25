@@ -86,73 +86,81 @@
             }
         </Inline>
 
-        @if (Task.IsRepeating && Task.IsDoneAtLeastOnce)
+        @if (Task.IsTask)
         {
             <div>
-                @("Average interval: " + ToReadableString(Task.AverageInterval))
-
-                @if (Task.IsElapsedOverAverage)
-                {
-                    <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
-                }
+                Desired duration: @ToReadableString(Task.DesiredDuration ?? TimeSpan.Zero)
             </div>
-        }
 
-        @if (Task.IsRepeating)
-        {
-            <div>
-                <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
-                    <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
-                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
-                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
-
-                    <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
-                    <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")" />
-
-                    <Addon AddonType="AddonType.End">
-                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-                    </Addon>
-                </Addons>
-
-                @if (Task.IsElapsedOverDesired)
-                {
-                    <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredInterval)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
-                }
-            </div>
-        }
-
-        @if (Task.IsRepeating && Task.IsDoneAtLeastOnce)
-        {
-            <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
-        }
-
-        @if (_showTime)
-        {
-            <Span>@($" I did it: {Task.TimeList.Count}x")</Span>
-
-            @foreach (DateTime time in Task.TimeList.OrderByDescending(t => t))
+            @if (Task.IsRepeating)
             {
-                @if (_editTime && _selectedTime == time.Ticks)
-                {
-                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
-                        <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
-                        <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
-                        <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-                        </Addon>
-                    </Addons>
-                }
-                else
-                {
-                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
-                        <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+                <div>
+                    Average duration: @ToReadableString(Task.AverageDuration ?? TimeSpan.Zero)
+                </div>
+
+                <div>
+                    <Addons Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                        <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
+                        <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
+                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
+
+                        <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
+                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")" />
 
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
+
+                    @if (Task.IsElapsedOverDesired)
+                    {
+                        <Div TextWeight=TextWeight.Bold>@( $"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredInterval)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )" )</Div>
+                    }
+                </div>
+
+                @if (Task.IsDoneAtLeastOnce)
+                {
+                    <div>
+                        @("Average interval: " + ToReadableString(Task.AverageInterval))
+
+                        @if (Task.IsElapsedOverAverage)
+                        {
+                            <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
+                        }
+                    </div>
+
+                    <Button Color="Color.Primary" Block=false Outline="true" Size="Size" Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
+
+                    @if (_showTime)
+                    {
+                        <Span>@($" I did it: {Task.TimeList.Count}x")</Span>
+
+                        @foreach (DateTime time in Task.TimeList.OrderByDescending(t => t))
+                        {
+                            @if (_editTime && _selectedTime == time.Ticks)
+                            {
+                                <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
+                                    <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
+                                    <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
+                                    <Addon AddonType="AddonType.End">
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                                    </Addon>
+                                </Addons>
+                            }
+                            else
+                            {
+                                <Addons Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
+                                    <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+
+                                    <Addon AddonType="AddonType.End">
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                                    </Addon>
+                                </Addons>
+                            }
+                        }
+                    }
                 }
             }
         }
