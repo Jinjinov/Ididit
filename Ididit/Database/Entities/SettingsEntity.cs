@@ -17,6 +17,12 @@ internal class SettingsEntity
     [IndexDbIndex]
     public string Theme { get; set; } = string.Empty;
 
+    [IndexDbIndex]
+    public bool ShowAllGoals { get; set; }
+
+    [IndexDbIndex]
+    public bool ShowAllTasks { get; set; }
+
     public Dictionary<Priority, bool> ShowPriority { get; set; } = new()
     {
         { Priority.None, true },

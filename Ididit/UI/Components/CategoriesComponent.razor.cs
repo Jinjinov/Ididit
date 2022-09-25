@@ -22,7 +22,13 @@ public partial class CategoriesComponent
     public bool ShowAllGoals { get; set; }
 
     [Parameter]
+    public bool ShowAllTasks { get; set; }
+
+    [Parameter]
     public EventCallback<bool> ShowAllGoalsChanged { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowAllTasksChanged { get; set; }
 
     IList<CategoryModel> _expandedNodes = new List<CategoryModel>();
 
@@ -53,6 +59,9 @@ public partial class CategoriesComponent
 
             ShowAllGoals = false;
             await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+
+            ShowAllTasks = false;
+            await ShowAllTasksChanged.InvokeAsync(ShowAllTasks);
         }
     }
 
@@ -85,6 +94,20 @@ public partial class CategoriesComponent
         {
             ShowAllGoals = showAllGoals;
             await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+
+            SelectedCategory = Repository.Category;
+            await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+        }
+    }
+
+    async Task OnShowAllTasksChanged(bool? val)
+    {
+        bool showAllTasks = val ?? false;
+
+        if (ShowAllTasks != showAllTasks)
+        {
+            ShowAllTasks = showAllTasks;
+            await ShowAllTasksChanged.InvokeAsync(ShowAllTasks);
 
             SelectedCategory = Repository.Category;
             await SelectedCategoryChanged.InvokeAsync(SelectedCategory);

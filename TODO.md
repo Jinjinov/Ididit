@@ -3,21 +3,21 @@
 - [?] current status / satisfaction / success
 - [?] does benifit / is different with app / reminders
 
+
+
 - [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
 - [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
 
 - [ ] remove bottom margin from `<p>` and remove `.Replace("<p>", "<div>").Replace("</p>", "</div>")`
 - [ ] remove bottom margin from `<pre>`
 
+
+
 - [ ] EditName, ToggleCreateTaskFromEachLine should not trigger OnFocusOut
 - [ ] EditName, ToggleCreateTaskFromEachLine should not be visible during Details edit
 - [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut
 
-- [ ] toggle: category tree /-/ one table for all tasks, so sorting and filtering can work
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
-
-- [ ] save _showAllGoals to Settings
-- [ ] save _showAllTasks to Settings
 
 - [ ] Bootstrap 4.6 ---> 5.2
 

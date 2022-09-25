@@ -182,6 +182,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
+                ShowAllGoals = settings.ShowAllGoals,
+                ShowAllTasks = settings.ShowAllTasks,
                 ShowPriority = settings.ShowPriority,
                 ShowTaskKind = settings.ShowTaskKind,
                 Sort = settings.Sort,
@@ -305,6 +307,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 Size = settings.Size,
                 Theme = settings.Theme,
+                ShowAllGoals = settings.ShowAllGoals,
+                ShowAllTasks = settings.ShowAllTasks,
                 ShowPriority = settings.ShowPriority,
                 ShowTaskKind = settings.ShowTaskKind,
                 Sort = settings.Sort,
@@ -407,6 +411,8 @@ internal class DatabaseAccess : IDatabaseAccess
             Name = settings.Name,
             Size = settings.Size,
             Theme = settings.Theme,
+            ShowAllGoals = settings.ShowAllGoals,
+            ShowAllTasks = settings.ShowAllTasks,
             ShowPriority = settings.ShowPriority,
             ShowTaskKind = settings.ShowTaskKind,
             Sort = settings.Sort,
@@ -504,6 +510,8 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Name = settings.Name;
             settingsEntity.Size = settings.Size;
             settingsEntity.Theme = settings.Theme;
+            settingsEntity.ShowAllGoals = settings.ShowAllGoals;
+            settingsEntity.ShowAllTasks = settings.ShowAllTasks;
             settingsEntity.ShowPriority = settings.ShowPriority;
             settingsEntity.ShowTaskKind = settings.ShowTaskKind;
             settingsEntity.Sort = settings.Sort;

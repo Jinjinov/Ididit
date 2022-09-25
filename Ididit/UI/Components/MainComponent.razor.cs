@@ -68,7 +68,29 @@ public partial class MainComponent
 
     CategoryModel _selectedCategory = new();
 
-    bool _showAllGoals;
+    bool ShowAllGoals => Repository.Settings.ShowAllGoals;
+
+    async Task ShowAllGoalsChanged(bool showAllGoals)
+    {
+        if (Repository.Settings.ShowAllGoals != showAllGoals)
+        {
+            Repository.Settings.ShowAllGoals = showAllGoals;
+
+            await Repository.UpdateSettings(Repository.Settings.Id);
+        }
+    }
+
+    bool ShowAllTasks => Repository.Settings.ShowAllTasks;
+
+    async Task ShowAllTasksChanged(bool showAllTasks)
+    {
+        if (Repository.Settings.ShowAllTasks != showAllTasks)
+        {
+            Repository.Settings.ShowAllTasks = showAllTasks;
+
+            await Repository.UpdateSettings(Repository.Settings.Id);
+        }
+    }
 
     bool _filtersVisible = true;
     bool _categoriesVisible = true;

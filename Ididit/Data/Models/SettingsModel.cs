@@ -14,6 +14,9 @@ public class SettingsModel
 
     public string Theme { get; set; } = string.Empty;
 
+    public bool ShowAllGoals { get; set; }
+    public bool ShowAllTasks { get; set; }
+
     public Dictionary<Priority, bool> ShowPriority { get; set; } = new()
     {
         { Priority.None, true },
