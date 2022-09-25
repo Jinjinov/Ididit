@@ -14,6 +14,17 @@ else
         <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true />
 
         <Addon AddonType="AddonType.End" @onclick:stopPropagation>
+            @if (Goal != null)
+            {
+                if (Goal.CreateTaskFromEachLine)
+                {
+                    <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                }
+                else
+                {
+                    <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                }
+            }
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
         </Addon>

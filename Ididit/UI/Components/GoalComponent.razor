@@ -19,24 +19,33 @@
             }
             else
             {
-                <Div>
-                    @foreach (TaskModel task in tasks)
-                    {
-                        @if (task.MarkdownHtml is null)
+                if (Goal.CreateTaskFromEachLine)
+                {
+                    <Div>
+                        @foreach (TaskModel task in tasks)
                         {
-                            <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
-                        }
-                        else
-                        {
-                            @((MarkupString)task.MarkdownHtml)
-                        }
+                            @if (task.MarkdownHtml is null)
+                            {
+                                <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
+                            }
+                            else
+                            {
+                                @((MarkupString)task.MarkdownHtml)
+                            }
 
-                        @if (!string.IsNullOrEmpty(task.Details))
-                        {
-                            @((MarkupString)task.DetailsMarkdownHtml)
+                            @if (!string.IsNullOrEmpty(task.Details))
+                            {
+                                @((MarkupString)task.DetailsMarkdownHtml)
+                            }
                         }
-                    }
-                </Div>
+                    </Div>
+                }
+                else
+                {
+                    <Div Padding=Padding.Is1>
+                        @((MarkupString)Goal.DetailsMarkdownHtml)
+                    </Div>
+                }
             }
         </CardBody>
     </Card>

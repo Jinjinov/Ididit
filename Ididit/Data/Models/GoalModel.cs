@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Markdig;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
@@ -7,6 +8,8 @@ namespace Ididit.Data.Models;
 
 public class GoalModel
 {
+    static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
+
     [JsonIgnore]
     internal long Id { get; init; }
     [JsonIgnore]
@@ -15,10 +18,27 @@ public class GoalModel
     public long? PreviousId { get; set; }
 
     public string Name { get; set; } = string.Empty;
-    internal string Details { get; set; } = string.Empty;
+
+    private string _details = string.Empty;
+    public string Details
+    {
+        get => _details;
+        set
+        {
+            _details = value;
+
+            if (!CreateTaskFromEachLine)
+                DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+        }
+    }
+
+    [JsonIgnore]
+    internal string DetailsMarkdownHtml { get; set; } = string.Empty;
 
     [JsonIgnore]
     internal int Rows => Details.Count(c => c == '\n') + 1;
+
+    public bool CreateTaskFromEachLine { get; set; }
 
     public List<TaskModel> TaskList = new();
 

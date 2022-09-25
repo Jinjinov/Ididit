@@ -77,11 +77,14 @@ public partial class GoalComponent
 
     async Task OnTextChanged(string text)
     {
-        List<DoneTask> oldLines = Goal.TaskList.Select(task => new DoneTask { Task = task }).ToList();
-        List<DoneLine> newLines = text.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
-
         Goal.Details = text;
         await Repository.UpdateGoal(Goal.Id);
+
+        if (!Goal.CreateTaskFromEachLine)
+            return;
+
+        List<DoneTask> oldLines = Goal.TaskList.Select(task => new DoneTask { Task = task }).ToList();
+        List<DoneLine> newLines = text.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 

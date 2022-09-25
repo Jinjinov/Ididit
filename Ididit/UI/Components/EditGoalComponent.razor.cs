@@ -109,4 +109,15 @@ public sealed partial class EditGoalComponent
         Goal = null;
         await GoalChanged.InvokeAsync(Goal);
     }
+
+    async Task ToggleCreateTaskFromEachLine()
+    {
+        if (Goal == null)
+            return;
+
+        Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
+        await Repository.UpdateGoal(Goal.Id);
+
+        await GoalChanged.InvokeAsync(Goal);
+    }
 }

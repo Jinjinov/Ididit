@@ -325,9 +325,6 @@ internal class Repository : DataModel, IRepository
             { categories[2].CreateGoal(nextGoalId++, "Relaxation") }
         };
 
-        foreach (GoalModel goal in goals)
-            await AddGoal(goal);
-
         long nextTaskId = NextTaskId;
 
         List<TaskModel> tasks = new()
@@ -359,6 +356,16 @@ internal class Repository : DataModel, IRepository
             { goals[8].CreateTask(nextTaskId++, "Read a book", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask) },
             { goals[8].CreateTask(nextTaskId++, "Get a massage", TimeSpan.FromDays(28), Priority.Low, TaskKind.RepeatingTask) }
         };
+
+        foreach (GoalModel goal in goals)
+        {
+            foreach (TaskModel task in goal.TaskList)
+            {
+                goal.Details += string.IsNullOrEmpty(goal.Details) ? task.Name : Environment.NewLine + task.Name;
+            }
+
+            await AddGoal(goal);
+        }
 
         foreach (TaskModel task in tasks)
             await AddTask(task);

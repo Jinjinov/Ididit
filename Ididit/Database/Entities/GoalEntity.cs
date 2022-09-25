@@ -18,4 +18,7 @@ internal class GoalEntity
 
     [IndexDbIndex]
     public string Details { get; set; } = string.Empty;
+
+    [IndexDbIndex]
+    public bool CreateTaskFromEachLine { get; set; }
 }
