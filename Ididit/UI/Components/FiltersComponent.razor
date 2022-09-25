@@ -40,14 +40,14 @@
 
     @foreach(Priority priority in Enum.GetValues<Priority>())
     {
-        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">Show tasks with @priority priority</CheckBox>
+        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">Show tasks with @priority.GetDescription() priority</CheckBox>
     }
 
     <span>Kind:</span>
 
     @foreach(TaskKind taskKind in Enum.GetValues<TaskKind>())
     {
-        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">Show @taskKind</CheckBox>
+        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">Show @taskKind.GetDescription()s</CheckBox>
     }
 
     <Field Margin=Margin.Is0>

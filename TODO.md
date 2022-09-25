@@ -3,9 +3,6 @@
 - [?] current status / satisfaction / success
 - [?] does benifit / is different with app / reminders
 
-- [ ] UI - priority filter - show all at once with checkbox
-- [ ] UI - task filter - show all at once with checkbox
-
 - [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
 - [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
 
