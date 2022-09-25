@@ -28,7 +28,7 @@ public class TaskModel
             if (!string.IsNullOrEmpty(_name) && char.IsLetter(_name.First()))
                 MarkdownHtml = null;
             else
-                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline);
         }
     }
 
@@ -40,7 +40,7 @@ public class TaskModel
         {
             _details = value;
 
-            DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+            DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
         }
     }
 

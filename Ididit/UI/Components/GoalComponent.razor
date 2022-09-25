@@ -21,7 +21,7 @@
             {
                 if (Goal.CreateTaskFromEachLine)
                 {
-                    <Div>
+                    <Div Class="child-no-margin">
                         @foreach (TaskModel task in tasks)
                         {
                             @if (task.MarkdownHtml is null)
@@ -42,7 +42,7 @@
                 }
                 else
                 {
-                    <Div Padding=Padding.Is1>
+                    <Div Class="child-no-margin" Padding=Padding.Is1>
                         @((MarkupString)Goal.DetailsMarkdownHtml)
                     </Div>
                 }

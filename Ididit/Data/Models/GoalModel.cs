@@ -28,7 +28,7 @@ public class GoalModel
             _details = value;
 
             if (!CreateTaskFromEachLine)
-                DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("<p>", "<div>").Replace("</p>", "</div>");
+                DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
         }
     }
 

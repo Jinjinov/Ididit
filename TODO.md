@@ -8,9 +8,6 @@
 - [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
 - [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
 
-- [ ] remove bottom margin from `<p>` and remove `.Replace("<p>", "<div>").Replace("</p>", "</div>")`
-- [ ] remove bottom margin from `<pre>`
-
 
 
 - [ ] EditName, ToggleCreateTaskFromEachLine should not trigger OnFocusOut

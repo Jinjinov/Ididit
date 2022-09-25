@@ -13,6 +13,14 @@ iframe {
     display: block;
 }
 
+.child-no-margin > p {
+    margin: 0;
+}
+
+.child-no-margin > pre {
+    margin: 0;
+}
+
 .overlay-parent {
     position: relative;
 }
