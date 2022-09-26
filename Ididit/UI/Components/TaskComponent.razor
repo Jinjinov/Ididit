@@ -51,6 +51,11 @@
         </Div>
         @if (Task.IsTask)
         {
+            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnPlay"><Icon Class="fa-fw" Name="IconName.PlayCircle" /></Button>
+            @if (_timer.Enabled)
+            {
+                @_elapsedTime.ToString(@"hh\:mm\:ss");
+            }
             <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Class="fa-fw" Name="IconName.Check" /></Button>
         }
     </Div>
@@ -91,14 +96,12 @@
             <div>
                 Desired duration: @ToReadableString(Task.DesiredDuration ?? TimeSpan.Zero)
                 <TimeEdit TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
-                Start countdown and call OnDone() when finished
             </div>
 
             @if (Task.IsRepeating)
             {
                 <div>
                     Average duration: @ToReadableString(Task.AverageDuration ?? TimeSpan.Zero)
-                    Remember Start time and calculate elapsed time in OnDone()
                 </div>
 
                 <div>

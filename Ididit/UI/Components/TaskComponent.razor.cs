@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
 
-public partial class TaskComponent
+public sealed partial class TaskComponent : IDisposable
 {
     [Inject]
     IRepository Repository { get; set; } = null!;
@@ -24,10 +24,40 @@ public partial class TaskComponent
     [Parameter]
     public EventCallback<TaskModel?> SelectedTaskChanged { get; set; }
 
+    bool _taskStarted;
+    DateTime _taskStartedTime;
+
     bool _showTime;
     bool _editTime;
     long _selectedTime;
     DateTime _taskTime;
+
+    readonly System.Timers.Timer _timer = new(1000);
+    TimeSpan _elapsedTime;
+
+    public TaskComponent()
+    {
+        _timer.Elapsed += Timer_Elapsed;
+    }
+
+    private async void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
+    {
+        _elapsedTime = DateTime.Now - _taskStartedTime;
+
+        if (_elapsedTime >= Task.DesiredDuration)
+        {
+            _timer.Stop();
+
+            await OnDone();
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        _timer.Dispose();
+    }
 
     async Task ToggleTask()
     {
@@ -76,11 +106,39 @@ public partial class TaskComponent
         await Repository.UpdateTask(Task.Id);
     }
 
+    void OnPlay()
+    {
+        _taskStarted = true;
+        _taskStartedTime = DateTime.Now;
+
+        if (Task.DesiredDuration != null)
+        {
+            _timer.Start();
+        }
+    }
+
     async Task OnDone()
     {
         if (!Task.IsCompletedTask)
         {
             (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
+
+            if (_taskStarted)
+            {
+                _taskStarted = false;
+
+                if (_timer.Enabled)
+                {
+                    _timer.Stop();
+                }
+
+                TimeSpan taskDuration = time - _taskStartedTime;
+
+                // newAve = ((oldAve*oldNumPoints) + new_value)/(oldNumPoints+1)
+                // new_average = (old_average * (newNumPoints-1) + new_value) / newNumPoints
+
+                Task.AverageDuration = taskDuration;
+            }
 
             await Repository.AddTime(time, taskId);
             await Repository.UpdateTask(Task.Id);
