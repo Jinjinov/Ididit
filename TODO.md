@@ -5,11 +5,6 @@
 
 
 
-- [ ] desired task duration - set (i want to exercise for 15 min) / countdown timer + alarm
-- [ ] average task duration - start / stop timer (how long does it take to wash the dishes)
-
-
-
 - [ ] EditName, ToggleCreateTaskFromEachLine should not trigger OnFocusOut
 - [ ] EditName, ToggleCreateTaskFromEachLine should not be visible during Details edit
 - [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut

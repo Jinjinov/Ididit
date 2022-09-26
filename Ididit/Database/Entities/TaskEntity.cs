@@ -39,6 +39,9 @@ internal class TaskEntity
     public TimeSpan? DesiredDuration { get; set; }
 
     [IndexDbIndex]
+    public int DurationTimedCount { get; set; }
+
+    [IndexDbIndex]
     public Priority Priority { get; set; }
 
     [IndexDbIndex]

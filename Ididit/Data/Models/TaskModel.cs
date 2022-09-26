@@ -89,6 +89,7 @@ public class TaskModel
 
     public TimeSpan? AverageDuration { get; set; }
     public TimeSpan? DesiredDuration { get; set; }
+    public int DurationTimedCount { get; set; }
 
     public List<DateTime> TimeList = new();
 

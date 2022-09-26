@@ -54,6 +54,48 @@ public sealed partial class TaskComponent : IDisposable
         await InvokeAsync(StateHasChanged);
     }
 
+    void OnPlay()
+    {
+        _taskStarted = true;
+        _taskStartedTime = DateTime.Now;
+
+        if (Task.DesiredDuration != null)
+        {
+            _timer.Start();
+        }
+    }
+
+    async Task OnDone()
+    {
+        if (!Task.IsCompletedTask)
+        {
+            (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
+
+            if (_taskStarted)
+            {
+                _taskStarted = false;
+
+                if (_timer.Enabled)
+                {
+                    _timer.Stop();
+                }
+
+                TimeSpan taskDuration = time - _taskStartedTime;
+
+                TimeSpan oldAverage = Task.AverageDuration ?? TimeSpan.Zero;
+
+                TimeSpan newAverage = oldAverage * Task.DurationTimedCount + taskDuration;
+
+                Task.DurationTimedCount++;
+
+                Task.AverageDuration = newAverage / Task.DurationTimedCount;
+            }
+
+            await Repository.AddTime(time, taskId);
+            await Repository.UpdateTask(Task.Id);
+        }
+    }
+
     public void Dispose()
     {
         _timer.Dispose();
@@ -104,45 +146,6 @@ public sealed partial class TaskComponent : IDisposable
         Task.DesiredInterval = TimeSpan.Zero;
 
         await Repository.UpdateTask(Task.Id);
-    }
-
-    void OnPlay()
-    {
-        _taskStarted = true;
-        _taskStartedTime = DateTime.Now;
-
-        if (Task.DesiredDuration != null)
-        {
-            _timer.Start();
-        }
-    }
-
-    async Task OnDone()
-    {
-        if (!Task.IsCompletedTask)
-        {
-            (DateTime time, long taskId) = Task.AddTime(DateTime.Now);
-
-            if (_taskStarted)
-            {
-                _taskStarted = false;
-
-                if (_timer.Enabled)
-                {
-                    _timer.Stop();
-                }
-
-                TimeSpan taskDuration = time - _taskStartedTime;
-
-                // newAve = ((oldAve*oldNumPoints) + new_value)/(oldNumPoints+1)
-                // new_average = (old_average * (newNumPoints-1) + new_value) / newNumPoints
-
-                Task.AverageDuration = taskDuration;
-            }
-
-            await Repository.AddTime(time, taskId);
-            await Repository.UpdateTask(Task.Id);
-        }
     }
 
     void DateChanged(DateTime dateTime)
