@@ -17,8 +17,8 @@
     <PackageReference Include="CsvHelper" Version="28.0.1" />
     <PackageReference Include="DnetIndexedDb" Version="2.4.1" />
     <PackageReference Include="Markdig" Version="0.30.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
-    <PackageReference Include="YamlDotNet" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.9" />
+    <PackageReference Include="YamlDotNet" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
