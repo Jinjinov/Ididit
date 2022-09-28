@@ -12,7 +12,7 @@
                 <EditGoalComponent @bind-Goal=Goal EditGoal=EditGoal EditGoalChanged=EditGoalChanged />
             </div>
 
-            @if (SelectedGoal == Goal)
+            @if (SelectedGoal == Goal || EditGoal == Goal)
             {
                 <Div Class="overlay"></Div>
                 <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />

@@ -1,6 +1,6 @@
 ﻿@if (EditGoal == Goal && Goal != null)
 {
-    <Addons Flex=Flex.NoWrap @onclick:stopPropagation>
+    <Addons Flex=Flex.NoWrap @onclick:stopPropagation> <!-- don't trigger div onclick=SelectGoal -->
         <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
@@ -13,7 +13,7 @@ else
     <Addons Flex=Flex.NoWrap>
         <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true />
 
-        <Addon AddonType="AddonType.End" @onclick:stopPropagation>
+        <Addon AddonType="AddonType.End" @onclick:stopPropagation> <!-- don't trigger div onclick=SelectGoal -->
             @if (Goal != null)
             {
                 if (Goal.CreateTaskFromEachLine)
