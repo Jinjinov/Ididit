@@ -1,6 +1,7 @@
 ﻿using Ididit.App;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,6 +19,9 @@ public partial class GoalComponent
     [Parameter]
     [EditorRequired]
     public GoalModel Goal { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<GoalModel> GoalChanged { get; set; }
 
     [Parameter]
     public GoalModel? SelectedGoal { get; set; }
@@ -38,12 +42,110 @@ public partial class GoalComponent
 
     Blazorise.MemoEdit? _memoEdit;
 
+    Blazorise.TextEdit? _textEdit;
+
+    string _goalName = string.Empty;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (EditGoal == Goal && _textEdit != null)
+        {
+            await _textEdit.Focus();
+        }
+
         if (SelectedGoal == Goal && EditGoal == null && _memoEdit != null)
         {
             await _memoEdit.Focus();
         }
+    }
+
+    async Task EditName()
+    {
+        if (Goal != null)
+        {
+            _goalName = Goal.Name;
+
+            EditGoal = Goal;
+            await EditGoalChanged.InvokeAsync(EditGoal);
+        }
+    }
+
+    async Task KeyUp(KeyboardEventArgs eventArgs)
+    {
+        if (eventArgs.Code == "Escape")
+        {
+            await CancelEdit();
+        }
+        else if (eventArgs.Code == "Enter" || eventArgs.Code == "NumpadEnter")
+        {
+            await SaveName();
+        }
+    }
+
+    async Task FocusOut(FocusEventArgs eventArgs)
+    {
+        await SaveName();
+    }
+
+    async Task CancelEdit()
+    {
+        _goalName = Goal?.Name ?? string.Empty;
+
+        EditGoal = null;
+        await EditGoalChanged.InvokeAsync(EditGoal);
+    }
+
+    async Task SaveName()
+    {
+        EditGoal = null;
+        await EditGoalChanged.InvokeAsync(EditGoal);
+
+        if (_goalName != Goal?.Name)
+        {
+            if (Goal != null)
+            {
+                Goal.Name = _goalName;
+                await Repository.UpdateGoal(Goal.Id);
+            }
+
+            await GoalChanged.InvokeAsync(Goal);
+        }
+    }
+
+    async Task DeleteGoal()
+    {
+        if (Goal == null)
+            return;
+
+        if (Repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
+        {
+            GoalModel? changedGoal = parent.RemoveGoal(Goal);
+
+            if (changedGoal is not null)
+                await Repository.UpdateGoal(changedGoal.Id);
+        }
+
+        await Repository.DeleteGoal(Goal.Id);
+
+        Goal = null;
+        await GoalChanged.InvokeAsync(Goal);
+    }
+
+    async Task ToggleCreateTaskFromEachLine()
+    {
+        if (Goal == null)
+            return;
+
+        Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
+
+        if (!string.IsNullOrEmpty(Goal.Details) && !Goal.TaskList.Any())
+        {
+            await UpdateTasks();
+        }
+
+        await Repository.UpdateGoal(Goal.Id);
+
+        await GoalChanged.InvokeAsync(Goal);
     }
 
     async Task SelectGoal()
@@ -83,8 +185,13 @@ public partial class GoalComponent
         if (!Goal.CreateTaskFromEachLine)
             return;
 
+        await UpdateTasks();
+    }
+
+    private async Task UpdateTasks()
+    {
         List<DoneTask> oldLines = Goal.TaskList.Select(task => new DoneTask { Task = task }).ToList();
-        List<DoneLine> newLines = text.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
+        List<DoneLine> newLines = Goal.Details.Split('\n').Select(line => new DoneLine { Line = line }).ToList();
 
         // reordering will be done with drag & drop, don't check the order of tasks here
 

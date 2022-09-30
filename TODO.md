@@ -18,6 +18,9 @@
         - edit = false
         - SelectedGoal = null
 
+- the while loop in UpdateTasks() can handle only one line at a time
+    - update List<DoneTask> oldLines inside the while loop
+
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 - [ ] Bootstrap 4.6 ---> 5.2
