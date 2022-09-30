@@ -7,8 +7,16 @@
 
 - [ ] ToggleCreateTaskFromEachLine, EditName, Delete should not be visible during Details edit
 - [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut - SelectedGoal == EditGoal
-- [ ] edit: when title or details is clicked - (TitleFocused || DetailsFocused)
+- [ ] edit: when title is clicked - (TitleFocused || DetailsFocused)
 - [ ] stop edit: when title FocusOut and details FocusOut are both true - (!TitleFocused && !DetailsFocused)
+    - click on Name or Details:
+        - SelectedGoal = Goal
+        - TitleFocused = true or DetailsFocused = true
+    - if (TitleFocused || DetailsFocused)
+        - edit = true
+    - if (!TitleFocused && !DetailsFocused)
+        - edit = false
+        - SelectedGoal = null
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
