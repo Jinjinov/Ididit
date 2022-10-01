@@ -231,9 +231,11 @@ public partial class GoalComponent
                 DoneLine newLine = newLines.First(p => !p.IsDone);
                 int idx = oldLines.FindLastIndex(p => p.IsDone) + 1;
 
-                await AddTaskAt(idx, newLine.Line);
+                TaskModel task = await AddTaskAt(idx, newLine.Line);
 
                 newLine.IsDone = true;
+
+                oldLines.Insert(idx, new DoneTask() { Task = task, IsDone = true });
             }
             else if (oldLinesCount > newLinesCount) // deleted
             {
@@ -252,7 +254,7 @@ public partial class GoalComponent
         await Repository.UpdateTask(task.Id);
     }
 
-    private async Task AddTaskAt(int idx, string line)
+    private async Task<TaskModel> AddTaskAt(int idx, string line)
     {
         (TaskModel task, TaskModel? changedTask) = Goal.CreateTaskAt(Repository.NextTaskId, idx);
         task.Name = line;
@@ -261,6 +263,8 @@ public partial class GoalComponent
             await Repository.UpdateTask(changedTask.Id);
 
         await Repository.AddTask(task);
+
+        return task;
     }
 
     private async Task DeleteTask(TaskModel task)

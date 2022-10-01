@@ -5,12 +5,13 @@
 
 
 
-- the while loop in UpdateTasks() can handle only one line at a time
-    - update List<DoneTask> oldLines (--> existingLines) inside the while loop
-
 - Hello World! on line 3 of GoalComponent.razor remains after Delete Goal
 
+
+
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
+
+
 
 - [ ] Bootstrap 4.6 ---> 5.2
 
