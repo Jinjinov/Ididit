@@ -12,17 +12,17 @@
 
             <!-- Class="overlay-parent" -->
 
-            <Div Class="overlay-parent">
+            <!--<Div Class="overlay-parent">-->
 
             @if (SelectedGoal == Goal || EditGoal == Goal)
             {
                 <!-- Class="overlay" -->
 
-                <Div Class="overlay"></Div>
+                <!--<Div Class="overlay"></Div>-->
 
                 <!-- Class="overlay-content" -->
 
-                <Div Class="overlay-content">
+                <!--<Div Class="overlay-content">-->
 
                     <Addons Flex=Flex.NoWrap>
                         <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
@@ -34,7 +34,7 @@
 
                     <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
 
-                </Div>
+                <!--</Div>-->
             }
             else
             {
@@ -89,7 +89,7 @@
                 }
             }
 
-            </Div>
+            <!--</Div>-->
 
         </CardBody>
 
