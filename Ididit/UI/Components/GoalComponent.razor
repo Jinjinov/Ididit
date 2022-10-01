@@ -8,9 +8,11 @@
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
 
-        <!-- Class="overlay-parent" -->
+        <CardBody Padding=Padding.Is0>
 
-        <CardBody Padding=Padding.Is0 Class="overlay-parent">
+            <!-- Class="overlay-parent" -->
+
+            <Div Class="overlay-parent">
 
             @if (SelectedGoal == Goal || EditGoal == Goal)
             {
@@ -86,6 +88,8 @@
                     </Div>
                 }
             }
+
+            </Div>
 
         </CardBody>
 

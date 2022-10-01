@@ -27,7 +27,7 @@ iframe {
 
 /* FULL SCREEN OVERLAY */
 
-/* "overlay" with "position: absolute;" must have "overlay-parent" with a set position */
+/* "position: absolute;" in "overlay" requires "overlay-parent" with a set position */
 .overlay-parent {
     position: relative;
 }
