@@ -3,15 +3,11 @@
 - [?] current status / satisfaction / success
 - [?] does benifit / is different with app / reminders
 
-
-
 - Hello World! on line 3 of GoalComponent.razor remains after Delete Goal
 
 
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
-
-
 
 - [ ] Bootstrap 4.6 ---> 5.2
 
