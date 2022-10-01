@@ -46,18 +46,17 @@ public partial class GoalComponent
 
     string _goalName = string.Empty;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (EditGoal == Goal && _textEdit != null)
-        {
-            await _textEdit.Focus();
-        }
-
-        if (SelectedGoal == Goal && EditGoal == null && _memoEdit != null)
-        {
-            await _memoEdit.Focus();
-        }
-    }
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (EditGoal == Goal && _textEdit != null)
+    //    {
+    //        await _textEdit.Focus();
+    //    }
+    //    if (SelectedGoal == Goal && EditGoal == null && _memoEdit != null)
+    //    {
+    //        await _memoEdit.Focus();
+    //    }
+    //}
 
     async Task EditName()
     {
@@ -84,7 +83,7 @@ public partial class GoalComponent
 
     async Task FocusOut(FocusEventArgs eventArgs)
     {
-        await SaveName();
+        //await SaveName();
     }
 
     async Task CancelEdit()
@@ -160,9 +159,9 @@ public partial class GoalComponent
 
     async Task OnFocusOut()
     {
-        SelectedGoal = null;
+        //SelectedGoal = null;
 
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     class DoneLine

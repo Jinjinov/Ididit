@@ -13,18 +13,26 @@ iframe {
     display: block;
 }
 
+/* MARKDOWN */
+
+/* no margin in Markdown HTML */
 .child-no-margin > p {
     margin: 0;
 }
 
+/* no margin in Markdown HTML */
 .child-no-margin > pre {
     margin: 0;
 }
 
+/* FULL SCREEN OVERLAY */
+
+/* "overlay" with "position: absolute;" must have "overlay-parent" with a set position */
 .overlay-parent {
     position: relative;
 }
 
+/* full screen overlay */
 .overlay {
     z-index: 10;
     position: absolute;
@@ -34,52 +42,65 @@ iframe {
     width: 100%;
 }
 
+/* "z-index" only works on positioned elements (absolute, relative, fixed, or sticky) and flex items (elements that are direct children of "display: flex" elements) */
 .overlay-content {
     z-index: 20;
     position: relative;
 }
 
+/* MAIN ROW AND COLUMNS SCROLLBARS */
+
+/* show scrollbar in parent row */
 .parent-row {
     overflow: auto !important;
     max-height: 100% !important;
     display: block !important;
 }
 
+/* hide scrollbar in every child column */
 .child-column {
     overflow: visible !important;
     max-height: none !important;
 }
 
+/* hide sidebar column */
 .sidebar-visible {
     display: none !important;
 }
 
+/* show the button that toggles the sidebar column */
 .sidebar-toggle-visible {
     display: block !important;
 }
 
 @media (min-width: 768px) {
 
+    /* hide scrollbar in parent row */
     .parent-row {
         overflow: hidden !important;
         max-height: none !important;
         display: flex !important;
     }
 
+    /* show scrollbar in every child column */
     .child-column {
         overflow: auto !important;
         max-height: 100% !important;
     }
 
+    /* show sidebar column */
     .sidebar-visible {
         display: block !important;
     }
 
+    /* hide the button that toggles the sidebar column */
     .sidebar-toggle-visible {
         display: none !important;
     }
 
 }
+
+/* BLAZOR ERROR */
 
 #blazor-error-ui {
     background: lightyellow;
@@ -109,6 +130,8 @@ iframe {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/* LOADING INTRO CUBE GRID */
 
 .sk-cube-grid {
     width: 80px;

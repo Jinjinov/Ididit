@@ -7,8 +7,11 @@
     @if (tasks.Any() || !Filters.HideEmptyGoals)
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
+
+        <!-- Class="overlay-parent" -->
+
         <CardBody Padding=Padding.Is0 Class="overlay-parent">
-            @if (EditGoal == Goal && Goal != null)
+            @if (SelectedGoal == Goal || EditGoal == Goal)
             {
                 <Addons Flex=Flex.NoWrap>
                     <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
@@ -43,13 +46,19 @@
 
             @if (SelectedGoal == Goal || EditGoal == Goal)
             {
+                <!-- Class="overlay" -->
+
                 <Div Class="overlay"></Div>
+
+                <!-- Class="overlay-content" -->
+
                 <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
             }
             else
             {
                 if (Goal.CreateTaskFromEachLine)
                 {
+                    <!-- no margin in Markdown HTML -->
                     <Div Class="child-no-margin">
                         @foreach (TaskModel task in tasks)
                         {
@@ -71,6 +80,7 @@
                 }
                 else
                 {
+                    <!-- no margin in Markdown HTML -->
                     <Div Class="child-no-margin" Padding=Padding.Is1>
                         @((MarkupString)Goal.DetailsMarkdownHtml)
                     </Div>
