@@ -46,17 +46,17 @@ public partial class GoalComponent
 
     string _goalName = string.Empty;
 
-    //protected override async Task OnAfterRenderAsync(bool firstRender)
-    //{
-    //    if (EditGoal == Goal && _textEdit != null)
-    //    {
-    //        await _textEdit.Focus();
-    //    }
-    //    if (SelectedGoal == Goal && EditGoal == null && _memoEdit != null)
-    //    {
-    //        await _memoEdit.Focus();
-    //    }
-    //}
+    bool _shouldFocus;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_shouldFocus && _textEdit != null)
+        {
+            _shouldFocus = false;
+
+            await _textEdit.Focus();
+        }
+    }
 
     async Task FocusOut(FocusEventArgs eventArgs)
     {
@@ -73,6 +73,8 @@ public partial class GoalComponent
     async Task SelectAndEditGoal()
     {
         _goalName = Goal.Name;
+
+        _shouldFocus = true;
 
         EditGoal = Goal;
         await EditGoalChanged.InvokeAsync(EditGoal);
