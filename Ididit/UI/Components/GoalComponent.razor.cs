@@ -70,18 +70,14 @@ public partial class GoalComponent
         //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
-    async Task EditName()
+    async Task SelectAndEditGoal()
     {
         _goalName = Goal.Name;
 
         EditGoal = Goal;
         await EditGoalChanged.InvokeAsync(EditGoal);
-    }
 
-    async Task SelectGoal()
-    {
         SelectedGoal = Goal;
-
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
@@ -103,12 +99,18 @@ public partial class GoalComponent
 
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
+
+        SelectedGoal = null;
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     async Task SaveName()
     {
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
+
+        SelectedGoal = null;
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
 
         if (Goal.Name != _goalName)
         {
