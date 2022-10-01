@@ -35,7 +35,7 @@ iframe {
 /* full screen overlay */
 .overlay {
     z-index: 10;
-    position: absolute;
+    position: absolute; /* could also be position: fixed; and without "overlay-parent" */
     top: 0;
     right: 0;
     height: 100%;
