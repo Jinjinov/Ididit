@@ -68,6 +68,14 @@ public partial class GoalComponent
     {
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
+
+        if (Goal.Name != _goalName)
+        {
+            Goal.Name = _goalName;
+            await Repository.UpdateGoal(Goal.Id);
+
+            await GoalChanged.InvokeAsync(Goal);
+        }
     }
 
     async Task OnFocusIn()
