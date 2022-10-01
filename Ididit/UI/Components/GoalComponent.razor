@@ -11,15 +11,28 @@
         <!-- Class="overlay-parent" -->
 
         <CardBody Padding=Padding.Is0 Class="overlay-parent">
+
             @if (SelectedGoal == Goal || EditGoal == Goal)
             {
-                <Addons Flex=Flex.NoWrap>
-                    <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
-                    <Addon AddonType="AddonType.End">
-                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                        @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
-                    </Addon>
-                </Addons>
+                <!-- Class="overlay" -->
+
+                <Div Class="overlay"></Div>
+
+                <!-- Class="overlay-content" -->
+
+                <Div Class="overlay-content">
+
+                    <Addons Flex=Flex.NoWrap>
+                        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
+                        <Addon AddonType="AddonType.End">
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                            @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
+                        </Addon>
+                    </Addons>
+
+                    <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
+
+                </Div>
             }
             else
             {
@@ -42,20 +55,7 @@
                         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                     </Addon>
                 </Addons>
-            }
 
-            @if (SelectedGoal == Goal || EditGoal == Goal)
-            {
-                <!-- Class="overlay" -->
-
-                <Div Class="overlay"></Div>
-
-                <!-- Class="overlay-content" -->
-
-                <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
-            }
-            else
-            {
                 if (Goal.CreateTaskFromEachLine)
                 {
                     <!-- no margin in Markdown HTML -->
@@ -86,7 +86,9 @@
                     </Div>
                 }
             }
+
         </CardBody>
+
     </Card>
     }
 }
