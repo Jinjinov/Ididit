@@ -19,7 +19,7 @@
         - SelectedGoal = null
 
 - the while loop in UpdateTasks() can handle only one line at a time
-    - update List<DoneTask> oldLines inside the while loop
+    - update List<DoneTask> oldLines (--> existingLines) inside the while loop
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 

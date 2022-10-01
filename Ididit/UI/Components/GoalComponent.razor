@@ -8,42 +8,38 @@
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
         <CardBody Padding=Padding.Is0 Class="overlay-parent">
-            <div @onclick=SelectGoal>
-                @if (EditGoal == Goal && Goal != null)
-                {
-                    <Addons Flex=Flex.NoWrap @onclick:stopPropagation>
-                        <!-- don't trigger div onclick=SelectGoal -->
-                        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
-                        <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                            @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
-                        </Addon>
-                    </Addons>
-                }
-                else
-                {
-                    <Addons Flex=Flex.NoWrap>
-                        <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true />
+            @if (EditGoal == Goal && Goal != null)
+            {
+                <Addons Flex=Flex.NoWrap>
+                    <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
+                    <Addon AddonType="AddonType.End">
+                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                        @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
+                    </Addon>
+                </Addons>
+            }
+            else
+            {
+                <Addons Flex=Flex.NoWrap>
+                    <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true @onclick=SelectGoal />
 
-                        <Addon AddonType="AddonType.End" @onclick:stopPropagation>
-                            <!-- don't trigger div onclick=SelectGoal -->
-                            @if (Goal != null)
+                    <Addon AddonType="AddonType.End">
+                        @if (Goal != null)
+                        {
+                            if (Goal.CreateTaskFromEachLine)
                             {
-                                if (Goal.CreateTaskFromEachLine)
-                                {
-                                    <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                                }
-                                else
-                                {
-                                    <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                                }
+                                <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
-                        </Addon>
-                    </Addons>
-                }
-            </div>
+                            else
+                            {
+                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                            }
+                        }
+                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                    </Addon>
+                </Addons>
+            }
 
             @if (SelectedGoal == Goal || EditGoal == Goal)
             {
