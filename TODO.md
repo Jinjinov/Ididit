@@ -3,7 +3,7 @@
 - [?] current status / satisfaction / success
 - [?] does benifit / is different with app / reminders
 
-- [?] Hello World! on line 3 of GoalComponent.razor remains after Delete Goal
+- [?] @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
 
 
 
