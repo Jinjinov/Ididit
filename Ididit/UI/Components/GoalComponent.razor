@@ -33,26 +33,23 @@
             else
             {
                 <Addons Flex=Flex.NoWrap>
-                    <TextEdit Border=Border.Is0 Size="Size" Text="@Goal?.Name" ReadOnly=true @onclick=SelectGoal />
+                    <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=SelectGoal />
 
                     <Addon AddonType="AddonType.End">
-                        @if (Goal != null)
+                        @if (Goal.CreateTaskFromEachLine)
                         {
-                            if (Goal.CreateTaskFromEachLine)
-                            {
-                                <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                            }
-                            else
-                            {
-                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                            }
+                            <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                        }
+                        else
+                        {
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                         }
                         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
                         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                     </Addon>
                 </Addons>
 
-                if (Goal.CreateTaskFromEachLine)
+                @if (Goal.CreateTaskFromEachLine)
                 {
                     <!-- no margin in Markdown HTML -->
                     <Div Class="child-no-margin">

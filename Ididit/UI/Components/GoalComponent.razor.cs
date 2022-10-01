@@ -58,15 +58,31 @@ public partial class GoalComponent
     //    }
     //}
 
+    async Task FocusOut(FocusEventArgs eventArgs)
+    {
+        //await SaveName();
+    }
+
+    async Task OnFocusOut()
+    {
+        //SelectedGoal = null;
+
+        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+    }
+
     async Task EditName()
     {
-        if (Goal != null)
-        {
-            _goalName = Goal.Name;
+        _goalName = Goal.Name;
 
-            EditGoal = Goal;
-            await EditGoalChanged.InvokeAsync(EditGoal);
-        }
+        EditGoal = Goal;
+        await EditGoalChanged.InvokeAsync(EditGoal);
+    }
+
+    async Task SelectGoal()
+    {
+        SelectedGoal = Goal;
+
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     async Task KeyUp(KeyboardEventArgs eventArgs)
@@ -81,14 +97,9 @@ public partial class GoalComponent
         }
     }
 
-    async Task FocusOut(FocusEventArgs eventArgs)
-    {
-        //await SaveName();
-    }
-
     async Task CancelEdit()
     {
-        _goalName = Goal?.Name ?? string.Empty;
+        _goalName = Goal.Name;
 
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
@@ -99,13 +110,10 @@ public partial class GoalComponent
         EditGoal = null;
         await EditGoalChanged.InvokeAsync(EditGoal);
 
-        if (_goalName != Goal?.Name)
+        if (Goal.Name != _goalName)
         {
-            if (Goal != null)
-            {
-                Goal.Name = _goalName;
-                await Repository.UpdateGoal(Goal.Id);
-            }
+            Goal.Name = _goalName;
+            await Repository.UpdateGoal(Goal.Id);
 
             await GoalChanged.InvokeAsync(Goal);
         }
@@ -113,9 +121,6 @@ public partial class GoalComponent
 
     async Task DeleteGoal()
     {
-        if (Goal == null)
-            return;
-
         if (Repository.AllCategories.TryGetValue(Goal.CategoryId, out CategoryModel? parent))
         {
             GoalModel? changedGoal = parent.RemoveGoal(Goal);
@@ -128,40 +133,6 @@ public partial class GoalComponent
 
         Goal = null;
         await GoalChanged.InvokeAsync(Goal);
-    }
-
-    async Task ToggleCreateTaskFromEachLine()
-    {
-        if (Goal == null)
-            return;
-
-        Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
-
-        if (!string.IsNullOrEmpty(Goal.Details) && !Goal.TaskList.Any())
-        {
-            await UpdateTasks();
-        }
-
-        await Repository.UpdateGoal(Goal.Id);
-
-        await GoalChanged.InvokeAsync(Goal);
-    }
-
-    async Task SelectGoal()
-    {
-        if (SelectedGoal != Goal)
-            SelectedGoal = Goal;
-        else
-            SelectedGoal = null;
-
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
-    }
-
-    async Task OnFocusOut()
-    {
-        //SelectedGoal = null;
-
-        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     class DoneLine
@@ -185,6 +156,20 @@ public partial class GoalComponent
             return;
 
         await UpdateTasks();
+    }
+
+    async Task ToggleCreateTaskFromEachLine()
+    {
+        Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
+
+        if (!string.IsNullOrEmpty(Goal.Details) && !Goal.TaskList.Any())
+        {
+            await UpdateTasks();
+        }
+
+        await Repository.UpdateGoal(Goal.Id);
+
+        await GoalChanged.InvokeAsync(Goal);
     }
 
     private async Task UpdateTasks()
