@@ -5,19 +5,6 @@
 
 
 
-- [ ] ToggleCreateTaskFromEachLine, EditName, Delete should not be visible during Details edit
-- [ ] merge "toggle goal details edit" with "edit goal title" - rewrite FocusOut - SelectedGoal == EditGoal
-- [ ] edit: when title is clicked - (TitleFocused || DetailsFocused)
-- [ ] stop edit: when title FocusOut and details FocusOut are both true - (!TitleFocused && !DetailsFocused)
-    - click on Name or Details:
-        - SelectedGoal = Goal
-        - TitleFocused = true or DetailsFocused = true
-    - if (TitleFocused || DetailsFocused)
-        - edit = true
-    - if (!TitleFocused && !DetailsFocused)
-        - edit = false
-        - SelectedGoal = null
-
 - the while loop in UpdateTasks() can handle only one line at a time
     - update List<DoneTask> oldLines (--> existingLines) inside the while loop
 

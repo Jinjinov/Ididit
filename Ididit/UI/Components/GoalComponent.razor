@@ -19,14 +19,14 @@
                 <!--<Div Class="overlay-content">-->
 
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new goal" />
+                        <TextEdit @ref=_textEdit Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="Add new goal" />
                         <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
                             @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
                         </Addon>
                     </Addons>
 
-                    <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 FocusOut=OnFocusOut TextChanged=OnTextChanged />
+                    <MemoEdit Class="overlay-content" @ref=_memoEdit AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 @onmousedown=OnFocusIn FocusOut=OnFocusOut TextChanged=OnTextChanged />
 
                 <!--</Div>-->
             }

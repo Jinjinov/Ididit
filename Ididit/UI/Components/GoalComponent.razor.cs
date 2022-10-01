@@ -58,16 +58,28 @@ public partial class GoalComponent
         }
     }
 
-    async Task FocusOut(FocusEventArgs eventArgs)
+    async Task FocusIn()
     {
-        //await SaveName();
+        EditGoal = Goal;
+        await EditGoalChanged.InvokeAsync(EditGoal);
+    }
+
+    async Task FocusOut()
+    {
+        EditGoal = null;
+        await EditGoalChanged.InvokeAsync(EditGoal);
+    }
+
+    async Task OnFocusIn()
+    {
+        SelectedGoal = Goal;
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     async Task OnFocusOut()
     {
-        //SelectedGoal = null;
-
-        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        SelectedGoal = null;
+        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     async Task SelectAndEditGoal()
