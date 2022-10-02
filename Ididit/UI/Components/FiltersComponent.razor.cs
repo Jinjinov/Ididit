@@ -95,14 +95,6 @@ public partial class FiltersComponent
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnHideEmptyGoalsChanged(bool? val)
-    {
-        Settings.HideEmptyGoals = val ?? false;
-        await Repository.UpdateSettings(Settings.Id);
-
-        await SettingsChanged.InvokeAsync(Settings);
-    }
-
     async Task OnHideCompletedTasksChanged(bool? val)
     {
         Settings.HideCompletedTasks = val ?? false;

@@ -80,6 +80,14 @@ public partial class CategoriesComponent
         style.Style = "padding:0!important";
     }
 
+    async Task OnHideEmptyGoalsChanged(bool? val)
+    {
+        Settings.HideEmptyGoals = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
+
     async Task OnShowAllGoalsChanged(bool? val)
     {
         bool showAllGoals = val ?? false;
