@@ -11,60 +11,31 @@ public class Filters
 
     public DateTime? DateFilter { get; set; }
 
-    public Dictionary<Priority, bool> ShowPriority { get; set; } = new()
-    {
-        { Priority.None, true },
-        { Priority.VeryLow, true },
-        { Priority.Low, true },
-        { Priority.Medium, true },
-        { Priority.High, true },
-        { Priority.VeryHigh, true }
-    };
-
-    public Dictionary<TaskKind, bool> ShowTaskKind { get; set; } = new()
-    {
-        { TaskKind.Note, true },
-        { TaskKind.Task, true },
-        { TaskKind.RepeatingTask, true }
-    };
-
-    public Sort Sort { get; set; }
-
-    public long ElapsedToDesiredRatioMin { get; set; }
-
-    public bool ShowElapsedToDesiredRatioOverMin { get; set; }
-
-    public bool HideEmptyGoals { get; set; }
-
-    public bool ShowCategoriesInGoalList { get; set; }
-
-    public bool HideCompletedTasks { get; set; }
-
-    public IList<TaskModel> FilterTasks(IEnumerable<TaskModel> tasks)
+    public IList<TaskModel> FilterTasks(IEnumerable<TaskModel> tasks, SettingsModel settings)
     {
         IEnumerable<TaskModel> filteredTasks = tasks.Where(task =>
         {
-            bool isRatioOk = task.ElapsedToDesiredRatio >= ElapsedToDesiredRatioMin;
+            bool isRatioOk = task.ElapsedToDesiredRatio >= settings.ElapsedToDesiredRatioMin;
 
             bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
 
             bool isDateOk = DateFilter == null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
 
-            bool isPriorityOk = ShowPriority[task.Priority];
+            bool isPriorityOk = settings.ShowPriority[task.Priority];
 
-            bool isTaskKindOk = ShowTaskKind[task.TaskKind];
+            bool isTaskKindOk = settings.ShowTaskKind[task.TaskKind];
 
             return isNameOk && isDateOk && isPriorityOk && isTaskKindOk &&
-                (isRatioOk || !ShowElapsedToDesiredRatioOverMin) &&
-                (!task.IsCompletedTask || !HideCompletedTasks);
+                (isRatioOk || !settings.ShowElapsedToDesiredRatioOverMin) &&
+                (!task.IsCompletedTask || !settings.HideCompletedTasks);
         });
 
-        return SortTasks(filteredTasks).ToList();
+        return SortTasks(filteredTasks, settings).ToList();
     }
 
-    private IEnumerable<TaskModel> SortTasks(IEnumerable<TaskModel> tasks)
+    private IEnumerable<TaskModel> SortTasks(IEnumerable<TaskModel> tasks, SettingsModel settings)
     {
-        return Sort switch
+        return settings.Sort switch
         {
             Sort.None => tasks,
             Sort.Name => tasks.OrderBy(task => task.Name),

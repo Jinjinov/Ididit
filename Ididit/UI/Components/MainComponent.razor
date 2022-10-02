@@ -59,7 +59,7 @@
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
-                            <FiltersComponent @bind-Filters="_filters" />
+                            <FiltersComponent @bind-Filters="_filters" Settings=Settings SettingsChanged=OnSettingsChanged />
 
                         </CollapseBody>
                     </Collapse>
@@ -71,7 +71,7 @@
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
-                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory ShowAllGoals=ShowAllGoals ShowAllGoalsChanged="ShowAllGoalsChanged" ShowAllTasks=ShowAllTasks ShowAllTasksChanged="ShowAllTasksChanged" />
+                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings SettingsChanged=OnSettingsChanged />
 
                         </CollapseBody>
                     </Collapse>
@@ -79,7 +79,7 @@
 
             </Column>
             <Column Padding=Padding.Is0 class="child-column">
-                <GoalsComponent @bind-SelectedCategory=_selectedCategory ShowAllGoals=ShowAllGoals ShowAllTasks=ShowAllTasks Filters="_filters" />
+                <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters=_filters Settings=Settings />
             </Column>
 
         </Row>

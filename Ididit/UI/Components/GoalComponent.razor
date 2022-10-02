@@ -2,9 +2,9 @@
 
 @if (Goal != null)
 {
-    IList<TaskModel> tasks = Filters.FilterTasks(Goal.TaskList);
+    IList<TaskModel> tasks = Filters.FilterTasks(Goal.TaskList, Settings);
 
-    @if (tasks.Any() || !Filters.HideEmptyGoals)
+    @if (tasks.Any() || !Settings.HideEmptyGoals)
     {
     <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
 

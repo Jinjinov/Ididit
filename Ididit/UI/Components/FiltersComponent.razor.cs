@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
@@ -12,6 +13,12 @@ public partial class FiltersComponent
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
+
+    [Parameter]
+    public SettingsModel Settings { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<SettingsModel> SettingsChanged { get; set; }
 
     [Parameter]
     public Filters Filters { get; set; } = null!;
@@ -60,141 +67,83 @@ public partial class FiltersComponent
         await FiltersChanged.InvokeAsync(Filters);
     }
 
-    bool GetShowPriority(Priority priority)
-    {
-        Filters.ShowPriority[priority] = Repository.Settings.ShowPriority[priority];
-        return Repository.Settings.ShowPriority[priority];
-    }
+    bool GetShowPriority(Priority priority) => Settings.ShowPriority[priority];
 
     async Task OnShowPriorityChanged(Priority priority, bool show)
     {
-        Filters.ShowPriority[priority] = show;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.ShowPriority[priority] = show;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.ShowPriority[priority] = show;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
-    bool GetShowTaskKind(TaskKind taskKind)
-    {
-        Filters.ShowTaskKind[taskKind] = Repository.Settings.ShowTaskKind[taskKind];
-        return Repository.Settings.ShowTaskKind[taskKind];
-    }
+    bool GetShowTaskKind(TaskKind taskKind) => Settings.ShowTaskKind[taskKind];
 
     async Task OnShowTaskKindChanged(TaskKind taskKind, bool show)
     {
-        Filters.ShowTaskKind[taskKind] = show;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.ShowTaskKind[taskKind] = show;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.ShowTaskKind[taskKind] = show;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
-    Sort Sort
-    {
-        get
-        {
-            Filters.Sort = Repository.Settings.Sort;
-            return Repository.Settings.Sort;
-        }
-    }
+    Sort Sort => Settings.Sort;
 
-    long ElapsedToDesiredRatioMin
-    {
-        get
-        {
-            Filters.ElapsedToDesiredRatioMin = Repository.Settings.ElapsedToDesiredRatioMin;
-            return Repository.Settings.ElapsedToDesiredRatioMin;
-        }
-    }
+    long ElapsedToDesiredRatioMin => Settings.ElapsedToDesiredRatioMin;
 
-    bool ShowElapsedToDesiredRatioOverMin
-    {
-        get
-        {
-            Filters.ShowElapsedToDesiredRatioOverMin = Repository.Settings.ShowElapsedToDesiredRatioOverMin;
-            return Repository.Settings.ShowElapsedToDesiredRatioOverMin;
-        }
-    }
+    bool ShowElapsedToDesiredRatioOverMin => Settings.ShowElapsedToDesiredRatioOverMin;
 
-    bool HideEmptyGoals
-    {
-        get
-        {
-            Filters.HideEmptyGoals = Repository.Settings.HideEmptyGoals;
-            return Repository.Settings.HideEmptyGoals;
-        }
-    }
+    bool HideEmptyGoals => Settings.HideEmptyGoals;
 
-    bool ShowCategoriesInGoalList
-    {
-        get
-        {
-            Filters.ShowCategoriesInGoalList = Repository.Settings.ShowCategoriesInGoalList;
-            return Repository.Settings.ShowCategoriesInGoalList;
-        }
-    }
+    bool ShowCategoriesInGoalList => Settings.ShowCategoriesInGoalList;
 
-    bool HideCompletedTasks
-    {
-        get
-        {
-            Filters.HideCompletedTasks = Repository.Settings.HideCompletedTasks;
-            return Repository.Settings.HideCompletedTasks;
-        }
-    }
+    bool HideCompletedTasks => Settings.HideCompletedTasks;
 
     async Task OnSortChanged(Sort sort)
     {
-        Filters.Sort = sort;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.Sort = sort;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.Sort = sort;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
     async Task OnHideEmptyGoalsChanged(bool? val)
     {
-        Filters.HideEmptyGoals = val ?? false;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.HideEmptyGoals = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.HideEmptyGoals = val ?? false;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
     async Task OnShowCategoriesInGoalListChanged(bool? val)
     {
-        Filters.ShowCategoriesInGoalList = val ?? false;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.ShowCategoriesInGoalList = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.ShowCategoriesInGoalList = val ?? false;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
     async Task OnHideCompletedTasksChanged(bool? val)
     {
-        Filters.HideCompletedTasks = val ?? false;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.HideCompletedTasks = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.HideCompletedTasks = val ?? false;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
     async Task OnShowElapsedToDesiredRatioOverMinChanged(bool? val)
     {
-        Filters.ShowElapsedToDesiredRatioOverMin = val ?? false;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 
     async Task OnElapsedToDesiredRatioMinChanged(long val)
     {
-        Filters.ElapsedToDesiredRatioMin = val;
-        await FiltersChanged.InvokeAsync(Filters);
+        Settings.ElapsedToDesiredRatioMin = val;
+        await Repository.UpdateSettings(Settings.Id);
 
-        Repository.Settings.ElapsedToDesiredRatioMin = val;
-        await Repository.UpdateSettings(Repository.Settings.Id);
+        await SettingsChanged.InvokeAsync(Settings);
     }
 }

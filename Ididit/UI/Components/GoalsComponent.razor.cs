@@ -21,10 +21,7 @@ public partial class GoalsComponent
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
     [Parameter]
-    public bool ShowAllGoals { get; set; }
-
-    [Parameter]
-    public bool ShowAllTasks { get; set; }
+    public SettingsModel Settings { get; set; } = null!;
 
     [Parameter]
     public Filters Filters { get; set; } = null!;

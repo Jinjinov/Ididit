@@ -38,6 +38,9 @@ public partial class GoalComponent
     [Parameter]
     public Filters Filters { get; set; } = null!;
 
+    [Parameter]
+    public SettingsModel Settings { get; set; } = null!;
+
     TaskModel? _selectedTask;
 
     Blazorise.MemoEdit? _memoEdit;

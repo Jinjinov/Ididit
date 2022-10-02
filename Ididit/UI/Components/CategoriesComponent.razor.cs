@@ -19,16 +19,10 @@ public partial class CategoriesComponent
     public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
 
     [Parameter]
-    public bool ShowAllGoals { get; set; }
+    public SettingsModel Settings { get; set; } = null!;
 
     [Parameter]
-    public bool ShowAllTasks { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> ShowAllGoalsChanged { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> ShowAllTasksChanged { get; set; }
+    public EventCallback<SettingsModel> SettingsChanged { get; set; }
 
     IList<CategoryModel> _expandedNodes = new List<CategoryModel>();
 
@@ -57,11 +51,11 @@ public partial class CategoriesComponent
             SelectedCategory = category;
             await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
 
-            ShowAllGoals = false;
-            await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+            Settings.ShowAllGoals = false;
+            Settings.ShowAllTasks = false;
+            await Repository.UpdateSettings(Settings.Id);
 
-            ShowAllTasks = false;
-            await ShowAllTasksChanged.InvokeAsync(ShowAllTasks);
+            await SettingsChanged.InvokeAsync(Settings);
         }
     }
 
@@ -90,10 +84,12 @@ public partial class CategoriesComponent
     {
         bool showAllGoals = val ?? false;
 
-        if (ShowAllGoals != showAllGoals)
+        if (Settings.ShowAllGoals != showAllGoals)
         {
-            ShowAllGoals = showAllGoals;
-            await ShowAllGoalsChanged.InvokeAsync(ShowAllGoals);
+            Settings.ShowAllGoals = showAllGoals;
+            await Repository.UpdateSettings(Settings.Id);
+
+            await SettingsChanged.InvokeAsync(Settings);
 
             SelectedCategory = Repository.Category;
             await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
@@ -104,10 +100,12 @@ public partial class CategoriesComponent
     {
         bool showAllTasks = val ?? false;
 
-        if (ShowAllTasks != showAllTasks)
+        if (Settings.ShowAllTasks != showAllTasks)
         {
-            ShowAllTasks = showAllTasks;
-            await ShowAllTasksChanged.InvokeAsync(ShowAllTasks);
+            Settings.ShowAllTasks = showAllTasks;
+            await Repository.UpdateSettings(Settings.Id);
+
+            await SettingsChanged.InvokeAsync(Settings);
 
             SelectedCategory = Repository.Category;
             await SelectedCategoryChanged.InvokeAsync(SelectedCategory);

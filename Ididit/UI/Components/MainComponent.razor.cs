@@ -68,28 +68,10 @@ public partial class MainComponent
 
     CategoryModel _selectedCategory = new();
 
-    bool ShowAllGoals => Repository.Settings.ShowAllGoals;
+    SettingsModel Settings => Repository.Settings;
 
-    async Task ShowAllGoalsChanged(bool showAllGoals)
+    async Task OnSettingsChanged(SettingsModel settings)
     {
-        if (Repository.Settings.ShowAllGoals != showAllGoals)
-        {
-            Repository.Settings.ShowAllGoals = showAllGoals;
-
-            await Repository.UpdateSettings(Repository.Settings.Id);
-        }
-    }
-
-    bool ShowAllTasks => Repository.Settings.ShowAllTasks;
-
-    async Task ShowAllTasksChanged(bool showAllTasks)
-    {
-        if (Repository.Settings.ShowAllTasks != showAllTasks)
-        {
-            Repository.Settings.ShowAllTasks = showAllTasks;
-
-            await Repository.UpdateSettings(Repository.Settings.Id);
-        }
     }
 
     bool _filtersVisible = true;
@@ -104,18 +86,6 @@ public partial class MainComponent
 
     protected override async Task OnInitializedAsync()
     {
-        _filters = new()
-        {
-            ShowPriority = Repository.Settings.ShowPriority,
-            ShowTaskKind = Repository.Settings.ShowTaskKind,
-            Sort = Repository.Settings.Sort,
-            ElapsedToDesiredRatioMin = Repository.Settings.ElapsedToDesiredRatioMin,
-            ShowElapsedToDesiredRatioOverMin = Repository.Settings.ShowElapsedToDesiredRatioOverMin,
-            HideEmptyGoals = Repository.Settings.HideEmptyGoals,
-            ShowCategoriesInGoalList = Repository.Settings.ShowCategoriesInGoalList,
-            HideCompletedTasks = Repository.Settings.HideCompletedTasks,
-        };
-
         await Repository.Initialize();
 
         _selectedCategory = Repository.Category;
