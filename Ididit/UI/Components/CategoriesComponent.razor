@@ -4,11 +4,14 @@
 @*<Card Margin=Margin.Is2.OnY>
 <CardBody Padding=Padding.Is1>*@
 
+<CheckBox Checked="ShowAllTasks" CheckedChanged="OnShowAllTasksChanged">Show all tasks</CheckBox>
+
+@if (!ShowAllTasks)
+{
+    <CheckBox Checked="ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">Show all goals</CheckBox>
+
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category to @SelectedCategory.Name</Button>
-
-    <CheckBox Checked="ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">Show all goals</CheckBox>
-    <CheckBox Checked="ShowAllTasks" CheckedChanged="OnShowAllTasksChanged">Show all tasks</CheckBox>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
               TNode="CategoryModel"
@@ -31,6 +34,7 @@
             }
         </NodeContent>
     </TreeView>
+}
 
 @*</CardBody>
 </Card>*@

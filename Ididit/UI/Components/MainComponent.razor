@@ -66,12 +66,12 @@
                     <Collapse Visible="@_categoriesVisible">
                         <CollapseHeader Padding=Padding.Is0>
 
-                            <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Categories</Button>
+                            <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
 
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
-                                <CategoriesComponent @bind-SelectedCategory=_selectedCategory ShowAllGoals=ShowAllGoals ShowAllGoalsChanged="ShowAllGoalsChanged" ShowAllTasks=ShowAllTasks ShowAllTasksChanged="ShowAllTasksChanged" />
+                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory ShowAllGoals=ShowAllGoals ShowAllGoalsChanged="ShowAllGoalsChanged" ShowAllTasks=ShowAllTasks ShowAllTasksChanged="ShowAllTasksChanged" />
 
                         </CollapseBody>
                     </Collapse>

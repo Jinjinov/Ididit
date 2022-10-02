@@ -2,14 +2,6 @@
 
 <Div Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
 
-    <Card>
-    <CardBody Padding=Padding.Is1>
-
-        <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory.Name</Button>
-
-    </CardBody>
-    </Card>
-
     @if (ShowAllTasks)
     {
         @foreach (TaskModel task in Filters.FilterTasks(Repository.AllTasks.Values))
@@ -17,26 +9,37 @@
             <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
         }
     }
-    else if (ShowAllGoals)
+    else
     {
-        @foreach (CategoryModel category in Repository.AllCategories.Values)
-        {
-            if (Filters.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterTasks(goal.TaskList).Any()).Any())
-            {
-                <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
-            }
+        <Card>
+            <CardBody Padding=Padding.Is1>
 
-            @foreach (GoalModel goal in category.GoalList)
+                <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory.Name</Button>
+
+            </CardBody>
+        </Card>
+
+        if (ShowAllGoals)
+        {
+            @foreach (CategoryModel category in Repository.AllCategories.Values)
+            {
+                if (Filters.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterTasks(goal.TaskList).Any()).Any())
+                {
+                    <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
+                }
+
+                @foreach (GoalModel goal in category.GoalList)
+                {
+                    <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
+                }
+            }
+        }
+        else
+        {
+            @foreach (GoalModel goal in SelectedCategory.GoalList)
             {
                 <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
             }
-        }
-    }
-    else
-    {
-        @foreach (GoalModel goal in SelectedCategory.GoalList)
-        {
-            <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters />
         }
     }
 
