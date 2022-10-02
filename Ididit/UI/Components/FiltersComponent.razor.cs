@@ -87,18 +87,6 @@ public partial class FiltersComponent
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    Sort Sort => Settings.Sort;
-
-    long ElapsedToDesiredRatioMin => Settings.ElapsedToDesiredRatioMin;
-
-    bool ShowElapsedToDesiredRatioOverMin => Settings.ShowElapsedToDesiredRatioOverMin;
-
-    bool HideEmptyGoals => Settings.HideEmptyGoals;
-
-    bool ShowCategoriesInGoalList => Settings.ShowCategoriesInGoalList;
-
-    bool HideCompletedTasks => Settings.HideCompletedTasks;
-
     async Task OnSortChanged(Sort sort)
     {
         Settings.Sort = sort;

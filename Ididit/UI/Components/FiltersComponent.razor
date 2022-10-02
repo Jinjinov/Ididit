@@ -23,17 +23,17 @@
 
     <span>Filters:</span>
 
-    <CheckBox Checked="ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">Show categories in goal list</CheckBox>
+    <CheckBox Checked="Settings.ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">Show categories in goal list</CheckBox>
 
-    <CheckBox Checked="HideEmptyGoals" CheckedChanged="OnHideEmptyGoalsChanged">Hide empty goals</CheckBox>
+    <CheckBox Checked="Settings.HideEmptyGoals" CheckedChanged="OnHideEmptyGoalsChanged">Hide empty goals</CheckBox>
 
-    <CheckBox Checked="HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">Hide completed tasks</CheckBox>
+    <CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">Hide completed tasks</CheckBox>
 
     <Field Margin=Margin.Is0>
         <FieldLabel>
-            <CheckBox Checked="ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Show tasks with ratio over @ElapsedToDesiredRatioMin %</CheckBox>
+            <CheckBox Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Show tasks with ratio over @Settings.ElapsedToDesiredRatioMin %</CheckBox>
         </FieldLabel>
-        <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
+        <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="Settings.ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
     </Field>
 
     <span>Priority:</span>
@@ -53,7 +53,7 @@
     <Field Margin=Margin.Is0>
         <FieldLabel>Sort by:</FieldLabel>
 
-        <Select TValue="Sort" Size="Size" SelectedValue="Sort" SelectedValueChanged="OnSortChanged">
+        <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
             <SelectItem Value="Sort.None">None</SelectItem>
             <SelectItem Value="Sort.Name">Name</SelectItem>
             <SelectItem Value="Sort.Priority">Priority</SelectItem>
