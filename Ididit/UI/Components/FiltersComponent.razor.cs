@@ -103,14 +103,6 @@ public partial class FiltersComponent
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnShowCategoriesInGoalListChanged(bool? val)
-    {
-        Settings.ShowCategoriesInGoalList = val ?? false;
-        await Repository.UpdateSettings(Settings.Id);
-
-        await SettingsChanged.InvokeAsync(Settings);
-    }
-
     async Task OnHideCompletedTasksChanged(bool? val)
     {
         Settings.HideCompletedTasks = val ?? false;

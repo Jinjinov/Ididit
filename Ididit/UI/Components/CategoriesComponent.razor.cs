@@ -96,6 +96,14 @@ public partial class CategoriesComponent
         }
     }
 
+    async Task OnShowCategoriesInGoalListChanged(bool? val)
+    {
+        Settings.ShowCategoriesInGoalList = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
+
     async Task OnShowAllTasksChanged(bool? val)
     {
         bool showAllTasks = val ?? false;

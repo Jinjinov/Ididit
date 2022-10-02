@@ -10,6 +10,11 @@
 {
     <CheckBox Checked="Settings.ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">Show all goals</CheckBox>
 
+    if (Settings.ShowAllGoals)
+    {
+        <CheckBox Checked="Settings.ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">Show categories in goal list</CheckBox>
+    }
+
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
     <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category to @SelectedCategory.Name</Button>
 
