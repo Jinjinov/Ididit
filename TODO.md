@@ -5,10 +5,6 @@
 
 
 
-- [ ] UI - remove focused borders
-
-
-
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
     - [ ] Blazorise 1.0 ---> 1.1
