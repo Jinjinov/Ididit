@@ -1,13 +1,13 @@
 # TODO:
 
-- [?] current status / satisfaction / success
-- [?] does benifit / is different with app / reminders
-
-- [?] @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
+- [ ] current status / satisfaction / success
+- [ ] does benifit / is different with app / reminders
 
 
 
-- [ ] separate import column, select line in textarea, search selected line, copy selected line
+- [ ] UI - remove focused borders
+
+
 
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
@@ -29,6 +29,8 @@
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
 
+
+- [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
@@ -84,13 +86,13 @@
 
 - [ ] task - "done times list" should load on demand - on Task done - on show Task details
 
+- [ ] @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
+
 ## HIGH PRIORITY:
 
 - [ ] new settings
 - [ ] load settings
 - [ ] help
-
-- [ ] UI - remove focused borders
 
 - [ ] toggle: see all Tasks / collapse to Goal titles
 
