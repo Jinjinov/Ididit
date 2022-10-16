@@ -5,6 +5,7 @@
 
 
 
+- [ ] CreateTaskFromEachLine = true; on import
 - [ ] show / hide goals with simple text / no tasks
 - [ ] one task info per line
 - [ ] set max task info width

@@ -123,7 +123,7 @@ internal class TsvBackup
             TimeSpan desiredDuration = TimeSpan.Zero;
             TaskKind taskKind = TaskKind.Note;
 
-            if (double.TryParse(record.Interval, out double days))
+            if (double.TryParse(record.Interval, NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
             {
                 desiredInterval = TimeSpan.FromDays(days);
                 taskKind = TaskKind.RepeatingTask;
@@ -134,7 +134,7 @@ internal class TsvBackup
                 taskKind = TaskKind.Task;
             }
 
-            if (double.TryParse(record.Duration, out double minutes))
+            if (double.TryParse(record.Duration, NumberStyles.Any, CultureInfo.InvariantCulture, out double minutes))
             {
                 desiredDuration = TimeSpan.FromMinutes(minutes);
             }
