@@ -5,11 +5,29 @@
 
 
 
+- [ ] csv export compatible with import
+
 - [ ] CreateTaskFromEachLine = true; on import
 - [ ] show / hide goals with simple text / no tasks
 - [ ] one task info per line
 - [ ] set max task info width
 
+    root, category, goal, task, ...
+    markdown
+    csv
+    category <h1> ... <h6> - goal - task
+    blazor tree view - disable new at <h6>
+
+    class Details
+    {
+        date
+        address
+        phone
+        email
+        website
+        working hours
+    }
+    how does it serialize? if i don't need a new table, details=null is better than many empty / default fields
 
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2

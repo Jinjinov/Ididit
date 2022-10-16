@@ -159,7 +159,16 @@ internal class TsvBackup
                 {
                     foreach (TaskModel task in goal.TaskList)
                     {
-                        records.Add(new { Root = root.Name, Category = category.Name, Goal = goal.Name, Task = task.Name, Priority = task.Priority, Interval = task.DesiredInterval });
+                        records.Add(new 
+                        { 
+                            Root = root.Name, 
+                            Category = category.Name, 
+                            Goal = goal.Name, 
+                            Task = task.Name, 
+                            Priority = task.Priority, 
+                            Interval = task.DesiredInterval.TotalDays, 
+                            Duration = task.DesiredDuration.HasValue ? task.DesiredDuration.Value.TotalMinutes.ToString() : ""
+                        });
                     }
                 }
             }
