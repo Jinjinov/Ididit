@@ -5,6 +5,9 @@
 
 
 
+- [ ] Repository -> own namespace
+- [ ] Google -> own namespace
+
 - [ ] csv export compatible with import
 
 - [ ] CreateTaskFromEachLine = true; on import
@@ -12,22 +15,24 @@
 - [ ] one task info per line
 - [ ] set max task info width
 
-    root, category, goal, task, ...
+    root, category, goal, task ---> category <h1> ... <h6>, goal, task
     markdown
     csv
-    category <h1> ... <h6> - goal - task
     blazor tree view - disable new at <h6>
 
     class Details
     {
-        date
-        address
-        phone
-        email
-        website
-        working hours
+        DateTime Date
+        string Address
+        string Phone
+        string Email
+        string Website
+        TimeSpan WorkingHoursFrom
+        TimeSpan WorkingHoursTo
     }
     how does it serialize? if i don't need a new table, details=null is better than many empty / default fields
+
+
 
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
