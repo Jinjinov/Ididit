@@ -27,7 +27,9 @@ internal class TsvBackup
 
     readonly CsvConfiguration _exportConfig = new(CultureInfo.InvariantCulture)
     {
-        Delimiter = "\t"
+        Delimiter = "\t",
+        Quote = (char)1,
+        Mode = CsvMode.NoEscape
     };
 
     private readonly JsInterop _jsInterop;
@@ -161,12 +163,12 @@ internal class TsvBackup
                     {
                         records.Add(new 
                         { 
-                            Root = root.Name, 
-                            Category = category.Name, 
-                            Goal = goal.Name, 
-                            Task = task.Name, 
-                            Priority = task.Priority, 
-                            Interval = task.DesiredInterval.TotalDays, 
+                            Root = root.Name,
+                            Category = category.Name,
+                            Goal = goal.Name,
+                            Task = task.Name,
+                            Priority = task.Priority,
+                            Interval = task.DesiredInterval.TotalDays,
                             Duration = task.DesiredDuration.HasValue ? task.DesiredDuration.Value.TotalMinutes.ToString() : ""
                         });
                     }
