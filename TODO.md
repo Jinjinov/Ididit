@@ -5,6 +5,11 @@
 
 
 
+- [ ] show / hide goals with simple text / no tasks
+- [ ] one task info per line
+- [ ] set max task info width
+
+
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
     - [ ] Blazorise 1.0 ---> 1.1

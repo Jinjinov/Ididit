@@ -70,7 +70,8 @@ internal class TsvBackup
             Goal = string.Empty,
             Task = string.Empty,
             Priority = Priority.None,
-            Interval = string.Empty
+            Interval = string.Empty,
+            Duration = string.Empty
         };
 
         var records = csv.GetRecordsAsync(anonymousTypeDefinition);
@@ -118,22 +119,13 @@ internal class TsvBackup
             goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
             await _repository.UpdateGoal(goal.Id);
 
-            string[] time = record.Interval.Split(' ');
-
             TimeSpan desiredInterval = TimeSpan.Zero;
+            TimeSpan desiredDuration = TimeSpan.Zero;
             TaskKind taskKind = TaskKind.Note;
 
-            if (time.Length == 2 && int.TryParse(time[0], out int interval))
+            if (double.TryParse(record.Interval, out double days))
             {
-                desiredInterval = time[1].TrimEnd('s') switch
-                {
-                    "hour" => TimeSpan.FromHours(interval),
-                    "day" => TimeSpan.FromDays(interval),
-                    "week" => TimeSpan.FromDays(interval * 7),
-                    "month" => TimeSpan.FromDays(interval * 30),
-                    "year" => TimeSpan.FromDays(interval * 365),
-                    _ => TimeSpan.Zero
-                };
+                desiredInterval = TimeSpan.FromDays(days);
                 taskKind = TaskKind.RepeatingTask;
             }
             else if (string.Equals(record.Interval, "ASAP", StringComparison.OrdinalIgnoreCase))
@@ -142,7 +134,12 @@ internal class TsvBackup
                 taskKind = TaskKind.Task;
             }
 
-            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind);
+            if (double.TryParse(record.Duration, out double minutes))
+            {
+                desiredDuration = TimeSpan.FromMinutes(minutes);
+            }
+
+            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind, desiredDuration);
 
             await _repository.AddTask(task);
         }
