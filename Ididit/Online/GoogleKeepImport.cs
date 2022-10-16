@@ -5,7 +5,7 @@ using System.IO.Compression;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit.Online;
 
 internal class GoogleKeepImport
 {

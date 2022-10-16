@@ -7,7 +7,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Ididit.WebView.App;
+namespace Ididit.WebView.Online;
 
 public class GoogleDriveService : IGoogleDriveService
 {

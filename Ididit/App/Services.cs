@@ -4,6 +4,7 @@ using Blazorise.Icons.FontAwesome;
 using DnetIndexedDb;
 using Ididit.App.Data;
 using Ididit.Database;
+using Ididit.Online;
 using Ididit.Persistence;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;

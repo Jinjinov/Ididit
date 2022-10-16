@@ -1,4 +1,4 @@
-﻿using Ididit.Persistence;
+﻿using Ididit.Online;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
 using System.Net;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Ididit.Wasm.Persistence;
+namespace Ididit.Wasm.Online;
 
 internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {

@@ -3,7 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit.Online;
 
 public abstract class GoogleDriveBase : IGoogleDriveBackup
 {

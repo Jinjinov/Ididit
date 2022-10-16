@@ -5,9 +5,6 @@
 
 
 
-- [ ] Repository -> own namespace - App.Data
-- [ ] Google -> own namespace - Persistence.Online / Persistence.Local
-
 - [ ] csv export compatible with import
 
 - [ ] CreateTaskFromEachLine = true; on import

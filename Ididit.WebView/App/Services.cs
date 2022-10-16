@@ -1,6 +1,6 @@
 ﻿using Ididit.App;
-using Ididit.Persistence;
-using Ididit.WebView.Persistence;
+using Ididit.Online;
+using Ididit.WebView.Online;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ididit.WebView.App;

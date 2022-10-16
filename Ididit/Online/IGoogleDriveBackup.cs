@@ -1,7 +1,7 @@
 ﻿using Ididit.Data;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit.Online;
 
 public interface IGoogleDriveBackup
 {

@@ -1,12 +1,11 @@
 ﻿using Google.Apis.Drive.v3;
-using Ididit.Persistence;
-using Ididit.WebView.App;
+using Ididit.Online;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ididit.WebView.Persistence;
+namespace Ididit.WebView.Online;
 
 // https://developers.google.com/drive/api/guides/folder#.net
 // https://developers.google.com/drive/api/guides/manage-uploads#.net
