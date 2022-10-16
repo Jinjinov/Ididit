@@ -2,6 +2,7 @@
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using DnetIndexedDb;
+using Ididit.App.Data;
 using Ididit.Database;
 using Ididit.Persistence;
 using Microsoft.AspNetCore.Components.Web;

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Ididit.App;
+namespace Ididit.App.Data;
 
 internal interface IRepository : IDataModel
 {

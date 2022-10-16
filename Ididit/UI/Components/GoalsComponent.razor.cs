@@ -1,4 +1,4 @@
-﻿using Ididit.App;
+﻿using Ididit.App.Data;
 using Ididit.Data.Models;
 using Microsoft.AspNetCore.Components;
 using System;
