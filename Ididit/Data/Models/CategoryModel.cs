@@ -40,7 +40,8 @@ public class CategoryModel
             Id = id,
             CategoryId = Id,
             PreviousId = GoalList.Any() ? GoalList.Last().Id : null,
-            Name = name
+            Name = name,
+            CreateTaskFromEachLine = true
         };
 
         GoalList.Add(goal);

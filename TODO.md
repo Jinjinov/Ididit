@@ -5,16 +5,16 @@
 
 
 
-- [ ] CreateTaskFromEachLine = true; on import
 - [ ] show / hide goals with simple text / no tasks
 - [ ] one task info per line
 - [ ] set max task info width
 
 - [ ] organize habits:
     root, category, goal, task ---> category <h1> ... <h6>, goal, task
-    markdown - # ... ######
-    csv - 6 category columns
     blazor tree view - disable new at <h6>
+    import / export:
+        markdown - # ... ######
+        csv - 6 category columns
 
     class Note
 
