@@ -44,10 +44,10 @@ public class GoalModel
 
     public TaskModel CreateTask(long id, string name)
     {
-        return CreateTask(id, name, TimeSpan.Zero, Priority.Medium, TaskKind.Task, TimeSpan.Zero);
+        return CreateTask(id, name, TimeSpan.Zero, Priority.Medium, TaskKind.Task, null);
     }
 
-    public TaskModel CreateTask(long id, string name, TimeSpan desiredInterval, Priority priority, TaskKind taskKind, TimeSpan desiredDuration)
+    public TaskModel CreateTask(long id, string name, TimeSpan desiredInterval, Priority priority, TaskKind taskKind, TimeSpan? desiredDuration)
     {
         TaskModel task = new()
         {

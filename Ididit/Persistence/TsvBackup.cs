@@ -122,7 +122,7 @@ internal class TsvBackup
             await _repository.UpdateGoal(goal.Id);
 
             TimeSpan desiredInterval = TimeSpan.Zero;
-            TimeSpan desiredDuration = TimeSpan.Zero;
+            TimeSpan? desiredDuration = null;
             TaskKind taskKind = TaskKind.Note;
 
             if (double.TryParse(record.Interval, NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
@@ -161,6 +161,15 @@ internal class TsvBackup
                 {
                     foreach (TaskModel task in goal.TaskList)
                     {
+                        string interval = string.Empty;
+
+                        if (task.IsTask)
+                        {
+                            interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                        }
+
+                        string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString() : "";
+
                         records.Add(new 
                         { 
                             Root = root.Name,
@@ -168,8 +177,8 @@ internal class TsvBackup
                             Goal = goal.Name,
                             Task = task.Name,
                             Priority = task.Priority,
-                            Interval = task.DesiredInterval.TotalDays,
-                            Duration = task.DesiredDuration.HasValue ? task.DesiredDuration.Value.TotalMinutes.ToString() : ""
+                            Interval = interval,
+                            Duration = duration
                         });
                     }
                 }
