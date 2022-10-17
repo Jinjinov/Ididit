@@ -6,7 +6,8 @@
 
 
 - [ ] show / hide goals with simple text / no tasks
-- [ ] set max task info width
+
+
 
 - [ ] organize habits:
     root, category, goal, task ---> category <h1> ... <h6>, goal, task

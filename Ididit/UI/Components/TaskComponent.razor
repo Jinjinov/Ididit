@@ -111,7 +111,7 @@
                 </div>
 
                 <div>
-                    <Addons Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                    <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                         <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
@@ -151,7 +151,7 @@
                         {
                             @if (_editTime && _selectedTime == time.Ticks)
                             {
-                                <Addons Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
+                                <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
                                     <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
                                     <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
                                     <Addon AddonType="AddonType.End">
@@ -162,7 +162,7 @@
                             }
                             else
                             {
-                                <Addons Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
+                                <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
                                     <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
 
                                     <Addon AddonType="AddonType.End">
