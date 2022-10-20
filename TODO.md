@@ -12,6 +12,9 @@
         markdown - # ... ######
         csv - 6 category columns
 
+
+
+- [ ] composition over inheritance:
     class Note
 
     class Task
