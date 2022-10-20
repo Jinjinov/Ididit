@@ -5,12 +5,14 @@
 
 
 
-- [ ] organize habits:
-    root, category, goal, task ---> category <h1> ... <h6>, goal, task
-    blazor tree view - disable new at <h6>
+- [ ] organize habits
+
+- [ ] root, category, goal, task ---> category <h1> ... <h6>, goal, task
     import / export:
         markdown - # ... ######
         csv - 6 category columns
+
+- [ ] blazor tree view - disable new at <h6>
 
 
 
