@@ -102,8 +102,8 @@ public partial class GoalComponent
         EditGoal = Goal;
         await EditGoalChanged.InvokeAsync(EditGoal);
 
-        SelectedGoal = Goal;
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        //SelectedGoal = Goal;
+        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
     async Task KeyUp(KeyboardEventArgs eventArgs)

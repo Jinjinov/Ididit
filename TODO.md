@@ -5,10 +5,6 @@
 
 
 
-- [ ] fix On Focus Out
-
-
-
 - [ ] organize habits:
     root, category, goal, task ---> category <h1> ... <h6>, goal, task
     blazor tree view - disable new at <h6>
