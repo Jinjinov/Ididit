@@ -5,7 +5,7 @@
 
 
 
-- [ ] show / hide goals with simple text / no tasks
+- [ ] fix On Focus Out
 
 
 

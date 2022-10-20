@@ -42,6 +42,8 @@ public class SettingsModel
 
     public bool HideEmptyGoals { get; set; }
 
+    public bool HideGoalsWithSimpleText { get; set; }
+
     public bool ShowCategoriesInGoalList { get; set; }
 
     public bool HideCompletedTasks { get; set; }

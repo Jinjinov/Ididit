@@ -88,6 +88,14 @@ public partial class CategoriesComponent
         await SettingsChanged.InvokeAsync(Settings);
     }
 
+    async Task OnHideGoalsWithSimpleText(bool? val)
+    {
+        Settings.HideGoalsWithSimpleText = val ?? false;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
+
     async Task OnShowAllGoalsChanged(bool? val)
     {
         bool showAllGoals = val ?? false;

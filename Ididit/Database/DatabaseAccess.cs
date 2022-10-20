@@ -191,6 +191,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
                 HideEmptyGoals = settings.HideEmptyGoals,
+                HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 HideCompletedTasks = settings.HideCompletedTasks
             };
@@ -317,6 +318,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
                 ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
                 HideEmptyGoals = settings.HideEmptyGoals,
+                HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 HideCompletedTasks = settings.HideCompletedTasks
             };
@@ -422,6 +424,7 @@ internal class DatabaseAccess : IDatabaseAccess
             ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin,
             ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin,
             HideEmptyGoals = settings.HideEmptyGoals,
+            HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
             ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
             HideCompletedTasks = settings.HideCompletedTasks
         };
@@ -522,6 +525,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.ElapsedToDesiredRatioMin = settings.ElapsedToDesiredRatioMin;
             settingsEntity.ShowElapsedToDesiredRatioOverMin = settings.ShowElapsedToDesiredRatioOverMin;
             settingsEntity.HideEmptyGoals = settings.HideEmptyGoals;
+            settingsEntity.HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText;
             settingsEntity.ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList;
             settingsEntity.HideCompletedTasks = settings.HideCompletedTasks;
 

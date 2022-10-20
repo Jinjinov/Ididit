@@ -53,6 +53,9 @@ internal class SettingsEntity
     public bool HideEmptyGoals { get; set; }
 
     [IndexDbIndex]
+    public bool HideGoalsWithSimpleText { get; set; }
+
+    [IndexDbIndex]
     public bool ShowCategoriesInGoalList { get; set; }
 
     [IndexDbIndex]
