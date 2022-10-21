@@ -143,53 +143,6 @@ public class TaskModel
     {
         Details ??= new();
 
-        if (detail.StartsWith("- Date: "))
-        {
-            if (DateTime.TryParse(detail.Replace("- Date: ", string.Empty), out DateTime date))
-            {
-                Details.Date = date;
-            }
-        }
-        else if (detail.StartsWith("- Address: "))
-        {
-            Details.Address = detail.Replace("- Address: ", string.Empty);
-        }
-        else if (detail.StartsWith("- Phone: "))
-        {
-            Details.Phone = detail.Replace("- Phone: ", string.Empty);
-        }
-        else if (detail.StartsWith("- Email: "))
-        {
-            if (Uri.TryCreate(detail.Replace("- Email: ", string.Empty), UriKind.Absolute, out Uri? uri))
-            {
-                Details.Email = uri;
-            }
-        }
-        else if (detail.StartsWith("- Website: "))
-        {
-            if (Uri.TryCreate(detail.Replace("- Website: ", string.Empty), UriKind.Absolute, out Uri? uri))
-            {
-                Details.Website = uri;
-            }
-        }
-        else if (detail.StartsWith("- Open: "))
-        {
-            string open = detail.Replace("- Open: ", string.Empty);
-
-            string[] fromTill = open.Split('-');
-
-            if (fromTill.Length == 2)
-            {
-                if (TimeOnly.TryParse(fromTill[0].Trim(), out TimeOnly from))
-                {
-                    Details.OpenFrom = from;
-                }
-
-                if (TimeOnly.TryParse(fromTill[1].Trim(), out TimeOnly till))
-                {
-                    Details.OpenTill = till;
-                }
-            }
-        }
+        Details.AddDetail(detail);
     }
 }
