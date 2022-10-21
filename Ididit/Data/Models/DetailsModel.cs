@@ -9,6 +9,6 @@ public class DetailsModel
     public string? Phone { get; set; }
     public Uri? Email { get; set; }
     public Uri? Website { get; set; }
-    public TimeSpan? OpenFrom { get; set; }
-    public TimeSpan? OpenTill { get; set; }
+    public TimeOnly? OpenFrom { get; set; }
+    public TimeOnly? OpenTill { get; set; }
 }

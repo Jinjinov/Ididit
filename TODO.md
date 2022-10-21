@@ -31,17 +31,6 @@ https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeCon
 
     class RepeatingTask
 
-    class Details
-    {
-        DateTime Date
-        string Address
-        string Phone
-        Uri Email
-        Uri Website
-        TimeSpan OpenFrom
-        TimeSpan OpenTill
-    }
-
 
 
 - [ ] November 8-10, 2022

@@ -21,8 +21,8 @@ internal class DetailsEntity
     public Uri? Website { get; set; }
 
     [IndexDbIndex]
-    public TimeSpan? OpenFrom { get; set; }
+    public TimeOnly? OpenFrom { get; set; }
 
     [IndexDbIndex]
-    public TimeSpan? OpenTill { get; set; }
+    public TimeOnly? OpenTill { get; set; }
 }

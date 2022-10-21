@@ -180,12 +180,12 @@ public class TaskModel
 
             if (fromTill.Length == 2)
             {
-                if (TimeSpan.TryParse(fromTill[0].Trim(), out TimeSpan from))
+                if (TimeOnly.TryParse(fromTill[0].Trim(), out TimeOnly from))
                 {
                     Details.OpenFrom = from;
                 }
 
-                if (TimeSpan.TryParse(fromTill[1].Trim(), out TimeSpan till))
+                if (TimeOnly.TryParse(fromTill[1].Trim(), out TimeOnly till))
                 {
                     Details.OpenTill = till;
                 }
