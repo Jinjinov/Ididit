@@ -51,6 +51,8 @@ internal class GoogleKeepImport
                         {
                             task.DetailsText += line;
 
+                            task.AddDetail(line);
+
                             await _repository.UpdateTask(task.Id);
                         }
                         else

@@ -149,7 +149,17 @@ internal class DatabaseAccess : IDatabaseAccess
                 TaskKind = task.TaskKind,
                 AverageDuration = task.AverageDuration,
                 DesiredDuration = task.DesiredDuration,
-                DurationTimedCount = task.DurationTimedCount
+                DurationTimedCount = task.DurationTimedCount,
+                Details = task.Details is null ? null : new DetailsModel
+                {
+                    Date = task.Details.Date,
+                    Address = task.Details.Address,
+                    Phone = task.Details.Phone,
+                    Email = task.Details.Email,
+                    Website = task.Details.Website,
+                    OpenFrom = task.Details.OpenFrom,
+                    OpenTill = task.Details.OpenTill,
+                }
             };
 
             _taskDict[task.Id] = task;
@@ -269,7 +279,17 @@ internal class DatabaseAccess : IDatabaseAccess
                         TaskKind = task.TaskKind,
                         AverageDuration = task.AverageDuration,
                         DesiredDuration = task.DesiredDuration,
-                        DurationTimedCount = task.DurationTimedCount
+                        DurationTimedCount = task.DurationTimedCount,
+                        Details = task.Details is null ? null : new DetailsEntity
+                        {
+                            Date = task.Details.Date,
+                            Address = task.Details.Address,
+                            Phone = task.Details.Phone,
+                            Email = task.Details.Email,
+                            Website = task.Details.Website,
+                            OpenFrom = task.Details.OpenFrom,
+                            OpenTill = task.Details.OpenTill,
+                        }
                     };
 
                     if (!_taskDict.ContainsKey(taskEntity.Id))
@@ -383,7 +403,17 @@ internal class DatabaseAccess : IDatabaseAccess
             TaskKind = task.TaskKind,
             AverageDuration = task.AverageDuration,
             DesiredDuration = task.DesiredDuration,
-            DurationTimedCount = task.DurationTimedCount
+            DurationTimedCount = task.DurationTimedCount,
+            Details = task.Details is null ? null : new DetailsEntity
+            {
+                Date = task.Details.Date,
+                Address = task.Details.Address,
+                Phone = task.Details.Phone,
+                Email = task.Details.Email,
+                Website = task.Details.Website,
+                OpenFrom = task.Details.OpenFrom,
+                OpenTill = task.Details.OpenTill,
+            }
         };
 
         _taskList.Add(taskEntity);
@@ -487,6 +517,34 @@ internal class DatabaseAccess : IDatabaseAccess
             taskEntity.AverageDuration = task.AverageDuration;
             taskEntity.DesiredDuration = task.DesiredDuration;
             taskEntity.DurationTimedCount = task.DurationTimedCount;
+
+            if (task.Details is null)
+            {
+                taskEntity.Details = null;
+            }
+            else if (taskEntity.Details is null)
+            {
+                taskEntity.Details = new DetailsEntity
+                {
+                    Date = task.Details.Date,
+                    Address = task.Details.Address,
+                    Phone = task.Details.Phone,
+                    Email = task.Details.Email,
+                    Website = task.Details.Website,
+                    OpenFrom = task.Details.OpenFrom,
+                    OpenTill = task.Details.OpenTill,
+                };
+            }
+            else
+            {
+                taskEntity.Details.Date = task.Details.Date;
+                taskEntity.Details.Address = task.Details.Address;
+                taskEntity.Details.Phone = task.Details.Phone;
+                taskEntity.Details.Email = task.Details.Email;
+                taskEntity.Details.Website = task.Details.Website;
+                taskEntity.Details.OpenFrom = task.Details.OpenFrom;
+                taskEntity.Details.OpenTill = task.Details.OpenTill;
+            }
 
             await _indexedDb.UpdateItems(new List<TaskEntity> { taskEntity });
         }

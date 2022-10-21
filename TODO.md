@@ -36,12 +36,11 @@ https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeCon
         DateTime Date
         string Address
         string Phone
-        string Email
-        string Website
+        Uri Email
+        Uri Website
         TimeSpan OpenFrom
         TimeSpan OpenTill
     }
-    how does it serialize? if i don't need a new table, details=null is better than many empty / default fields
 
 
 

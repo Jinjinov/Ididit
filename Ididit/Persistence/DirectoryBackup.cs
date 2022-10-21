@@ -70,6 +70,8 @@ internal class DirectoryBackup
                     {
                         task.DetailsText += line;
 
+                        task.AddDetail(line);
+
                         await _repository.UpdateTask(task.Id);
                     }
                     else

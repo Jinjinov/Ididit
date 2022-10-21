@@ -46,4 +46,7 @@ internal class TaskEntity
 
     [IndexDbIndex]
     public TaskKind TaskKind { get; set; }
+
+    [IndexDbIndex]
+    public DetailsEntity? Details { get; set; }
 }

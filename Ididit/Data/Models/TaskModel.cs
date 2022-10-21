@@ -93,6 +93,8 @@ public class TaskModel
 
     public List<DateTime> TimeList = new();
 
+    public DetailsModel? Details { get; set; }
+
     public (DateTime Time, long TaskId) AddTime(DateTime time)
     {
         TimeList.Add(time);
@@ -135,5 +137,59 @@ public class TaskModel
             AverageInterval = TimeList.First() - CreatedAt;
         else
             AverageInterval = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
+    }
+
+    public void AddDetail(string detail)
+    {
+        Details ??= new();
+
+        if (detail.StartsWith("- Date: "))
+        {
+            if (DateTime.TryParse(detail.Replace("- Date: ", string.Empty), out DateTime date))
+            {
+                Details.Date = date;
+            }
+        }
+        else if (detail.StartsWith("- Address: "))
+        {
+            Details.Address = detail.Replace("- Address: ", string.Empty);
+        }
+        else if (detail.StartsWith("- Phone: "))
+        {
+            Details.Phone = detail.Replace("- Phone: ", string.Empty);
+        }
+        else if (detail.StartsWith("- Email: "))
+        {
+            if (Uri.TryCreate(detail.Replace("- Email: ", string.Empty), UriKind.Absolute, out Uri? uri))
+            {
+                Details.Email = uri;
+            }
+        }
+        else if (detail.StartsWith("- Website: "))
+        {
+            if (Uri.TryCreate(detail.Replace("- Website: ", string.Empty), UriKind.Absolute, out Uri? uri))
+            {
+                Details.Website = uri;
+            }
+        }
+        else if (detail.StartsWith("- Open: "))
+        {
+            string open = detail.Replace("- Open: ", string.Empty);
+
+            string[] fromTill = open.Split('-');
+
+            if (fromTill.Length == 2)
+            {
+                if (TimeSpan.TryParse(fromTill[0].Trim(), out TimeSpan from))
+                {
+                    Details.OpenFrom = from;
+                }
+
+                if (TimeSpan.TryParse(fromTill[1].Trim(), out TimeSpan till))
+                {
+                    Details.OpenTill = till;
+                }
+            }
+        }
     }
 }
