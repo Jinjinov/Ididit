@@ -32,15 +32,15 @@ public class TaskModel
         }
     }
 
-    private string _details = string.Empty;
-    public string Details
+    private string _detailsText = string.Empty;
+    public string DetailsText
     {
-        get => _details;
+        get => _detailsText;
         set
         {
-            _details = value;
+            _detailsText = value;
 
-            DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
+            DetailsMarkdownHtml = Markdown.ToHtml(_detailsText, _markdownPipeline);
         }
     }
 

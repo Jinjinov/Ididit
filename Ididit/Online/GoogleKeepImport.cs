@@ -49,7 +49,7 @@ internal class GoogleKeepImport
                     {
                         if (task != null && line.StartsWith("- "))
                         {
-                            task.Details += line;
+                            task.DetailsText += line;
 
                             await _repository.UpdateTask(task.Id);
                         }

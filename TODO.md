@@ -14,6 +14,14 @@
 
 - [ ] blazor tree view - disable new at <h6>
 
+csv bind array to headers
+class map, index
+csv helper type conversion ienumerable https://stackoverflow.com/questions/25306120/writing-enumerable-to-csv-file
+
+https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
+
+https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableGenericConverterTests.cs
+
 
 
 - [ ] composition over inheritance:
@@ -30,8 +38,8 @@
         string Phone
         string Email
         string Website
-        TimeSpan WorkingHoursFrom
-        TimeSpan WorkingHoursTo
+        TimeSpan OpenFrom
+        TimeSpan OpenTill
     }
     how does it serialize? if i don't need a new table, details=null is better than many empty / default fields
 
