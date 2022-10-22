@@ -7,14 +7,11 @@
 
 - [ ] organize habits
 
-- [ ] root, category, goal, task ---> category <h1> ... <h6>, goal, task
+- [ ] root, category, goal, task ---> category `<h1> ... <h6>`, goal, task
     import / export:
-        markdown - # ... ######
-        csv - 6 category columns
+        markdown - # ... ###### category, **goal title**
+        csv - list of category columns
 
-- [ ] blazor tree view - disable new at <h6>
-
-csv bind array to headers
 class map, index
 csv helper type conversion ienumerable https://stackoverflow.com/questions/25306120/writing-enumerable-to-csv-file
 
