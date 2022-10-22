@@ -17,8 +17,6 @@ csv helper type conversion ienumerable https://stackoverflow.com/questions/25306
 
 https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
 
-https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableGenericConverterTests.cs
-
 
 
 - [ ] composition over inheritance:

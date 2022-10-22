@@ -49,21 +49,7 @@ internal class TsvBackup
 
         using CsvReader csv = new(streamReader, _importConfig);
 
-        /*
-        var records = new List<object>();
-        csv.Read();
-        csv.ReadHeader();
-        while (csv.Read())
-        {
-            var record = new
-            {
-                Id = csv.GetField<int>("Id"),
-                Name = csv.GetField("Name"),
-                Tags = new List<string> { csv.GetField(5), csv.GetField(6), csv.GetField(7) }
-            };
-            records.Add(record);
-        }
-        /**/
+        // https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
 
         var anonymousTypeDefinition = new
         {
