@@ -160,8 +160,29 @@ internal class MarkdownBackup
             {
                 stringBuilder.AppendLine($"**{goal.Name}**");
                 stringBuilder.AppendLine();
-                stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
-                stringBuilder.AppendLine();
+                //stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
+
+                foreach (TaskModel task in goal.TaskList)
+                {
+                    stringBuilder.AppendLine($"{task.Name}  ");
+                    stringBuilder.AppendLine($"- Priority: {task.Priority}  ");
+
+                    if (task.IsTask)
+                    {
+                        string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                        stringBuilder.AppendLine($"- Interval: {interval}  ");
+                    }
+
+                    if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
+                    {
+                        string duration = task.DesiredDuration.Value.TotalMinutes.ToString();
+                        stringBuilder.AppendLine($"- Duration: {duration}  ");
+                    }
+
+                    stringBuilder.AppendLine();
+                }
+
+                //stringBuilder.AppendLine();
             }
 
             if (category.CategoryList.Any())

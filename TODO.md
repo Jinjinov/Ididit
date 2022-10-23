@@ -9,11 +9,8 @@
 
 - [ ] move markdown parsing form Task and Details
 
-- [ ] export markdown Task and Details
-
 - [ ] root, category, goal, task ---> category `<h1> ... <h6>`, goal, task
     import / export:
-        markdown - # ... ###### category, **goal title**
         csv - list of category columns
 
 class map, index
