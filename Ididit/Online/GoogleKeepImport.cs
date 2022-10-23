@@ -1,5 +1,6 @@
 ﻿using Ididit.App.Data;
 using Ididit.Data.Models;
+using System;
 using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
@@ -49,7 +50,7 @@ internal class GoogleKeepImport
                     {
                         if (task != null && line.StartsWith("- "))
                         {
-                            task.DetailsText += line;
+                            task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
 
                             task.AddDetail(line);
 

@@ -121,7 +121,7 @@ internal class MarkdownBackup
 
                 if (task != null && line.StartsWith("- "))
                 {
-                    task.DetailsText += line;
+                    task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
 
                     task.AddDetail(line);
 
