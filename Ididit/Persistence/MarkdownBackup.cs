@@ -21,6 +21,17 @@ internal class MarkdownBackup
         _repository = repository;
     }
 
+    private static int GetStartHashCount(string line)
+    {
+        for (int i = 0; i < line.Length; i++)
+        {
+            if (line[i] != '#')
+                return i;
+        }
+
+        return line.Length;
+    }
+
     public async Task ImportData(Stream stream)
     {
         using StreamReader streamReader = new(stream);
@@ -31,41 +42,36 @@ internal class MarkdownBackup
         GoalModel? goal = null;
         TaskModel? task = null;
 
-        foreach (string line in text.Split(Environment.NewLine))
+        foreach (string line in text.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
         {
-            if (line.StartsWith("#"))
+            int hashCount = GetStartHashCount(line);
+
+            if (hashCount > 0 && hashCount < line.Length - 1 && line[hashCount] == ' ')
             {
-                for (int i = 0; i < line.Length; i++)
+                string name = line[(hashCount + 1)..];
+
+                if (hashCount == 1)
                 {
-                    if (line[i] != '#')
-                        break;
-
-                    if (i < line.Length - 2 && line[i + 1] == ' ')
-                    {
-                        string name = line[(i + 2)..];
-
-                        if (i == 0)
-                        {
-                            category = _repository.CreateCategory(name);
-
-                            await _repository.AddCategory(category);
-                        }
-                        else if (category is not null)
-                        {
-                            category = category.CreateCategory(_repository.NextCategoryId, name);
-
-                            await _repository.AddCategory(category);
-                        }
-                    }
+                    category = _repository.CreateCategory(name);
+                    await _repository.AddCategory(category);
                 }
+                else if (category is not null)
+                {
+                    category = category.CreateCategory(_repository.NextCategoryId, name);
+                    await _repository.AddCategory(category);
+                }
+
+                goal = null;
             }
-            else if (line.StartsWith("**") && line.EndsWith("**"))
+            else if (line.Length > 4 && line.StartsWith("**") && line.EndsWith("**"))
             {
                 if (category is not null)
                 {
-                    goal = category.CreateGoal(_repository.NextGoalId, line);
+                    goal = category.CreateGoal(_repository.NextGoalId, line.Trim('*'));
                     await _repository.AddGoal(goal);
                 }
+
+                task = null;
             }
             else if (goal is not null)
             {
