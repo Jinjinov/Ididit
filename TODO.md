@@ -9,6 +9,8 @@
 
 - [ ] move markdown parsing form class Task and class Details to class Markdown
 
+- [ ] DirectoryBackup save task details
+
 
 
 - [ ] composition over inheritance:
