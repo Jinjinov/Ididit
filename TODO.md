@@ -7,16 +7,7 @@
 
 - [ ] organize habits
 
-- [ ] move markdown parsing form Task and Details
-
-- [ ] root, category, goal, task ---> category `<h1> ... <h6>`, goal, task
-    import / export:
-        csv - list of category columns
-
-class map, index
-csv helper type conversion ienumerable https://stackoverflow.com/questions/25306120/writing-enumerable-to-csv-file
-
-https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
+- [ ] move markdown parsing form class Task and class Details to class Markdown
 
 
 
