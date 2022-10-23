@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
@@ -54,21 +55,33 @@ internal class MarkdownBackup
 
     public async Task ExportData(IDataModel data)
     {
-        await SaveCategoryList(data.CategoryList);
+        StringBuilder stringBuilder = new();
+
+        await SaveCategoryList(data.CategoryList, stringBuilder, level: 1);
+
+        string md = stringBuilder.ToString();
+
+        await _jsInterop.SaveAsUTF8("ididit.md", md);
     }
 
-    private async Task SaveCategoryList(List<CategoryModel> categoryList)
+    private async Task SaveCategoryList(List<CategoryModel> categoryList, StringBuilder stringBuilder, int level)
     {
         foreach (CategoryModel category in categoryList)
         {
+            stringBuilder.AppendLine($"{new string('#', Math.Min(level, 6))} {category.Name}");
+            stringBuilder.AppendLine();
+
             foreach (GoalModel goal in category.GoalList)
             {
-                await _jsInterop.SaveAsUTF8(goal.Name + ".md", goal.Details);
+                stringBuilder.AppendLine($"**{goal.Name}**");
+                stringBuilder.AppendLine();
+                stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
+                stringBuilder.AppendLine();
             }
 
             if (category.CategoryList.Any())
             {
-                await SaveCategoryList(category.CategoryList);
+                await SaveCategoryList(category.CategoryList, stringBuilder, level + 1);
             }
         }
     }

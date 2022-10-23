@@ -12,7 +12,7 @@ namespace Ididit.Persistence;
 
 internal class YamlBackup
 {
-    private readonly ISerializer _serializer = new SerializerBuilder().Build();
+    private readonly ISerializer _serializer = new Serializer();
     //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().Build();
     //private readonly ISerializer _serializer = new SerializerBuilder().WithTypeResolver(new StaticTypeResolver()).Build();
     //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().WithTypeResolver(new StaticTypeResolver()).Build();

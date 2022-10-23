@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Ididit.UI.Components;
 
@@ -112,7 +113,32 @@ public partial class Options
 
             //await _repository.AddData(data);
         }
+
+        if (e.File.Name.EndsWith(".md"))
+        {
+            string name = Path.GetFileNameWithoutExtension(e.File.Name);
+
+            await MarkdownBackup.ImportData(SelectedCategory, stream, name);
+
+            //await _repository.AddData(data);
+        }
     }
+
+    /*
+    async Task ImportMarkdown(InputFileChangeEventArgs e)
+    {
+        IEnumerable<IBrowserFile> browserFiles = e.GetMultipleFiles(e.FileCount).Where(browserFile => browserFile.Name.EndsWith(".md"));
+
+        foreach (IBrowserFile browserFile in browserFiles)
+        {
+            string name = Path.GetFileNameWithoutExtension(browserFile.Name);
+
+            Stream stream = browserFile.OpenReadStream();
+
+            await MarkdownBackup.ImportData(SelectedCategory, stream, name);
+        }
+    }
+    /**/
 
     async Task ExportJson()
     {
@@ -127,20 +153,6 @@ public partial class Options
     async Task ExportTsv()
     {
         await TsvBackup.ExportData(Repository);
-    }
-
-    async Task ImportMarkdown(InputFileChangeEventArgs e)
-    {
-        IEnumerable<IBrowserFile> browserFiles = e.GetMultipleFiles(e.FileCount).Where(browserFile => browserFile.Name.EndsWith(".md"));
-
-        foreach (IBrowserFile browserFile in browserFiles)
-        {
-            string name = Path.GetFileNameWithoutExtension(browserFile.Name);
-
-            Stream stream = browserFile.OpenReadStream();
-
-            await MarkdownBackup.ImportData(SelectedCategory, stream, name);
-        }
     }
 
     async Task ExportMarkdown()
