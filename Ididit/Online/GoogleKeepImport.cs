@@ -50,9 +50,10 @@ internal class GoogleKeepImport
                     {
                         if (task != null && line.StartsWith("- "))
                         {
-                            task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
+                            bool add = task.AddDetail(line);
 
-                            task.AddDetail(line);
+                            if (add)
+                                task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
 
                             await _repository.UpdateTask(task.Id);
                         }

@@ -140,14 +140,14 @@ public class TaskModel
             AverageInterval = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
     }
 
-    public void AddDetail(string detail)
+    public bool AddDetail(string detail)
     {
         Details ??= new();
 
         bool added = Details.AddDetail(detail);
 
         if (added)
-            return;
+            return true;
 
         if (detail.StartsWith("- Priority: "))
         {
@@ -155,6 +155,8 @@ public class TaskModel
             {
                 Priority = priority;
             }
+
+            return false;
         }
         else if (detail.StartsWith("- Interval: "))
         {
@@ -168,6 +170,8 @@ public class TaskModel
                 DesiredInterval = TimeSpan.Zero;
                 TaskKind = TaskKind.Task;
             }
+
+            return false;
         }
         else if (detail.StartsWith("- Duration: "))
         {
@@ -175,6 +179,10 @@ public class TaskModel
             {
                 DesiredDuration = TimeSpan.FromMinutes(minutes);
             }
+
+            return false;
         }
+
+        return true;
     }
 }
