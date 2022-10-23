@@ -116,9 +116,7 @@ public partial class Options
 
         if (e.File.Name.EndsWith(".md"))
         {
-            string name = Path.GetFileNameWithoutExtension(e.File.Name);
-
-            await MarkdownBackup.ImportData(SelectedCategory, stream, name);
+            await MarkdownBackup.ImportData(stream);
 
             //await _repository.AddData(data);
         }

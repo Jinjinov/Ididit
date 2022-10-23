@@ -21,34 +21,70 @@ internal class MarkdownBackup
         _repository = repository;
     }
 
-    public async Task ImportData(CategoryModel category, Stream stream, string name)
+    public async Task ImportData(Stream stream)
     {
         using StreamReader streamReader = new(stream);
 
         string text = await streamReader.ReadToEndAsync();
 
-        GoalModel goal = category.CreateGoal(_repository.NextGoalId, name);
-        goal.Details = text;
-
-        await _repository.AddGoal(goal);
-
+        CategoryModel? category = null;
+        GoalModel? goal = null;
         TaskModel? task = null;
 
         foreach (string line in text.Split(Environment.NewLine))
         {
-            if (task != null && line.StartsWith("- "))
+            if (line.StartsWith("#"))
             {
-                task.DetailsText += line;
+                for (int i = 0; i < line.Length; i++)
+                {
+                    if (line[i] != '#')
+                        break;
 
-                task.AddDetail(line);
+                    if (i < line.Length - 2 && line[i + 1] == ' ')
+                    {
+                        string name = line[(i + 2)..];
 
-                await _repository.UpdateTask(task.Id);
+                        if (i == 0)
+                        {
+                            category = _repository.CreateCategory(name);
+
+                            await _repository.AddCategory(category);
+                        }
+                        else if (category is not null)
+                        {
+                            category = category.CreateCategory(_repository.NextCategoryId, name);
+
+                            await _repository.AddCategory(category);
+                        }
+                    }
+                }
             }
-            else
+            else if (line.StartsWith("**") && line.EndsWith("**"))
             {
-                task = goal.CreateTask(_repository.NextTaskId, line);
+                if (category is not null)
+                {
+                    goal = category.CreateGoal(_repository.NextGoalId, line);
+                    await _repository.AddGoal(goal);
+                }
+            }
+            else if (goal is not null)
+            {
+                goal.Details += string.IsNullOrEmpty(goal.Details) ? line : Environment.NewLine + line;
 
-                await _repository.AddTask(task);
+                if (task != null && line.StartsWith("- "))
+                {
+                    task.DetailsText += line;
+
+                    task.AddDetail(line);
+
+                    await _repository.UpdateTask(task.Id);
+                }
+                else
+                {
+                    task = goal.CreateTask(_repository.NextTaskId, line);
+
+                    await _repository.AddTask(task);
+                }
             }
         }
     }
