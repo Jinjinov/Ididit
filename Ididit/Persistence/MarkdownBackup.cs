@@ -38,43 +38,84 @@ internal class MarkdownBackup
 
         string text = await streamReader.ReadToEndAsync();
 
-        CategoryModel? category = null;
+        using StringReader stringReader = new(text);
+
+        await ImportToCategory(stringReader, null, null, 1);
+    }
+
+    private async Task<CategoryModel> GetChildCategory(CategoryModel? parent, string name)
+    {
+        if (parent is null)
+        {
+            if (_repository.CategoryList.FirstOrDefault(c => c.Name == name) is not CategoryModel child)
+            {
+                child = _repository.CreateCategory(name);
+                await _repository.AddCategory(child);
+            }
+
+            return child;
+        }
+        else
+        {
+            if (parent.CategoryList.FirstOrDefault(c => c.Name == name) is not CategoryModel child)
+            {
+                child = parent.CreateCategory(_repository.NextCategoryId, name);
+                await _repository.AddCategory(child);
+            }
+
+            return child;
+        }
+    }
+
+    private async Task<string> ImportToCategory(StringReader stringReader, CategoryModel? parent, CategoryModel? category, int level)
+    {
         GoalModel? goal = null;
         TaskModel? task = null;
 
-        foreach (string line in text.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        string? line;
+        while ((line = stringReader.ReadLine()) != null)
         {
+            if (string.IsNullOrEmpty(line))
+                continue;
+
             int hashCount = GetStartHashCount(line);
 
             if (hashCount > 0 && hashCount < line.Length - 1 && line[hashCount] == ' ')
             {
                 string name = line[(hashCount + 1)..];
 
-                if (hashCount == 1)
+                if (hashCount == level)
                 {
-                    category = _repository.CreateCategory(name);
-                    await _repository.AddCategory(category);
+                    category = await GetChildCategory(parent, name);
                 }
-                else if (category is not null)
+                else if (hashCount > level)
                 {
-                    category = category.CreateCategory(_repository.NextCategoryId, name);
-                    await _repository.AddCategory(category);
-                }
+                    CategoryModel child = await GetChildCategory(category, name);
 
-                goal = null;
+                    string nextName = await ImportToCategory(stringReader, category, child, hashCount);
+
+                    if (!string.IsNullOrEmpty(nextName))
+                    {
+                        category = await GetChildCategory(parent, nextName);
+                    }
+                }
+                else if (hashCount < level)
+                {
+                    return name;
+                }
             }
-            else if (line.Length > 4 && line.StartsWith("**") && line.EndsWith("**"))
+            else if (line.StartsWith("**") && line.EndsWith("**") && line.Trim('*').Length > 0)
             {
                 if (category is not null)
                 {
                     goal = category.CreateGoal(_repository.NextGoalId, line.Trim('*'));
                     await _repository.AddGoal(goal);
                 }
-
-                task = null;
             }
             else if (goal is not null)
             {
+                line = line.Trim();
+
                 goal.Details += string.IsNullOrEmpty(goal.Details) ? line : Environment.NewLine + line;
 
                 if (task != null && line.StartsWith("- "))
@@ -93,6 +134,8 @@ internal class MarkdownBackup
                 }
             }
         }
+
+        return string.Empty;
     }
 
     public async Task ExportData(IDataModel data)
