@@ -8,9 +8,14 @@ namespace Ididit.Persistence;
 
 // https://github.com/aaubry/YamlDotNet/wiki/Serialization.Serializer#withtyperesolverityperesolver
 
+// https://github.com/aaubry/YamlDotNet/wiki/Serialization.Serializer#disablealiases
+
 internal class YamlBackup
 {
-    private readonly ISerializer _serializer = new SerializerBuilder().WithTypeResolver(new StaticTypeResolver()).Build();
+    private readonly ISerializer _serializer = new SerializerBuilder().Build();
+    //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().Build();
+    //private readonly ISerializer _serializer = new SerializerBuilder().WithTypeResolver(new StaticTypeResolver()).Build();
+    //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().WithTypeResolver(new StaticTypeResolver()).Build();
 
     private readonly IDeserializer _deserializer = new Deserializer();
 
