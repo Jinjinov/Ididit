@@ -13,7 +13,7 @@ public class DetailsModel
     public TimeOnly? OpenFrom { get; set; }
     public TimeOnly? OpenTill { get; set; }
 
-    public void AddDetail(string detail)
+    public bool AddDetail(string detail)
     {
         if (detail.StartsWith("- Date: "))
         {
@@ -21,14 +21,20 @@ public class DetailsModel
             {
                 Date = date;
             }
+
+            return true;
         }
         else if (detail.StartsWith("- Address: "))
         {
             Address = detail.Replace("- Address: ", string.Empty);
+
+            return true;
         }
         else if (detail.StartsWith("- Phone: "))
         {
             Phone = detail.Replace("- Phone: ", string.Empty);
+
+            return true;
         }
         else if (detail.StartsWith("- Email: "))
         {
@@ -36,6 +42,8 @@ public class DetailsModel
             {
                 Email = uri;
             }
+
+            return true;
         }
         else if (detail.StartsWith("- Website: "))
         {
@@ -43,6 +51,8 @@ public class DetailsModel
             {
                 Website = uri;
             }
+
+            return true;
         }
         else if (detail.StartsWith("- Open: "))
         {
@@ -62,7 +72,11 @@ public class DetailsModel
                     OpenTill = till;
                 }
             }
+
+            return true;
         }
+
+        return false;
     }
 
     public override string ToString()

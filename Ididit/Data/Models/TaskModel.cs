@@ -1,6 +1,7 @@
 ﻿using Markdig;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -143,6 +144,37 @@ public class TaskModel
     {
         Details ??= new();
 
-        Details.AddDetail(detail);
+        bool added = Details.AddDetail(detail);
+
+        if (added)
+            return;
+
+        if (detail.StartsWith("- Priority: "))
+        {
+            if (Enum.TryParse(detail.Replace("- Priority: ", string.Empty), out Priority priority))
+            {
+                Priority = priority;
+            }
+        }
+        else if (detail.StartsWith("- Interval: "))
+        {
+            if (double.TryParse(detail.Replace("- Interval: ", string.Empty), NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
+            {
+                DesiredInterval = TimeSpan.FromDays(days);
+                TaskKind = TaskKind.RepeatingTask;
+            }
+            else if (string.Equals(detail.Replace("- Interval: ", string.Empty), "ASAP", StringComparison.OrdinalIgnoreCase))
+            {
+                DesiredInterval = TimeSpan.Zero;
+                TaskKind = TaskKind.Task;
+            }
+        }
+        else if (detail.StartsWith("- Duration: "))
+        {
+            if (double.TryParse(detail.Replace("- Duration: ", string.Empty), NumberStyles.Any, CultureInfo.InvariantCulture, out double minutes))
+            {
+                DesiredDuration = TimeSpan.FromMinutes(minutes);
+            }
+        }
     }
 }
