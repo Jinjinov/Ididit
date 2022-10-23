@@ -3,6 +3,7 @@ using Ididit.Data;
 using Ididit.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -170,13 +171,13 @@ internal class MarkdownBackup
 
                 if (task.IsTask)
                 {
-                    string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                    string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
                     stringBuilder.AppendLine($"- Interval: {interval}  ");
                 }
 
                 if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
                 {
-                    string duration = task.DesiredDuration.Value.TotalMinutes.ToString();
+                    string duration = task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture);
                     stringBuilder.AppendLine($"- Duration: {duration}  ");
                 }
 

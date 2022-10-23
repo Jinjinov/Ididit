@@ -74,46 +74,42 @@ internal class TsvBackup
 
         // https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
 
-        IAsyncEnumerable<CsvRow> records = csv.GetRecordsAsync<CsvRow>();
+        csv.Context.RegisterClassMap<CsvRowIndexMap>();
 
-        CategoryModel root;
-        CategoryModel category;
-        GoalModel goal;
-        TaskModel task;
+        IAsyncEnumerable<CsvRow> records = csv.GetRecordsAsync<CsvRow>();
 
         await foreach (CsvRow record in records)
         {
-            /*
-            if (_repository.CategoryList.Any(c => c.Name == record.Root))
-            {
-                root = _repository.CategoryList.First(c => c.Name == record.Root);
-            }
-            else
-            {
-                root = _repository.CreateCategory(record.Root);
+            if (!record.Category.Any())
+                continue;
 
+            if (_repository.CategoryList.FirstOrDefault(c => c.Name == record.Category.First()) is not CategoryModel root)
+            {
+                root = _repository.CreateCategory(record.Category.First());
                 await _repository.AddCategory(root);
             }
 
-            if (root.CategoryList.Any(c => c.Name == record.Category))
-            {
-                category = root.CategoryList.First(c => c.Name == record.Category);
-            }
-            else
-            {
-                category = root.CreateCategory(_repository.NextCategoryId, record.Category);
+            CategoryModel category = root;
 
-                await _repository.AddCategory(category);
+            if (record.Category.Count > 1)
+            {
+                for (int i = 1; i < record.Category.Count; i++)
+                {
+                    string name = record.Category[i];
+
+                    if (category.CategoryList.FirstOrDefault(c => c.Name == name) is not CategoryModel child)
+                    {
+                        child = root.CreateCategory(_repository.NextCategoryId, name);
+                        await _repository.AddCategory(child);
+                    }
+
+                    category = child;
+                }
             }
 
-            if (category.GoalList.Any(g => g.Name == record.Goal))
-            {
-                goal = category.GoalList.First(g => g.Name == record.Goal);
-            }
-            else
+            if (category.GoalList.FirstOrDefault(g => g.Name == record.Goal) is not GoalModel goal)
             {
                 goal = category.CreateGoal(_repository.NextGoalId, record.Goal);
-
                 await _repository.AddGoal(goal);
             }
 
@@ -140,10 +136,9 @@ internal class TsvBackup
                 desiredDuration = TimeSpan.FromMinutes(minutes);
             }
 
-            task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind, desiredDuration);
+            TaskModel task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind, desiredDuration);
 
             await _repository.AddTask(task);
-            /**/
         }
     }
 
@@ -187,10 +182,10 @@ internal class TsvBackup
 
                 if (task.IsTask)
                 {
-                    interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                    interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
                 }
 
-                string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString() : "";
+                string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture) : "";
 
                 records.Add(new CsvRow
                 {
