@@ -142,53 +142,53 @@ internal class MarkdownBackup
     {
         StringBuilder stringBuilder = new();
 
-        await SaveCategoryList(data.CategoryList, stringBuilder, level: 1);
+        foreach (CategoryModel category in data.CategoryList)
+        {
+            await SaveCategory(category, stringBuilder, level: 1);
+        }
 
         string md = stringBuilder.ToString();
 
         await _jsInterop.SaveAsUTF8("ididit.md", md);
     }
 
-    private async Task SaveCategoryList(List<CategoryModel> categoryList, StringBuilder stringBuilder, int level)
+    private async Task SaveCategory(CategoryModel category, StringBuilder stringBuilder, int level)
     {
-        foreach (CategoryModel category in categoryList)
+        stringBuilder.AppendLine($"{new string('#', Math.Min(level, 6))} {category.Name}");
+        stringBuilder.AppendLine();
+
+        foreach (GoalModel goal in category.GoalList)
         {
-            stringBuilder.AppendLine($"{new string('#', Math.Min(level, 6))} {category.Name}");
+            stringBuilder.AppendLine($"**{goal.Name}**");
             stringBuilder.AppendLine();
+            //stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
 
-            foreach (GoalModel goal in category.GoalList)
+            foreach (TaskModel task in goal.TaskList)
             {
-                stringBuilder.AppendLine($"**{goal.Name}**");
-                stringBuilder.AppendLine();
-                //stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
+                stringBuilder.AppendLine($"{task.Name}  ");
+                stringBuilder.AppendLine($"- Priority: {task.Priority}  ");
 
-                foreach (TaskModel task in goal.TaskList)
+                if (task.IsTask)
                 {
-                    stringBuilder.AppendLine($"{task.Name}  ");
-                    stringBuilder.AppendLine($"- Priority: {task.Priority}  ");
-
-                    if (task.IsTask)
-                    {
-                        string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
-                        stringBuilder.AppendLine($"- Interval: {interval}  ");
-                    }
-
-                    if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
-                    {
-                        string duration = task.DesiredDuration.Value.TotalMinutes.ToString();
-                        stringBuilder.AppendLine($"- Duration: {duration}  ");
-                    }
-
-                    stringBuilder.AppendLine();
+                    string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                    stringBuilder.AppendLine($"- Interval: {interval}  ");
                 }
 
-                //stringBuilder.AppendLine();
+                if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
+                {
+                    string duration = task.DesiredDuration.Value.TotalMinutes.ToString();
+                    stringBuilder.AppendLine($"- Duration: {duration}  ");
+                }
+
+                stringBuilder.AppendLine();
             }
 
-            if (category.CategoryList.Any())
-            {
-                await SaveCategoryList(category.CategoryList, stringBuilder, level + 1);
-            }
+            //stringBuilder.AppendLine();
+        }
+
+        foreach (CategoryModel item in category.CategoryList)
+        {
+            await SaveCategory(item, stringBuilder, level + 1);
         }
     }
 }

@@ -43,14 +43,26 @@ internal class TsvBackup
 
     class CsvRow
     {
-        public string Root = string.Empty;
-        public string Category = string.Empty;
-        public string Goal = string.Empty;
-        public string Task = string.Empty;
-        public Priority Priority = Priority.None;
-        public string Interval = string.Empty;
-        public string Duration = string.Empty;
+        public string Goal { get; set; } = string.Empty;
+        public string Task { get; set; } = string.Empty;
+        public Priority Priority { get; set; } = Priority.None;
+        public string Interval { get; set; } = string.Empty;
+        public string Duration { get; set; } = string.Empty;
+        public List<string> Category { get; set; } = new();
     };
+
+    private sealed class CsvRowIndexMap : ClassMap<CsvRow>
+    {
+        public CsvRowIndexMap()
+        {
+            Map(m => m.Goal).Index(0);
+            Map(m => m.Task).Index(1);
+            Map(m => m.Priority).Index(2);
+            Map(m => m.Interval).Index(3);
+            Map(m => m.Duration).Index(4);
+            Map(m => m.Category).Index(5);
+        }
+    }
 
     public async Task ImportData(Stream stream)
     {
@@ -71,6 +83,7 @@ internal class TsvBackup
 
         await foreach (CsvRow record in records)
         {
+            /*
             if (_repository.CategoryList.Any(c => c.Name == record.Root))
             {
                 root = _repository.CategoryList.First(c => c.Name == record.Root);
@@ -130,6 +143,7 @@ internal class TsvBackup
             task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind, desiredDuration);
 
             await _repository.AddTask(task);
+            /**/
         }
     }
 
@@ -139,36 +153,9 @@ internal class TsvBackup
 
         List<CsvRow> records = new();
 
-        foreach (CategoryModel root in data.CategoryList)
+        foreach (CategoryModel category in data.CategoryList)
         {
-            foreach (CategoryModel category in root.CategoryList)
-            {
-                foreach (GoalModel goal in category.GoalList)
-                {
-                    foreach (TaskModel task in goal.TaskList)
-                    {
-                        string interval = string.Empty;
-
-                        if (task.IsTask)
-                        {
-                            interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
-                        }
-
-                        string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString() : "";
-
-                        records.Add(new CsvRow
-                        { 
-                            Root = root.Name,
-                            Category = category.Name,
-                            Goal = goal.Name,
-                            Task = task.Name,
-                            Priority = task.Priority,
-                            Interval = interval,
-                            Duration = duration
-                        });
-                    }
-                }
-            }
+            AddCategory(records, category, new());
         }
 
         StringBuilder builder = new();
@@ -177,11 +164,49 @@ internal class TsvBackup
         {
             using CsvWriter csv = new(writer, _exportConfig);
 
+            csv.Context.RegisterClassMap<CsvRowIndexMap>();
+
             csv.WriteRecords(records);
         }
 
         string tsv = builder.ToString();
 
         await _jsInterop.SaveAsUTF8("ididit.tsv", tsv);
+    }
+
+    private static void AddCategory(List<CsvRow> records, CategoryModel category, List<string> parents)
+    {
+        List<string> categories = new(parents);
+        categories.Add(category.Name);
+
+        foreach (GoalModel goal in category.GoalList)
+        {
+            foreach (TaskModel task in goal.TaskList)
+            {
+                string interval = string.Empty;
+
+                if (task.IsTask)
+                {
+                    interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString() : "ASAP";
+                }
+
+                string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString() : "";
+
+                records.Add(new CsvRow
+                {
+                    Category = categories,
+                    Goal = goal.Name,
+                    Task = task.Name,
+                    Priority = task.Priority,
+                    Interval = interval,
+                    Duration = duration
+                });
+            }
+        }
+
+        foreach (CategoryModel item in category.CategoryList)
+        {
+            AddCategory(records, item, categories);
+        }
     }
 }
