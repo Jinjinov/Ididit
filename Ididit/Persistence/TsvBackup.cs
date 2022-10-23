@@ -41,6 +41,17 @@ internal class TsvBackup
         _repository = repository;
     }
 
+    class CsvRow
+    {
+        public string Root = string.Empty;
+        public string Category = string.Empty;
+        public string Goal = string.Empty;
+        public string Task = string.Empty;
+        public Priority Priority = Priority.None;
+        public string Interval = string.Empty;
+        public string Duration = string.Empty;
+    };
+
     public async Task ImportData(Stream stream)
     {
         // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
@@ -51,25 +62,14 @@ internal class TsvBackup
 
         // https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
 
-        var anonymousTypeDefinition = new
-        {
-            Root = string.Empty,
-            Category = string.Empty,
-            Goal = string.Empty,
-            Task = string.Empty,
-            Priority = Priority.None,
-            Interval = string.Empty,
-            Duration = string.Empty
-        };
-
-        var records = csv.GetRecordsAsync(anonymousTypeDefinition);
+        IAsyncEnumerable<CsvRow> records = csv.GetRecordsAsync<CsvRow>();
 
         CategoryModel root;
         CategoryModel category;
         GoalModel goal;
         TaskModel task;
 
-        await foreach (var record in records)
+        await foreach (CsvRow record in records)
         {
             if (_repository.CategoryList.Any(c => c.Name == record.Root))
             {
@@ -137,7 +137,7 @@ internal class TsvBackup
     {
         // https://joshclose.github.io/CsvHelper/examples/writing/write-anonymous-type-objects/
 
-        List<object> records = new();
+        List<CsvRow> records = new();
 
         foreach (CategoryModel root in data.CategoryList)
         {
@@ -156,7 +156,7 @@ internal class TsvBackup
 
                         string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString() : "";
 
-                        records.Add(new 
+                        records.Add(new CsvRow
                         { 
                             Root = root.Name,
                             Category = category.Name,
