@@ -62,17 +62,21 @@
 
     @if (Task == SelectedTask)
     {
-        <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
-            <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Type:</Span>
+        <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+            <Div class="input-group-prepend" Flex="Flex.Grow.Is1">
+                <Span class="input-group-text" Flex="Flex.Grow.Is1">Type:</Span>
+            </Div>
             <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
                 <SelectItem Value="TaskKind.Note">Note</SelectItem>
                 <SelectItem Value="TaskKind.Task">Task</SelectItem>
                 <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
             </Select>
-        </Inline>
+        </Addons>
 
-        <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
-            <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Priority:</Span>
+        <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+            <Div class="input-group-prepend" Flex="Flex.Grow.Is1">
+                <Span class="input-group-text" Flex="Flex.Grow.Is1">Priority:</Span>
+            </Div>
             <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
                 <SelectItem Value="Priority.None">None</SelectItem>
                 <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
@@ -81,7 +85,7 @@
                 <SelectItem Value="Priority.High">High</SelectItem>
                 <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
             </Select>
-        </Inline>
+        </Addons>
 
         @if (!Task.IsDoneAtLeastOnce)
         {
@@ -99,10 +103,12 @@
 
         @if (Task.IsTask)
         {
-            <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
-                <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Desired duration:</Span>
-                <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
-            </Inline>
+            <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                <Div class="input-group-prepend" Flex="Flex.Grow.Is1">
+                    <Span class="input-group-text" Flex="Flex.Grow.Is1">Desired duration:</Span>
+                </Div>
+                    <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
+            </Addons>
 
             @if (Task.IsRepeating)
             {
