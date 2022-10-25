@@ -62,18 +62,18 @@
 
     @if (Task == SelectedTask)
     {
-        <Inline>
-            <Span Margin=Margin.Is1.FromEnd>Type:</Span>
-            <Select Margin=Margin.Is1.FromEnd Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
+        <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
+            <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Type:</Span>
+            <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
                 <SelectItem Value="TaskKind.Note">Note</SelectItem>
                 <SelectItem Value="TaskKind.Task">Task</SelectItem>
                 <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
             </Select>
         </Inline>
 
-        <Inline>
-            <Span Margin=Margin.Is1.FromEnd>Priority:</Span>
-            <Select Margin=Margin.Is1.FromEnd Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
+        <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
+            <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Priority:</Span>
+            <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
                 <SelectItem Value="Priority.None">None</SelectItem>
                 <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
                 <SelectItem Value="Priority.Low">Low</SelectItem>
@@ -99,9 +99,9 @@
 
         @if (Task.IsTask)
         {
-            <Inline>
-                Desired duration: @ToReadableString(Task.DesiredDuration ?? TimeSpan.Zero)
-                <TimeEdit Margin=Margin.Is1.OnX Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
+            <Inline Border="Border.Is1.Rounded" Display="Display.Flex" Width="Width.Is100" Style="max-width:400px">
+                <Span Flex="Flex.Grow.Is1" Margin=Margin.Is1.FromEnd>Desired duration:</Span>
+                <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
             </Inline>
 
             @if (Task.IsRepeating)
