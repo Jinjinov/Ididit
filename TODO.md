@@ -7,10 +7,6 @@
 
 - [ ] organize habits
 
-- [ ] move markdown parsing form class Task and class Details to class Markdown
-
-- [ ] DirectoryBackup save task details
-
 
 
 - [ ] composition over inheritance:
@@ -114,6 +110,8 @@
 - [ ] mobile: show sub-categories in Goal list
 
 - [ ] every line that StartsWith("- ") is a task detail - edit in another MemoEdit inside TaskComponent
+
+- [ ] DirectoryBackup save Task Details
 
 - [ ] task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
 - [ ] solution = Task.Details - when, where, name, address, phone number, working hours, website, email

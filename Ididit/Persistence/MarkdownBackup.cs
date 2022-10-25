@@ -182,12 +182,7 @@ internal class MarkdownBackup
                     stringBuilder.AppendLine($"- Duration: {duration}  ");
                 }
 
-                string? details = task.Details?.ToString();
-
-                if (!string.IsNullOrEmpty(details))
-                {
-                    stringBuilder.AppendLine(details);
-                }
+                task.Details?.AppendToStringBuilder(stringBuilder);
 
                 stringBuilder.AppendLine();
             }

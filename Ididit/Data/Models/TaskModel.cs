@@ -1,7 +1,6 @@
 ﻿using Markdig;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -138,51 +137,5 @@ public class TaskModel
             AverageInterval = TimeList.First() - CreatedAt;
         else
             AverageInterval = TimeSpan.FromMilliseconds(TimeList.Zip(TimeList.Skip(1), (x, y) => (y - x).TotalMilliseconds).Average());
-    }
-
-    public bool AddDetail(string detail)
-    {
-        Details ??= new();
-
-        bool added = Details.AddDetail(detail);
-
-        if (added)
-            return true;
-
-        if (detail.StartsWith("- Priority: "))
-        {
-            if (Enum.TryParse(detail.Replace("- Priority: ", string.Empty), out Priority priority))
-            {
-                Priority = priority;
-            }
-
-            return false;
-        }
-        else if (detail.StartsWith("- Interval: "))
-        {
-            if (double.TryParse(detail.Replace("- Interval: ", string.Empty), NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
-            {
-                DesiredInterval = TimeSpan.FromDays(days);
-                TaskKind = TaskKind.RepeatingTask;
-            }
-            else if (string.Equals(detail.Replace("- Interval: ", string.Empty), "ASAP", StringComparison.OrdinalIgnoreCase))
-            {
-                DesiredInterval = TimeSpan.Zero;
-                TaskKind = TaskKind.Task;
-            }
-
-            return false;
-        }
-        else if (detail.StartsWith("- Duration: "))
-        {
-            if (double.TryParse(detail.Replace("- Duration: ", string.Empty), NumberStyles.Any, CultureInfo.InvariantCulture, out double minutes))
-            {
-                DesiredDuration = TimeSpan.FromMinutes(minutes);
-            }
-
-            return false;
-        }
-
-        return true;
     }
 }
