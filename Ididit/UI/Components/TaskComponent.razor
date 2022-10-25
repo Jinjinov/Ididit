@@ -64,7 +64,7 @@
     {
         <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
             <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                <Span class="input-group-text" Flex="Flex.Grow.Is1">Type:</Span>
+                <AddonLabel Flex="Flex.Grow.Is1">Type:</AddonLabel>
             </Addon>
             <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
                 <SelectItem Value="TaskKind.Note">Note</SelectItem>
@@ -75,7 +75,7 @@
 
         <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
             <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                <Span class="input-group-text" Flex="Flex.Grow.Is1">Priority:</Span>
+                <AddonLabel Flex="Flex.Grow.Is1">Priority:</AddonLabel>
             </Addon>
             <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
                 <SelectItem Value="Priority.None">None</SelectItem>
@@ -105,7 +105,7 @@
         {
             <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                 <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                    <Span class="input-group-text" Flex="Flex.Grow.Is1">Desired duration:</Span>
+                    <AddonLabel Flex="Flex.Grow.Is1">Desired duration:</AddonLabel>
                 </Addon>
                 <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
             </Addons>
@@ -119,7 +119,7 @@
                 <div>
                     <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                         <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                            <Span class="input-group-text" Flex="Flex.Grow.Is1">Desired interval:</Span>
+                            <AddonLabel Flex="Flex.Grow.Is1">Desired interval:</AddonLabel>
                         </Addon>
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
