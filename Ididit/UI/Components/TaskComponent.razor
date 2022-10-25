@@ -107,7 +107,7 @@
                 <Div class="input-group-prepend" Flex="Flex.Grow.Is1">
                     <Span class="input-group-text" Flex="Flex.Grow.Is1">Desired duration:</Span>
                 </Div>
-                    <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
+                <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
             </Addons>
 
             @if (Task.IsRepeating)
@@ -117,10 +117,10 @@
                 </div>
 
                 <div>
-                    <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
-                        <div class="input-group-prepend">
-                            <Span class="input-group-text">Desired interval:</Span>
-                        </div>
+                    <Addons Style="max-width:400px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
+                        <Div class="input-group-prepend" Flex="Flex.Grow.Is1">
+                            <Span class="input-group-text" Flex="Flex.Grow.Is1">Desired interval:</Span>
+                        </Div>
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
 
