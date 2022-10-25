@@ -125,9 +125,9 @@
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
 
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
-                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")" />
 
                         <Addon AddonType="AddonType.End">
+                            <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")</AddonLabel>
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
@@ -171,7 +171,9 @@
                             else
                             {
                                 <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
-                                    <TextEdit Size="Size" ReadOnly="true" Text="@(ToReadableString(DateTime.Now - time) + " ago")" />
+                                    <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
+                                        <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time) + " ago")</AddonLabel>
+                                    </Addon>
 
                                     <Addon AddonType="AddonType.End">
                                         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
