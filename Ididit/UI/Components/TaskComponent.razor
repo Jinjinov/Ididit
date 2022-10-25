@@ -112,7 +112,9 @@
 
                 <div>
                     <Addons Style="max-width:400px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
-                        <Span Margin=Margin.IsAuto.OnY.Is1.FromEnd>Desired interval:</Span>
+                        <div class="input-group-prepend">
+                            <Span class="input-group-text">Desired interval:</Span>
+                        </div>
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
 
