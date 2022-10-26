@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFrameworks>net6.0-windows</TargetFrameworks>
@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.6" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.6" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.0.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.540" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.7" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.7" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="6.0.541" />
   </ItemGroup>
 
   <ItemGroup>

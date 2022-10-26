@@ -6,9 +6,7 @@
 
 - [ ] composition over inheritance:
     class Note
-
     class Task
-
     class RepeatingTask
 
 
