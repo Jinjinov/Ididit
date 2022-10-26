@@ -45,9 +45,11 @@ internal class TsvBackup
     {
         public string Goal { get; set; } = string.Empty;
         public string Task { get; set; } = string.Empty;
-        public Priority Priority { get; set; } = Priority.None;
         public string Interval { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
+        public Priority Priority { get; set; } = Priority.None;
+        public Priority Success { get; set; } = Priority.None;
+        public Priority Benefit { get; set; } = Priority.None;
         public List<string> Category { get; set; } = new();
     };
 
@@ -57,10 +59,12 @@ internal class TsvBackup
         {
             Map(m => m.Goal).Index(0);
             Map(m => m.Task).Index(1);
-            Map(m => m.Priority).Index(2);
-            Map(m => m.Interval).Index(3);
-            Map(m => m.Duration).Index(4);
-            Map(m => m.Category).Index(5);
+            Map(m => m.Interval).Index(2);
+            Map(m => m.Duration).Index(3);
+            Map(m => m.Priority).Index(4);
+            Map(m => m.Success).Index(5);
+            Map(m => m.Benefit).Index(6);
+            Map(m => m.Category).Index(7);
         }
     }
 

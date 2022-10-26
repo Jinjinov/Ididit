@@ -1,10 +1,5 @@
 # TODO:
 
-- [ ] current status / satisfaction / success
-- [ ] does benifit / is different with app / reminders
-
-
-
 - [ ] organize habits
 
 
