@@ -4,13 +4,6 @@
 
 
 
-- [ ] composition over inheritance:
-    class Note
-    class Task
-    class RepeatingTask
-
-
-
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
     - [ ] Blazorise 1.0 ---> 1.1
@@ -85,6 +78,8 @@
 
 - [ ] load db before app start in wasm
 - [ ] read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
+
+- [ ] composition over inheritance: class Note, class Task, class RepeatingTask
 
 - [ ] task - "done times list" should load on demand - on Task done - on show Task details
 
