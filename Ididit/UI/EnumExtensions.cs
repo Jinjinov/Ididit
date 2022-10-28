@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace Ididit;
+namespace Ididit.UI;
 
 internal static class EnumExtensions
 {

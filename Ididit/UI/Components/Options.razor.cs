@@ -1,6 +1,6 @@
 ﻿using Ididit.App.Data;
-using Ididit.Online;
-using Ididit.Persistence;
+using Ididit.Backup.Drive;
+using Ididit.Backup.Online;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;

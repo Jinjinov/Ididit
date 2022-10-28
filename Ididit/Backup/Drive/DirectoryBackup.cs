@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit.Backup.Drive;
 
 internal class DirectoryBackup : IDataExport
 {

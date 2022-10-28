@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
 
-namespace Ididit.Persistence;
+namespace Ididit.Backup.Drive;
 
 // https://github.com/aaubry/YamlDotNet/wiki/Serialization.Serializer#withtyperesolverityperesolver
 

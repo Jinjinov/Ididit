@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Ididit;
+namespace Ididit.UI;
 
 public class Filters
 {

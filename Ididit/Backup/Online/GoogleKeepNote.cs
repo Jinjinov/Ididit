@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Ididit.Online;
+namespace Ididit.Backup.Online;
 
 internal class Annotation
 {

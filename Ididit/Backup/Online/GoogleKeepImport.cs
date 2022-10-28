@@ -6,7 +6,7 @@ using System.IO.Compression;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Ididit.Online;
+namespace Ididit.Backup.Online;
 
 internal class GoogleKeepImport : IFileImport
 {

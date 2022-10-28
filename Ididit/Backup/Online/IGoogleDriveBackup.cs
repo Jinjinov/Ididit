@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ididit.Online;
+namespace Ididit.Backup.Online;
 
 public interface IGoogleDriveBackup : IDataExport
 {

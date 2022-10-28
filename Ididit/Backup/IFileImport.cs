@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Ididit;
+namespace Ididit.Backup;
 
 internal interface IFileImport
 {

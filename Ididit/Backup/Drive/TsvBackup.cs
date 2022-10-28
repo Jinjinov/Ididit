@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit.Backup.Drive;
 
 internal class TsvBackup : IDataExport, IFileImport
 {
