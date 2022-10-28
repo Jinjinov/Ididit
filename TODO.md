@@ -4,11 +4,9 @@
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 
-on data changed event
 
-unsaved changes flag
+- [ ] backup shortcut - select option: default backup + unsaved changes flag
 
-backup shortcut
 
 
 - [ ] November 8-10, 2022
