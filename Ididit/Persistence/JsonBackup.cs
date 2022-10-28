@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class JsonBackup
+internal class JsonBackup : IFileBackup
 {
     private readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 

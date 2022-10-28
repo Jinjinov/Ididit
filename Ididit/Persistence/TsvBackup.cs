@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class TsvBackup
+internal class TsvBackup : IFileBackup
 {
     // https://stackoverflow.com/questions/66166584/csvhelper-custom-delimiter
 

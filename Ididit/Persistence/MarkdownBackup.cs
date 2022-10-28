@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class MarkdownBackup
+internal class MarkdownBackup : IFileBackup
 {
     public bool UnsavedChanges { get; private set; }
 

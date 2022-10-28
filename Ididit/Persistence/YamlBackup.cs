@@ -10,7 +10,7 @@ namespace Ididit.Persistence;
 
 // https://github.com/aaubry/YamlDotNet/wiki/Serialization.Serializer#disablealiases
 
-internal class YamlBackup
+internal class YamlBackup : IFileBackup
 {
     private readonly ISerializer _serializer = new Serializer();
     //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().Build();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class DirectoryBackup
+internal class DirectoryBackup : IBackup
 {
     public bool UnsavedChanges { get; private set; }
 
