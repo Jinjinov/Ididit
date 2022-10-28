@@ -34,8 +34,10 @@ internal class JsonBackup
         await _repository.AddData(data);
     }
 
-    public async Task ExportData(IDataModel data)
+    public async Task ExportData()
     {
+        IDataModel data = _repository;
+
         string jsonString = JsonSerializer.Serialize(data, _options);
 
         await _jsInterop.SaveAsUTF8("ididit.json", jsonString);

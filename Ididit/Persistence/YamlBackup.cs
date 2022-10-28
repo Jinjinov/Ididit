@@ -43,8 +43,10 @@ internal class YamlBackup
         await _repository.AddData(data);
     }
 
-    public async Task ExportData(IDataModel data)
+    public async Task ExportData()
     {
+        IDataModel data = _repository;
+
         string yamlString = string.Empty;
 
         using (StringWriter stringWriter = new())

@@ -113,8 +113,10 @@ internal class DirectoryBackup
         }
     }
 
-    public async Task ExportData(IDataModel data)
+    public async Task ExportData()
     {
+        IDataModel data = _repository;
+
         List<NodeContent> nodes = new();
 
         foreach (CategoryModel category in data.CategoryList)

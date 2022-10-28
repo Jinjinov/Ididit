@@ -38,8 +38,10 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
         await _repository.AddData(data);
     }
 
-    public async Task ExportData(IDataModel data)
+    public async Task ExportData()
     {
+        IDataModel data = _repository;
+
         string jsonString = JsonSerializer.Serialize(data, _options);
 
         await SaveFile(jsonString);

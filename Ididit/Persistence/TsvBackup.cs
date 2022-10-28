@@ -150,8 +150,10 @@ internal class TsvBackup
         }
     }
 
-    public async Task ExportData(IDataModel data)
+    public async Task ExportData()
     {
+        IDataModel data = _repository;
+
         // https://joshclose.github.io/CsvHelper/examples/writing/write-anonymous-type-objects/
 
         List<CsvRow> records = new();

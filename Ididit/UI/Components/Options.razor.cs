@@ -100,22 +100,22 @@ public partial class Options
 
     async Task ExportJson()
     {
-        await JsonBackup.ExportData(Repository);
+        await JsonBackup.ExportData();
     }
 
     async Task ExportYaml()
     {
-        await YamlBackup.ExportData(Repository);
+        await YamlBackup.ExportData();
     }
 
     async Task ExportTsv()
     {
-        await TsvBackup.ExportData(Repository);
+        await TsvBackup.ExportData();
     }
 
     async Task ExportMarkdown()
     {
-        await MarkdownBackup.ExportData(Repository);
+        await MarkdownBackup.ExportData();
     }
 
     async Task ImportDirectory()
@@ -125,7 +125,7 @@ public partial class Options
 
     async Task ExportDirectory()
     {
-        await DirectoryBackup.ExportData(Repository);
+        await DirectoryBackup.ExportData();
     }
 
     async Task ImportGoogleDrive()
@@ -133,8 +133,8 @@ public partial class Options
         await GoogleDriveBackup.ImportData();
     }
 
-    void ExportGoogleDrive()
+    async Task ExportGoogleDrive()
     {
-        GoogleDriveBackup.ExportData(Repository);
+        await GoogleDriveBackup.ExportData();
     }
 }
