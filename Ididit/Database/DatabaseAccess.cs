@@ -57,11 +57,56 @@ internal class DatabaseAccess : IDatabaseAccess
 
     public bool IsInitialized => _dbModelId != -1;
 
+    public event EventHandler? DataChanged;
+
     private readonly IndexedDb _indexedDb;
 
     public DatabaseAccess(IndexedDb indexedDb)
     {
         _indexedDb = indexedDb;
+    }
+
+    private async ValueTask<List<TEntity>> GetAll<TEntity>()
+    {
+        List<TEntity> result = await _indexedDb.GetAll<TEntity>();
+
+        return result;
+    }
+
+    private async ValueTask<string> UpdateItems<TEntity>(List<TEntity> items)
+    {
+        string result = await _indexedDb.UpdateItems(items);
+
+        DataChanged?.Invoke(this, EventArgs.Empty);
+
+        return result;
+    }
+
+    private async ValueTask<string> AddItems<TEntity>(List<TEntity> items)
+    {
+        string result = await _indexedDb.AddItems(items);
+
+        DataChanged?.Invoke(this, EventArgs.Empty);
+
+        return result;
+    }
+
+    private async ValueTask<string> DeleteByKey<TKey, TEntity>(TKey key)
+    {
+        string result = await _indexedDb.DeleteByKey<TKey, TEntity>(key);
+
+        DataChanged?.Invoke(this, EventArgs.Empty);
+
+        return result;
+    }
+
+    private async ValueTask<string> DeleteAll<TEntity>()
+    {
+        string result = await _indexedDb.DeleteAll<TEntity>();
+
+        DataChanged?.Invoke(this, EventArgs.Empty);
+
+        return result;
     }
 
     public async Task Initialize()
@@ -76,7 +121,7 @@ internal class DatabaseAccess : IDatabaseAccess
     {
         RepositoryData data = new();
 
-        _categoryList = await _indexedDb.GetAll<CategoryEntity>();
+        _categoryList = await GetAll<CategoryEntity>();
 
         foreach (CategoryEntity category in _categoryList)
         {
@@ -103,7 +148,7 @@ internal class DatabaseAccess : IDatabaseAccess
             }
         }
 
-        _goalList = await _indexedDb.GetAll<GoalEntity>();
+        _goalList = await GetAll<GoalEntity>();
 
         foreach (GoalEntity goal in _goalList)
         {
@@ -130,7 +175,7 @@ internal class DatabaseAccess : IDatabaseAccess
             category.OrderGoals();
         }
 
-        _taskList = await _indexedDb.GetAll<TaskEntity>();
+        _taskList = await GetAll<TaskEntity>();
 
         foreach (TaskEntity task in _taskList)
         {
@@ -174,7 +219,7 @@ internal class DatabaseAccess : IDatabaseAccess
             goal.OrderTasks();
         }
 
-        _timeList = await _indexedDb.GetAll<TimeEntity>();
+        _timeList = await GetAll<TimeEntity>();
 
         foreach (TimeEntity time in _timeList)
         {
@@ -183,7 +228,7 @@ internal class DatabaseAccess : IDatabaseAccess
             data.TaskDict[time.TaskId].TimeList.Add(time.Time);
         }
 
-        _settingsList = await _indexedDb.GetAll<SettingsEntity>();
+        _settingsList = await GetAll<SettingsEntity>();
 
         foreach (SettingsEntity settings in _settingsList)
         {
@@ -221,11 +266,11 @@ internal class DatabaseAccess : IDatabaseAccess
         AddCategoryList(data.CategoryList);
         AddSettingsList(data.SettingsList);
 
-        string result = await _indexedDb.UpdateItems(_categoryList);
-        result = await _indexedDb.UpdateItems(_goalList);
-        result = await _indexedDb.UpdateItems(_settingsList);
-        result = await _indexedDb.UpdateItems(_taskList);
-        result = await _indexedDb.UpdateItems(_timeList);
+        string result = await UpdateItems(_categoryList);
+        result = await UpdateItems(_goalList);
+        result = await UpdateItems(_settingsList);
+        result = await UpdateItems(_taskList);
+        result = await UpdateItems(_timeList);
     }
 
     private void AddCategoryList(List<CategoryModel> categoryList)
@@ -364,7 +409,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _categoryDict[categoryEntity.Id] = categoryEntity;
 
-        string result = await _indexedDb.AddItems(new List<CategoryEntity>() { categoryEntity });
+        string result = await AddItems(new List<CategoryEntity>() { categoryEntity });
     }
 
     public async Task AddGoal(GoalModel goal)
@@ -383,7 +428,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _goalDict[goalEntity.Id] = goalEntity;
 
-        string result = await _indexedDb.AddItems(new List<GoalEntity>() { goalEntity });
+        string result = await AddItems(new List<GoalEntity>() { goalEntity });
     }
 
     public async Task AddTask(TaskModel task)
@@ -420,7 +465,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _taskDict[taskEntity.Id] = taskEntity;
 
-        string result = await _indexedDb.AddItems(new List<TaskEntity>() { taskEntity });
+        string result = await AddItems(new List<TaskEntity>() { taskEntity });
     }
 
     public async Task AddTime(DateTime time, long taskId)
@@ -435,7 +480,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _timeDict[timeEntity.Time.Ticks] = timeEntity;
 
-        string result = await _indexedDb.AddItems(new List<TimeEntity>() { timeEntity });
+        string result = await AddItems(new List<TimeEntity>() { timeEntity });
     }
 
     public async Task AddSettings(SettingsModel settings)
@@ -463,7 +508,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _settingsDict[settingsEntity.Id] = settingsEntity;
 
-        string result = await _indexedDb.AddItems(new List<SettingsEntity>() { settingsEntity });
+        string result = await AddItems(new List<SettingsEntity>() { settingsEntity });
     }
 
     public async Task UpdateCategory(CategoryModel category)
@@ -474,7 +519,7 @@ internal class DatabaseAccess : IDatabaseAccess
             categoryEntity.PreviousId = category.PreviousId;
             categoryEntity.Name = category.Name;
 
-            await _indexedDb.UpdateItems(new List<CategoryEntity> { categoryEntity });
+            await UpdateItems(new List<CategoryEntity> { categoryEntity });
         }
         else
         {
@@ -492,7 +537,7 @@ internal class DatabaseAccess : IDatabaseAccess
             goalEntity.Details = goal.Details;
             goalEntity.CreateTaskFromEachLine = goal.CreateTaskFromEachLine;
 
-            await _indexedDb.UpdateItems(new List<GoalEntity> { goalEntity });
+            await UpdateItems(new List<GoalEntity> { goalEntity });
         }
         else
         {
@@ -546,7 +591,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 taskEntity.Details.OpenTill = task.Details.OpenTill;
             }
 
-            await _indexedDb.UpdateItems(new List<TaskEntity> { taskEntity });
+            await UpdateItems(new List<TaskEntity> { taskEntity });
         }
         else
         {
@@ -587,7 +632,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList;
             settingsEntity.HideCompletedTasks = settings.HideCompletedTasks;
 
-            await _indexedDb.UpdateItems(new List<SettingsEntity> { settingsEntity });
+            await UpdateItems(new List<SettingsEntity> { settingsEntity });
         }
         else
         {
@@ -601,7 +646,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _categoryDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<long, CategoryEntity>(id);
+        await DeleteByKey<long, CategoryEntity>(id);
     }
 
     public async Task DeleteGoal(long id)
@@ -610,7 +655,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _goalDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<long, GoalEntity>(id);
+        await DeleteByKey<long, GoalEntity>(id);
     }
 
     public async Task DeleteTask(long id)
@@ -619,7 +664,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _taskDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<long, TaskEntity>(id);
+        await DeleteByKey<long, TaskEntity>(id);
     }
 
     public async Task DeleteTime(long id)
@@ -630,7 +675,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _timeDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<DateTime, TimeEntity>(time);
+        await DeleteByKey<DateTime, TimeEntity>(time);
     }
 
     public async Task DeleteSettings(long id)
@@ -639,7 +684,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _settingsDict.Remove(id);
 
-        await _indexedDb.DeleteByKey<long, SettingsEntity>(id);
+        await DeleteByKey<long, SettingsEntity>(id);
     }
 
     public async Task DeleteAll()
@@ -654,49 +699,11 @@ internal class DatabaseAccess : IDatabaseAccess
         _taskDict.Clear();
         _timeDict.Clear();
 
-        await _indexedDb.DeleteAll<CategoryEntity>();
-        await _indexedDb.DeleteAll<GoalEntity>();
-        await _indexedDb.DeleteAll<TaskEntity>();
-        await _indexedDb.DeleteAll<TimeEntity>();
+        await DeleteAll<CategoryEntity>();
+        await DeleteAll<GoalEntity>();
+        await DeleteAll<TaskEntity>();
+        await DeleteAll<TimeEntity>();
 
         _dbModelId = -1;
     }
-
-    /*
-    async Task Test()
-    {
-        List<GoalEntity> goalEntities = new();
-
-        int dbModelId = await _indexedDb.OpenIndexedDb();
-
-        string? result2 = await _indexedDb.AddItems<GoalEntity>(goalEntities);
-
-        GoalEntity? result3 = await _indexedDb.GetByKey<long, GoalEntity>(11);
-        string? result4 = await _indexedDb.DeleteByKey<long, GoalEntity>(11);
-
-        List<GoalEntity>? result5 = await _indexedDb.GetAll<GoalEntity>();
-
-        // get range by lower / upper key:
-        List<GoalEntity>? result6 = await _indexedDb.GetRange<long, GoalEntity>(15, 20);
-
-        // get range by lower / upper field value by the filed (index) name:
-        List<GoalEntity>? db1Result8 = await _indexedDb.GetByIndex<int, GoalEntity>(11, 18, "Id", true);
-        List<GoalEntity>? db1Result9 = await _indexedDb.GetByIndex<int?, GoalEntity>(11, null, "Id", false);
-
-        // get min / max key value:
-        long result8 = await _indexedDb.GetMaxKey<long, GoalEntity>();
-        long result9 = await _indexedDb.GetMinKey<long, GoalEntity>();
-
-        // get min / max value of the field by the filed (index) name:
-        string? result11 = await _indexedDb.GetMaxIndex<string, GoalEntity>("Title");
-        string? result12 = await _indexedDb.GetMinIndex<string, GoalEntity>("Title");
-
-        string? result13 = await _indexedDb.UpdateItems<GoalEntity>(goalEntities);
-        string? result132 = await _indexedDb.UpdateItemsByKey<GoalEntity>(goalEntities, new List<int>());
-
-        string? result14 = await _indexedDb.DeleteAll<GoalEntity>();
-
-        string? result15 = await _indexedDb.DeleteIndexedDb();
-    }
-    /**/
 }

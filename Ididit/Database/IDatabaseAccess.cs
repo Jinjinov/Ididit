@@ -10,6 +10,8 @@ internal interface IDatabaseAccess
 {
     bool IsInitialized { get; }
 
+    event EventHandler DataChanged;
+
     Task Initialize();
 
     Task<RepositoryData> GetData();
