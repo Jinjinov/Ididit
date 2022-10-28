@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Ididit.Online;
 
-internal class GoogleKeepImport
+internal class GoogleKeepImport : IFileImport
 {
+    public string FileExtension => ".zip";
+
     private readonly IRepository _repository;
 
     public GoogleKeepImport(IRepository repository)

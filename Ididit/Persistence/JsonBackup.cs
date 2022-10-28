@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class JsonBackup : IFileBackup
+internal class JsonBackup : IDataExport, IFileImport
 {
     private readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
     public bool UnsavedChanges { get; private set; }
+
+    public string FileExtension => ".json";
 
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;

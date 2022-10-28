@@ -77,23 +77,23 @@ public partial class Options
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
 
-        if (e.File.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+        if (e.File.Name.EndsWith(JsonBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
         {
             await JsonBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".yaml", StringComparison.OrdinalIgnoreCase))
+        else if (e.File.Name.EndsWith(YamlBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
         {
             await YamlBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
+        else if (e.File.Name.EndsWith(TsvBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
         {
             await TsvBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
+        else if (e.File.Name.EndsWith(GoogleKeepImport.FileExtension, StringComparison.OrdinalIgnoreCase))
         {
             await GoogleKeepImport.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
+        else if (e.File.Name.EndsWith(MarkdownBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
         {
             await MarkdownBackup.ImportData(stream);
         }

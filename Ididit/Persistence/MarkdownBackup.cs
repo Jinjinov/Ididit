@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class MarkdownBackup : IFileBackup
+internal class MarkdownBackup : IDataExport, IFileImport
 {
     public bool UnsavedChanges { get; private set; }
+
+    public string FileExtension => ".md";
 
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;

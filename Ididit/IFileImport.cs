@@ -1,9 +1,11 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Ididit.Persistence;
+namespace Ididit;
 
-internal interface IFileBackup : IBackup
+internal interface IFileImport
 {
+    string FileExtension { get; }
+
     Task ImportData(Stream stream);
 }

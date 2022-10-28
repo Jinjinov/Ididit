@@ -2,7 +2,7 @@
 
 namespace Ididit.Online;
 
-public interface IGoogleDriveBackup : IBackup
+public interface IGoogleDriveBackup : IDataExport
 {
     Task ImportData();
 }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Persistence;
 
-internal class TsvBackup : IFileBackup
+internal class TsvBackup : IDataExport, IFileImport
 {
     // https://stackoverflow.com/questions/66166584/csvhelper-custom-delimiter
 
@@ -33,6 +33,8 @@ internal class TsvBackup : IFileBackup
     };
 
     public bool UnsavedChanges { get; private set; }
+
+    public string FileExtension => ".tsv";
 
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;

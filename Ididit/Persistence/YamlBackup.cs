@@ -10,7 +10,7 @@ namespace Ididit.Persistence;
 
 // https://github.com/aaubry/YamlDotNet/wiki/Serialization.Serializer#disablealiases
 
-internal class YamlBackup : IFileBackup
+internal class YamlBackup : IDataExport, IFileImport
 {
     private readonly ISerializer _serializer = new Serializer();
     //private readonly ISerializer _serializer = new SerializerBuilder().DisableAliases().Build();
@@ -20,6 +20,8 @@ internal class YamlBackup : IFileBackup
     private readonly IDeserializer _deserializer = new Deserializer();
 
     public bool UnsavedChanges { get; private set; }
+
+    public string FileExtension => ".yaml";
 
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;

@@ -2,7 +2,7 @@
 
 namespace Ididit;
 
-public interface IBackup
+public interface IDataExport
 {
     bool UnsavedChanges { get; }
 
