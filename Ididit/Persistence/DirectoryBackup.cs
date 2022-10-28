@@ -53,7 +53,7 @@ internal class DirectoryBackup
 
             if (node.Kind == "file")
             {
-                if (!name.EndsWith(".md"))
+                if (!name.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
                     continue;
 
                 name = name[0..^3];

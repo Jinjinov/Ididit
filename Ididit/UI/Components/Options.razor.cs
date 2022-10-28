@@ -3,6 +3,7 @@ using Ididit.Online;
 using Ididit.Persistence;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -76,23 +77,23 @@ public partial class Options
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
 
-        if (e.File.Name.EndsWith(".json"))
+        if (e.File.Name.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
         {
             await JsonBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".yaml"))
+        else if (e.File.Name.EndsWith(".yaml", StringComparison.OrdinalIgnoreCase))
         {
             await YamlBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".tsv"))
+        else if (e.File.Name.EndsWith(".tsv", StringComparison.OrdinalIgnoreCase))
         {
             await TsvBackup.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".zip"))
+        else if (e.File.Name.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
         {
             await GoogleKeepImport.ImportData(stream);
         }
-        else if (e.File.Name.EndsWith(".md"))
+        else if (e.File.Name.EndsWith(".md", StringComparison.OrdinalIgnoreCase))
         {
             await MarkdownBackup.ImportData(stream);
         }

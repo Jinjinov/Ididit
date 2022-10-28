@@ -29,7 +29,7 @@ internal class GoogleKeepImport
 
         foreach (ZipArchiveEntry entry in archive.Entries)
         {
-            if (entry.FullName.EndsWith(".json"))
+            if (entry.FullName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
             {
                 await using Stream jsonStream = entry.Open();
 
