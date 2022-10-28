@@ -32,6 +32,8 @@ internal class TsvBackup
         Mode = CsvMode.NoEscape
     };
 
+    public bool UnsavedChanges { get; private set; }
+
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;
 
@@ -39,6 +41,8 @@ internal class TsvBackup
     {
         _jsInterop = jsInterop;
         _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
     }
 
     class CsvRow
@@ -171,6 +175,8 @@ internal class TsvBackup
         string tsv = builder.ToString();
 
         await _jsInterop.SaveAsUTF8("ididit.tsv", tsv);
+
+        UnsavedChanges = false;
     }
 
     private static void AddCategory(List<CsvRow> records, CategoryModel category, List<string> parents)

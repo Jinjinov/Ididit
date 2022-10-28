@@ -10,15 +10,26 @@ namespace Ididit.Persistence;
 
 internal class DirectoryBackup
 {
-    private readonly IRepository _repository;
+    public bool UnsavedChanges { get; private set; }
 
-    public DirectoryBackup(IRepository repository)
+    private readonly IRepository _repository;
+    private readonly JsInterop _jsInterop;
+
+    public DirectoryBackup(JsInterop jsInterop, IRepository repository)
     {
+        _jsInterop = jsInterop;
         _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
     }
 
-    public async Task ImportData(NodeContent directory)
+    public async Task ImportData()
     {
+        NodeContent? directory = await _jsInterop.ReadDirectoryFiles();
+
+        if (directory is null)
+            return;
+
         string name = directory.Name;
         NodeContent[] nodes = directory.Nodes;
 
@@ -102,7 +113,7 @@ internal class DirectoryBackup
         }
     }
 
-    public NodeContent[] ExportData(IDataModel data)
+    public async Task ExportData(IDataModel data)
     {
         List<NodeContent> nodes = new();
 
@@ -111,7 +122,9 @@ internal class DirectoryBackup
             nodes.AddRange(AddNodes(category));
         }
 
-        return nodes.ToArray();
+        await _jsInterop.WriteDirectoryFiles(nodes.ToArray());
+
+        UnsavedChanges = false;
     }
 
     private NodeContent[] AddNodes(CategoryModel parent)

@@ -1,15 +1,11 @@
 ﻿using Ididit.App.Data;
-using Ididit.Data;
-using Ididit.Data.Models;
 using Ididit.Online;
 using Ididit.Persistence;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Ididit.UI.Components;
 
@@ -17,9 +13,6 @@ public partial class Options
 {
     [Inject]
     IRepository Repository { get; set; } = null!;
-
-    [Parameter]
-    public CategoryModel SelectedCategory { get; set; } = null!;
 
     async Task LoadExamples()
     {
@@ -74,9 +67,6 @@ public partial class Options
     MarkdownBackup MarkdownBackup { get; set; } = null!;
 
     [Inject]
-    JsInterop JsInterop { get; set; } = null!;
-
-    [Inject]
     GoogleKeepImport GoogleKeepImport { get; set; } = null!;
 
     [Inject]
@@ -88,55 +78,25 @@ public partial class Options
 
         if (e.File.Name.EndsWith(".json"))
         {
-            DataModel data = await JsonBackup.ImportData(stream);
-
-            await Repository.AddData(data);
+            await JsonBackup.ImportData(stream);
         }
-
-        if (e.File.Name.EndsWith(".yaml"))
+        else if (e.File.Name.EndsWith(".yaml"))
         {
-            DataModel data = await YamlBackup.ImportData(stream);
-
-            await Repository.AddData(data);
+            await YamlBackup.ImportData(stream);
         }
-
-        if (e.File.Name.EndsWith(".tsv"))
+        else if (e.File.Name.EndsWith(".tsv"))
         {
             await TsvBackup.ImportData(stream);
-
-            //await _repository.AddData(data);
         }
-
-        if (e.File.Name.EndsWith(".zip"))
+        else if (e.File.Name.EndsWith(".zip"))
         {
-            await GoogleKeepImport.ImportData(SelectedCategory, stream);
-
-            //await _repository.AddData(data);
+            await GoogleKeepImport.ImportData(stream);
         }
-
-        if (e.File.Name.EndsWith(".md"))
+        else if (e.File.Name.EndsWith(".md"))
         {
             await MarkdownBackup.ImportData(stream);
-
-            //await _repository.AddData(data);
         }
     }
-
-    /*
-    async Task ImportMarkdown(InputFileChangeEventArgs e)
-    {
-        IEnumerable<IBrowserFile> browserFiles = e.GetMultipleFiles(e.FileCount).Where(browserFile => browserFile.Name.EndsWith(".md"));
-
-        foreach (IBrowserFile browserFile in browserFiles)
-        {
-            string name = Path.GetFileNameWithoutExtension(browserFile.Name);
-
-            Stream stream = browserFile.OpenReadStream();
-
-            await MarkdownBackup.ImportData(SelectedCategory, stream, name);
-        }
-    }
-    /**/
 
     async Task ExportJson()
     {
@@ -160,24 +120,17 @@ public partial class Options
 
     async Task ImportDirectory()
     {
-        NodeContent? directory = await JsInterop.ReadDirectoryFiles();
-
-        if (directory != null)
-            await DirectoryBackup.ImportData(directory);
+        await DirectoryBackup.ImportData();
     }
 
     async Task ExportDirectory()
     {
-        NodeContent[] nodes = DirectoryBackup.ExportData(Repository);
-
-        await JsInterop.WriteDirectoryFiles(nodes);
+        await DirectoryBackup.ExportData(Repository);
     }
 
     async Task ImportGoogleDrive()
     {
-        DataModel data = await GoogleDriveBackup.ImportData();
-
-        await Repository.AddData(data);
+        await GoogleDriveBackup.ImportData();
     }
 
     void ExportGoogleDrive()

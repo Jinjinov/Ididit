@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Ididit.App.Data;
+using Ididit.Data;
 using System.IO;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;
@@ -18,14 +19,20 @@ internal class YamlBackup
 
     private readonly IDeserializer _deserializer = new Deserializer();
 
-    private readonly JsInterop _jsInterop;
+    public bool UnsavedChanges { get; private set; }
 
-    public YamlBackup(JsInterop jsInterop)
+    private readonly JsInterop _jsInterop;
+    private readonly IRepository _repository;
+
+    public YamlBackup(JsInterop jsInterop, IRepository repository)
     {
         _jsInterop = jsInterop;
+        _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
     }
 
-    public async Task<DataModel> ImportData(Stream stream)
+    public async Task ImportData(Stream stream)
     {
         using StreamReader streamReader = new(stream);
 
@@ -33,7 +40,7 @@ internal class YamlBackup
 
         DataModel data = _deserializer.Deserialize<DataModel>(text);
 
-        return data;
+        await _repository.AddData(data);
     }
 
     public async Task ExportData(IDataModel data)
@@ -48,5 +55,7 @@ internal class YamlBackup
         }
 
         await _jsInterop.SaveAsUTF8("ididit.yaml", yamlString);
+
+        UnsavedChanges = false;
     }
 }

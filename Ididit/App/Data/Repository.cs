@@ -28,11 +28,15 @@ internal class Repository : DataModel, IRepository
     private Dictionary<long, TaskModel> _taskDict = new();
     private Dictionary<long, SettingsModel> _settingsDict = new();
 
+    public event EventHandler? DataChanged;
+
     private readonly IDatabaseAccess _databaseAccess;
 
     public Repository(IDatabaseAccess databaseAccess)
     {
         _databaseAccess = databaseAccess;
+
+        _databaseAccess.DataChanged += DataChanged;
     }
 
     public async Task Initialize()

@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Ididit.App.Data;
+using Ididit.Data;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -9,22 +10,28 @@ internal class JsonBackup
 {
     private readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
-    private readonly JsInterop _jsInterop;
+    public bool UnsavedChanges { get; private set; }
 
-    public JsonBackup(JsInterop jsInterop)
+    private readonly JsInterop _jsInterop;
+    private readonly IRepository _repository;
+
+    public JsonBackup(JsInterop jsInterop, IRepository repository)
     {
         _jsInterop = jsInterop;
+        _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
     }
 
-    public async Task<DataModel> ImportData(Stream stream)
+    public async Task ImportData(Stream stream)
     {
         using StreamReader streamReader = new(stream);
 
         string text = await streamReader.ReadToEndAsync();
 
-        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
+        DataModel data = JsonSerializer.Deserialize<DataModel>(text, _options) ?? throw new InvalidDataException("Can't deserialize JSON");
 
-        return data ?? throw new InvalidDataException("Can't deserialize JSON");
+        await _repository.AddData(data);
     }
 
     public async Task ExportData(IDataModel data)
@@ -32,5 +39,7 @@ internal class JsonBackup
         string jsonString = JsonSerializer.Serialize(data, _options);
 
         await _jsInterop.SaveAsUTF8("ididit.json", jsonString);
+
+        UnsavedChanges = false;
     }
 }

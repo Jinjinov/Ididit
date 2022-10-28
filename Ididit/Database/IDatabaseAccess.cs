@@ -10,7 +10,7 @@ internal interface IDatabaseAccess
 {
     bool IsInitialized { get; }
 
-    event EventHandler DataChanged;
+    event EventHandler? DataChanged;
 
     Task Initialize();
 

@@ -1,4 +1,5 @@
-﻿using Ididit.Online;
+﻿using Ididit.App.Data;
+using Ididit.Online;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using System;
 using System.Net;
@@ -17,7 +18,7 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
     private readonly IAccessTokenProvider _tokenProvider;
 
-    public GoogleDriveBackup(HttpClient httpClient, IAccessTokenProvider tokenProvider)
+    public GoogleDriveBackup(IRepository repository, HttpClient httpClient, IAccessTokenProvider tokenProvider) : base(repository)
     {
         _httpClient = httpClient;
 

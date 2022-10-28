@@ -1,7 +1,14 @@
 # TODO:
 
 - [ ] organize habits
+- [ ] separate import column, select line in textarea, search selected line, copy selected line
 
+
+on data changed event
+
+unsaved changes flag
+
+backup shortcut
 
 
 - [ ] November 8-10, 2022
@@ -24,8 +31,6 @@
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
 
-
-- [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`

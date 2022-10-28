@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Drive.v3;
+using Ididit.App.Data;
 using Ididit.Online;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
     readonly IGoogleDriveService _googleDriveService;
 
-    public GoogleDriveBackup(IGoogleDriveService googleDriveService)
+    public GoogleDriveBackup(IRepository repository, IGoogleDriveService googleDriveService) : base(repository)
     {
         _googleDriveService = googleDriveService;
     }

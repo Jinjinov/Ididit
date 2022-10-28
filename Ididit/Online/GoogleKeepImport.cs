@@ -17,8 +17,10 @@ internal class GoogleKeepImport
         _repository = repository;
     }
 
-    public async Task ImportData(CategoryModel category, Stream stream)
+    public async Task ImportData(Stream stream)
     {
+        CategoryModel category = _repository.Category;
+
         MemoryStream memoryStream = new();
 
         await stream.CopyToAsync(memoryStream);

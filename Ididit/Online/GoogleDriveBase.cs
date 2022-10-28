@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Ididit.App.Data;
+using Ididit.Data;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,13 +18,24 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
 
     protected readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
-    public async Task<DataModel> ImportData()
+    public bool UnsavedChanges { get; private set; }
+
+    private readonly IRepository _repository;
+
+    protected GoogleDriveBase(IRepository repository)
+    {
+        _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
+    }
+
+    public async Task ImportData()
     {
         string text = await LoadFile();
 
-        DataModel? data = JsonSerializer.Deserialize<DataModel>(text, _options);
+        DataModel data = JsonSerializer.Deserialize<DataModel>(text, _options) ?? throw new InvalidDataException("Can't deserialize JSON");
 
-        return data ?? throw new InvalidDataException("Can't deserialize JSON");
+        await _repository.AddData(data);
     }
 
     public async Task ExportData(IDataModel data)
@@ -31,6 +43,8 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
         string jsonString = JsonSerializer.Serialize(data, _options);
 
         await SaveFile(jsonString);
+
+        UnsavedChanges = false;
     }
 
     protected async Task SaveFile(string content)

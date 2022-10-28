@@ -12,6 +12,8 @@ namespace Ididit.Persistence;
 
 internal class MarkdownBackup
 {
+    public bool UnsavedChanges { get; private set; }
+
     private readonly JsInterop _jsInterop;
     private readonly IRepository _repository;
 
@@ -19,6 +21,8 @@ internal class MarkdownBackup
     {
         _jsInterop = jsInterop;
         _repository = repository;
+
+        _repository.DataChanged += (sender, e) => UnsavedChanges = true;
     }
 
     private static int GetStartHashCount(string line)
@@ -151,6 +155,8 @@ internal class MarkdownBackup
         string md = stringBuilder.ToString();
 
         await _jsInterop.SaveAsUTF8("ididit.md", md);
+
+        UnsavedChanges = false;
     }
 
     private async Task SaveCategory(CategoryModel category, StringBuilder stringBuilder, int level)

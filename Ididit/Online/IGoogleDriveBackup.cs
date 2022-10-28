@@ -5,6 +5,6 @@ namespace Ididit.Online;
 
 public interface IGoogleDriveBackup
 {
-    Task<DataModel> ImportData();
+    Task ImportData();
     Task ExportData(IDataModel data);
 }

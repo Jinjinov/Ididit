@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.App.Data;
 
-internal interface IRepository : IDataModel
+public interface IRepository : IDataModel
 {
     long NextCategoryId { get; }
     long NextGoalId { get; }
@@ -20,6 +20,8 @@ internal interface IRepository : IDataModel
 
     CategoryModel Category { get; }
     SettingsModel Settings { get; }
+
+    event EventHandler? DataChanged;
 
     Task Initialize();
     Task AddData(IDataModel data);
