@@ -31,7 +31,7 @@
 
 
 
-- [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use
+- [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use - Benchmark / Stopwatch
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
 
@@ -83,6 +83,10 @@
 - [ ] load db before app start in wasm
 - [ ] read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
 
+- [ ] backup on: Dropbox / OneDrive / iCloud
+
+
+
 - [ ] composition over inheritance: class Note, class Task, class RepeatingTask
 
 - [ ] task - "done times list" should load on demand - on Task done - on show Task details
@@ -128,8 +132,6 @@
 - [ ] UI - range ratio filter - 2x Slider
 
 - [ ] keyboard arrow down can change focus to next textarea
-
-- [ ] backup on: Dropbox / OneDrive / iCloud
 
 ## LOW PRIORITY:
 

@@ -156,7 +156,7 @@ public partial class GoalComponent
 
         await Repository.DeleteGoal(Goal.Id);
 
-        Goal = null;
+        Goal = null; // @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
         await GoalChanged.InvokeAsync(Goal);
     }
 
