@@ -37,7 +37,12 @@ internal class Repository : DataModel, IRepository
     {
         _databaseAccess = databaseAccess;
 
-        _databaseAccess.DataChanged += DataChanged;
+        _databaseAccess.DataChanged += OnDataChanged;
+    }
+
+    private void OnDataChanged(object? sender, EventArgs e)
+    {
+        DataChanged?.Invoke(sender, e);
     }
 
     public async Task Initialize()

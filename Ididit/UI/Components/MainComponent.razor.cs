@@ -3,6 +3,7 @@ using Ididit.Backup;
 using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -107,6 +108,8 @@ public partial class MainComponent
     protected override async Task OnInitializedAsync()
     {
         await Repository.Initialize();
+
+        Repository.DataChanged += (object? sender, EventArgs e) => StateHasChanged();
 
         _selectedCategory = Repository.Category;
 

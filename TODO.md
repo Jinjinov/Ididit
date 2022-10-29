@@ -5,11 +5,9 @@
 
 
 
-- [ ] unsaved changes flag
+- [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, than add
 
-fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, than add
-
-fix Google drive import
+- [ ] fix Google drive import
 
 
 
