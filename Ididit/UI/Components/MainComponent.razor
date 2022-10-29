@@ -1,4 +1,6 @@
-﻿<PageTitle>ididit!</PageTitle>
+﻿@using Ididit.Backup
+
+<PageTitle>ididit!</PageTitle>
 
 <HeadContent>
     @if (_bootswatchThemes.ContainsKey(Theme) && _workaround == 0)
@@ -32,9 +34,22 @@
                 <a href="https://ididit.today" target="_blank">ididit!</a>
             </Span>
 
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="Backup">
-                <Icon Class="fa-fw" Name="IconName.Save" />
-            </Button>
+            <Inline>
+                <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0.Is1.OnX>
+                    <Addon AddonType="AddonType.Start">
+                        <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="Backup">
+                            <Icon Class="fa-fw" Name="IconName.Save" />
+                        </Button>
+                    </Addon>
+
+                    <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
+                        @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
+                        {
+                            <SelectItem Value="dataFormat">@dataFormat</SelectItem>
+                        }
+                    </Select>
+                </Addons>
+            </Inline>
 
             @*@UserDisplayName.GetUserDisplayName().Result*@
 

@@ -84,6 +84,16 @@ public partial class MainComponent
         await ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
     }
 
+    async Task OnDataFormatChanged(DataFormat dataFormat)
+    {
+        if (Settings.SelectedBackupFormat != dataFormat)
+        {
+            Settings.SelectedBackupFormat = dataFormat;
+
+            await Repository.UpdateSettings(Settings.Id);
+        }
+    }
+
     bool _filtersVisible = true;
     bool _categoriesVisible = true;
 

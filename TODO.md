@@ -5,9 +5,11 @@
 
 
 
-- [ ] backup shortcut - select option: default backup + unsaved changes flag
+- [ ] unsaved changes flag
 
 fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, than add
+
+fix Google drive import
 
 
 
