@@ -197,8 +197,6 @@ internal class MarkdownBackup : IDataExport, IFileImport
 
                 stringBuilder.AppendLine();
             }
-
-            //stringBuilder.AppendLine();
         }
 
         foreach (CategoryModel item in category.CategoryList)

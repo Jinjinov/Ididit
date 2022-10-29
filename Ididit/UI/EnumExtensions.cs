@@ -7,8 +7,9 @@ namespace Ididit.UI;
 
 internal static class EnumExtensions
 {
-    // get description from enum:
-
+    /// <summary>
+    /// Get description from enum
+    /// </summary>
     public static string GetDescription(this Enum value)
     {
         return value.GetType().
@@ -19,8 +20,9 @@ internal static class EnumExtensions
             : throw new Exception($"Enum member '{value.GetType()}.{value}' doesn't have a [DescriptionAttribute]!");
     }
 
-    // get enum from description:
-
+    /// <summary>
+    /// Get enum from description
+    /// </summary>
     public static T GetEnum<T>(this string description) where T : Enum
     {
         foreach (FieldInfo fieldInfo in typeof(T).GetFields())

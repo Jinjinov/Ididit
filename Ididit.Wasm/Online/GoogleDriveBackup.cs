@@ -48,8 +48,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            //responseBody = await response.Content.ReadAsStringAsync();
-
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
             JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
@@ -92,8 +90,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
             HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
 
             HttpStatusCode responseStatusCode = response.StatusCode;
-
-            //responseBody = await response.Content.ReadAsStringAsync();
 
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
@@ -166,8 +162,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            //responseBody = await response.Content.ReadAsStringAsync();
-
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
             folderId = data.GetProperty("id").GetString() ?? string.Empty;
@@ -216,8 +210,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            //responseBody = await response.Content.ReadAsStringAsync();
-
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
             fileId = data.GetProperty("id").GetString() ?? string.Empty;
@@ -261,8 +253,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            //responseBody = await response.Content.ReadAsStringAsync();
-
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
             updatedFileId = data.GetProperty("id").GetString() ?? string.Empty;
@@ -293,8 +283,6 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
             HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
 
             HttpStatusCode responseStatusCode = response.StatusCode;
-
-            //responseBody = await response.Content.ReadAsStringAsync();
 
             JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
