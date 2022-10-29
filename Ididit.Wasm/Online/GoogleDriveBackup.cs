@@ -48,19 +48,22 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
-
-            JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
-
-            while (files.MoveNext())
+            if (responseStatusCode == HttpStatusCode.OK)
             {
-                JsonElement file = files.Current;
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-                string? name = file.GetProperty("name").GetString();
+                JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
 
-                if (name == _folderName)
+                while (files.MoveNext())
                 {
-                    folderId = file.GetProperty("id").GetString() ?? string.Empty;
+                    JsonElement file = files.Current;
+
+                    string? name = file.GetProperty("name").GetString();
+
+                    if (name == _folderName)
+                    {
+                        folderId = file.GetProperty("id").GetString() ?? string.Empty;
+                    }
                 }
             }
         }
@@ -91,17 +94,23 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
-
-            JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
-
-            while (files.MoveNext())
+            if (responseStatusCode == HttpStatusCode.OK)
             {
-                JsonElement file = files.Current;
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-                string? fileName = file.GetProperty("name").GetString();
+                JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
 
-                fileId = file.GetProperty("id").GetString() ?? string.Empty;
+                while (files.MoveNext())
+                {
+                    JsonElement file = files.Current;
+
+                    string? fileName = file.GetProperty("name").GetString();
+
+                    if (fileName == _fileName)
+                    {
+                        fileId = file.GetProperty("id").GetString() ?? string.Empty;
+                    }
+                }
             }
         }
 
@@ -130,7 +139,10 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            file = await response.Content.ReadAsStringAsync();
+            if (responseStatusCode == HttpStatusCode.OK)
+            {
+                file = await response.Content.ReadAsStringAsync();
+            }
         }
 
         return file;
@@ -162,9 +174,12 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+            if (responseStatusCode == HttpStatusCode.OK)
+            {
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-            folderId = data.GetProperty("id").GetString() ?? string.Empty;
+                folderId = data.GetProperty("id").GetString() ?? string.Empty;
+            }
         }
 
         return folderId;
@@ -210,9 +225,12 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+            if (responseStatusCode == HttpStatusCode.OK)
+            {
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-            fileId = data.GetProperty("id").GetString() ?? string.Empty;
+                fileId = data.GetProperty("id").GetString() ?? string.Empty;
+            }
         }
 
         return fileId;
@@ -253,9 +271,12 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
+            if (responseStatusCode == HttpStatusCode.OK)
+            {
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-            updatedFileId = data.GetProperty("id").GetString() ?? string.Empty;
+                updatedFileId = data.GetProperty("id").GetString() ?? string.Empty;
+            }
         }
 
         return updatedFileId;
@@ -284,19 +305,22 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
             HttpStatusCode responseStatusCode = response.StatusCode;
 
-            JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
-
-            JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
-
-            folders = string.Empty;
-
-            while (files.MoveNext())
+            if (responseStatusCode == HttpStatusCode.OK)
             {
-                JsonElement file = files.Current;
+                JsonElement data = await response.Content.ReadFromJsonAsync<JsonElement>();
 
-                string? name = file.GetProperty("name").GetString();
+                JsonElement.ArrayEnumerator files = data.GetProperty("files").EnumerateArray();
 
-                folders += name + Environment.NewLine;
+                folders = string.Empty;
+
+                while (files.MoveNext())
+                {
+                    JsonElement file = files.Current;
+
+                    string? name = file.GetProperty("name").GetString();
+
+                    folders += name + Environment.NewLine;
+                }
             }
         }
 

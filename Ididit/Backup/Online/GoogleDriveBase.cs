@@ -64,7 +64,7 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
 
         if (string.IsNullOrEmpty(fileId))
         {
-            fileId = await CreateFile(folderId, content);
+            await CreateFile(folderId, content);
         }
         else
         {
