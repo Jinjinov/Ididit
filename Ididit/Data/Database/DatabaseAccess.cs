@@ -1,10 +1,9 @@
 ﻿using DnetIndexedDb;
 using DnetIndexedDb.Fluent;
 using DnetIndexedDb.Models;
-using Ididit.Data;
-using Ididit.Model;
-using Ididit.Model.Models;
 using Ididit.Data.Database.Entities;
+using Ididit.Data.Model;
+using Ididit.Data.Model.Models;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;

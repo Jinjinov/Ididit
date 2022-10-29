@@ -1,4 +1,4 @@
-﻿using Ididit.Model.Models;
+﻿using Ididit.Data.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

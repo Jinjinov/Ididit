@@ -1,6 +1,5 @@
-﻿using Ididit.Data;
-using Ididit.Model;
-using Ididit.Model.Models;
+﻿using Ididit.Data.Model;
+using Ididit.Data.Model.Models;
 using System;
 using System.Threading.Tasks;
 

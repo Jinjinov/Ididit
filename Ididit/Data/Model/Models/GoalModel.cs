@@ -1,11 +1,10 @@
-﻿using Ididit.Data;
-using Markdig;
+﻿using Markdig;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace Ididit.Model.Models;
+namespace Ididit.Data.Model.Models;
 
 public class GoalModel
 {

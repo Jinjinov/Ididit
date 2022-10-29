@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Ididit.Model.Models;
+namespace Ididit.Data.Model.Models;
 
 public class CategoryModel
 {

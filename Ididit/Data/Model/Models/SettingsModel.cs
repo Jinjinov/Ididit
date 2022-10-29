@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Ididit.Data;
-using Ididit.UI;
+﻿using Ididit.UI;
+using System.Collections.Generic;
 
-namespace Ididit.Model.Models;
+namespace Ididit.Data.Model.Models;
 
 public class SettingsModel
 {
