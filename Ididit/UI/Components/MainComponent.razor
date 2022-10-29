@@ -18,98 +18,98 @@
 </HeadContent>
 
 <CascadingValue Value=Size>
-<Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
-    <Row Border=Border.Is1.OnTop.Dark>
-        <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
+    <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
+        <Row Border=Border.Is1.OnTop.Dark>
+            <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
-                <Icon Class="fa-fw" Name="IconName.Bars" />
-            </Button>
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
+                    <Icon Class="fa-fw" Name="IconName.Bars" />
+                </Button>
 
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions">
-                <Icon Class="fa-fw" Name="IconName.Wrench" />
-            </Button>
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions">
+                    <Icon Class="fa-fw" Name="IconName.Wrench" />
+                </Button>
 
-            <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
-                <a href="https://ididit.today" target="_blank">ididit!</a>
-            </Span>
+                <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
+                    <a href="https://ididit.today" target="_blank">ididit!</a>
+                </Span>
 
-            <Inline>
-                <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0.Is1.OnX>
-                    <Addon AddonType="AddonType.Start">
-                        <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" Clicked="Backup">
-                            <Icon Class="fa-fw" Name="IconName.Save" />
-                        </Button>
-                    </Addon>
+                <Inline>
+                    <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0.Is1.OnX>
+                        <Addon AddonType="AddonType.Start">
+                            <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" Clicked="Backup">
+                                <Icon Class="fa-fw" Name="IconName.Save" />
+                            </Button>
+                        </Addon>
 
-                    <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
-                        @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
-                        {
-                            <SelectItem Value="dataFormat">@dataFormat</SelectItem>
-                        }
-                    </Select>
-                </Addons>
-            </Inline>
+                        <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
+                            @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
+                            {
+                                <SelectItem Value="dataFormat">@dataFormat</SelectItem>
+                            }
+                        </Select>
+                    </Addons>
+                </Inline>
 
-            @*@UserDisplayName.GetUserDisplayName().Result*@
+                @*@UserDisplayName.GetUserDisplayName().Result*@
 
-            @ChildContent
-
-        </Column>
-    </Row>
-    @if (_showOptions)
-    {
-        <Row Background=Background.Light Flex=Flex.Grow.Is1 Overflow=Overflow.Auto>
-            <Options Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
-        </Row>
-    }
-    else
-    {
-        <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
-
-            <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 330px">
-
-                <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
-                    <Collapse Visible="@_filtersVisible">
-                        <CollapseHeader Padding=Padding.Is0>
-
-                            <Button Size=Size.Small Block=true Clicked="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
-
-                        </CollapseHeader>
-                        <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
-
-                            <FiltersComponent @bind-Filters="_filters" Settings=Settings />
-
-                        </CollapseBody>
-                    </Collapse>
-                    <Collapse Visible="@_categoriesVisible">
-                        <CollapseHeader Padding=Padding.Is0>
-
-                            <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
-
-                        </CollapseHeader>
-                        <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
-
-                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
-
-                        </CollapseBody>
-                    </Collapse>
-                </Accordion>
+                @ChildContent
 
             </Column>
-            <Column Padding=Padding.Is0 class="child-column">
-                <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters=_filters Settings=Settings />
-            </Column>
-
         </Row>
-    }
-    <Row>
-        <Column Border=Border.Is1.OnTop.Primary>
-            <a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a>
-            <span>&#169; 2022</span>
-        </Column>
-    </Row>
-</Container>
+        @if (_showOptions)
+        {
+            <Row Background=Background.Light Flex=Flex.Grow.Is1 Overflow=Overflow.Auto>
+                <Options Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+            </Row>
+        }
+        else
+        {
+            <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
+
+                <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 330px">
+
+                    <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
+                        <Collapse Visible="@_filtersVisible">
+                            <CollapseHeader Padding=Padding.Is0>
+
+                                <Button Size=Size.Small Block=true Clicked="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
+
+                            </CollapseHeader>
+                            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+
+                                <FiltersComponent @bind-Filters="_filters" Settings=Settings />
+
+                            </CollapseBody>
+                        </Collapse>
+                        <Collapse Visible="@_categoriesVisible">
+                            <CollapseHeader Padding=Padding.Is0>
+
+                                <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
+
+                            </CollapseHeader>
+                            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+
+                                <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
+
+                            </CollapseBody>
+                        </Collapse>
+                    </Accordion>
+
+                </Column>
+                <Column Padding=Padding.Is0 class="child-column">
+                    <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters=_filters Settings=Settings />
+                </Column>
+
+            </Row>
+        }
+        <Row>
+            <Column Border=Border.Is1.OnTop.Primary>
+                <a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a>
+                <span>&#169; 2022</span>
+            </Column>
+        </Row>
+    </Container>
 </CascadingValue>
 
 @*
@@ -131,16 +131,16 @@
 
     https://bootstrapdemo.blazorise.com/tests/utilities/sizing
 
-    flex-column 
-        flex-direction: column!important; 
+    flex-column
+        flex-direction: column!important;
         - if missing, all child nodes are in a row
-    d-flex 
-        display: flex!important; 
+    d-flex
+        display: flex!important;
         - if missing, whole page scrolls, including header and footer
-    h-100 
-        height: 100%!important; 
+    h-100
+        height: 100%!important;
         - if missing, whole page scrolls, including header and footer
-    container-fluid 
+    container-fluid
         - if missing, page width is not 100% and horizontal scrollbar is visible
         width: 100%;
         padding-right: 15px;
@@ -151,7 +151,7 @@
     flex-shrink-0
         - if missing, ???
         flex-shrink: 0!important;
-    row 
+    row
         - if missing, header and footer have 15px margin
         display: flex;
         flex-wrap: wrap;
@@ -171,16 +171,16 @@
 
 @*
     row
-        - if missing, the second column is not visible 
+        - if missing, the second column is not visible
         display: flex;
         flex-wrap: wrap;
         margin-right: -15px;
         margin-left: -15px;
-    
+
     flex-grow-1
        - if missing, and content is not 100% height, footer will not be at the bottom
        flex-grow: 1!important;
-    
+
     overflow-hidden
        - if missing, whole page scrolls, including header and footer
        overflow: hidden!important;
@@ -195,11 +195,11 @@
        flex-basis: 0;
        flex-grow: 1;
        max-width: 100%;
-    
+
     mh-100
        - if missing, height is over 100%, but not scrollable
        max-height: 100%!important;
-    
+
     overflow-auto
        - if missing, no vertical scrollbar
        overflow: auto!important;

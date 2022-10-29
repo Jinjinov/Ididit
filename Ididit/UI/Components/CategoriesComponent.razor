@@ -1,9 +1,6 @@
 ﻿@using Blazorise.TreeView
 @using Ididit.Data.Model.Models
 
-@*<Card Margin=Margin.Is2.OnY>
-<CardBody Padding=Padding.Is1>*@
-
 <CheckBox Checked="Settings.ShowAllTasks" CheckedChanged="OnShowAllTasksChanged">Show all tasks</CheckBox>
 
 @if (!Settings.ShowAllTasks)
@@ -46,6 +43,3 @@
         </NodeContent>
     </TreeView>
 }
-
-@*</CardBody>
-</Card>*@
