@@ -12,6 +12,17 @@
 
 
 
+- [ ] Blazor Desktop Linux
+    - https://github.com/tryphotino/photino.net
+    - https://github.com/ElectronNET/Electron.NET
+    - https://github.com/chromelyapps/Chromely
+
+    - https://www.makeuseof.com/tag/linux-desktop-windows-subsystem/
+    - https://autoize.com/xfce4-desktop-environment-and-x-server-for-ubuntu-on-wsl-2/
+    - https://sourceforge.net/projects/vcxsrv/
+
+
+
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2
     - [ ] Blazorise 1.0 ---> 1.1
