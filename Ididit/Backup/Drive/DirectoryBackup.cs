@@ -23,8 +23,6 @@ internal class DirectoryBackup : IDataExport
         _repository = repository;
 
         _repository.DataChanged += (sender, e) => UnsavedChanges = true;
-
-        _repository.AddDataExport(this);
     }
 
     public async Task ImportData()

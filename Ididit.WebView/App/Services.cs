@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.Backup;
 using Ididit.Backup.Online;
 using Ididit.WebView.Online;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,8 @@ public static class Services
     {
         serviceCollection.AddScoped<IGoogleDriveService, GoogleDriveService>();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<IGoogleDriveBackup>());
+
         serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
 
         return serviceCollection;

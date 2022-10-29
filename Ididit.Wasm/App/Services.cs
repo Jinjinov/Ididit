@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.Backup;
 using Ididit.Backup.Online;
 using Ididit.Wasm.Online;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +11,8 @@ public static class Services
     public static IServiceCollection AddWasmServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<IGoogleDriveBackup>());
+
         serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
 
         serviceCollection.AddOidcAuthentication(options =>

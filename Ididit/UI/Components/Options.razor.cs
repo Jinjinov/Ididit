@@ -54,6 +54,9 @@ public partial class Options
     }
 
     [Inject]
+    IImportExport ImportExport { get; set; } = null!;
+
+    [Inject]
     DirectoryBackup DirectoryBackup { get; set; } = null!;
 
     [Inject]
@@ -78,7 +81,7 @@ public partial class Options
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
 
-        foreach (var pair in Repository.FileImportByExtension)
+        foreach (var pair in ImportExport.FileImportByExtension)
         {
             if (e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase))
             {
@@ -90,7 +93,7 @@ public partial class Options
 
     async Task ExportData(DataFormat dataFormat)
     {
-        await Repository.DataExportByFormat[dataFormat].ExportData();
+        await ImportExport.DataExportByFormat[dataFormat].ExportData();
     }
 
     async Task ImportDirectory()

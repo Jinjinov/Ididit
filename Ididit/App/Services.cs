@@ -2,9 +2,10 @@
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using DnetIndexedDb;
-using Ididit.Data;
+using Ididit.Backup;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
+using Ididit.Data;
 using Ididit.Data.Database;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,11 +30,28 @@ public static class Services
         serviceCollection.AddScoped<JsInterop>();
 
         serviceCollection.AddScoped<DirectoryBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<DirectoryBackup>());
+
         serviceCollection.AddScoped<JsonBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<JsonBackup>());
+        serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<JsonBackup>());
+
         serviceCollection.AddScoped<YamlBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<YamlBackup>());
+        serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<YamlBackup>());
+
         serviceCollection.AddScoped<TsvBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<TsvBackup>());
+        serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<TsvBackup>());
+
         serviceCollection.AddScoped<MarkdownBackup>();
+        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<MarkdownBackup>());
+        serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<MarkdownBackup>());
+
         serviceCollection.AddScoped<GoogleKeepImport>();
+        serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<GoogleKeepImport>());
+
+        serviceCollection.AddScoped<IImportExport, ImportExport>();
 
         serviceCollection.AddScoped<IRepository, Repository>();
         serviceCollection.AddScoped<IDatabaseAccess, DatabaseAccess>();

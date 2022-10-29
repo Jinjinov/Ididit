@@ -25,9 +25,6 @@ internal class JsonBackup : IDataExport, IFileImport
         _repository = repository;
 
         _repository.DataChanged += (sender, e) => UnsavedChanges = true;
-
-        _repository.AddDataExport(this);
-        _repository.AddFileImport(this);
     }
 
     public async Task ImportData(Stream stream)

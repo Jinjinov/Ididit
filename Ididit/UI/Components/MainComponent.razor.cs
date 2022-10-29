@@ -1,4 +1,5 @@
 ﻿using Ididit.App;
+using Ididit.Backup;
 using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
@@ -67,6 +68,9 @@ public partial class MainComponent
     [Inject]
     IRepository Repository { get; set; } = null!;
 
+    [Inject]
+    IImportExport ImportExport { get; set; } = null!;
+
     CategoryModel _selectedCategory = new();
 
     SettingsModel Settings => Repository.Settings;
@@ -77,7 +81,7 @@ public partial class MainComponent
 
     async Task Backup()
     {
-        await Repository.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
+        await ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
     }
 
     bool _filtersVisible = true;
