@@ -1,4 +1,4 @@
-﻿namespace Ididit;
+﻿namespace Ididit.UI;
 
 public enum Sort
 {
