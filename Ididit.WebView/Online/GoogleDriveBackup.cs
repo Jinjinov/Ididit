@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Apis.Download;
 
 namespace Ididit.WebView.Online;
 
@@ -58,7 +59,12 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
             };
         /**/
 
-        request.Download(stream);
+        IDownloadProgress downloadProgress = request.DownloadWithStatus(stream);
+
+        if (downloadProgress.Status == DownloadStatus.Failed)
+            return string.Empty;
+
+        stream.Position = 0;
 
         using StreamReader streamReader = new(stream);
 
