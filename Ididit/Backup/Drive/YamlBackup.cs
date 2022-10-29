@@ -1,5 +1,5 @@
 ﻿using Ididit.App.Data;
-using Ididit.Data;
+using Ididit.Model;
 using System.IO;
 using System.Threading.Tasks;
 using YamlDotNet.Serialization;

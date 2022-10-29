@@ -1,5 +1,5 @@
 ﻿using Ididit.App.Data;
-using Ididit.Data.Models;
+using Ididit.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;

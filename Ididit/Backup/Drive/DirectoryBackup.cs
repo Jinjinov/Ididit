@@ -1,6 +1,6 @@
 ﻿using Ididit.App.Data;
-using Ididit.Data;
-using Ididit.Data.Models;
+using Ididit.Model;
+using Ididit.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

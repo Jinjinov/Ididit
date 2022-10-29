@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ididit.UI;
 
-namespace Ididit.Data.Models;
+namespace Ididit.Model.Models;
 
 public class SettingsModel
 {

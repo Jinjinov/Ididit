@@ -2,8 +2,8 @@
 using DnetIndexedDb.Fluent;
 using DnetIndexedDb.Models;
 using Ididit.App.Data;
-using Ididit.Data;
-using Ididit.Data.Models;
+using Ididit.Model;
+using Ididit.Model.Models;
 using Ididit.Database.Entities;
 using Microsoft.JSInterop;
 using System;

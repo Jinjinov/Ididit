@@ -1,6 +1,6 @@
 ﻿using Ididit.App;
 using Ididit.App.Data;
-using Ididit.Data.Models;
+using Ididit.Model.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Threading.Tasks;

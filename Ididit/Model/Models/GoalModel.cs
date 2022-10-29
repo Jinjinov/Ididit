@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
-namespace Ididit.Data.Models;
+namespace Ididit.Model.Models;
 
 public class GoalModel
 {

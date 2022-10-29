@@ -1,5 +1,5 @@
 ﻿using Ididit.App.Data;
-using Ididit.Data.Models;
+using Ididit.Model.Models;
 using System;
 using System.IO;
 using System.IO.Compression;

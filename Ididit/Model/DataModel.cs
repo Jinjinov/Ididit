@@ -1,7 +1,7 @@
-﻿using Ididit.Data.Models;
+﻿using Ididit.Model.Models;
 using System.Collections.Generic;
 
-namespace Ididit.Data;
+namespace Ididit.Model;
 
 public class DataModel : IDataModel
 {

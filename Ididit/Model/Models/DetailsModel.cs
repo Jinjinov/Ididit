@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ididit.Data.Models;
+namespace Ididit.Model.Models;
 
 public class DetailsModel
 {
