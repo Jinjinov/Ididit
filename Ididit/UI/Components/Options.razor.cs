@@ -60,21 +60,6 @@ public partial class Options
     DirectoryBackup DirectoryBackup { get; set; } = null!;
 
     [Inject]
-    JsonBackup JsonBackup { get; set; } = null!;
-
-    [Inject]
-    YamlBackup YamlBackup { get; set; } = null!;
-
-    [Inject]
-    TsvBackup TsvBackup { get; set; } = null!;
-
-    [Inject]
-    MarkdownBackup MarkdownBackup { get; set; } = null!;
-
-    [Inject]
-    GoogleKeepImport GoogleKeepImport { get; set; } = null!;
-
-    [Inject]
     IGoogleDriveBackup GoogleDriveBackup { get; set; } = null!;
 
     async Task Import(InputFileChangeEventArgs e)

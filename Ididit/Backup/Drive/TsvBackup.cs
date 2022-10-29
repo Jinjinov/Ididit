@@ -187,8 +187,7 @@ internal class TsvBackup : IDataExport, IFileImport
 
     private static void AddCategory(List<CsvRow> records, CategoryModel category, List<string> parents)
     {
-        List<string> categories = new(parents);
-        categories.Add(category.Name);
+        List<string> categories = new(parents) { category.Name };
 
         foreach (GoalModel goal in category.GoalList)
         {
