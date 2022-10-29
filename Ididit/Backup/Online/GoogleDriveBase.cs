@@ -20,6 +20,8 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
 
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.GoogleDrive;
+
     private readonly IRepository _repository;
 
     protected GoogleDriveBase(IRepository repository)

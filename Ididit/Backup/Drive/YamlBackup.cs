@@ -21,6 +21,8 @@ internal class YamlBackup : IDataExport, IFileImport
 
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.Yaml;
+
     public string FileExtension => ".yaml";
 
     private readonly JsInterop _jsInterop;

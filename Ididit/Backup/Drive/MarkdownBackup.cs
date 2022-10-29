@@ -14,6 +14,8 @@ internal class MarkdownBackup : IDataExport, IFileImport
 {
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.Markdown;
+
     public string FileExtension => ".md";
 
     private readonly JsInterop _jsInterop;

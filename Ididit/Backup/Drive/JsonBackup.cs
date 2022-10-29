@@ -12,6 +12,8 @@ internal class JsonBackup : IDataExport, IFileImport
 
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.Json;
+
     public string FileExtension => ".json";
 
     private readonly JsInterop _jsInterop;

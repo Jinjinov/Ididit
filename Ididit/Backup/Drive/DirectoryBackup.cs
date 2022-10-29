@@ -12,6 +12,8 @@ internal class DirectoryBackup : IDataExport
 {
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.Directory;
+
     private readonly IRepository _repository;
     private readonly JsInterop _jsInterop;
 

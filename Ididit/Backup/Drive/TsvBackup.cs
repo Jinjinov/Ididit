@@ -34,6 +34,8 @@ internal class TsvBackup : IDataExport, IFileImport
 
     public bool UnsavedChanges { get; private set; }
 
+    public DataFormat DataFormat => DataFormat.Tsv;
+
     public string FileExtension => ".tsv";
 
     private readonly JsInterop _jsInterop;

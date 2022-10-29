@@ -6,5 +6,7 @@ public interface IDataExport
 {
     bool UnsavedChanges { get; }
 
+    DataFormat DataFormat { get; }
+
     Task ExportData();
 }
