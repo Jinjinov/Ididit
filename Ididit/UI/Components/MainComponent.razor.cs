@@ -14,8 +14,8 @@ public partial class MainComponent
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
 
-    [Inject]
-    IUserDisplayName UserDisplayName { get; set; } = null!;
+    //[Inject]
+    //IUserDisplayName UserDisplayName { get; set; } = null!;
 
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
@@ -76,9 +76,7 @@ public partial class MainComponent
 
     SettingsModel Settings => Repository.Settings;
 
-    async Task OnSettingsChanged(SettingsModel settings)
-    {
-    }
+    bool UnsavedChanges => ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].UnsavedChanges;
 
     async Task Backup()
     {

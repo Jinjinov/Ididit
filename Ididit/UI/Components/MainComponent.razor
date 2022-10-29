@@ -37,7 +37,7 @@
             <Inline>
                 <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0.Is1.OnX>
                     <Addon AddonType="AddonType.Start">
-                        <Button Color="Color.Primary" Outline="ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].UnsavedChanges" Size="Size" Clicked="Backup">
+                        <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" Clicked="Backup">
                             <Icon Class="fa-fw" Name="IconName.Save" />
                         </Button>
                     </Addon>
@@ -78,7 +78,7 @@
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
-                            <FiltersComponent @bind-Filters="_filters" Settings=Settings SettingsChanged=OnSettingsChanged />
+                            <FiltersComponent @bind-Filters="_filters" Settings=Settings />
 
                         </CollapseBody>
                     </Collapse>
@@ -90,7 +90,7 @@
                         </CollapseHeader>
                         <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
 
-                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings SettingsChanged=OnSettingsChanged />
+                            <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
 
                         </CollapseBody>
                     </Collapse>

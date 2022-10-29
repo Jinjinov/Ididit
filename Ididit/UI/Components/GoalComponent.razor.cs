@@ -43,8 +43,6 @@ public partial class GoalComponent
 
     TaskModel? _selectedTask;
 
-    Blazorise.MemoEdit? _memoEdit;
-
     Blazorise.TextEdit? _textEdit;
 
     string _goalName = string.Empty;

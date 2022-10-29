@@ -11,8 +11,8 @@ public sealed partial class CategoryComponent
     [Inject]
     IRepository Repository { get; set; } = null!;
 
-    [CascadingParameter]
-    Blazorise.Size Size { get; set; }
+    //[CascadingParameter]
+    //Blazorise.Size Size { get; set; }
 
     [Parameter]
     public CategoryModel? Category { get; set; } = null!;
