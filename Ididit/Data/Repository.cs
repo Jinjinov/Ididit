@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ididit.App.Data;
+namespace Ididit.Data;
 
 internal class Repository : DataModel, IRepository
 {

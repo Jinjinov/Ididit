@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using Ididit.App.Data;
+using Ididit.Data;
 using Ididit.Model;
 using Ididit.Model.Models;
 using System;

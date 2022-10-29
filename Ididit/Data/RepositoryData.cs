@@ -1,7 +1,7 @@
 ﻿using Ididit.Model.Models;
 using System.Collections.Generic;
 
-namespace Ididit.App.Data;
+namespace Ididit.Data;
 
 internal class RepositoryData
 {

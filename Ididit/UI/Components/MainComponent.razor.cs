@@ -1,5 +1,5 @@
 ﻿using Ididit.App;
-using Ididit.App.Data;
+using Ididit.Data;
 using Ididit.Model.Models;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;

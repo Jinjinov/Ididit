@@ -2,7 +2,7 @@
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using DnetIndexedDb;
-using Ididit.App.Data;
+using Ididit.Data;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
 using Ididit.Database;

@@ -1,7 +1,7 @@
 ﻿using DnetIndexedDb;
 using DnetIndexedDb.Fluent;
 using DnetIndexedDb.Models;
-using Ididit.App.Data;
+using Ididit.Data;
 using Ididit.Model;
 using Ididit.Model.Models;
 using Ididit.Database.Entities;
