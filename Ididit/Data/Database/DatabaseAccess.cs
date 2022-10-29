@@ -78,7 +78,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         DataChanged?.Invoke(this, EventArgs.Empty);
 
-        return result;
+        return result; // 'DB_DATA_UPDATED'
     }
 
     private async ValueTask<string> AddItems<TEntity>(List<TEntity> items)
@@ -87,7 +87,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         DataChanged?.Invoke(this, EventArgs.Empty);
 
-        return result;
+        return result; // 'DB_DATA_ADDED'
     }
 
     private async ValueTask<string> DeleteByKey<TKey, TEntity>(TKey key)
@@ -96,7 +96,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         DataChanged?.Invoke(this, EventArgs.Empty);
 
-        return result;
+        return result; // 'DB_DELETEOBJECT_SUCCESS'
     }
 
     private async ValueTask<string> DeleteAll<TEntity>()
@@ -105,7 +105,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         DataChanged?.Invoke(this, EventArgs.Empty);
 
-        return result;
+        return result; // 'DB_DELETEOBJECT_SUCCESS'
     }
 
     public async Task Initialize()
@@ -266,11 +266,11 @@ internal class DatabaseAccess : IDatabaseAccess
         AddCategoryList(data.CategoryList);
         AddSettingsList(data.SettingsList);
 
-        string result = await UpdateItems(_categoryList);
-        result = await UpdateItems(_goalList);
-        result = await UpdateItems(_settingsList);
-        result = await UpdateItems(_taskList);
-        result = await UpdateItems(_timeList);
+        await UpdateItems(_categoryList);
+        await UpdateItems(_goalList);
+        await UpdateItems(_settingsList);
+        await UpdateItems(_taskList);
+        await UpdateItems(_timeList);
     }
 
     private void AddCategoryList(List<CategoryModel> categoryList)
@@ -410,7 +410,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _categoryDict[categoryEntity.Id] = categoryEntity;
 
-        string result = await AddItems(new List<CategoryEntity>() { categoryEntity });
+        await AddItems(new List<CategoryEntity>() { categoryEntity });
     }
 
     public async Task AddGoal(GoalModel goal)
@@ -429,7 +429,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _goalDict[goalEntity.Id] = goalEntity;
 
-        string result = await AddItems(new List<GoalEntity>() { goalEntity });
+        await AddItems(new List<GoalEntity>() { goalEntity });
     }
 
     public async Task AddTask(TaskModel task)
@@ -466,7 +466,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _taskDict[taskEntity.Id] = taskEntity;
 
-        string result = await AddItems(new List<TaskEntity>() { taskEntity });
+        await AddItems(new List<TaskEntity>() { taskEntity });
     }
 
     public async Task AddTime(DateTime time, long taskId)
@@ -481,7 +481,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _timeDict[timeEntity.Time.Ticks] = timeEntity;
 
-        string result = await AddItems(new List<TimeEntity>() { timeEntity });
+        await AddItems(new List<TimeEntity>() { timeEntity });
     }
 
     public async Task AddSettings(SettingsModel settings)
@@ -510,7 +510,7 @@ internal class DatabaseAccess : IDatabaseAccess
 
         _settingsDict[settingsEntity.Id] = settingsEntity;
 
-        string result = await AddItems(new List<SettingsEntity>() { settingsEntity });
+        await AddItems(new List<SettingsEntity>() { settingsEntity });
     }
 
     public async Task UpdateCategory(CategoryModel category)
