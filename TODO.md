@@ -8,6 +8,8 @@
 
 - [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, then add
 
+- [ ] fix two Settings in json after delete all, import / load examples
+
 
 
 - [ ] November 8-10, 2022
