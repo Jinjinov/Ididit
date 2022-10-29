@@ -1,11 +1,12 @@
 # TODO:
 
-- [ ] organize habits
+- [ ] organize habits - fix the real csv, export to markdown
+
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 
 
-- [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, than add
+- [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, then add
 
 
 
