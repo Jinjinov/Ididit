@@ -1,6 +1,6 @@
 ﻿@using Ididit.Data.Model.Models
 
-@if (Goal != null)
+@if (Goal is not null)
 {
     IList<TaskModel> tasks = Filters.FilterTasks(Goal.TaskList, Settings);
 

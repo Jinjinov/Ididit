@@ -91,7 +91,7 @@
 
 - [ ] task - "done times list" should load on demand - on Task done - on show Task details
 
-- [ ] @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
+- [ ] @if (Goal is not null) in GoalComponent.razor is still called after Delete Goal
 
 ## HIGH PRIORITY:
 

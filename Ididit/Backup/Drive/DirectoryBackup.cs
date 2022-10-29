@@ -37,7 +37,7 @@ internal class DirectoryBackup : IDataExport
 
         CategoryModel? root = _repository.CategoryList.FirstOrDefault(c => c.Name == name);
 
-        if (root == null)
+        if (root is null)
         {
             root = _repository.CreateCategory(name);
 
@@ -62,7 +62,7 @@ internal class DirectoryBackup : IDataExport
 
                 GoalModel? goal = parent.GoalList.FirstOrDefault(g => g.Name == name);
 
-                if (goal == null)
+                if (goal is null)
                 {
                     goal = parent.CreateGoal(_repository.NextGoalId, name);
                     goal.Details = node.Text;
@@ -79,7 +79,7 @@ internal class DirectoryBackup : IDataExport
 
                 foreach (string line in node.Text.Split(Environment.NewLine))
                 {
-                    if (task != null && line.StartsWith("- "))
+                    if (task is not null && line.StartsWith("- "))
                     {
                         bool add = task.AddDetail(line);
 
@@ -103,7 +103,7 @@ internal class DirectoryBackup : IDataExport
 
                 CategoryModel? category = parent.CategoryList.FirstOrDefault(c => c.Name == name);
 
-                if (category == null)
+                if (category is null)
                 {
                     category = parent.CreateCategory(_repository.NextCategoryId, name);
 

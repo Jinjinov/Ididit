@@ -81,7 +81,7 @@ internal class MarkdownBackup : IDataExport, IFileImport
         TaskModel? task = null;
 
         string? line;
-        while ((line = stringReader.ReadLine()) != null)
+        while ((line = stringReader.ReadLine()) is not null)
         {
             if (string.IsNullOrEmpty(line))
                 continue;
@@ -126,7 +126,7 @@ internal class MarkdownBackup : IDataExport, IFileImport
 
                 goal.Details += string.IsNullOrEmpty(goal.Details) ? line : Environment.NewLine + line;
 
-                if (task != null && line.StartsWith("- "))
+                if (task is not null && line.StartsWith("- "))
                 {
                     bool add = task.AddDetail(line);
 

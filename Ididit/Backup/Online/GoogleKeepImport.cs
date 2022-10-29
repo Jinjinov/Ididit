@@ -41,7 +41,7 @@ internal class GoogleKeepImport : IFileImport
 
                 GoogleKeepNote? googleKeepNote = JsonSerializer.Deserialize<GoogleKeepNote>(jsonText);
 
-                if (googleKeepNote != null)
+                if (googleKeepNote is not null)
                 {
                     GoalModel goal = category.CreateGoal(_repository.NextGoalId, googleKeepNote.Title);
                     goal.Details = googleKeepNote.TextContent;
@@ -52,7 +52,7 @@ internal class GoogleKeepImport : IFileImport
 
                     foreach (string line in goal.Details.Split('\n'))
                     {
-                        if (task != null && line.StartsWith("- "))
+                        if (task is not null && line.StartsWith("- "))
                         {
                             bool add = task.AddDetail(line);
 

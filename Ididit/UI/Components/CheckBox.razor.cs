@@ -41,7 +41,7 @@ public partial class CheckBox
 
     private async Task SetIndeterminate()
     {
-        bool indeterminate = Checked == null;
+        bool indeterminate = Checked is null;
 
         if (_isIndeterminate != indeterminate)
         {

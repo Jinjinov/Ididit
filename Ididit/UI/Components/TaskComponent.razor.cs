@@ -59,7 +59,7 @@ public sealed partial class TaskComponent : IDisposable
         _taskStarted = true;
         _taskStartedTime = DateTime.Now;
 
-        if (Task.DesiredDuration != null)
+        if (Task.DesiredDuration is not null)
         {
             _timer.Start();
         }

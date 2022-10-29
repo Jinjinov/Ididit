@@ -51,7 +51,7 @@ public partial class GoalComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_shouldFocus && _textEdit != null)
+        if (_shouldFocus && _textEdit is not null)
         {
             _shouldFocus = false;
 
@@ -156,7 +156,7 @@ public partial class GoalComponent
 
         await Repository.DeleteGoal(Goal.Id);
 
-        Goal = null; // @if (Goal != null) in GoalComponent.razor is still called after Delete Goal
+        Goal = null; // @if (Goal is not null) in GoalComponent.razor is still called after Delete Goal
         await GoalChanged.InvokeAsync(Goal);
     }
 

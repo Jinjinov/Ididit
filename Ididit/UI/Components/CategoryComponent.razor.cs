@@ -32,7 +32,7 @@ public sealed partial class CategoryComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (EditCategory == Category && _textEdit != null)
+        if (EditCategory == Category && _textEdit is not null)
         {
             await _textEdit.Focus();
         }
@@ -40,7 +40,7 @@ public sealed partial class CategoryComponent
 
     async Task EditName()
     {
-        if (Category != null)
+        if (Category is not null)
         {
             _categoryName = Category.Name;
 
@@ -81,7 +81,7 @@ public sealed partial class CategoryComponent
 
         if (_categoryName != Category?.Name)
         {
-            if (Category != null)
+            if (Category is not null)
             {
                 Category.Name = _categoryName;
                 await Repository.UpdateCategory(Category.Id);
@@ -93,7 +93,7 @@ public sealed partial class CategoryComponent
 
     async Task DeleteCategory()
     {
-        if (Category == null)
+        if (Category is null)
             return;
 
         if (Category.CategoryId.HasValue && Repository.AllCategories.TryGetValue(Category.CategoryId.Value, out CategoryModel? parent))

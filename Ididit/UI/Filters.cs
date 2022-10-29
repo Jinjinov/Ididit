@@ -19,7 +19,7 @@ public class Filters
 
             bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
 
-            bool isDateOk = DateFilter == null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
+            bool isDateOk = DateFilter is null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
 
             bool isPriorityOk = settings.ShowPriority[task.Priority];
 

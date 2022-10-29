@@ -1,4 +1,4 @@
-﻿@if (EditCategory == Category && Category != null)
+﻿@if (EditCategory == Category && Category is not null)
 {
     <Addons Flex=Flex.NoWrap>
         <TextEdit @ref=_textEdit Size="Size.Small" @bind-Text="@_categoryName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new category" />

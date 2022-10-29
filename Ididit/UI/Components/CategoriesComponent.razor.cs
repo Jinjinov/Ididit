@@ -61,7 +61,7 @@ public partial class CategoriesComponent
 
     async Task OnCategoryChanged(CategoryModel category)
     {
-        if (category == null)
+        if (category is null)
         {
             SelectedCategory = Repository.Category;
         }

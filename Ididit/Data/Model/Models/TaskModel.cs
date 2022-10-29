@@ -61,7 +61,7 @@ public class TaskModel
     public DateTime? LastTimeDoneAt { get; set; }
 
     [JsonIgnore]
-    internal bool IsDoneAtLeastOnce => LastTimeDoneAt != null;
+    internal bool IsDoneAtLeastOnce => LastTimeDoneAt is not null;
 
     [JsonIgnore]
     internal TimeSpan ElapsedTime => LastTimeDoneAt.HasValue ? DateTime.Now - LastTimeDoneAt.Value : DateTime.Now - CreatedAt;
