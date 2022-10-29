@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Ididit.Backup;
+using Ididit.Data;
 using Ididit.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,13 @@ public interface IRepository : IDataModel
     CategoryModel Category { get; }
     SettingsModel Settings { get; }
 
+    IReadOnlyDictionary<string, IFileImport> FileImportByExtension { get; }
+    IReadOnlyDictionary<DataFormat, IDataExport> DataExportByFormat { get; }
+
     event EventHandler? DataChanged;
+
+    void AddFileImport(IFileImport fileImport);
+    void AddDataExport(IDataExport dataExport);
 
     Task Initialize();
     Task AddData(IDataModel data);

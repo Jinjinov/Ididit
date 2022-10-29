@@ -17,6 +17,8 @@ internal class GoogleKeepImport : IFileImport
     public GoogleKeepImport(IRepository repository)
     {
         _repository = repository;
+
+        _repository.AddFileImport(this);
     }
 
     public async Task ImportData(Stream stream)

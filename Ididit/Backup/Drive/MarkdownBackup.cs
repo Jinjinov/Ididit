@@ -27,6 +27,9 @@ internal class MarkdownBackup : IDataExport, IFileImport
         _repository = repository;
 
         _repository.DataChanged += (sender, e) => UnsavedChanges = true;
+
+        _repository.AddDataExport(this);
+        _repository.AddFileImport(this);
     }
 
     private static int GetStartHashCount(string line)

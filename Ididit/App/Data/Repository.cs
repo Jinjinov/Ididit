@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Ididit.Backup;
+using Ididit.Data;
 using Ididit.Data.Models;
 using Ididit.Database;
 using System;
@@ -28,6 +29,12 @@ internal class Repository : DataModel, IRepository
     private Dictionary<long, TaskModel> _taskDict = new();
     private Dictionary<long, SettingsModel> _settingsDict = new();
 
+    public IReadOnlyDictionary<string, IFileImport> FileImportByExtension => _fileImportByExtension;
+    public IReadOnlyDictionary<DataFormat, IDataExport> DataExportByFormat => _dataExportByFormat;
+
+    private readonly Dictionary<string, IFileImport> _fileImportByExtension = new();
+    private readonly Dictionary<DataFormat, IDataExport> _dataExportByFormat = new();
+
     public event EventHandler? DataChanged;
 
     private readonly IDatabaseAccess _databaseAccess;
@@ -37,6 +44,16 @@ internal class Repository : DataModel, IRepository
         _databaseAccess = databaseAccess;
 
         _databaseAccess.DataChanged += DataChanged;
+    }
+
+    public void AddFileImport(IFileImport fileImport)
+    {
+        _fileImportByExtension[fileImport.FileExtension] = fileImport;
+    }
+
+    public void AddDataExport(IDataExport dataExport)
+    {
+        _dataExportByFormat[dataExport.DataFormat] = dataExport;
     }
 
     public async Task Initialize()

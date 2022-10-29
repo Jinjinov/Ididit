@@ -47,6 +47,9 @@ internal class TsvBackup : IDataExport, IFileImport
         _repository = repository;
 
         _repository.DataChanged += (sender, e) => UnsavedChanges = true;
+
+        _repository.AddDataExport(this);
+        _repository.AddFileImport(this);
     }
 
     class CsvRow

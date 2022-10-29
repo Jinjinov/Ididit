@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ididit.Backup;
 
-public static class MarkdownEx
+internal static class MarkdownEx
 {
     public static bool AddDetail(this DetailsModel details, string detail)
     {

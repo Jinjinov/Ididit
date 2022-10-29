@@ -7,6 +7,5 @@ public enum DataFormat
     Markdown,
     Tsv,
     Yaml,
-    GoogleDrive,
-    GoogleKeep
+    GoogleDrive
 }
