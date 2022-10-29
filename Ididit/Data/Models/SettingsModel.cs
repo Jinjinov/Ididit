@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Ididit.Data.Models;
 
 public class SettingsModel
 {
-    [JsonIgnore]
     public long Id { get; init; }
 
     public string Name { get; set; } = string.Empty;

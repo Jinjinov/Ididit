@@ -1,4 +1,5 @@
 ﻿using Ididit.App.Data;
+using Ididit.Backup;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
 using Microsoft.AspNetCore.Components;
@@ -77,46 +78,19 @@ public partial class Options
     {
         Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
 
-        if (e.File.Name.EndsWith(JsonBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
+        foreach (var pair in Repository.FileImportByExtension)
         {
-            await JsonBackup.ImportData(stream);
-        }
-        else if (e.File.Name.EndsWith(YamlBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
-        {
-            await YamlBackup.ImportData(stream);
-        }
-        else if (e.File.Name.EndsWith(TsvBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
-        {
-            await TsvBackup.ImportData(stream);
-        }
-        else if (e.File.Name.EndsWith(GoogleKeepImport.FileExtension, StringComparison.OrdinalIgnoreCase))
-        {
-            await GoogleKeepImport.ImportData(stream);
-        }
-        else if (e.File.Name.EndsWith(MarkdownBackup.FileExtension, StringComparison.OrdinalIgnoreCase))
-        {
-            await MarkdownBackup.ImportData(stream);
+            if (e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase))
+            {
+                await pair.Value.ImportData(stream);
+                break;
+            }
         }
     }
 
-    async Task ExportJson()
+    async Task ExportData(DataFormat dataFormat)
     {
-        await JsonBackup.ExportData();
-    }
-
-    async Task ExportYaml()
-    {
-        await YamlBackup.ExportData();
-    }
-
-    async Task ExportTsv()
-    {
-        await TsvBackup.ExportData();
-    }
-
-    async Task ExportMarkdown()
-    {
-        await MarkdownBackup.ExportData();
+        await Repository.DataExportByFormat[dataFormat].ExportData();
     }
 
     async Task ImportDirectory()
@@ -124,18 +98,8 @@ public partial class Options
         await DirectoryBackup.ImportData();
     }
 
-    async Task ExportDirectory()
-    {
-        await DirectoryBackup.ExportData();
-    }
-
     async Task ImportGoogleDrive()
     {
         await GoogleDriveBackup.ImportData();
-    }
-
-    async Task ExportGoogleDrive()
-    {
-        await GoogleDriveBackup.ExportData();
     }
 }

@@ -10,10 +10,9 @@ public class TaskModel
 {
     static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
 
-    [JsonIgnore]
-    internal long Id { get; init; }
-    [JsonIgnore]
-    internal long GoalId { get; set; }
+    public long Id { get; init; }
+
+    public long GoalId { get; set; }
 
     public long? PreviousId { get; set; }
 

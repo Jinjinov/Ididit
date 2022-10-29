@@ -10,10 +10,9 @@ public class GoalModel
 {
     static readonly MarkdownPipeline _markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().UseSoftlineBreakAsHardlineBreak().Build();
 
-    [JsonIgnore]
-    internal long Id { get; init; }
-    [JsonIgnore]
-    internal long CategoryId { get; set; }
+    public long Id { get; init; }
+
+    public long CategoryId { get; set; }
 
     public long? PreviousId { get; set; }
 
