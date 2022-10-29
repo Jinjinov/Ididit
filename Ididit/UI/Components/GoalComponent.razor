@@ -6,18 +6,11 @@
 
     @if (tasks.Any() || !Settings.HideEmptyGoals)
     {
-    <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
+        <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
+            <CardBody Padding=Padding.Is0>
 
-        <CardBody Padding=Padding.Is0>
-
-            <!--<Div Class="overlay-parent">-->
-
-            @if (SelectedGoal == Goal || EditGoal == Goal)
-            {
-                <!--<Div Class="overlay"></Div>-->
-
-                <!--<Div Class="overlay-content">-->
-
+                @if (SelectedGoal == Goal || EditGoal == Goal)
+                {
                     <Addons Flex=Flex.NoWrap>
                         <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="Add new goal" />
                         <Addon AddonType="AddonType.End">
@@ -27,63 +20,58 @@
                     </Addons>
 
                     <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 @onmousedown=OnFocusIn FocusOut=OnFocusOut TextChanged=OnTextChanged />
-
-                <!--</Div>-->
-            }
-            else
-            {
-                <Addons Flex=Flex.NoWrap>
-                    <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=SelectAndEditGoal />
-
-                    <Addon AddonType="AddonType.End">
-                        @if (Goal.CreateTaskFromEachLine)
-                        {
-                            <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                        }
-                        else
-                        {
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                        }
-                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
-                    </Addon>
-                </Addons>
-
-                @if (Goal.CreateTaskFromEachLine)
+                }
+                else
                 {
-                    <!-- no margin in Markdown HTML -->
-                    <Div Class="child-no-margin">
-                        @foreach (TaskModel task in tasks)
-                        {
-                            @if (task.MarkdownHtml is null)
+                    <Addons Flex=Flex.NoWrap>
+                        <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=SelectAndEditGoal />
+
+                        <Addon AddonType="AddonType.End">
+                            @if (Goal.CreateTaskFromEachLine)
                             {
-                                <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
+                                <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
                             else
                             {
-                                @((MarkupString)task.MarkdownHtml)
+                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                        </Addon>
+                    </Addons>
 
-                            @if (!string.IsNullOrEmpty(task.DetailsText))
+                    @if (Goal.CreateTaskFromEachLine)
+                    {
+                        <!-- no margin in Markdown HTML -->
+                        <Div Class="child-no-margin">
+                            @foreach (TaskModel task in tasks)
                             {
-                                @((MarkupString)task.DetailsMarkdownHtml)
+                                @if (task.MarkdownHtml is null)
+                                {
+                                    <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
+                                }
+                                else
+                                {
+                                    @((MarkupString)task.MarkdownHtml)
+                                }
+
+                                @if (!string.IsNullOrEmpty(task.DetailsText))
+                                {
+                                    @((MarkupString)task.DetailsMarkdownHtml)
+                                }
                             }
-                        }
-                    </Div>
+                        </Div>
+                    }
+                    else if (!Settings.HideGoalsWithSimpleText)
+                    {
+                        <!-- no margin in Markdown HTML -->
+                        <Div Class="child-no-margin" Padding=Padding.Is1>
+                            @((MarkupString)Goal.DetailsMarkdownHtml)
+                        </Div>
+                    }
                 }
-                else if(!Settings.HideGoalsWithSimpleText)
-                {
-                    <!-- no margin in Markdown HTML -->
-                    <Div Class="child-no-margin" Padding=Padding.Is1>
-                        @((MarkupString)Goal.DetailsMarkdownHtml)
-                    </Div>
-                }
-            }
 
-            <!--</Div>-->
-
-        </CardBody>
-
-    </Card>
+            </CardBody>
+        </Card>
     }
 }
