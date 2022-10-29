@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Drive.v3;
+using Google.Apis.Drive.v3.Data;
 using Ididit.App;
 using Ididit.WebView.Online;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ public class UserDisplayName : IUserDisplayName
 
         AboutResource.GetRequest getRequest = service.About.Get();
         getRequest.Fields = "user";
-        Google.Apis.Drive.v3.Data.About about = getRequest.Execute();
+        About about = getRequest.Execute();
 
         return about.User.DisplayName;
     }

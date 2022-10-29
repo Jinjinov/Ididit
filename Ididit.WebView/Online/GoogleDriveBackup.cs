@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Google.Apis.Download;
+using Google.Apis.Upload;
 
 namespace Ididit.WebView.Online;
 
@@ -117,7 +118,10 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 
         FilesResource.CreateMediaUpload request = service.Files.Create(fileMetadata, stream, _fileMimeType);
         request.Fields = "id";
-        request.Upload();
+        IUploadProgress uploadProgress = request.Upload();
+
+        if (uploadProgress.Status == UploadStatus.Failed)
+            return string.Empty;
 
         Google.Apis.Drive.v3.Data.File file = request.ResponseBody;
 
@@ -139,9 +143,14 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
         writer.Flush();
         stream.Position = 0;
 
+        file.Id = null; // The service drive has thrown an exception. HttpStatusCode is Forbidden. The resource body includes fields which are not directly writable.
+
         FilesResource.UpdateMediaUpload request = service.Files.Update(file, fileId, stream, _fileMimeType);
         request.Fields = "id";
-        request.Upload();
+        IUploadProgress uploadProgress = request.Upload();
+
+        if (uploadProgress.Status == UploadStatus.Failed)
+            return string.Empty;
 
         Google.Apis.Drive.v3.Data.File updatedFile = request.ResponseBody;
 
