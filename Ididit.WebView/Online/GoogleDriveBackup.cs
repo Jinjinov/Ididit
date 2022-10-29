@@ -31,34 +31,8 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
             return string.Empty;
 
         FilesResource.GetRequest request = service.Files.Get(fileId);
-        MemoryStream stream = new();
 
-        /*
-        // Add a handler which will be notified on progress changes
-        // It will notify on each chunk download and when the download is completed or failed
-        request.MediaDownloader.ProgressChanged +=
-            progress =>
-            {
-                switch (progress.Status)
-                {
-                    case Google.Apis.Download.DownloadStatus.Downloading:
-                        {
-                            Console.WriteLine(progress.BytesDownloaded);
-                            break;
-                        }
-                    case Google.Apis.Download.DownloadStatus.Completed:
-                        {
-                            Console.WriteLine("Download complete.");
-                            break;
-                        }
-                    case Google.Apis.Download.DownloadStatus.Failed:
-                        {
-                            Console.WriteLine("Download failed.");
-                            break;
-                        }
-                }
-            };
-        /**/
+        MemoryStream stream = new();
 
         IDownloadProgress downloadProgress = request.DownloadWithStatus(stream);
 

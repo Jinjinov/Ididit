@@ -18,7 +18,7 @@ public class GoogleDriveService : IGoogleDriveService
 
     public async Task<DriveService?> GetDriveService()
     {
-        string baseDirectory = AppContext.BaseDirectory; // = AppDomain.CurrentDomain.BaseDirectory; //  = Environment.CurrentDirectory; // = Directory.GetCurrentDirectory();
+        string baseDirectory = AppContext.BaseDirectory; // = AppDomain.CurrentDomain.BaseDirectory; // = Environment.CurrentDirectory; // = Directory.GetCurrentDirectory();
         string path = Path.Combine(baseDirectory, "credentials.json");
 
         if (!File.Exists(path))
@@ -49,42 +49,4 @@ public class GoogleDriveService : IGoogleDriveService
 
         return service;
     }
-
-    /*
-    DriveService GetDriveService()
-    {
-        // Load pre-authorized user credentials from the environment
-        // TODO(developer) - See https://developers.google.com/identity for guides on implementing OAuth2 for your application
-        GoogleCredential credential = GoogleCredential.GetApplicationDefault().CreateScoped(DriveService.Scope.Drive);
-
-        DriveService service = new(new BaseClientService.Initializer
-        {
-            HttpClientInitializer = credential,
-            ApplicationName = _applicationName
-        });
-
-        return service;
-    }
-    /**/
-
-    /*
-    DriveService GetDriveService()
-    {
-        GoogleDrive credentials = Newtonsoft.Json.JsonConvert.DeserializeObject<GoogleDrive>(System.IO.File.ReadAllText(@"\\PATH_TO_JSONFILE\GoogleAPI.json"));
-
-        ServiceAccountCredential credential = new(new ServiceAccountCredential.Initializer(credentials.client_email)
-        {
-            User = "xxx@xxx.xxx",
-            Scopes = _scopes
-        }.FromPrivateKey(credentials.private_key));
-
-        DriveService service = new(new BaseClientService.Initializer
-        {
-            HttpClientInitializer = credential,
-            ApplicationName = _applicationName
-        });
-
-        return service;
-    }
-    /**/
 }
