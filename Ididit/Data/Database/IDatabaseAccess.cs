@@ -4,7 +4,7 @@ using Ididit.Model.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace Ididit.Database;
+namespace Ididit.Data.Database;
 
 internal interface IDatabaseAccess
 {

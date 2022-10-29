@@ -5,7 +5,7 @@ using DnetIndexedDb;
 using Ididit.Data;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
-using Ididit.Database;
+using Ididit.Data.Database;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
 using System;

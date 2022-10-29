@@ -1,6 +1,6 @@
 ﻿using DnetIndexedDb;
 
-namespace Ididit.Database.Entities;
+namespace Ididit.Data.Database.Entities;
 
 internal class GoalEntity
 {

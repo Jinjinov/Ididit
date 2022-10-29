@@ -2,7 +2,7 @@
 using Ididit.UI;
 using System.Collections.Generic;
 
-namespace Ididit.Database.Entities;
+namespace Ididit.Data.Database.Entities;
 
 internal class SettingsEntity
 {

@@ -4,14 +4,14 @@ using DnetIndexedDb.Models;
 using Ididit.Data;
 using Ididit.Model;
 using Ididit.Model.Models;
-using Ididit.Database.Entities;
+using Ididit.Data.Database.Entities;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ididit.Database;
+namespace Ididit.Data.Database;
 
 internal class IndexedDb : IndexedDbInterop
 {

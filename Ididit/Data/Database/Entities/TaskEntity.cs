@@ -1,7 +1,7 @@
 ﻿using DnetIndexedDb;
 using System;
 
-namespace Ididit.Database.Entities;
+namespace Ididit.Data.Database.Entities;
 
 internal class TaskEntity
 {
