@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Ididit;
+namespace Ididit.Data;
 
 public enum TaskKind
 {
