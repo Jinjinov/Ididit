@@ -7,8 +7,6 @@
 
 - [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, than add
 
-- [ ] fix Google drive import
-
 
 
 - [ ] November 8-10, 2022
