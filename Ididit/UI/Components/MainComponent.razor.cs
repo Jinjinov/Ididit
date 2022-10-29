@@ -75,6 +75,11 @@ public partial class MainComponent
     {
     }
 
+    async Task Backup()
+    {
+        await Repository.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
+    }
+
     bool _filtersVisible = true;
     bool _categoriesVisible = true;
 

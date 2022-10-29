@@ -1,4 +1,5 @@
-﻿using Ididit.UI;
+﻿using Ididit.Backup;
+using Ididit.UI;
 using System.Collections.Generic;
 
 namespace Ididit.Data.Model.Models;
@@ -8,6 +9,8 @@ public class SettingsModel
     public long Id { get; init; }
 
     public string Name { get; set; } = string.Empty;
+
+    public DataFormat SelectedBackupFormat { get; set; } = DataFormat.Markdown;
 
     public Blazorise.Size Size { get; set; }
 

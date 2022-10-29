@@ -235,6 +235,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = settings.Id,
                 Name = settings.Name,
+                SelectedBackupFormat = settings.SelectedBackupFormat,
                 Size = settings.Size,
                 Theme = settings.Theme,
                 ShowAllGoals = settings.ShowAllGoals,
@@ -372,6 +373,7 @@ internal class DatabaseAccess : IDatabaseAccess
             {
                 Id = settings.Id,
                 Name = settings.Name,
+                SelectedBackupFormat = settings.SelectedBackupFormat,
                 Size = settings.Size,
                 Theme = settings.Theme,
                 ShowAllGoals = settings.ShowAllGoals,
@@ -488,6 +490,7 @@ internal class DatabaseAccess : IDatabaseAccess
         {
             Id = settings.Id,
             Name = settings.Name,
+            SelectedBackupFormat = settings.SelectedBackupFormat,
             Size = settings.Size,
             Theme = settings.Theme,
             ShowAllGoals = settings.ShowAllGoals,
@@ -617,6 +620,7 @@ internal class DatabaseAccess : IDatabaseAccess
         if (_settingsDict.TryGetValue(settings.Id, out SettingsEntity? settingsEntity))
         {
             settingsEntity.Name = settings.Name;
+            settingsEntity.SelectedBackupFormat = settings.SelectedBackupFormat;
             settingsEntity.Size = settings.Size;
             settingsEntity.Theme = settings.Theme;
             settingsEntity.ShowAllGoals = settings.ShowAllGoals;

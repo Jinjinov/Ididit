@@ -1,4 +1,5 @@
 ﻿using DnetIndexedDb;
+using Ididit.Backup;
 using Ididit.UI;
 using System.Collections.Generic;
 
@@ -11,6 +12,9 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public string Name { get; set; } = string.Empty;
+
+    [IndexDbIndex]
+    public DataFormat SelectedBackupFormat { get; set; } = DataFormat.Markdown;
 
     [IndexDbIndex]
     public Blazorise.Size Size { get; set; }
