@@ -1,14 +1,12 @@
 # TODO:
 
-- [ ] organize habits - fix the real csv, export to markdown
+- [ ] organize habits
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
 
 
 - [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, then add
-
-- [ ] fix two Settings in json after delete all, import / load examples
 
 
 

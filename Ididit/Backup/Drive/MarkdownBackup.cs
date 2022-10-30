@@ -14,6 +14,8 @@ internal class MarkdownBackup : IDataExport, IFileImport
 {
     public bool UnsavedChanges { get; private set; }
 
+    public bool ExportDetails { get; set; }
+
     public DataFormat DataFormat => DataFormat.Markdown;
 
     public string FileExtension => ".md";
@@ -174,27 +176,34 @@ internal class MarkdownBackup : IDataExport, IFileImport
         {
             stringBuilder.AppendLine($"**{goal.Name}**");
             stringBuilder.AppendLine();
-            //stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
 
-            foreach (TaskModel task in goal.TaskList)
+            if (ExportDetails)
             {
-                stringBuilder.AppendLine($"{task.Name}  ");
-                stringBuilder.AppendLine($"- Priority: {task.Priority}  ");
-
-                if (task.IsTask)
+                foreach (TaskModel task in goal.TaskList)
                 {
-                    string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
-                    stringBuilder.AppendLine($"- Interval: {interval}  ");
+                    stringBuilder.AppendLine($"{task.Name}  ");
+                    stringBuilder.AppendLine($"- Priority: {task.Priority}  ");
+
+                    if (task.IsTask)
+                    {
+                        string interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
+                        stringBuilder.AppendLine($"- Interval: {interval}  ");
+                    }
+
+                    if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
+                    {
+                        string duration = task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture);
+                        stringBuilder.AppendLine($"- Duration: {duration}  ");
+                    }
+
+                    task.Details?.AppendToStringBuilder(stringBuilder);
+
+                    stringBuilder.AppendLine();
                 }
-
-                if (task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0)
-                {
-                    string duration = task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture);
-                    stringBuilder.AppendLine($"- Duration: {duration}  ");
-                }
-
-                task.Details?.AppendToStringBuilder(stringBuilder);
-
+            }
+            else
+            {
+                stringBuilder.AppendLine(goal.Details.Replace(Environment.NewLine, $"  {Environment.NewLine}"));
                 stringBuilder.AppendLine();
             }
         }
