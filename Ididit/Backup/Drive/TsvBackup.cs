@@ -56,14 +56,14 @@ internal class TsvBackup : IDataExport, IFileImport
         public string Interval { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public Priority Priority { get; set; } = Priority.None;
-        public Priority Success { get; set; } = Priority.None;
-        public Priority Benefit { get; set; } = Priority.None;
+        public Priority? Success { get; set; } = Priority.None;
+        public Priority? Benefit { get; set; } = Priority.None;
         public List<string> Category { get; set; } = new();
     };
 
-    private sealed class CsvRowIndexMap : ClassMap<CsvRow>
+    private sealed class CategoryLastIndexMap : ClassMap<CsvRow>
     {
-        public CsvRowIndexMap()
+        public CategoryLastIndexMap()
         {
             Map(m => m.Goal).Index(0);
             Map(m => m.Task).Index(1);
@@ -76,17 +76,66 @@ internal class TsvBackup : IDataExport, IFileImport
         }
     }
 
+    private sealed class CategoryFirstIndexMap : ClassMap<CsvRow>
+    {
+        public CategoryFirstIndexMap(int categoryColumns)
+        {
+            Map(m => m.Category).Index(0, categoryColumns - 1);
+            Map(m => m.Goal).Index(categoryColumns);
+            Map(m => m.Task).Index(categoryColumns + 1);
+            Map(m => m.Interval).Index(categoryColumns + 2);
+            Map(m => m.Duration).Index(categoryColumns + 3);
+            Map(m => m.Priority).Index(categoryColumns + 4);
+            Map(m => m.Success).Index(categoryColumns + 5);
+            Map(m => m.Benefit).Index(categoryColumns + 6);
+        }
+    }
+
+    // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
+
+    // https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
+
     public async Task ImportData(Stream stream)
     {
-        // https://joshclose.github.io/CsvHelper/examples/reading/get-anonymous-type-records/
+        using MemoryStream memoryStream = new MemoryStream();
 
-        using StreamReader streamReader = new(stream);
+        await stream.CopyToAsync(memoryStream);
+        memoryStream.Position = 0;
+
+        using StreamReader streamReader = new(memoryStream);
+
+        int categoryColumns = 0;
+
+        if (streamReader.ReadLine() is string headerRow)
+        {
+            string[] headers = headerRow.Split('\t');
+
+            if (headers.Length > 0 && headers[0] == "Category")
+            {
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    if (headers[i] == "Goal")
+                    {
+                        categoryColumns = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        memoryStream.Position = 0;
+        streamReader.DiscardBufferedData();
 
         using CsvReader csv = new(streamReader, _importConfig);
 
-        // https://github.com/JoshClose/CsvHelper/blob/master/tests/CsvHelper.Tests/TypeConversion/IEnumerableConverterTests.cs
-
-        csv.Context.RegisterClassMap<CsvRowIndexMap>();
+        if (categoryColumns > 0)
+        {
+            csv.Context.RegisterClassMap(new CategoryFirstIndexMap(categoryColumns));
+        }
+        else
+        {
+            csv.Context.RegisterClassMap<CategoryLastIndexMap>();
+        }
 
         IAsyncEnumerable<CsvRow> records = csv.GetRecordsAsync<CsvRow>();
 
@@ -95,9 +144,11 @@ internal class TsvBackup : IDataExport, IFileImport
             if (!record.Category.Any())
                 continue;
 
-            if (_repository.CategoryList.FirstOrDefault(c => c.Name == record.Category.First()) is not CategoryModel root)
+            string firstCategory = record.Category.First();
+
+            if (_repository.CategoryList.FirstOrDefault(c => c.Name == firstCategory) is not CategoryModel root)
             {
-                root = _repository.CreateCategory(record.Category.First());
+                root = _repository.CreateCategory(firstCategory);
                 await _repository.AddCategory(root);
             }
 
@@ -109,9 +160,12 @@ internal class TsvBackup : IDataExport, IFileImport
                 {
                     string name = record.Category[i];
 
+                    if (string.IsNullOrEmpty(name))
+                        break;
+
                     if (category.CategoryList.FirstOrDefault(c => c.Name == name) is not CategoryModel child)
                     {
-                        child = root.CreateCategory(_repository.NextCategoryId, name);
+                        child = category.CreateCategory(_repository.NextCategoryId, name);
                         await _repository.AddCategory(child);
                     }
 
@@ -154,11 +208,11 @@ internal class TsvBackup : IDataExport, IFileImport
         }
     }
 
+    // https://joshclose.github.io/CsvHelper/examples/writing/write-anonymous-type-objects/
+
     public async Task ExportData()
     {
         IDataModel data = _repository;
-
-        // https://joshclose.github.io/CsvHelper/examples/writing/write-anonymous-type-objects/
 
         List<CsvRow> records = new();
 
@@ -173,7 +227,7 @@ internal class TsvBackup : IDataExport, IFileImport
         {
             using CsvWriter csv = new(writer, _exportConfig);
 
-            csv.Context.RegisterClassMap<CsvRowIndexMap>();
+            csv.Context.RegisterClassMap<CategoryLastIndexMap>();
 
             csv.WriteRecords(records);
         }

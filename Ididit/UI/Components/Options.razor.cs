@@ -74,6 +74,8 @@ public partial class Options
                 break;
             }
         }
+
+        stream.Close();
     }
 
     async Task ExportData(DataFormat dataFormat)
