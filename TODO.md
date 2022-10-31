@@ -1,6 +1,8 @@
 # TODO:
 
 - [ ] organize habits
+    - am I actually going to do it just because it has a reminder? (sleep on back, ...)
+    - is it actually a (repeating) task?
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
@@ -16,6 +18,7 @@
         - https://github.com/tryphotino/photino.Blazor/tree/master/Samples
         - https://github.com/tryphotino/photino.Blazor/tree/master/Samples/Photino.Blazor.Sample
     - https://github.com/ElectronNET/Electron.NET
+        - https://github.com/ElectronNET/electron.net-api-demos
         - https://www.c-sharpcorner.com/blogs/create-desktop-application-using-blazor-electron
         - https://github.com/aesalazar/AsteroidsWasm/tree/master/Asteroids.Blazor.Electron
         - https://github.com/krdmllr/DotNetDesktopSamples/tree/main/Blazor.Electron
