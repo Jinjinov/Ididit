@@ -12,12 +12,16 @@
 
 - [ ] Blazor Desktop Linux
     - https://github.com/tryphotino/photino.net
+        - https://github.com/tryphotino/photino.Blazor
+        - https://github.com/tryphotino/photino.Blazor/tree/master/Samples
+        - https://github.com/tryphotino/photino.Blazor/tree/master/Samples/Photino.Blazor.Sample
     - https://github.com/ElectronNET/Electron.NET
+        - https://www.c-sharpcorner.com/blogs/create-desktop-application-using-blazor-electron
+        - https://github.com/aesalazar/AsteroidsWasm/tree/master/Asteroids.Blazor.Electron
+        - https://github.com/krdmllr/DotNetDesktopSamples/tree/main/Blazor.Electron
+        - https://github.com/domingoladron/LearnBlazor.ElectronNet
     - https://github.com/chromelyapps/Chromely
-
-    - https://www.makeuseof.com/tag/linux-desktop-windows-subsystem/
-    - https://autoize.com/xfce4-desktop-environment-and-x-server-for-ubuntu-on-wsl-2/
-    - https://sourceforge.net/projects/vcxsrv/
+        - https://github.com/chromelyapps/demo-projects/issues/99
 
 
 
@@ -71,6 +75,8 @@
 - [ ] linux software repository
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
+    - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
+    - https://wiki.ubuntu.com/Upstream
 
 - [ ] add Google Analytics
     - https://analytics.google.com/
