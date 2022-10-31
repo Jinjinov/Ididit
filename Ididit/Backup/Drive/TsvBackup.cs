@@ -97,7 +97,7 @@ internal class TsvBackup : IDataExport, IFileImport
 
     public async Task ImportData(Stream stream)
     {
-        using MemoryStream memoryStream = new MemoryStream();
+        using MemoryStream memoryStream = new();
 
         await stream.CopyToAsync(memoryStream);
         memoryStream.Position = 0;

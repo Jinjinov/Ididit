@@ -21,6 +21,8 @@
         - https://github.com/krdmllr/DotNetDesktopSamples/tree/main/Blazor.Electron
         - https://github.com/domingoladron/LearnBlazor.ElectronNet
     - https://github.com/chromelyapps/Chromely
+        - https://github.com/chromelyapps/demo-projects/tree/master/blazor
+        - https://github.com/chromelyapps/demo-projects/tree/master/v_5.1/blazor
         - https://github.com/chromelyapps/demo-projects/issues/99
 
 
