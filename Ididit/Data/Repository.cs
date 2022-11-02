@@ -1,7 +1,6 @@
-﻿using Ididit.Backup;
+﻿using Ididit.Data.Database;
 using Ididit.Data.Model;
 using Ididit.Data.Model.Models;
-using Ididit.Data.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,8 +98,8 @@ internal class Repository : DataModel, IRepository
 
         foreach (SettingsModel settings in data.SettingsList)
         {
-            if (!_settingsDict.ContainsKey(settings.Id))
-                SettingsList.Add(settings);
+            SettingsList.RemoveAll(s => s.Id == settings.Id);
+            SettingsList.Add(settings);
 
             _settingsDict[settings.Id] = settings;
         }
@@ -112,8 +111,13 @@ internal class Repository : DataModel, IRepository
     {
         foreach (CategoryModel category in categoryList)
         {
-            if (!_categoryDict.ContainsKey(category.Id))
+            if (category.CategoryId is null)
+            {
+                CategoryList.RemoveAll(c => c.Id == category.Id);
                 CategoryList.Add(category);
+
+                Category = CategoryList.First();
+            }
 
             _categoryDict[category.Id] = category;
 

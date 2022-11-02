@@ -3,12 +3,9 @@
 - [ ] organize habits
     - am I actually going to do it just because it has a reminder? (sleep on back, ...)
     - is it actually a (repeating) task?
+    - will I go ape shit crazy because there is no reminder?
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
-
-
-
-- [ ] fix AddCategoryList(List<CategoryModel> categoryList) - first search for existing, then add
 
 
 
@@ -24,6 +21,7 @@
         - https://github.com/krdmllr/DotNetDesktopSamples/tree/main/Blazor.Electron
         - https://github.com/domingoladron/LearnBlazor.ElectronNet
     - https://github.com/chromelyapps/Chromely
+        - https://github.com/chromelyapps/demo-projects
         - https://github.com/chromelyapps/demo-projects/tree/master/blazor
         - https://github.com/chromelyapps/demo-projects/tree/master/v_5.1/blazor
         - https://github.com/chromelyapps/demo-projects/issues/99
@@ -107,7 +105,10 @@
 
 - [ ] backup on: Dropbox / OneDrive / iCloud
 
-
+- [ ] fix AddCategoryList(List<CategoryModel> categoryList)
+    - in Repository and DatabaseAccess
+    - first search for existing Entity / Model and merge / overwrite, then add
+    - add class Map / Mapper with Entity <-> Model mapping
 
 - [ ] composition over inheritance: class Note, class Task, class RepeatingTask
 
