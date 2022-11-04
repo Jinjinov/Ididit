@@ -56,8 +56,6 @@ internal class TsvBackup : IDataExport, IFileImport
         public string Interval { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
         public Priority Priority { get; set; } = Priority.None;
-        public Priority? Success { get; set; } = Priority.None;
-        public Priority? Benefit { get; set; } = Priority.None;
         public List<string> Category { get; set; } = new();
     };
 
@@ -70,9 +68,7 @@ internal class TsvBackup : IDataExport, IFileImport
             Map(m => m.Interval).Index(2);
             Map(m => m.Duration).Index(3);
             Map(m => m.Priority).Index(4);
-            Map(m => m.Success).Index(5);
-            Map(m => m.Benefit).Index(6);
-            Map(m => m.Category).Index(7);
+            Map(m => m.Category).Index(5);
         }
     }
 
@@ -86,8 +82,6 @@ internal class TsvBackup : IDataExport, IFileImport
             Map(m => m.Interval).Index(categoryColumns + 2);
             Map(m => m.Duration).Index(categoryColumns + 3);
             Map(m => m.Priority).Index(categoryColumns + 4);
-            Map(m => m.Success).Index(categoryColumns + 5);
-            Map(m => m.Benefit).Index(categoryColumns + 6);
         }
     }
 
@@ -191,7 +185,7 @@ internal class TsvBackup : IDataExport, IFileImport
                 desiredInterval = TimeSpan.FromDays(days);
                 taskKind = TaskKind.RepeatingTask;
             }
-            else if (string.Equals(record.Interval, "ASAP", StringComparison.OrdinalIgnoreCase))
+            else if (!string.IsNullOrEmpty(record.Interval))
             {
                 desiredInterval = TimeSpan.Zero;
                 taskKind = TaskKind.Task;
