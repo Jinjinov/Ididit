@@ -14,7 +14,7 @@
         <Card>
             <CardBody Padding=Padding.Is1>
 
-                <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart @onclick=NewGoal>Add goal to @SelectedCategory.Name</Button>
+                <Button Color=Color.Primary Outline=true Size="Size.Small" Margin=Margin.Is2.FromStart Clicked=NewGoal>Add goal to @SelectedCategory.Name</Button>
 
             </CardBody>
         </Card>
@@ -25,7 +25,7 @@
             {
                 if (Settings.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterTasks(goal.TaskList, Settings).Any()).Any())
                 {
-                    <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
+                    <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Size="Size" Clicked="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
                 }
 
                 @foreach (GoalModel goal in category.GoalList)

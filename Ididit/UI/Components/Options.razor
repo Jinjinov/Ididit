@@ -6,9 +6,9 @@
 <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
     <CardBody Padding=Padding.Is1>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=LoadExamples>Load examples</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked=LoadExamples>Load examples</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=DeleteAll>Delete all</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked=DeleteAll>Delete all</Button>
 
         <Field Margin=Margin.Is0>
             <FieldLabel>Size:</FieldLabel>
@@ -38,31 +38,31 @@
         <Label For="JSON-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import JSON</Label>
         <InputFile id="JSON-upload" class="d-none" OnChange=Import />
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Json)">Export JSON</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.Json)">Export JSON</Button>
 
         <Label For="YAML-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import YAML</Label>
         <InputFile id="YAML-upload" class="d-none" OnChange=Import />
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Yaml)">Export YAML</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.Yaml)">Export YAML</Button>
 
         <Label For="TSV-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import TSV</Label>
         <InputFile id="TSV-upload" class="d-none" OnChange=Import />
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Tsv)">Export TSV</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.Tsv)">Export TSV</Button>
 
         <Label For="Markdown-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Markdown</Label>
         @*<InputFile id="Markdown-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />*@
         <InputFile id="Markdown-upload" class="d-none" OnChange=Import />
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Markdown)">Export Markdown</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.Markdown)">Export Markdown</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportDirectory>Import folder</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked=ImportDirectory>Import folder</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Directory)">Export folder</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.Directory)">Export folder</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportGoogleDrive>Import Google Drive</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked=ImportGoogleDrive>Import Google Drive</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.GoogleDrive)">Export Google Drive</Button>
+        <Button Color=Color.Primary Size="Size" Block=true Clicked="async () => await ExportData(DataFormat.GoogleDrive)">Export Google Drive</Button>
 
         <Label For="ZIP-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Google Keep Takeout ZIP</Label>
         <InputFile id="ZIP-upload" class="d-none" OnChange=Import />
