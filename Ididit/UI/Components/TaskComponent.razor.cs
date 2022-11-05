@@ -1,6 +1,7 @@
 ﻿using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
 
@@ -101,7 +102,7 @@ public sealed partial class TaskComponent : IDisposable
         _timer.Dispose();
     }
 
-    async Task ToggleTask()
+    async Task ToggleTask(MouseEventArgs args)
     {
         if (SelectedTask != Task)
             SelectedTask = Task;

@@ -91,6 +91,11 @@ public partial class GoalComponent
         await SelectedGoalChanged.InvokeAsync(SelectedGoal);
     }
 
+    async Task OnClick(MouseEventArgs args)
+    {
+        await SelectAndEditGoal();
+    }
+
     async Task SelectAndEditGoal()
     {
         _goalName = Goal.Name;

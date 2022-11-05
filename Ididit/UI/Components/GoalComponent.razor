@@ -24,7 +24,7 @@
                 else
                 {
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=SelectAndEditGoal />
+                        <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=OnClick />
 
                         <Addon AddonType="AddonType.End">
                             @if (Goal.CreateTaskFromEachLine)
