@@ -16,14 +16,11 @@
         - https://github.com/tryphotino/photino.Blazor/tree/master/Samples/Photino.Blazor.Sample
     - https://github.com/ElectronNET/Electron.NET
         - https://github.com/ElectronNET/electron.net-api-demos
-        - https://www.c-sharpcorner.com/blogs/create-desktop-application-using-blazor-electron
         - https://github.com/aesalazar/AsteroidsWasm/tree/master/Asteroids.Blazor.Electron
-        - https://github.com/krdmllr/DotNetDesktopSamples/tree/main/Blazor.Electron
         - https://github.com/domingoladron/LearnBlazor.ElectronNet
     - https://github.com/chromelyapps/Chromely
         - https://github.com/chromelyapps/demo-projects
         - https://github.com/chromelyapps/demo-projects/tree/master/blazor
-        - https://github.com/chromelyapps/demo-projects/tree/master/v_5.1/blazor
         - https://github.com/chromelyapps/demo-projects/issues/99
 
 
