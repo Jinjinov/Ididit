@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Threading.Tasks;
 
 namespace Ididit.WebView.Electron;
 
@@ -83,7 +82,7 @@ public class Startup
 
     public async void ElectronCreateWindow()
     {
-        var browserWindowOptions = new BrowserWindowOptions
+        BrowserWindowOptions browserWindowOptions = new()
         {
             Width = 1680,
             Height = 1050,
@@ -92,10 +91,10 @@ public class Startup
             {
                 WebSecurity = false
             },
-            Icon = "../../../wwwroot/favicon.ico"
+            Icon = "bin/wwwroot/favicon.ico"
         };
 
-        var browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
+        BrowserWindow browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
 
         await browserWindow.WebContents.Session.ClearCacheAsync();
 
