@@ -6,10 +6,10 @@ namespace Ididit.WebView.Chromely;
 
 public static class ServerAppUtil
 {
-    private const int DefaultPort = 5001;
-    private const int StartScan = 5050;
-    private const int EndScan = 6000;
-    private const string ArgumentType = "--type";
+    private const int _defaultPort = 5001;
+    private const int _startScan = 5050;
+    private const int _endScan = 6000;
+    private const string _argumentType = "--type";
 
     public static Task? BlazorTask;
     public static CancellationTokenSource? BlazorTaskTokenSource;
@@ -18,7 +18,7 @@ public static class ServerAppUtil
     {
         get
         {
-            for (int i = StartScan; i < EndScan; i++)
+            for (int i = _startScan; i < _endScan; i++)
             {
                 if (IsPortAvailable(i))
                 {
@@ -26,7 +26,7 @@ public static class ServerAppUtil
                 }
             }
 
-            return DefaultPort;
+            return _defaultPort;
         }
     }
 
@@ -37,7 +37,7 @@ public static class ServerAppUtil
             return true;
         }
 
-        if (!HasArgument(args, ArgumentType))
+        if (!HasArgument(args, _argumentType))
         {
             return true;
         }
@@ -66,7 +66,7 @@ public static class ServerAppUtil
         // used to pass the port number to chromely child processes
         MemoryMappedFile mmf = MemoryMappedFile.CreateNew(appName, 4);
         MemoryMappedViewAccessor accessor = mmf.CreateViewAccessor();
-        accessor.Write(0, (int)port);
+        accessor.Write(0, port);
     }
 
     public static int GetSavedPort(string appName)
