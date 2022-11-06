@@ -27,4 +27,17 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="$(SolutionDir)Ididit.Wasm\wwwroot\**"
+          CopyToOutputDirectory="PreserveNewest"
+          LinkBase="app\" />
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <AfterBuildWwwRoot Include="$(SolutionDir)Ididit.Wasm\bin\$(ConfigurationName)\$(TargetFramework)\wwwroot\**" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AfterBuildWwwRoot)" DestinationFolder="$(TargetDir)\app\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+
 </Project>
