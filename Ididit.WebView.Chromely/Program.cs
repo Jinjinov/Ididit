@@ -52,6 +52,14 @@ if (port != -1)
     config.DebuggingMode = true;
 #endif
 
+    if (config.CustomSettings is not null)
+    {
+        string cachePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache");
+        config.CustomSettings["CachePath"] = cachePath;
+        config.CustomSettings["PersistSessionCookies"] = cachePath;
+        config.CustomSettings["PersistUserPreferences"] = cachePath;
+    }
+
     try
     {
         AppBuilderBase builder = AppBuilder.Create(args);

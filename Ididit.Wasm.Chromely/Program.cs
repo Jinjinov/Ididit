@@ -12,6 +12,14 @@ config.WindowOptions.Title = "ididit!";
 config.WindowOptions.RelativePathToIconFile = "favicon.ico";
 config.WindowOptions.Size = new WindowSize(1680, 1050);
 
+if (config.CustomSettings is not null)
+{
+    string cachePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "cache");
+    config.CustomSettings["CachePath"] = cachePath;
+    config.CustomSettings["PersistSessionCookies"] = cachePath;
+    config.CustomSettings["PersistUserPreferences"] = cachePath;
+}
+
 ThreadApt.STA();
 
 AppBuilder
