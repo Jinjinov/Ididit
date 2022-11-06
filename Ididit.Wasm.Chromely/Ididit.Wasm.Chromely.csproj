@@ -30,14 +30,11 @@
     <None Include="$(SolutionDir)Ididit.Wasm\wwwroot\**" CopyToOutputDirectory="PreserveNewest" LinkBase="app\" />
   </ItemGroup>
 
-  <Target Name="AfterBuild">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <ItemGroup>
-      <AfterBuildWwwRoot Include="$(SolutionDir)Ididit.Wasm\bin\$(ConfigurationName)\$(TargetFramework)\wwwroot\**" />
+      <AfterBuildWwwRoot Include="$(SolutionDir)Ididit.Wasm\bin\$(ConfigurationName)\$(TargetFramework)\wwwroot\**\*.*" />
     </ItemGroup>
-    <Message Text="$(AfterBuildWwwRoot)" Importance="high"/>
-    <Copy SourceFiles="@(AfterBuildWwwRoot)" 
-          DestinationFiles="@(AfterBuildWwwRoot->'$(TargetDir)\app\%(RecursiveDir)')"
-          SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(AfterBuildWwwRoot)" DestinationFiles="@(AfterBuildWwwRoot->'$(TargetDir)\app\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
 
 </Project>
