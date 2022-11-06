@@ -9,6 +9,7 @@ var config = DefaultConfiguration.CreateForRuntimePlatform();
 config.WindowOptions.Title = "ididit!";
 config.UrlSchemes.Add(new UrlScheme(DefaultSchemeName.LOCALREQUEST, "http", "app", string.Empty, UrlSchemeType.LocalResource, false));
 config.StartUrl = "http://app/index.html";
+config.WindowOptions.RelativePathToIconFile = "favicon.ico";
 
 ThreadApt.STA();
 
