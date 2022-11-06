@@ -20,7 +20,7 @@ public sealed class BlazorAppBuilder
                 .UseUrls(new[] { $"https://127.0.0.1:{port}" });
             });
 
-        BlazorAppBuilder appBuilder = new BlazorAppBuilder(hostBuilder);
+        BlazorAppBuilder appBuilder = new(hostBuilder);
 
         return appBuilder;
     }

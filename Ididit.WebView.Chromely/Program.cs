@@ -43,12 +43,14 @@ else
 if (port != -1)
 {
     // start up chromely
-    Assembly core = typeof(IChromelyConfiguration).Assembly;
     IChromelyConfiguration config = DefaultConfiguration.CreateForRuntimePlatform();
-    config.WindowOptions.Title = "ididit!";
     config.StartUrl = $"https://127.0.0.1:{port}";
-    config.DebuggingMode = true;
+    config.WindowOptions.Title = "ididit!";
     config.WindowOptions.RelativePathToIconFile = "favicon.ico";
+    config.WindowOptions.Size = new WindowSize(1680, 1050);
+#if DEBUG
+    config.DebuggingMode = true;
+#endif
 
     try
     {
