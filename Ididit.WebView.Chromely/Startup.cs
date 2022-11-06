@@ -1,17 +1,7 @@
-using Blazorise;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
-using ElectronNET.API;
-using ElectronNET.API.Entities;
-using Ididit.App;
+﻿using Ididit.App;
 using Ididit.WebView.App;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
-namespace Ididit.WebView.Electron;
+namespace Ididit.WebView.Chromely;
 
 public class Startup
 {
@@ -32,11 +22,6 @@ public class Startup
 
         services.AddServices();
         services.AddWebViewServices();
-
-        if (HybridSupport.IsElectronActive)
-        {
-            services.AddElectron();
-        }
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,8 +41,6 @@ public class Startup
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
-        app.UseWebSockets();
-
         app.UseRouting();
 
         app.UseEndpoints(endpoints =>
@@ -65,35 +48,5 @@ public class Startup
             endpoints.MapBlazorHub();
             endpoints.MapFallbackToPage("/_Host");
         });
-
-        if (HybridSupport.IsElectronActive)
-        {
-            ElectronCreateWindow();
-        }
-    }
-
-    public async void ElectronCreateWindow()
-    {
-        BrowserWindowOptions browserWindowOptions = new()
-        {
-            Width = 1680,
-            Height = 1050,
-            Show = false, // wait to open it
-            WebPreferences = new WebPreferences
-            {
-                WebSecurity = false
-            },
-            Icon = "wwwroot/favicon.ico"
-        };
-
-        BrowserWindow browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
-
-        await browserWindow.WebContents.Session.ClearCacheAsync();
-
-        // Handler to show when it is ready
-        browserWindow.OnReadyToShow += () => browserWindow.Show();
-
-        // Close Handler
-        browserWindow.OnClose += () => ElectronNET.API.Electron.App.Quit();
     }
 }
