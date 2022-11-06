@@ -1,4 +1,5 @@
-﻿using Ididit.Backup;
+﻿using Ididit.App;
+using Ididit.Backup;
 using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
@@ -102,9 +103,13 @@ public partial class MainComponent
 
     Filters _filters = new();
 
+    [Inject]
+    protected IPreRenderService PreRenderService { get; set; } = null!;
+
     protected override async Task OnInitializedAsync()
     {
-        await Repository.Initialize();
+        if (!PreRenderService.IsPreRendering)
+            await Repository.Initialize();
 
         Repository.DataChanged += (object? sender, EventArgs e) => StateHasChanged();
 

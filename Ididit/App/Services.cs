@@ -27,6 +27,8 @@ public static class Services
 
         serviceCollection.AddSingleton<IErrorBoundaryLogger, ErrorBoundaryLogger>();
 
+        serviceCollection.AddScoped<IPreRenderService, PreRenderService>();
+
         serviceCollection.AddScoped<JsInterop>();
 
         serviceCollection.AddScoped<DirectoryBackup>();

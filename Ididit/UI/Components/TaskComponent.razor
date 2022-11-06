@@ -52,12 +52,12 @@
             </Div>
             @if (Task.IsTask)
             {
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnPlay"><Icon Class="fa-fw" Name="IconName.PlayCircle" /></Button>
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnPlay"><Icon Class="fa-fw" Name="IconName.PlayCircle" /></Button>
                 @if (_timer.Enabled)
                 {
                     @_elapsedTime.ToString(@"hh\:mm\:ss")
                 }
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX Clicked="OnDone"><Icon Class="fa-fw" Name="IconName.Check" /></Button>
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnDone"><Icon Class="fa-fw" Name="IconName.Check" /></Button>
             }
         </Div>
 
@@ -129,7 +129,7 @@
 
                             <Addon AddonType="AddonType.End">
                                 <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")</AddonLabel>
-                                <Button Color="Color.Primary" Outline="true" Size="Size" Clicked=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                             </Addon>
                         </Addons>
 
@@ -150,7 +150,7 @@
                             }
                         </div>
 
-                        <Button Color="Color.Primary" Block=false Outline="true" Size=Size.Small Margin=Margin.Is1.FromEnd Clicked="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
+                        <Button Color="Color.Primary" Block=false Outline="true" Size=Size.Small Margin=Margin.Is1.FromEnd @onclick="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
 
                         @if (_showTime)
                         {
@@ -164,8 +164,8 @@
                                         <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
                                         <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
                                         <Addon AddonType="AddonType.End">
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                                         </Addon>
                                     </Addons>
                                 }
@@ -177,8 +177,8 @@
                                         </Addon>
 
                                         <Addon AddonType="AddonType.End">
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                                         </Addon>
                                     </Addons>
                                 }

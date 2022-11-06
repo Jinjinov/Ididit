@@ -22,11 +22,11 @@
         <Row Border=Border.Is1.OnTop.Dark>
             <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleSidebar" class="sidebar-toggle-visible">
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
                     <Icon Class="fa-fw" Name="IconName.Bars" />
                 </Button>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX Clicked="ToggleOptions">
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
                     <Icon Class="fa-fw" Name="IconName.Wrench" />
                 </Button>
 
@@ -37,7 +37,7 @@
                 <Inline>
                     <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0.Is1.OnX>
                         <Addon AddonType="AddonType.Start">
-                            <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" Clicked="Backup">
+                            <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" @onclick="Backup">
                                 <Icon Class="fa-fw" Name="IconName.Save" />
                             </Button>
                         </Addon>
@@ -73,7 +73,7 @@
                         <Collapse Visible="@_filtersVisible">
                             <CollapseHeader Padding=Padding.Is0>
 
-                                <Button Size=Size.Small Block=true Clicked="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
+                                <Button Size=Size.Small Block=true @onclick="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
 
                             </CollapseHeader>
                             <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
@@ -85,7 +85,7 @@
                         <Collapse Visible="@_categoriesVisible">
                             <CollapseHeader Padding=Padding.Is0>
 
-                                <Button Size=Size.Small Block=true Clicked="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
+                                <Button Size=Size.Small Block=true @onclick="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
 
                             </CollapseHeader>
                             <CollapseBody Padding=Padding.Is0 Style="margin: -12px">

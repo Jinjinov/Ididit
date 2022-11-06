@@ -14,8 +14,8 @@
                     <Addons Flex=Flex.NoWrap>
                         <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="Add new goal" />
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                            @*<Button Color="Color.Primary" Outline="true" Size="Size" Clicked=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                            @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
                         </Addon>
                     </Addons>
 
@@ -29,14 +29,14 @@
                         <Addon AddonType="AddonType.End">
                             @if (Goal.CreateTaskFromEachLine)
                             {
-                                <Button Color="Color.Primary" Outline="false" Size="Size" Clicked=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                                <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
                             else
                             {
-                                <Button Color="Color.Primary" Outline="true" Size="Size" Clicked=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
+                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
-                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" Clicked=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                         </Addon>
                     </Addons>
 

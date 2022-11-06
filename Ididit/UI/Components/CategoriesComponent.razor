@@ -18,8 +18,8 @@
 
     <Div>Categories:</Div>
 
-    <Button Color=Color.Primary Outline=true Size=Size.Small Clicked=ToggleAll>Toggle all</Button>
-    <Button Color=Color.Primary Outline=true Size=Size.Small Clicked=NewCategory>Add category to @SelectedCategory.Name</Button>
+    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
+    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category to @SelectedCategory.Name</Button>
 
     <TreeView Margin=Margin.Is0.Is1.FromTop
               TNode="CategoryModel"

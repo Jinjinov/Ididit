@@ -3,8 +3,8 @@
     <Addons Flex=Flex.NoWrap>
         <TextEdit @ref=_textEdit Size="Size.Small" @bind-Text="@_categoryName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new category" />
         <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="Size.Small" Clicked=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-            @*<Button Color="Color.Primary" Outline="true" Size="Size.Small" Clicked=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
+            <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+            @*<Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
         </Addon>
     </Addons>
 }
@@ -14,10 +14,10 @@ else
         <TextEdit Size="Size.Small" Text="@Category?.Name" ReadOnly=true />
 
         <Addon AddonType="AddonType.End">
-            <Button Color="Color.Primary" Outline="true" Size="Size.Small" Clicked=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+            <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=EditName><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
             @if (Category?.Id != 1)
             {
-                <Button Color="Color.Primary" Outline="true" Size="Size.Small" Clicked=DeleteCategory><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=DeleteCategory><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
             }
         </Addon>
     </Addons>

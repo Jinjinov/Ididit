@@ -4,7 +4,7 @@
     <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="Search" />
 
     <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="ClearSearchFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
     </Addon>
 </Addons>
 
@@ -14,7 +14,7 @@
     <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
 
     <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" Clicked="ClearDateFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
     </Addon>
 </Addons>
 
