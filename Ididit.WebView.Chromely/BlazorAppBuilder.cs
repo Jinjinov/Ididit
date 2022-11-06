@@ -12,7 +12,7 @@ public sealed class BlazorAppBuilder
 
     public static BlazorAppBuilder Create(string[] args, int port)
     {
-        var hostBuilder = Host.CreateDefaultBuilder(args)
+        IHostBuilder hostBuilder = Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder
@@ -20,7 +20,7 @@ public sealed class BlazorAppBuilder
                 .UseUrls(new[] { $"https://127.0.0.1:{port}" });
             });
 
-        var appBuilder = new BlazorAppBuilder(hostBuilder);
+        BlazorAppBuilder appBuilder = new BlazorAppBuilder(hostBuilder);
 
         return appBuilder;
     }

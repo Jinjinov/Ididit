@@ -47,8 +47,8 @@ public static class ServerAppUtil
 
     public static bool IsPortAvailable(int port)
     {
-        var ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
-        var tcpConnInfoArray = ipGlobalProperties.GetActiveTcpListeners();
+        IPGlobalProperties ipGlobalProperties = IPGlobalProperties.GetIPGlobalProperties();
+        IPEndPoint[] tcpConnInfoArray = ipGlobalProperties.GetActiveTcpListeners();
 
         foreach (IPEndPoint endpoint in tcpConnInfoArray)
         {

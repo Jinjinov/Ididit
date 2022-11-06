@@ -4,9 +4,9 @@ using Chromely.Core.Configuration;
 using Ididit.WebView.Chromely;
 using System.Reflection;
 
-var appName = Assembly.GetEntryAssembly()?.GetName().Name ?? "ididit!";
-var firstProcess = ServerAppUtil.IsMainProcess(args);
-var port = ServerAppUtil.AvailablePort;
+string appName = Assembly.GetEntryAssembly()?.GetName().Name ?? "ididit!";
+bool firstProcess = ServerAppUtil.IsMainProcess(args);
+int port = ServerAppUtil.AvailablePort;
 
 if (firstProcess)
 {
@@ -43,8 +43,8 @@ else
 if (port != -1)
 {
     // start up chromely
-    var core = typeof(IChromelyConfiguration).Assembly;
-    var config = DefaultConfiguration.CreateForRuntimePlatform();
+    Assembly core = typeof(IChromelyConfiguration).Assembly;
+    IChromelyConfiguration config = DefaultConfiguration.CreateForRuntimePlatform();
     config.WindowOptions.Title = "ididit!";
     config.StartUrl = $"https://127.0.0.1:{port}";
     config.DebuggingMode = true;
@@ -52,7 +52,7 @@ if (port != -1)
 
     try
     {
-        var builder = AppBuilder.Create(args);
+        AppBuilderBase builder = AppBuilder.Create(args);
         builder = builder.UseConfig<DefaultConfiguration>(config);
         builder = builder.UseApp<ChromelyBasicApp>();
         builder = builder.Build();
