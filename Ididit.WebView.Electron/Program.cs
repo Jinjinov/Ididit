@@ -15,7 +15,7 @@ public class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseElectron(args); // <-- add this
+                webBuilder.UseElectron(args);
                 webBuilder.UseStartup<Startup>();
             });
 }
