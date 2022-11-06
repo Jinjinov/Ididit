@@ -91,7 +91,7 @@ public class Startup
             {
                 WebSecurity = false
             },
-            Icon = "bin/wwwroot/favicon.ico"
+            Icon = "wwwroot/favicon.ico"
         };
 
         BrowserWindow browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
