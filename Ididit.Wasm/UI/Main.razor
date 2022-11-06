@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Routing
 
+@inject NavigationManager NavigationManager
+
 <CascadingAuthenticationState>
     <Router AppAssembly="@GetType().Assembly">
         <Found Context="routeData">
@@ -11,3 +13,14 @@
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+@code {
+    // Ididit.Wasm.Chromely doesn't work without this:
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}
