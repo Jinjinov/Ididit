@@ -2,6 +2,7 @@ using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Ididit.App;
 using Ididit.WebView.App;
 using Microsoft.AspNetCore.Builder;
@@ -76,7 +77,32 @@ public class Startup
 
         if (HybridSupport.IsElectronActive)
         {
-            Task.Run(async () => await ElectronNET.API.Electron.WindowManager.CreateWindowAsync());
+            ElectronCreateWindow();
         }
+    }
+
+    public async void ElectronCreateWindow()
+    {
+        var browserWindowOptions = new BrowserWindowOptions
+        {
+            Width = 1680,
+            Height = 1050,
+            Show = false, // wait to open it
+            WebPreferences = new WebPreferences
+            {
+                WebSecurity = false
+            },
+            Icon = "../../../wwwroot/favicon.ico"
+        };
+
+        var browserWindow = await ElectronNET.API.Electron.WindowManager.CreateWindowAsync(browserWindowOptions);
+
+        await browserWindow.WebContents.Session.ClearCacheAsync();
+
+        // Handler to show when it is ready
+        browserWindow.OnReadyToShow += () => browserWindow.Show();
+
+        // Close Handler
+        browserWindow.OnClose += () => ElectronNET.API.Electron.App.Quit();
     }
 }
