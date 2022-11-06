@@ -13,7 +13,6 @@
     <!-- <RuntimeIdentifier>osx-x64</RuntimeIdentifier>-->
     <Platforms>x64</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <StartupObject />
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
@@ -28,16 +27,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="$(SolutionDir)Ididit.Wasm\wwwroot\**"
-          CopyToOutputDirectory="PreserveNewest"
-          LinkBase="app\" />
+    <None Include="$(SolutionDir)Ididit.Wasm\wwwroot\**" CopyToOutputDirectory="PreserveNewest" LinkBase="app\" />
   </ItemGroup>
 
   <Target Name="AfterBuild">
     <ItemGroup>
       <AfterBuildWwwRoot Include="$(SolutionDir)Ididit.Wasm\bin\$(ConfigurationName)\$(TargetFramework)\wwwroot\**" />
     </ItemGroup>
-    <Copy SourceFiles="@(AfterBuildWwwRoot)" DestinationFolder="$(TargetDir)\app\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Message Text="$(AfterBuildWwwRoot)" Importance="high"/>
+    <Copy SourceFiles="@(AfterBuildWwwRoot)" 
+          DestinationFiles="@(AfterBuildWwwRoot->'$(TargetDir)\app\%(RecursiveDir)')"
+          SkipUnchangedFiles="true" />
   </Target>
 
 </Project>
