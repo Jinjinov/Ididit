@@ -11,8 +11,8 @@ public static class ServerAppUtil
     private const int _endScan = 6000;
     private const string _argumentType = "--type";
 
-    public static Task? BlazorTask;
-    public static CancellationTokenSource? BlazorTaskTokenSource;
+    public static Task? BlazorTask { get; set; }
+    public static CancellationTokenSource? BlazorTaskTokenSource { get; set; }
 
     public static int AvailablePort
     {
