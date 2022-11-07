@@ -6,8 +6,8 @@ using Chromely.Core.Network;
 using Chromely.NativeHosts;
 
 IChromelyConfiguration config = DefaultConfiguration.CreateForRuntimePlatform();
-config.StartUrl = "http://app/index.html";
-config.UrlSchemes.Add(new UrlScheme(DefaultSchemeName.LOCALREQUEST, "http", "app", string.Empty, UrlSchemeType.LocalResource, false));
+config.StartUrl = "http://wwwroot/index.html";
+config.UrlSchemes.Add(new UrlScheme(DefaultSchemeName.LOCALREQUEST, "http", "wwwroot", string.Empty, UrlSchemeType.LocalResource, false));
 config.WindowOptions.Title = "ididit!";
 config.WindowOptions.RelativePathToIconFile = "favicon.ico";
 config.WindowOptions.Size = new WindowSize(1680, 1050);

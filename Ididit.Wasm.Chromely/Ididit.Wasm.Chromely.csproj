@@ -48,7 +48,7 @@
 
     <MSBuild 
       Projects="$(SolutionDir)Ididit.Wasm\Ididit.Wasm.csproj" 
-      Properties="DeployOnBuild=true;PublishProfile=$(PublishProfileFileName);PublishProfileRootFolder=$(PublishProfileDirectory);PublishUrl=$(TargetDir)app;PlatformTarget=AnyCPU" />
+      Properties="DeployOnBuild=true;PublishProfile=$(PublishProfileFileName);PublishProfileRootFolder=$(PublishProfileDirectory);PublishUrl=$(TargetDir);PlatformTarget=AnyCPU" />
 
   </Target>
 
