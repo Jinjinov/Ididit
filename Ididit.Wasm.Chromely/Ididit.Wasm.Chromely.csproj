@@ -42,14 +42,13 @@
   <PropertyGroup>
     <PublishProfileDirectory>$(SolutionDir)Ididit.Wasm\Properties\PublishProfiles</PublishProfileDirectory>
     <PublishProfileFileName>IdiditWasmChromely</PublishProfileFileName>
-    <PublishDirectory>$(TargetDir)\app</PublishDirectory>
   </PropertyGroup>
-  
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
 
     <MSBuild 
       Projects="$(SolutionDir)Ididit.Wasm\Ididit.Wasm.csproj" 
-      Properties="DeployOnBuild=true;PublishProfile=$(PublishProfileFileName);PublishProfileRootFolder=$(PublishProfileDirectory);PublishUrl=$(PublishDirectory)" />
+      Properties="DeployOnBuild=true;PublishProfile=$(PublishProfileFileName);PublishProfileRootFolder=$(PublishProfileDirectory);PublishUrl=$(TargetDir)app;PlatformTarget=AnyCPU" />
 
   </Target>
 
