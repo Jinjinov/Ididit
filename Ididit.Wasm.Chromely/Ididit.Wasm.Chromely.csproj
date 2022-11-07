@@ -9,8 +9,8 @@
     <SelfContained>true</SelfContained>
     <PublishReadyToRun>true</PublishReadyToRun>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <!-- <RuntimeIdentifier>linux-x64</RuntimeIdentifier>-->
-    <!-- <RuntimeIdentifier>osx-x64</RuntimeIdentifier>-->
+    <!--<RuntimeIdentifier>linux-x64</RuntimeIdentifier>-->
+    <!--<RuntimeIdentifier>osx-x64</RuntimeIdentifier>-->
     <Platforms>x64</Platforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
@@ -26,6 +26,7 @@
     </None>
   </ItemGroup>
 
+  <!--
   <ItemGroup>
     <None Include="$(SolutionDir)Ididit.Wasm\wwwroot\**" CopyToOutputDirectory="PreserveNewest" LinkBase="app\" />
   </ItemGroup>
@@ -35,6 +36,21 @@
       <AfterBuildWwwRoot Include="$(SolutionDir)Ididit.Wasm\bin\$(ConfigurationName)\$(TargetFramework)\wwwroot\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(AfterBuildWwwRoot)" DestinationFiles="@(AfterBuildWwwRoot->'$(TargetDir)\app\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  -->
+
+  <PropertyGroup>
+    <PublishProfileDirectory>$(SolutionDir)Ididit.Wasm\Properties\PublishProfiles</PublishProfileDirectory>
+    <PublishProfileFileName>IdiditWasmChromely</PublishProfileFileName>
+    <PublishDirectory>$(TargetDir)\app</PublishDirectory>
+  </PropertyGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+
+    <MSBuild 
+      Projects="$(SolutionDir)Ididit.Wasm\Ididit.Wasm.csproj" 
+      Properties="DeployOnBuild=true;PublishProfile=$(PublishProfileFileName);PublishProfileRootFolder=$(PublishProfileDirectory);PublishUrl=$(PublishDirectory)" />
+
   </Target>
 
 </Project>
