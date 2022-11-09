@@ -9,25 +9,13 @@
 
 
 
-- [ ] Blazor Desktop Linux
-    - https://github.com/tryphotino/photino.net
-        - https://github.com/tryphotino/photino.Blazor
-        - https://github.com/tryphotino/photino.Blazor/tree/master/Samples
-        - https://github.com/tryphotino/photino.Blazor/tree/master/Samples/Photino.Blazor.Sample
-    - https://github.com/ElectronNET/Electron.NET
-        - https://github.com/ElectronNET/electron.net-api-demos
-        - https://github.com/aesalazar/AsteroidsWasm/tree/master/Asteroids.Blazor.Electron
-        - https://github.com/domingoladron/LearnBlazor.ElectronNet
-    - https://github.com/chromelyapps/Chromely
-        - https://github.com/chromelyapps/demo-projects
-        - https://github.com/chromelyapps/demo-projects/tree/master/blazor
-        - https://github.com/chromelyapps/demo-projects/issues/99
-
-
-
 - [ ] November 8-10, 2022
-    - [ ] Bootstrap 4.6 ---> 5.2
+    - [ ] Bootstrap 4.6 ---> 5.2 - no more jQuery
+        - https://getbootstrap.com/docs/4.6/getting-started/introduction/
+        - https://getbootstrap.com/docs/5.2/getting-started/introduction/
     - [ ] Blazorise 1.0 ---> 1.1
+        - Blazorise.Bootstrap
+        - Blazorise.Bootstrap5
     - [ ] .NET 6 ---> .NET 7
 
 
