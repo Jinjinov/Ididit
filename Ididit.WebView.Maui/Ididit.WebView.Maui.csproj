@@ -15,10 +15,10 @@
     <EnableDefaultCssItems>false</EnableDefaultCssItems>
 
     <!-- Display name -->
-    <ApplicationTitle>Ididit.WebView.Maui</ApplicationTitle>
+    <ApplicationTitle>ididit!</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>com.companyname.Ididit.WebView.Maui</ApplicationId>
+    <ApplicationId>today.ididit</ApplicationId>
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
@@ -31,6 +31,7 @@
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
     <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    <DefaultLanguage>en</DefaultLanguage>
   </PropertyGroup>
 
   <ItemGroup>
