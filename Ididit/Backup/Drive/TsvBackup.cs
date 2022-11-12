@@ -55,7 +55,7 @@ internal class TsvBackup : IDataExport, IFileImport
         public string Task { get; set; } = string.Empty;
         public string Interval { get; set; } = string.Empty;
         public string Duration { get; set; } = string.Empty;
-        public Priority Priority { get; set; } = Priority.None;
+        public string Priority { get; set; } = string.Empty;
         public List<string> Category { get; set; } = new();
     };
 
@@ -176,29 +176,38 @@ internal class TsvBackup : IDataExport, IFileImport
             goal.Details += string.IsNullOrEmpty(goal.Details) ? record.Task : Environment.NewLine + record.Task;
             await _repository.UpdateGoal(goal.Id);
 
-            TimeSpan desiredInterval = TimeSpan.Zero;
-            TimeSpan? desiredDuration = null;
-            TaskKind taskKind = TaskKind.Note;
-
-            if (double.TryParse(record.Interval, NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
+            if (!string.IsNullOrEmpty(record.Priority))
             {
-                desiredInterval = TimeSpan.FromDays(days);
-                taskKind = TaskKind.RepeatingTask;
-            }
-            else if (!string.IsNullOrEmpty(record.Interval))
-            {
-                desiredInterval = TimeSpan.Zero;
-                taskKind = TaskKind.Task;
-            }
+                TimeSpan desiredInterval = TimeSpan.Zero;
+                TimeSpan? desiredDuration = null;
+                Priority priority = Priority.None;
+                TaskKind taskKind = TaskKind.Note;
 
-            if (double.TryParse(record.Duration, NumberStyles.Any, CultureInfo.InvariantCulture, out double minutes))
-            {
-                desiredDuration = TimeSpan.FromMinutes(minutes);
+                if (double.TryParse(record.Interval, NumberStyles.Any, CultureInfo.InvariantCulture, out double days))
+                {
+                    desiredInterval = TimeSpan.FromDays(days);
+                    taskKind = TaskKind.RepeatingTask;
+                }
+                else if (!string.IsNullOrEmpty(record.Interval))
+                {
+                    desiredInterval = TimeSpan.Zero;
+                    taskKind = TaskKind.Task;
+                }
+
+                if (Enum.TryParse(record.Priority, out Priority taskPriority))
+                {
+                    priority = taskPriority;
+                }
+
+                if (double.TryParse(record.Duration, NumberStyles.Any, CultureInfo.InvariantCulture, out double minutes))
+                {
+                    desiredDuration = TimeSpan.FromMinutes(minutes);
+                }
+
+                TaskModel task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, priority, taskKind, desiredDuration);
+
+                await _repository.AddTask(task);
             }
-
-            TaskModel task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, record.Priority, taskKind, desiredDuration);
-
-            await _repository.AddTask(task);
         }
     }
 
@@ -239,26 +248,44 @@ internal class TsvBackup : IDataExport, IFileImport
 
         foreach (GoalModel goal in category.GoalList)
         {
-            foreach (TaskModel task in goal.TaskList)
+            if (goal.TaskList.Any())
             {
-                string interval = string.Empty;
-
-                if (task.IsTask)
+                foreach (TaskModel task in goal.TaskList)
                 {
-                    interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
+                    string interval = string.Empty;
+
+                    if (task.IsTask)
+                    {
+                        interval = task.DesiredInterval.TotalDays > 0.0 ? task.DesiredInterval.TotalDays.ToString(CultureInfo.InvariantCulture) : "ASAP";
+                    }
+
+                    string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture) : "";
+
+                    records.Add(new CsvRow
+                    {
+                        Category = categories,
+                        Goal = goal.Name,
+                        Task = task.Name,
+                        Priority = task.Priority.ToString(),
+                        Interval = interval,
+                        Duration = duration
+                    });
                 }
-
-                string duration = task.DesiredDuration.HasValue && task.DesiredDuration.Value.TotalMinutes > 0.0 ? task.DesiredDuration.Value.TotalMinutes.ToString(CultureInfo.InvariantCulture) : "";
-
-                records.Add(new CsvRow
+            }
+            else if(!string.IsNullOrEmpty(goal.Details))
+            {
+                foreach (string line in goal.Details.Split('\n'))
                 {
-                    Category = categories,
-                    Goal = goal.Name,
-                    Task = task.Name,
-                    Priority = task.Priority,
-                    Interval = interval,
-                    Duration = duration
-                });
+                    records.Add(new CsvRow
+                    {
+                        Category = categories,
+                        Goal = goal.Name,
+                        Task = line,
+                        Priority = string.Empty,
+                        Interval = string.Empty,
+                        Duration = string.Empty
+                    });
+                }
             }
         }
 
