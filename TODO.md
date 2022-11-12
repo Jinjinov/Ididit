@@ -23,12 +23,10 @@
 - [ ] Publish a .NET MAUI app for Windows
     - https://www.youtube.com/watch?v=FNwv_W3TtSU&t=110s
     - https://www.advancedinstaller.com/msix-publish-microsoft-store.html
-    - https://learn.microsoft.com/en-us/windows/msix/desktop/vs-package-overview
+    - https://learn.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
     - https://learn.microsoft.com/en-us/windows/msix/package/packaging-uwp-apps
-    - https://docs.microsoft.com/en-us/dotnet/maui/windows/deployment/overview
-    - https://learn.microsoft.com/en-us/windows/apps/publish/partner-center/opening-a-developer-account
-    - https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/create-app-submission
     - https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/overview
+    - https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/create-app-submission
 
 - [ ] Debug on the Android Emulator
     - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
