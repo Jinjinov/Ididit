@@ -32,6 +32,11 @@ public partial class Options
     {
         await Repository.DeleteAll();
 
+        await OnSelectedCategoryChanged();
+    }
+
+    private async Task OnSelectedCategoryChanged()
+    {
         SelectedCategory = Repository.Category;
 
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
@@ -87,6 +92,8 @@ public partial class Options
         }
 
         stream.Close();
+
+        await OnSelectedCategoryChanged();
     }
 
     async Task ExportData(DataFormat dataFormat)
@@ -102,5 +109,7 @@ public partial class Options
     async Task ImportGoogleDrive()
     {
         await GoogleDriveBackup.ImportData();
+
+        await OnSelectedCategoryChanged();
     }
 }
