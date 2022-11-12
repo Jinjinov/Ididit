@@ -21,6 +21,7 @@
 
 
 - [ ] Publish a .NET MAUI app for Windows
+    - https://www.youtube.com/watch?v=FNwv_W3TtSU&t=110s
     - https://www.advancedinstaller.com/msix-publish-microsoft-store.html
     - https://learn.microsoft.com/en-us/windows/msix/desktop/vs-package-overview
     - https://learn.microsoft.com/en-us/windows/msix/package/packaging-uwp-apps

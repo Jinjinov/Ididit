@@ -1,7 +1,8 @@
-﻿using Ididit.Data;
-using Ididit.Backup;
+﻿using Ididit.Backup;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
+using Ididit.Data;
+using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
@@ -16,6 +17,12 @@ public partial class Options
     [Inject]
     IRepository Repository { get; set; } = null!;
 
+    [Parameter]
+    public CategoryModel SelectedCategory { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<CategoryModel> SelectedCategoryChanged { get; set; }
+
     async Task LoadExamples()
     {
         await Repository.LoadExamples();
@@ -24,6 +31,10 @@ public partial class Options
     async Task DeleteAll()
     {
         await Repository.DeleteAll();
+
+        SelectedCategory = Repository.Category;
+
+        await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
     }
 
     [Parameter]
