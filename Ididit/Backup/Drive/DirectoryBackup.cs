@@ -90,6 +90,12 @@ internal class DirectoryBackup : IDataExport
                     }
                     else
                     {
+                        if (!goal.TaskList.Any())
+                        {
+                            goal.CreateTaskFromEachLine = true;
+                            await _repository.UpdateGoal(goal.Id);
+                        }
+
                         task = goal.CreateTask(_repository.NextTaskId, line);
 
                         await _repository.AddTask(task);

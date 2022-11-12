@@ -204,6 +204,12 @@ internal class TsvBackup : IDataExport, IFileImport
                     desiredDuration = TimeSpan.FromMinutes(minutes);
                 }
 
+                if (!goal.TaskList.Any())
+                {
+                    goal.CreateTaskFromEachLine = true;
+                    await _repository.UpdateGoal(goal.Id);
+                }
+
                 TaskModel task = goal.CreateTask(_repository.NextTaskId, record.Task, desiredInterval, priority, taskKind, desiredDuration);
 
                 await _repository.AddTask(task);
