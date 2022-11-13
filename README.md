@@ -9,49 +9,49 @@ Take notes, manage tasks, track habits.
 
 ididit! is free, open source and works on Web and Windows. Android, iOS, macOS and Linux are coming soon!
 
-[Platforms](#platforms) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
+[Web app](#webapp) [Releases](#releases) [Previews](#previews) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
 
-## Platforms
+## Web app
 
-### Web app:
+### Current version (2022.11.11)
 
-#### Current version (2022.07.31):
+[Use ididit! version 2.0.2 online](https://app.ididit.today)
 
-[Use version 2.0.1 online](https://app.ididit.today)
+### Preview version (2022.11.13)
 
-#### Beta version (2022.08.01):
+[Use ididit! version 2.1.0-preview.2 online](https://new.ididit.today)
 
-[Use version 2.1.0-beta online](https://new.ididit.today)
+### Old version (2021.11.09)
 
-#### Old version (2021.11.09):
+[Use ididit! version 1.3.7 online](https://old.ididit.today)
 
-[Use version 1.3.7 online](https://old.ididit.today)
+## Releases
 
-### Windows:
+### 2.0.2 (2022.11.11)
 
-#### Current version (2022.07.31):
+#### Windows:
 
-[Download version 2.0.1](https://ididit.today/ididit.zip) and run setup.exe
+[Download ididit! version 2.0.2](https://ididit.today/download/ididit.2.0.2.zip) and run setup.exe
 
-#### Beta version (2022.08.01):
+### 2.0.1 (2022.07.31)
 
-[Download version 2.1.0-beta](https://ididit.today/ididit-beta.zip) and run setup.exe
+#### Windows:
 
-### Android:
+[Download ididit! version 2.0.1](https://ididit.today/download/ididit.2.0.1.zip) and run setup.exe
 
-Coming soon! (Hopefully in 2022)
+## Previews
 
-### iOS:
+### 2.1.0-preview.2 (2022.11.13)
 
-Coming soonish! (Hopefully in 2023)
+#### Windows:
 
-### macOS:
+[Download ididit! version 2.1.0-preview.2](https://ididit.today/download/ididit.2.1.0-preview.2.zip) and run setup.exe
 
-Coming soonish! (Hopefully in 2023)
+### 2.1.0-preview.1 (2022.08.05)
 
-### Linux:
+#### Windows:
 
-Coming later! (Hopefully in 2024)
+[Download ididit! version 2.1.0-preview.1](https://ididit.today/download/ididit.2.1.0-preview.1.zip) and run setup.exe
 
 ## Features
 
@@ -123,7 +123,7 @@ Coming later! (Hopefully in 2024)
 
 ### Made with latest technologies:
 
-*   [.NET 6](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+*   [.NET](https://dotnet.microsoft.com/en-us/download/dotnet)
 *   [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
 *   [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
 *   [Blazorise](https://blazorise.com/)
