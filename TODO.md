@@ -43,22 +43,10 @@
     - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
 
 - [ ] apple store - $99 annually
-    - https://www.mimovrste.com/apple-prenosniki
-    - https://www.mimovrste.com/apple-macbook-air
-    - https://www.mimovrste.com/apple-macbook-pro
-
-    - https://www.mimovrste.com/namizni-racunalniki?b%5B%5D=apple
-    - https://www.mimovrste.com/nettopi?b%5B%5D=apple
-    - https://www.mimovrste.com/poslovni-racunalniki?b%5B%5D=apple
-    - https://www.mimovrste.com/racunalniki-za-vsakdanjo-rabo?b%5B%5D=apple
-
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
 - [ ] windows store - $19
-    - https://www.youtube.com/watch?v=N6jPl3tBNfg
     - https://stackoverflow.com/questions/63369727/not-seeing-any-alternative-option-for-publish-create-app-packages-in-my-wpf
-    - https://docs.microsoft.com/en-us/windows/uwp/publish/opening-a-developer-account
-    - https://docs.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-packaging-dot-net
 
 - [ ] linux software repository
     - https://help.ubuntu.com/community/Repositories/Ubuntu
