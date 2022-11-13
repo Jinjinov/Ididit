@@ -378,6 +378,8 @@ internal class Repository : DataModel, IRepository
                 goal.Details += string.IsNullOrEmpty(goal.Details) ? task.Name : Environment.NewLine + task.Name;
             }
 
+            goal.CreateTaskFromEachLine = true;
+
             await AddGoal(goal);
         }
 
