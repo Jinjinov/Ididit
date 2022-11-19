@@ -53,7 +53,14 @@
 
                 @*@UserDisplayName.GetUserDisplayName().Result*@
 
-                @ChildContent
+                <ErrorBoundary>
+                    <ChildContent>
+                        @ChildContent
+                    </ChildContent>
+                    <ErrorContent Context="ex">
+                        <p>@ex.Message</p>
+                    </ErrorContent>
+                </ErrorBoundary>
 
             </Column>
         </Row>
