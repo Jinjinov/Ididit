@@ -11,7 +11,7 @@ namespace Ididit.WebView.Online;
 
 public class GoogleDriveService : IGoogleDriveService
 {
-    // If modifying these scopes, delete your previously saved "Google.Apis.Auth.OAuth2" folder
+    // If modifying these scopes, delete your previously saved "Ididit" folder
     private readonly string[] _scopes = { DriveService.Scope.DriveFile };
 
     private const string _applicationName = "ididit";
@@ -28,8 +28,8 @@ public class GoogleDriveService : IGoogleDriveService
 
         using (FileStream stream = new(path, FileMode.Open, FileAccess.Read))
         {
-            // The folder "Google.Apis.Auth.OAuth2" stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
-            string credPath = "Google.Apis.Auth.OAuth2";
+            // The folder "Ididit" stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
+            string credPath = "Ididit";
 
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                 GoogleClientSecrets.FromStream(stream).Secrets,
