@@ -18,11 +18,37 @@ public class GoogleDriveService : IGoogleDriveService
 
     public async Task<DriveService?> GetDriveService()
     {
-        string baseDirectory = AppContext.BaseDirectory; // = AppDomain.CurrentDomain.BaseDirectory; // = Environment.CurrentDirectory; // = Directory.GetCurrentDirectory();
-        string path = Path.Combine(baseDirectory, "credentials.json");
+        // D:\Jinjinov\Ididit\Ididit.WebView.Maui\bin\Debug\net6.0-windows10.0.19041.0\win10-x64\AppX\
+        // D:\Jinjinov\Ididit\Ididit.WebView.Wpf\bin\Debug\net6.0-windows\
+        // "/media/sf_Jinjinov/Ididit/Ididit.WebView.Photino/bin/Debug/net6.0/"
+        // "/Users/Urban/Projects/Ididit/Ididit.WebView.Maui/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/Ididit.WebView.Maui.app/Contents/MonoBundle"
+        string baseDirectory = AppContext.BaseDirectory;
 
-        if (!File.Exists(path))
-            return null;
+        /*
+        baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+        These days (.NET Core, .NET Standard 1.3+ or .NET Framework 4.6+) it's better to use AppContext.BaseDirectory rather than AppDomain.CurrentDomain.BaseDirectory. 
+        Both are equivalent, but multiple AppDomains are no longer supported. https://learn.microsoft.com/en-us/dotnet/core/porting/net-framework-tech-unavailable
+
+        // C:\WINDOWS\system32
+        // D:\Jinjinov\Ididit\Ididit.WebView.Wpf\bin\Debug\net6.0-windows
+        // "/media/sf_Jinjinov/Ididit"
+        // "/Users/Urban/Projects/Ididit/Ididit.WebView.Maui/bin/Debug/net6.0-maccatalyst/maccatalyst-x64/Ididit.WebView.Maui.app"
+        baseDirectory = Environment.CurrentDirectory;
+        baseDirectory = Directory.GetCurrentDirectory(); // public static string GetCurrentDirectory() => Environment.CurrentDirectory;
+        /**/
+
+        while (!File.Exists(Path.Combine(baseDirectory, "credentials.json")))
+        {
+            string? parent = Directory.GetParent(baseDirectory)?.FullName; // macOS work-around
+
+            if (parent == null)
+                return null;
+            else
+                baseDirectory = parent;
+        }
+
+        string path = Path.Combine(baseDirectory, "credentials.json");
 
         UserCredential credential;
 
