@@ -12,7 +12,19 @@ public partial class App : Application
     {
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
-            MessageBox.Show(error.ExceptionObject.ToString(), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            try
+            {
+                string? message = error.ExceptionObject.ToString();
+
+                System.Diagnostics.Debug.WriteLine(message);
+
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                System.IO.File.WriteAllText("Error.log", message);
+            }
+            catch
+            {
+            }
         };
     }
 }

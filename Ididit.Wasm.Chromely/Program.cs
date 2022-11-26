@@ -5,6 +5,21 @@ using Chromely.Core.Infrastructure;
 using Chromely.Core.Network;
 using Chromely.NativeHosts;
 
+AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+{
+    try
+    {
+        string? message = error.ExceptionObject.ToString();
+
+        System.Diagnostics.Debug.WriteLine(message);
+
+        File.WriteAllText("Error.log", message);
+    }
+    catch
+    {
+    }
+};
+
 IChromelyConfiguration config = DefaultConfiguration.CreateForRuntimePlatform();
 config.StartUrl = "http://wwwroot/index.html";
 config.UrlSchemes.Add(new UrlScheme(DefaultSchemeName.LOCALREQUEST, "http", "wwwroot", string.Empty, UrlSchemeType.LocalResource, false));

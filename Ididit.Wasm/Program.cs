@@ -7,6 +7,21 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 
+AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+{
+    try
+    {
+        string? message = error.ExceptionObject.ToString();
+
+        System.Diagnostics.Debug.WriteLine(message);
+
+        System.IO.File.WriteAllText("Error.log", message);
+    }
+    catch
+    {
+    }
+};
+
 WebAssemblyHostBuilder builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<Main>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");

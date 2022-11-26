@@ -9,7 +9,28 @@ public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
+        AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+        {
+            try
+            {
+                string? message = error.ExceptionObject.ToString();
+
+                System.Diagnostics.Debug.WriteLine(message);
+
+                Application.Current?.Dispatcher.Dispatch(async () =>
+                {
+                    if (Application.Current.MainPage != null)
+                        await Application.Current.MainPage.DisplayAlert("Error", message, "OK");
+                });
+
+                File.WriteAllText("Error.log", message);
+            }
+            catch
+            {
+            }
+        };
+
+        var builder = MauiApp.CreateBuilder();
 
 		builder.UseMauiApp<App>();
 

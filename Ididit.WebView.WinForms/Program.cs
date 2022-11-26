@@ -13,7 +13,19 @@ static class Program
     {
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
-            MessageBox.Show(text: error.ExceptionObject.ToString(), caption: "Error");
+            try
+            {
+                string? message = error.ExceptionObject.ToString();
+
+                System.Diagnostics.Debug.WriteLine(message);
+
+                MessageBox.Show(text: message, caption: "Error");
+
+                System.IO.File.WriteAllText("Error.log", message);
+            }
+            catch
+            {
+            }
         };
 
         Application.SetHighDpiMode(HighDpiMode.SystemAware);

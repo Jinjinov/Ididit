@@ -4,6 +4,21 @@ using Chromely.Core.Configuration;
 using Ididit.WebView.Chromely;
 using System.Reflection;
 
+AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+{
+    try
+    {
+        string? message = error.ExceptionObject.ToString();
+
+        System.Diagnostics.Debug.WriteLine(message);
+
+        File.WriteAllText("Error.log", message);
+    }
+    catch
+    {
+    }
+};
+
 string appName = Assembly.GetEntryAssembly()?.GetName().Name ?? "ididit!";
 bool firstProcess = ServerAppUtil.IsMainProcess(args);
 int port = ServerAppUtil.AvailablePort;

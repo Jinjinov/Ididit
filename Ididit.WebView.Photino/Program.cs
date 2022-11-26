@@ -33,7 +33,19 @@ class Program
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
-            app.MainWindow.OpenAlertWindow("Fatal exception", error.ExceptionObject.ToString());
+            try
+            {
+                string? message = error.ExceptionObject.ToString();
+
+                System.Diagnostics.Debug.WriteLine(message);
+
+                app.MainWindow.OpenAlertWindow("Error", message);
+
+                System.IO.File.WriteAllText("Error.log", message);
+            }
+            catch
+            {
+            }
         };
 
         app.Run();
