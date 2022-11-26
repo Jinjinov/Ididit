@@ -1,9 +1,6 @@
 # TODO:
 
 - [ ] organize habits
-    - am I actually going to do it just because it has a reminder? (sleep on back, ...)
-    - is it actually a (repeating) task?
-    - will I go ape shit crazy because there is no reminder?
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
@@ -19,9 +16,6 @@
     - [ ] .NET 6 ---> .NET 7
 
 
-
-- [ ] Publish a .NET MAUI app for Windows
-    - https://learn.microsoft.com/en-us/windows/msix/package/packaging-uwp-apps
 
 - [ ] Debug on the Android Emulator
     - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
@@ -45,14 +39,13 @@
 - [ ] apple store - $99 annually
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
-- [ ] windows store - $19
-    - https://stackoverflow.com/questions/63369727/not-seeing-any-alternative-option-for-publish-create-app-packages-in-my-wpf
-
 - [ ] linux software repository
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
     - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
     - https://wiki.ubuntu.com/Upstream
+
+-------------------------------------------------------------------------------
 
 - [ ] add Google Analytics
     - https://analytics.google.com/
@@ -114,6 +107,8 @@
     - during weekend
     - when opportunity arises
 
+- [ ] Tizen: keyboard arrow down can change focus to next textarea
+
 ## MEDIUM PRIORITY:
 
 - [ ] use Drag & Drop to move Subcategory into another Category
@@ -126,8 +121,6 @@
 
 - [ ] UI - range DateEdit - `<DatePicker TValue="DateTime?" InputMode="DateInputMode.Date" SelectionMode="DateInputSelectionMode.Range" />`
 - [ ] UI - range ratio filter - 2x Slider
-
-- [ ] keyboard arrow down can change focus to next textarea
 
 ## LOW PRIORITY:
 
