@@ -27,9 +27,9 @@ class Program
         PhotinoBlazorApp app = appBuilder.Build();
 
         // customize window
-        app.MainWindow
-            .SetIconFile("favicon.ico")
-            .SetTitle("ididit!");
+        if (!OperatingSystem.IsLinux()) // TODO: find out why this works in Photino sample
+            app.MainWindow.SetIconFile("favicon.ico");
+        app.MainWindow.SetTitle("ididit!");
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
