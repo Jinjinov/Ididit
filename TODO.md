@@ -23,7 +23,7 @@
 
 
 
-- [ ] linux software repository
+- [ ] Linux software repository
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
     - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
@@ -51,14 +51,12 @@
     - https://medium.com/bluekiri/packaging-a-net-core-service-for-ubuntu-4f8e9202d1e5
 
 - [ ] macOS
-
     - https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0
 
-- [ ] apple store - $99 annually
+- [ ] Apple store - $99 annually
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
 - [ ] iOS
-
     - https://learn.microsoft.com/en-us/dotnet/maui/ios/cli?view=net-maui-7.0
     - https://learn.microsoft.com/en-us/dotnet/maui/ios/pair-to-mac?view=net-maui-7.0
     - https://learn.microsoft.com/en-us/dotnet/maui/ios/remote-simulator?view=net-maui-7.0
@@ -72,7 +70,7 @@
 - [ ] Publish a .NET MAUI app for Android
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
-- [ ] google store - $25
+- [ ] Google store - $25
     - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
 
 -------------------------------------------------------------------------------
