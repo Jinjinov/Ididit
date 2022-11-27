@@ -40,6 +40,12 @@
     - https://help.launchpad.net/Packaging/PPA/Uploading
     - https://help.launchpad.net/Packaging/SourceBuilds
 
+    - https://askubuntu.com/questions/71510/how-do-i-create-a-ppa
+    - https://askubuntu.com/questions/1415597/creating-a-ppa-for-my-app
+    - https://shallowsky.com/blog/programming/packaging-launchpad-ppas.html
+    - https://medium.com/@labruillere/how-to-create-a-ppa-and-manage-it-like-a-8055-293da8124165
+    - https://blog.desdelinux.net/en/como-subir-paquetes-a-tu-ppa/
+
     - https://unix.stackexchange.com/questions/620672/how-can-i-publish-a-deb-package
     - https://blog.packagecloud.io/using-dh-make-to-prepare-debian-packages/
     - https://linuxhint.com/cmake-cpack-linux/
