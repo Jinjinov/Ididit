@@ -50,8 +50,18 @@
     - https://stackoverflow.com/questions/46809219/net-core-2-0-application-published-as-deb-file
     - https://medium.com/bluekiri/packaging-a-net-core-service-for-ubuntu-4f8e9202d1e5
 
+- [ ] macOS
+
+    - https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0
+
 - [ ] apple store - $99 annually
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
+
+- [ ] iOS
+
+    - https://learn.microsoft.com/en-us/dotnet/maui/ios/cli?view=net-maui-7.0
+    - https://learn.microsoft.com/en-us/dotnet/maui/ios/pair-to-mac?view=net-maui-7.0
+    - https://learn.microsoft.com/en-us/dotnet/maui/ios/remote-simulator?view=net-maui-7.0
 
 - [ ] Debug on the Android Emulator
     - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
