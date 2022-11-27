@@ -28,6 +28,7 @@
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
     - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
     - https://wiki.ubuntu.com/Upstream
+    - https://wiki.ubuntu.com/Debian/ForUbuntuDevelopers#Getting_new_software_in_Debian
 
     - https://launchpad.net/
     - https://help.launchpad.net/Packaging
@@ -43,6 +44,8 @@
     - https://blog.packagecloud.io/using-dh-make-to-prepare-debian-packages/
     - https://linuxhint.com/cmake-cpack-linux/
     - https://blog.knoldus.com/create-a-debian-package-using-dpkg-deb-tool/
+    - https://blog.packagecloud.io/buildling-debian-packages-with-debuild/
+
     - https://github.com/quamotion/dotnet-packaging
     - https://stackoverflow.com/questions/46809219/net-core-2-0-application-published-as-deb-file
     - https://medium.com/bluekiri/packaging-a-net-core-service-for-ubuntu-4f8e9202d1e5
