@@ -10,6 +10,8 @@
 
 - [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
 
+- [ ] File.WriteAllText("Error.log", message); - Environment.SpecialFolder.ApplicationData on Windows, or $HOME on Linux and MacOS.
+
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2 - no more jQuery
         - https://getbootstrap.com/docs/4.6/getting-started/introduction/
@@ -21,6 +23,15 @@
 
 
 
+- [ ] linux software repository
+    - https://help.ubuntu.com/community/Repositories/Ubuntu
+    - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
+    - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
+    - https://wiki.ubuntu.com/Upstream
+
+- [ ] apple store - $99 annually
+    - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
+
 - [ ] Debug on the Android Emulator
     - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
 
@@ -30,24 +41,8 @@
 - [ ] Publish a .NET MAUI app for Android
     - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
 
-
-
-- [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use - Benchmark / Stopwatch
-- [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
-
-
-
 - [ ] google store - $25
     - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
-
-- [ ] apple store - $99 annually
-    - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
-
-- [ ] linux software repository
-    - https://help.ubuntu.com/community/Repositories/Ubuntu
-    - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
-    - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
-    - https://wiki.ubuntu.com/Upstream
 
 -------------------------------------------------------------------------------
 
@@ -69,6 +64,9 @@
     - https://ads.google.com/
 
 
+
+- [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use - Benchmark / Stopwatch
+- [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
 - [ ] load db before app start in wasm
 - [ ] read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
