@@ -6,7 +6,7 @@
 
 - [ ] why should you use ididit - the procrastination friendly habit tracker - with screenshots
 
-- [ ] favicon in linux - find out why this works in Photino sample
+- [ ] favicon in Linux - find out why this works in Photino sample
 
 - [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
 
@@ -75,9 +75,6 @@
 
 -------------------------------------------------------------------------------
 
-- [ ] add Google Analytics
-    - https://analytics.google.com/
-
 - [ ] release news on: 
     - facebook - https://www.facebook.com/
     - reddit - https://www.reddit.com/
@@ -91,6 +88,9 @@
 
 - [ ] add Google Ads
     - https://ads.google.com/
+
+- [ ] add Google Analytics
+    - https://analytics.google.com/
 
 
 
