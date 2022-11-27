@@ -16,7 +16,7 @@ public sealed class ErrorBoundaryLogger : IErrorBoundaryLogger
 
     public ValueTask LogErrorAsync(Exception exception)
     {
-        // For, client-side code, all internal state is visible to the end user.
+        // For client-side code, all internal state is visible to the end user.
         // We can just log directly to the console.
         _errorBoundaryLogger.LogError(exception, "ErrorBoundary");
 

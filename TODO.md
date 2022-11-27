@@ -4,7 +4,11 @@
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
+- [ ] why should you use ididit - the procrastination friendly habit tracker - with screenshots
 
+- [ ] favicon in linux - find out why this works in Photino sample
+
+- [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
 
 - [ ] November 8-10, 2022
     - [ ] Bootstrap 4.6 ---> 5.2 - no more jQuery
