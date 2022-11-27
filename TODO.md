@@ -29,6 +29,24 @@
     - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
     - https://wiki.ubuntu.com/Upstream
 
+    - https://launchpad.net/
+    - https://help.launchpad.net/Packaging
+    - https://help.launchpad.net/Packaging/PPA
+    - https://packaging.ubuntu.com/html/
+    - https://packaging.ubuntu.com/html/getting-set-up.html
+    - https://packaging.ubuntu.com/html/packaging-new-software.html
+    - https://help.launchpad.net/Packaging/PPA/BuildingASourcePackage
+    - https://help.launchpad.net/Packaging/PPA/Uploading
+    - https://help.launchpad.net/Packaging/SourceBuilds
+
+    - https://unix.stackexchange.com/questions/620672/how-can-i-publish-a-deb-package
+    - https://blog.packagecloud.io/using-dh-make-to-prepare-debian-packages/
+    - https://linuxhint.com/cmake-cpack-linux/
+    - https://blog.knoldus.com/create-a-debian-package-using-dpkg-deb-tool/
+    - https://github.com/quamotion/dotnet-packaging
+    - https://stackoverflow.com/questions/46809219/net-core-2-0-application-published-as-deb-file
+    - https://medium.com/bluekiri/packaging-a-net-core-service-for-ubuntu-4f8e9202d1e5
+
 - [ ] apple store - $99 annually
     - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
 
