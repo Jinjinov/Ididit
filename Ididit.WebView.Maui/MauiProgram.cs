@@ -23,7 +23,8 @@ public static class MauiProgram
                         await Application.Current.MainPage.DisplayAlert("Error", message, "OK");
                 });
 
-                File.WriteAllText("Error.log", message);
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
+                File.WriteAllText(path, message);
             }
             catch
             {

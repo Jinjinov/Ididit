@@ -12,8 +12,6 @@
 
 - [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
 
-- [ ] File.WriteAllText("Error.log", message); - Environment.SpecialFolder.ApplicationData on Windows, or $HOME on Linux and MacOS.
-
 
 
 - [ ] Bootstrap 4.6.1 ---> 5.2.0 - no more jQuery - https://github.com/twbs/bootstrap/issues/36431 - Boostrap 5.1.3

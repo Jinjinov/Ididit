@@ -13,7 +13,8 @@ AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
 
         System.Diagnostics.Debug.WriteLine(message);
 
-        File.WriteAllText("Error.log", message);
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
+        File.WriteAllText(path, message);
     }
     catch
     {

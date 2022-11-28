@@ -20,7 +20,8 @@ public partial class App : Application
 
                 MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-                System.IO.File.WriteAllText("Error.log", message);
+                string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
+                System.IO.File.WriteAllText(path, message);
             }
             catch
             {
