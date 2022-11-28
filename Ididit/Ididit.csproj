@@ -14,7 +14,7 @@
     <PackageReference Include="Blazorise.Bootstrap" Version="1.0.7" />
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.7" />
     <PackageReference Include="Blazorise.TreeView" Version="1.0.7" />
-    <PackageReference Include="CsvHelper" Version="30.0.0" />
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
     <PackageReference Include="DnetIndexedDb" Version="2.4.1" />
     <PackageReference Include="Markdig" Version="0.30.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
