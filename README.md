@@ -3,6 +3,8 @@ ididit!
 
 https://ididit.today/
 
+The procrastination friendly habit tracker.
+
 Take notes, manage tasks, track habits.
 
 * * *

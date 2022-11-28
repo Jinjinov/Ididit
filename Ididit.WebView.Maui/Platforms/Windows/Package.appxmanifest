@@ -26,7 +26,7 @@
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
       <uap:VisualElements
         DisplayName="ididit!"
-        Description="Take notes, manage tasks, track habits."
+        Description="The procrastination friendly habit tracker. Take notes, manage tasks, track habits."
         Square150x150Logo="$placeholder$.png"
         Square44x44Logo="$placeholder$.png"
         BackgroundColor="transparent">
