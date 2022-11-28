@@ -19,10 +19,10 @@ static class Program
 
                 System.Diagnostics.Debug.WriteLine(message);
 
-                MessageBox.Show(text: message, caption: "Error");
-
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
                 System.IO.File.WriteAllText(path, message);
+
+                MessageBox.Show(text: message, caption: "Error");
             }
             catch
             {

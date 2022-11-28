@@ -18,10 +18,10 @@ public partial class App : Application
 
                 System.Diagnostics.Debug.WriteLine(message);
 
-                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
                 System.IO.File.WriteAllText(path, message);
+
+                MessageBox.Show(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch
             {

@@ -39,10 +39,10 @@ class Program
 
                 System.Diagnostics.Debug.WriteLine(message);
 
-                app.MainWindow.OpenAlertWindow("Error", message);
-
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
                 System.IO.File.WriteAllText(path, message);
+
+                app.MainWindow.OpenAlertWindow("Error", message);
             }
             catch
             {
