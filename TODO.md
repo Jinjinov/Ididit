@@ -4,13 +4,17 @@
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
-- [ ] why should you use ididit - the procrastination friendly habit tracker - with screenshots
+- [ ] screenshots
+
+
 
 - [ ] favicon in Linux - find out why this works in Photino sample
 
 - [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
 
 - [ ] File.WriteAllText("Error.log", message); - Environment.SpecialFolder.ApplicationData on Windows, or $HOME on Linux and MacOS.
+
+
 
 - [ ] Bootstrap 4.6.1 ---> 5.2.0 - no more jQuery - https://github.com/twbs/bootstrap/issues/36431 - Boostrap 5.1.3
     - https://getbootstrap.com/docs/4.6/getting-started/introduction/
