@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.0.7" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.0.7" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.0.7" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.1.4.1" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.4.1" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.1.4.1" />
     <!--<PackageReference Include="Photino.Blazor" Version="2.4.0" />-->
   </ItemGroup>
 
