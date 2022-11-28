@@ -3,7 +3,7 @@ ididit!
 
 https://ididit.today/
 
-The procrastination friendly habit tracker.
+The procrastination friendly habit tracker.  
 
 Take notes, manage tasks, track habits.
 
@@ -11,9 +11,30 @@ Take notes, manage tasks, track habits.
 
 ididit! is free, open source and works on Web and Windows. Android, iOS, macOS and Linux are coming soon!
 
-[Web app](#webapp) [Releases](#releases) [Previews](#previews) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
+[Why ididit!](#why) [Web app](#webapp) [Releases](#releases) [Previews](#previews) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
 
-## Web app
+## Why ididit! is better
+
+### The procrastination friendly habit tracker
+
+#### The problem:
+
+1.  Many other habit trackers have a streak counter. When you break the streak, you have to start over.  
+    This works ok, until an event out of your control unexpectedly happens and you break the streak.  
+    When that happens, you get demotivated instead of motivated.
+2.  Most repeating task reminders either ignore the task you didn't do or show you the same reminder every day until you do the task.  
+    There is no difference between a task that repeats every 14 days and is 2 days overdue and a task that repeats daily and is 2 days overdue.  
+    Clearly one is more urgent than the other.
+
+#### The solution:
+
+1.  Unlike many other habit trackers, ididit! has no streak counter.  
+    That means that you are not punished for skipping one day and breaking a streak.  
+    Instead, ididit! keeps track of the time elapsed since the last time you did the task.
+2.  ididit! compares the time elapsed since the last time you did the task with the repeating task interval.  
+    You can compare the tasks by how overdue they are and immediately see which task is the most urgent.
+
+## Web app - use ididit! online
 
 ### Current version (2022.11.11)
 
@@ -28,6 +49,8 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 [Use ididit! version 1.3.7 online](https://old.ididit.today)
 
 ## Releases
+
+[Get ididit! from Microsoft Store](https://apps.microsoft.com/store/detail/ididit/9P5L0K28XWM3)
 
 ### 2.0.2 (2022.11.11)
 
