@@ -12,10 +12,11 @@
 
 - [ ] File.WriteAllText("Error.log", message); - Environment.SpecialFolder.ApplicationData on Windows, or $HOME on Linux and MacOS.
 
-- [ ] Bootstrap 4.6 ---> 5.2 - no more jQuery
+- [ ] Bootstrap 4.6.1 ---> 5.2.0 - no more jQuery - https://github.com/twbs/bootstrap/issues/36431 - Boostrap 5.1.3
     - https://getbootstrap.com/docs/4.6/getting-started/introduction/
+    - https://getbootstrap.com/docs/5.1/getting-started/introduction/
     - https://getbootstrap.com/docs/5.2/getting-started/introduction/
-    - Blazorise.Bootstrap ---> Blazorise.Bootstrap5
+    - Blazorise.Bootstrap ---> Blazorise.Bootstrap5 - 5.1.1
 
 
 
