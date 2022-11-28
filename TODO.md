@@ -14,11 +14,9 @@
 
 
 
-- [ ] Bootstrap 4.6.1 ---> 5.2.0 - no more jQuery - https://github.com/twbs/bootstrap/issues/36431 - Boostrap 5.1.3
-    - https://getbootstrap.com/docs/4.6/getting-started/introduction/
+- [ ] Bootstrap 4.6.1 ---> 5.1.3 - no more jQuery - https://github.com/twbs/bootstrap/issues/36431
     - https://getbootstrap.com/docs/5.1/getting-started/introduction/
-    - https://getbootstrap.com/docs/5.2/getting-started/introduction/
-    - Blazorise.Bootstrap ---> Blazorise.Bootstrap5 - 5.1.1
+    - Blazorise.Bootstrap ---> Blazorise.Bootstrap5
 
 
 
