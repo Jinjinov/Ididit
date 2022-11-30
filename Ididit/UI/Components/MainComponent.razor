@@ -5,11 +5,11 @@
 <HeadContent>
     @if (_bootswatchThemes.ContainsKey(Theme) && _workaround == 0)
     {
-        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
     }
     else if (_bootswatchThemes.ContainsKey(Theme) && _workaround == 1)
     {
-        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@4.6.1/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
+        <link rel="stylesheet" href="@($"https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/{Theme}/bootstrap.min.css")" integrity="@(_bootswatchThemes[Theme])" crossorigin="anonymous">
     }
     else
     {

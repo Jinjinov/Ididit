@@ -14,9 +14,8 @@
 
 
 
-- [ ] Bootstrap 4.6.1 ---> 5.1.3 - https://github.com/twbs/bootstrap/issues/36431
-    - Fontawesome 5.15.4 ---> 6.2.1 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.2.1
-    - Bootswatch 4.6.1 ---> 5.1.3 - https://www.jsdelivr.com/package/npm/bootswatch?version=5.1.3
+- [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
+- [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
 
 
 
