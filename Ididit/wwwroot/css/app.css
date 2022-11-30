@@ -3,6 +3,10 @@ html, body, #app {
     height: 100%;
 }
 
+.btn-block {
+    display: block !important; /* Blazorise.Bootstrap5 work-around */
+}
+
 /* Google accounts authentication iframe */
 iframe {
     border: none;

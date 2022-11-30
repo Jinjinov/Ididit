@@ -42,7 +42,7 @@ public partial class MainComponent
         { "superhero", "sha256-gox/GuMWCKC24lM1gRLnKpm/pgjHDI3u5bnjSxvC/QI=" },
         { "united", "sha256-rU1IToLlw3oMuNHSO29CP/HxYCcBqq9Vc73wVnN5prQ=" },
         //{ "vapor", "sha256-3s3k/1ZjojJ7E7SfJk0q/A4fe/weYY9gzvbE6C6JTI0=" },
-        { "yeti", "sha256-g2YbprSKIubjkv6Pkd3RSeH9/6MW2MZcFrX/3eIu6vU=" },
+        { "yeti", "sha256-g2YbprSKIubjkv6Pkd3RSeH9/6MW2MZcFrX/3eIu6vU=" }
         //{ "zephyr", "sha256-DWNfAPc9h5qI0aI4+9aPONXiE9jIz2nczDB3KvjiKlI=" }
     };
 
