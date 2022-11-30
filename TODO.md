@@ -10,13 +10,6 @@
 
 - [ ] favicon in Linux - find out why this works in Photino sample
 
-- [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
-
-
-
-- [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
-- [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
-
 
 
 - [ ] Linux software repository
@@ -93,6 +86,13 @@
 
 - [ ] add Google Analytics
     - https://analytics.google.com/
+
+
+
+- [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
+
+- [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
+- [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
 
 
 
