@@ -1,5 +1,5 @@
 ﻿using Blazorise;
-using Blazorise.Bootstrap;
+using Blazorise.Bootstrap5;
 using Blazorise.Icons.FontAwesome;
 using DnetIndexedDb;
 using Ididit.Backup;
@@ -22,7 +22,7 @@ public static class Services
             {
                 options.Immediate = true; // ChangeTextOnKeyPress
             })
-            .AddBootstrapProviders()
+            .AddBootstrap5Providers()
             .AddFontAwesomeIcons();
 
         serviceCollection.AddSingleton<IErrorBoundaryLogger, ErrorBoundaryLogger>();

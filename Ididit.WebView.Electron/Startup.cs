@@ -1,6 +1,3 @@
-using Blazorise;
-using Blazorise.Bootstrap;
-using Blazorise.Icons.FontAwesome;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using Ididit.App;
