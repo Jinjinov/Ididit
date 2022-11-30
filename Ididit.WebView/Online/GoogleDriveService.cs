@@ -4,6 +4,7 @@ using Google.Apis.Services;
 using Google.Apis.Util.Store;
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -62,12 +63,10 @@ public partial class GoogleDriveService : IGoogleDriveService
 
     public async Task<DriveService?> GetDriveService()
     {
-        GoogleClientSecrets? googleClientSecrets = GetGoogleClientSecrets();
+        GoogleClientSecrets? googleClientSecrets = GetGoogleClientSecrets() ?? JsonSerializer.Deserialize<GoogleClientSecrets>(CredentialsJson);
 
         if (googleClientSecrets == null)
-        {
             return null;
-        }
 
         // The folder "Ididit" stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
         string credPath = "Ididit";
