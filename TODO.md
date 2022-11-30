@@ -1,10 +1,10 @@
 # TODO:
 
-- [ ] organize habits
+- [ ] choose minimum task list for ididit
+- [ ] real usage screenshots
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
-
-- [ ] screenshots
+- [ ] organize habits
 
 
 
