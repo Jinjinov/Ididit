@@ -84,7 +84,8 @@
                                 <Button Size=Size.Small Block=true @onclick="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
 
                             </CollapseHeader>
-                            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+                            @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
+                            <CollapseBody Padding=Padding.Is0 Style="margin: -9px">
 
                                 <FiltersComponent @bind-Filters="_filters" Settings=Settings />
 
@@ -96,7 +97,8 @@
                                 <Button Size=Size.Small Block=true @onclick="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
 
                             </CollapseHeader>
-                            <CollapseBody Padding=Padding.Is0 Style="margin: -12px">
+                            @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
+                            <CollapseBody Padding=Padding.Is0 Style="margin: -9px">
 
                                 <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
 
