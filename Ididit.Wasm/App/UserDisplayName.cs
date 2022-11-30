@@ -6,6 +6,8 @@ namespace Ididit.Wasm.App;
 
 public class UserDisplayName : IUserDisplayName
 {
+    public string DisplayName { get; set; } = string.Empty;
+
     readonly AuthenticationStateProvider _authenticationStateProvider;
 
     public UserDisplayName(AuthenticationStateProvider authenticationStateProvider)
@@ -17,6 +19,8 @@ public class UserDisplayName : IUserDisplayName
     {
         AuthenticationState authenticationState = await _authenticationStateProvider.GetAuthenticationStateAsync();
 
-        return authenticationState.User.Identity?.Name ?? string.Empty;
+        DisplayName = authenticationState.User.Identity?.Name ?? string.Empty;
+
+        return DisplayName;
     }
 }

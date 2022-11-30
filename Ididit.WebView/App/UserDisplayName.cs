@@ -8,6 +8,8 @@ namespace Ididit.WebView.App;
 
 public class UserDisplayName : IUserDisplayName
 {
+    public string DisplayName { get; set; } = string.Empty;
+
     readonly IGoogleDriveService _googleDriveService;
 
     public UserDisplayName(IGoogleDriveService googleDriveService)
@@ -26,6 +28,8 @@ public class UserDisplayName : IUserDisplayName
         getRequest.Fields = "user";
         About about = getRequest.Execute();
 
-        return about.User.DisplayName;
+        DisplayName = about.User.DisplayName;
+
+        return DisplayName;
     }
 }

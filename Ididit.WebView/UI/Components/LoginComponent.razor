@@ -1,11 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Components.Web
 
-@if (string.IsNullOrEmpty(_name))
+@if (string.IsNullOrEmpty(UserDisplayName.DisplayName))
 {
     <button class="nav-link btn btn-link p-0 m-0 d-inline align-baseline shadow-none" @onclick="LogIn">Log in</button>
 }
 else
 {
-    <span class="mr-1">@_name</span>
+    <span class="mr-1">@UserDisplayName.DisplayName</span>
     <button class="nav-link btn btn-link p-0 m-0 d-inline align-baseline shadow-none" @onclick="LogOut">Log out</button>
 }
