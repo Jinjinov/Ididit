@@ -343,20 +343,20 @@ internal class Repository : DataModel, IRepository
 
         List<TaskModel> tasks = new()
         {
-            { goals[0].CreateTask(nextTaskId++, "Clean dust under the bed", TimeSpan.FromDays(14), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(10)) },
+            { goals[0].CreateTask(nextTaskId++, "Clean dust", TimeSpan.FromDays(7), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(10)) },
             { goals[0].CreateTask(nextTaskId++, "Clean the windows", TimeSpan.FromDays(90), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(20)) },
 
             { goals[1].CreateTask(nextTaskId++, "Go salsa dancing") },
             { goals[1].CreateTask(nextTaskId++, "Play the piano", TimeSpan.FromDays(7), Priority.Medium, TaskKind.RepeatingTask, TimeSpan.FromMinutes(30)) },
 
-            { goals[2].CreateTask(nextTaskId++, "Attend a cooking workshop") },
+            { goals[2].CreateTask(nextTaskId++, "Attend a workshop") },
             { goals[2].CreateTask(nextTaskId++, "Learn Spanish", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(10)) },
 
-            { goals[3].CreateTask(nextTaskId++, "Go to a hairdresser", TimeSpan.FromDays(21), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(30)) },
+            { goals[3].CreateTask(nextTaskId++, "Get a haircut", TimeSpan.FromDays(21), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(30)) },
             { goals[3].CreateTask(nextTaskId++, "Buy new clothes") },
 
-            { goals[4].CreateTask(nextTaskId++, "Drink a glass of water", TimeSpan.FromHours(8), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(1)) },
-            { goals[4].CreateTask(nextTaskId++, "Eat a piece of fruit", TimeSpan.FromHours(12), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(3)) },
+            { goals[4].CreateTask(nextTaskId++, "Drink water", TimeSpan.FromHours(8), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(1)) },
+            { goals[4].CreateTask(nextTaskId++, "Eat fruit", TimeSpan.FromHours(12), Priority.VeryHigh, TaskKind.RepeatingTask, TimeSpan.FromMinutes(3)) },
 
             { goals[5].CreateTask(nextTaskId++, "Stretch & workout", TimeSpan.FromDays(1), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(5)) },
             { goals[5].CreateTask(nextTaskId++, "Go hiking", TimeSpan.FromDays(7), Priority.High, TaskKind.RepeatingTask, TimeSpan.FromMinutes(90)) },
@@ -388,8 +388,8 @@ internal class Repository : DataModel, IRepository
 
         List<(DateTime time, long taskId)> times = new()
         {
-            { tasks[0].AddTime(DateTime.Now.AddDays(-50)) },
-            { tasks[0].AddTime(DateTime.Now.AddDays(-25)) },
+            { tasks[0].AddTime(DateTime.Now.AddDays(-20)) },
+            { tasks[0].AddTime(DateTime.Now.AddDays(-10)) },
 
             { tasks[3].AddTime(DateTime.Now.AddDays(-28)) },
             { tasks[3].AddTime(DateTime.Now.AddDays(-8)) },
