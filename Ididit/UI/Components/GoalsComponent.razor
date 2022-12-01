@@ -11,8 +11,8 @@
     }
     else
     {
-        <Div>
-            <Button Color=Color.Primary Size="Size" @onclick=NewGoal>Add goal to @SelectedCategory.Name</Button>
+        <Div Margin=Margin.Is1.OnMobile.Is0.OnDesktop>
+            <Button Color=Color.Primary Size="Size" Block=true @onclick =NewGoal>Add goal to @SelectedCategory.Name</Button>
         </Div>
 
         if (Settings.ShowAllGoals)
