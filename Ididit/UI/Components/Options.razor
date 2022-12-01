@@ -10,8 +10,8 @@
 
         <Button Color=Color.Primary Size="Size" Block=true @onclick=DeleteAll>Delete all</Button>
 
-        <Field Margin=Margin.Is0>
-            <FieldLabel>Size:</FieldLabel>
+        <Field Margin=Margin.Is0.Is2.FromTop>
+            <FieldLabel Margin=Margin.Is0>Size:</FieldLabel>
 
             <Select TValue="Size" Size="Size" SelectedValue="Size" SelectedValueChanged="OnSizeChanged">
                 <SelectItem Value="Blazorise.Size.Default">Default</SelectItem>
@@ -23,8 +23,8 @@
             </Select>
         </Field>
 
-        <Field Margin=Margin.Is0>
-            <FieldLabel>Themes:</FieldLabel>
+        <Field Margin=Margin.Is0.Is2.FromTop>
+            <FieldLabel Margin=Margin.Is0>Theme:</FieldLabel>
 
             <Select TValue="string" Size="Size" SelectedValue="Theme" SelectedValueChanged="OnThemeChanged">
                 <SelectItem Value="@("default")">default</SelectItem>
