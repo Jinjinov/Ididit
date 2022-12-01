@@ -23,7 +23,7 @@ internal class SettingsEntity
     public string Theme { get; set; } = string.Empty;
 
     [IndexDbIndex]
-    public bool ShowAllGoals { get; set; }
+    public bool ShowAllGoals { get; set; } = true;
 
     [IndexDbIndex]
     public bool ShowAllTasks { get; set; }
