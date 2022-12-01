@@ -8,45 +8,51 @@
     </Addon>
 </Addons>
 
-<span>Date filter:</span>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <FieldLabel Margin=Margin.Is0>Date filter:</FieldLabel>
 
-<Addons Flex=Flex.NoWrap>
-    <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
+    <Addons Flex=Flex.NoWrap>
+        <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
 
-    <Addon AddonType="AddonType.End">
-        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-    </Addon>
-</Addons>
+        <Addon AddonType="AddonType.End">
+            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearDateFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+        </Addon>
+    </Addons>
 
-<CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
+    <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
+</Field>
 
-<span>Filters:</span>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">Hide completed tasks</CheckBox>
+</Field>
 
-<CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">Hide completed tasks</CheckBox>
-
-<Field Margin=Margin.Is0>
-    <FieldLabel>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <FieldLabel Margin=Margin.Is0>
         <CheckBox Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Show tasks with ratio over @Settings.ElapsedToDesiredRatioMin %</CheckBox>
     </FieldLabel>
     <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="Settings.ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
 </Field>
 
-<span>Priority:</span>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <FieldLabel Margin=Margin.Is0>Filter by priority:</FieldLabel>
 
-@foreach (Priority priority in Enum.GetValues<Priority>())
-{
-    <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">Show tasks with @priority.GetDescription() priority</CheckBox>
-}
+    @foreach (Priority priority in Enum.GetValues<Priority>())
+    {
+        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">@priority.GetDescription()</CheckBox>
+    }
+</Field>
 
-<span>Kind:</span>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <FieldLabel Margin=Margin.Is0>Filter by type:</FieldLabel>
 
-@foreach (TaskKind taskKind in Enum.GetValues<TaskKind>())
-{
-    <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">Show @taskKind.GetDescription()s</CheckBox>
-}
+    @foreach (TaskKind taskKind in Enum.GetValues<TaskKind>())
+    {
+        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">@taskKind.GetDescription()s</CheckBox>
+    }
+</Field>
 
-<Field Margin=Margin.Is0>
-    <FieldLabel>Sort by:</FieldLabel>
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <FieldLabel Margin=Margin.Is0>Sort by:</FieldLabel>
 
     <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
         <SelectItem Value="Sort.None">None</SelectItem>

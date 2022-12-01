@@ -31,6 +31,10 @@
                     <Icon Class="fa-fw" Name="IconName.Wrench" />
                 </Button>
 
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
+                    <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
+                </Button>
+
                 <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
                     <a href="https://ididit.today" target="_blank">ididit!</a>
                 </Span>
@@ -79,7 +83,7 @@
         }
         else
         {
-            <Row Background=Background.Light Flex=Flex.Grow.Is1 class="parent-row">
+            <Row Flex=Flex.Grow.Is1 class="parent-row">
 
                 <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 320px">
 

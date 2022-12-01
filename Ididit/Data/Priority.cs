@@ -4,16 +4,16 @@ namespace Ididit.Data;
 
 public enum Priority
 {
-    [Description("no")]
+    [Description("None")]
     None,
-    [Description("very low")]
+    [Description("Very low")]
     VeryLow,
-    [Description("low")]
+    [Description("Low")]
     Low,
-    [Description("medium")]
+    [Description("Medium")]
     Medium,
-    [Description("high")]
+    [Description("High")]
     High,
-    [Description("very high")]
+    [Description("Very high")]
     VeryHigh
 }
