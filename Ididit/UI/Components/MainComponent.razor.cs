@@ -113,6 +113,10 @@ public partial class MainComponent
         _background = _backgrounds[_backgrounds.Keys[_debugBackground]];
     }
 
+    bool _showDebug;
+
+    void OnShowDebugChanged(bool? val) => _showDebug = val ?? false;
+
     bool _showOptions;
 
     void ToggleOptions() => _showOptions = !_showOptions;

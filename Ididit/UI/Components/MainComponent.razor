@@ -31,13 +31,16 @@
                     <Icon Class="fa-fw" Name="IconName.Wrench" />
                 </Button>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
-                    <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
-                </Button>
+                @if (_showDebug)
+                {
+                    <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
+                        <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
+                    </Button>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
-                    <Icon Class="fa-fw" Name="IconName.Bug" /> @_background.Name
-                </Button>
+                    <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
+                        <Icon Class="fa-fw" Name="IconName.Bug" /> @_background.Name
+                    </Button>
+                }
 
                 <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
                     <a href="https://ididit.today" target="_blank">ididit!</a>
@@ -82,6 +85,14 @@
                 </Card>
 
                 <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+
+                <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
+                    <CardBody Padding=Padding.Is1>
+
+                        <CheckBox Checked="_showDebug" CheckedChanged="OnShowDebugChanged">Show debug controls</CheckBox>
+
+                    </CardBody>
+                </Card>
 
             </Row>
         }
