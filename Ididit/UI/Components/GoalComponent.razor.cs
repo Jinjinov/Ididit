@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Blazorise;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -40,6 +41,10 @@ public partial class GoalComponent
 
     [Parameter]
     public SettingsModel Settings { get; set; } = null!;
+
+    bool EditEnabled => SelectedGoal == Goal || EditGoal == Goal;
+
+    IFluentBorderWithAll CardBorder => EditEnabled ? Border.Is1.RoundedZero : Border.Is0.RoundedZero;
 
     TaskModel? _selectedTask;
 

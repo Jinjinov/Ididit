@@ -6,25 +6,25 @@
 
     @if (tasks.Any() || !Settings.HideEmptyGoals)
     {
-        <Card Margin=Margin.Is2.FromTop Border=Border.Is0>
+        <Card Margin=Margin.Is2.FromTop Border=CardBorder>
             <CardBody Padding=Padding.Is0>
 
-                @if (SelectedGoal == Goal || EditGoal == Goal)
+                @if (EditEnabled)
                 {
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="Add new goal" />
+                        <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.RoundedZero.Is0 Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="Add new goal" />
                         <Addon AddonType="AddonType.End">
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Border=Border.RoundedZero Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
                             @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
                         </Addon>
                     </Addons>
 
-                    <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.Is0 @onmousedown=OnFocusIn FocusOut=OnFocusOut TextChanged=OnTextChanged />
+                    <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnFocusIn FocusOut=OnFocusOut TextChanged=OnTextChanged />
                 }
                 else
                 {
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit Border=Border.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=OnClick />
+                        <TextEdit Border=Border.RoundedZero.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=OnClick />
 
                         <Addon AddonType="AddonType.End">
                             @if (Goal.CreateTaskFromEachLine)
@@ -36,7 +36,7 @@
                                 <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             }
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" Border=Border.RoundedZero @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                         </Addon>
                     </Addons>
 
@@ -65,7 +65,7 @@
                     else if (!Settings.HideGoalsWithSimpleText)
                     {
                         <!-- no margin in Markdown HTML -->
-                        <Div Class="child-no-margin" Padding=Padding.Is1>
+                        <Div Class="child-no-margin" Padding=Padding.Is1 Border="Border.Is1">
                             @((MarkupString)Goal.DetailsMarkdownHtml)
                         </Div>
                     }
