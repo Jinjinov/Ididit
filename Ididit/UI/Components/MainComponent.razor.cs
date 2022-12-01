@@ -86,7 +86,32 @@ public partial class MainComponent
         await OnThemeChanged(_bootswatchThemes.Keys[_debugTheme]);
     }
 
-    Background _background;
+    Background _background = Background.Default;
+
+    readonly SortedList<string, Background> _backgrounds = new()
+    {
+        { "Default", Background.Default },
+        { "Primary", Background.Primary },
+        { "Secondary", Background.Secondary },
+        { "Success", Background.Success },
+        { "Danger", Background.Danger },
+        { "Warning", Background.Warning },
+        { "Info", Background.Info },
+        { "Light", Background.Light },
+        { "Dark", Background.Dark },
+        { "White", Background.White },
+        { "Transparent", Background.Transparent },
+        { "Body", Background.Body },
+    };
+
+    int _debugBackground = 0;
+    void DebugBackground()
+    {
+        if (++_debugBackground == _backgrounds.Count)
+            _debugBackground = 0;
+
+        _background = _backgrounds[_backgrounds.Keys[_debugBackground]];
+    }
 
     bool _showOptions;
 
