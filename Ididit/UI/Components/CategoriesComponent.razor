@@ -16,12 +16,17 @@
         <CheckBox Checked="Settings.ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">Show categories in goal list</CheckBox>
     }
 
-    <Div>Categories:</Div>
+    <Button Color=Color.Primary Size="Size" Block=true Margin=Margin.Is2.FromTop @onclick=NewCategory>Add category to @SelectedCategory.Name</Button>
 
-    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
-    <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=NewCategory>Add category to @SelectedCategory.Name</Button>
+    <Addons Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is2.OnY>
+        <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
+            <AddonLabel Flex="Flex.Grow.Is1">Categories:</AddonLabel>
+        </Addon>
 
-    <TreeView Margin=Margin.Is0.Is1.FromTop
+        <Button Color=Color.Primary Outline=true Size=Size.Small @onclick=ToggleAll>Toggle all</Button>
+    </Addons>
+
+    <TreeView Margin=Margin.Is0.Is2.FromTop
               TNode="CategoryModel"
               Nodes=Repository.CategoryList
               GetChildNodes="GetChildNodes"
