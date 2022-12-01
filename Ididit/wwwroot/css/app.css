@@ -3,6 +3,10 @@ html, body, #app {
     height: 100%;
 }
 
+.accordion-body {
+    padding: 0.5rem !important;
+}
+
 .btn-block {
     display: block !important; /* Blazorise.Bootstrap5 work-around */
 }
