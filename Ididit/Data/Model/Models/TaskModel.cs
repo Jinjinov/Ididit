@@ -70,7 +70,7 @@ public class TaskModel
     public TimeSpan DesiredInterval { get; set; }
 
     [JsonIgnore]
-    internal bool IsRepeating => DesiredInterval.Ticks > 0;
+    internal bool IsRepeating => TaskKind == TaskKind.RepeatingTask; // DesiredInterval.Ticks > 0;
 
     [JsonIgnore]
     internal bool IsCompletedTask => IsTask && !IsRepeating && IsDoneAtLeastOnce;

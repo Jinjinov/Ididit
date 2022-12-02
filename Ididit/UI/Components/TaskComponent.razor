@@ -121,18 +121,19 @@
                         <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
                             <AddonLabel Flex="Flex.Grow.Is1">Desired interval:</AddonLabel>
                         </Addon>
+
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
                         <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
 
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
-
                         <Addon AddonType="AddonType.End">
                             <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")</AddonLabel>
-                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
-                            </Addon>
-                        </Addons>
 
-                        @if (Task.IsElapsedOverDesired)
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                        </Addon>
+                    </Addons>
+
+                    @if (Task.IsElapsedOverDesired)
                     {
                         <Div TextWeight=TextWeight.Bold>@($"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredInterval)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )")</Div>
                     }
