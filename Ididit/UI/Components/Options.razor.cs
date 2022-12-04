@@ -81,10 +81,10 @@ public partial class Options
 
     async Task Import(InputFileChangeEventArgs e)
     {
-        if (ImportExport.FileImportByExtension.FirstOrDefault(p => e.File.Name.EndsWith(p.Key, StringComparison.OrdinalIgnoreCase)) is var pair)
+        if (ImportExport.FileImportByExtension.Where(pair => e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase)).Select(pair => pair.Value).FirstOrDefault() is IFileImport fileImport)
         {
             Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
-            await pair.Value.ImportData(stream);
+            await fileImport.ImportData(stream);
             stream.Close();
         }
 
