@@ -12,7 +12,11 @@ public static class Services
     {
         serviceCollection.AddScoped<IGoogleDriveService, GoogleDriveService>();
         serviceCollection.AddScoped<IGoogleDriveBackup, GoogleDriveBackup>();
-        serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<IGoogleDriveBackup>());
+
+        if (GoogleDriveBase.IsGoogleDriveAvailable)
+        {
+            serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<IGoogleDriveBackup>());
+        }
 
         serviceCollection.AddScoped<IUserDisplayName, UserDisplayName>();
 

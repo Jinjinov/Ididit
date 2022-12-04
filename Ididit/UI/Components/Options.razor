@@ -60,7 +60,7 @@
 
         <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Directory)">Export folder</Button>
 
-        if (GoogleDriveBackup.IsGoogleDriveAvailable)
+        @if (Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
         {
             <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportGoogleDrive>Import Google Drive</Button>
 

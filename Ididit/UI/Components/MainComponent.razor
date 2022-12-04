@@ -57,7 +57,7 @@
                         <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
                             @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
                             {
-                                <SelectItem Value="dataFormat">@dataFormat</SelectItem>
+                                <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
                             }
                         </Select>
                     </Addons>

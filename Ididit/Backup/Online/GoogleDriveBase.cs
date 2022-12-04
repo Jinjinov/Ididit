@@ -19,7 +19,7 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
 
     protected readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
 
-    public bool IsGoogleDriveAvailable => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS();
+    public static bool IsGoogleDriveAvailable => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS();
 
     public bool UnsavedChanges { get; private set; }
 

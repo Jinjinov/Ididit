@@ -55,12 +55,9 @@
     <FieldLabel Margin=Margin.Is0>Sort by:</FieldLabel>
 
     <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
-        <SelectItem Value="Sort.None">None</SelectItem>
-        <SelectItem Value="Sort.Name">Name</SelectItem>
-        <SelectItem Value="Sort.Priority">Priority</SelectItem>
-        <SelectItem Value="Sort.ElapsedTime">Elapsed time</SelectItem>
-        <SelectItem Value="Sort.ElapsedToAverageRatio">Elapsed time to Average time ratio</SelectItem>
-        <SelectItem Value="Sort.ElapsedToDesiredRatio">Elapsed time to Desired time ratio</SelectItem>
-        <SelectItem Value="Sort.AverageToDesiredRatio">Average time to Desired time ratio</SelectItem>
+        @foreach (Sort sort in Enum.GetValues<Sort>())
+        {
+            <SelectItem Value="sort">@sort.GetDescription()</SelectItem>
+        }
     </Select>
 </Field>
