@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -80,18 +81,12 @@ public partial class Options
 
     async Task Import(InputFileChangeEventArgs e)
     {
-        Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
-
-        foreach (var pair in ImportExport.FileImportByExtension)
+        if (ImportExport.FileImportByExtension.FirstOrDefault(p => e.File.Name.EndsWith(p.Key, StringComparison.OrdinalIgnoreCase)) is var pair)
         {
-            if (e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase))
-            {
-                await pair.Value.ImportData(stream);
-                break;
-            }
+            Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
+            await pair.Value.ImportData(stream);
+            stream.Close();
         }
-
-        stream.Close();
 
         await OnSelectedCategoryChanged();
     }

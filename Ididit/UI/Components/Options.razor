@@ -60,9 +60,12 @@
 
         <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Directory)">Export folder</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportGoogleDrive>Import Google Drive</Button>
+        if (GoogleDriveBackup.IsGoogleDriveAvailable)
+        {
+            <Button Color=Color.Primary Size="Size" Block=true @onclick=ImportGoogleDrive>Import Google Drive</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.GoogleDrive)">Export Google Drive</Button>
+            <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.GoogleDrive)">Export Google Drive</Button>
+        }
 
         <Label For="ZIP-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Google Keep Takeout ZIP</Label>
         <InputFile id="ZIP-upload" class="d-none" OnChange=Import />

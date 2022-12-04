@@ -1,5 +1,6 @@
 ﻿using Ididit.Data;
 using Ididit.Data.Model;
+using System;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
     protected const string _folderMimeType = "application/vnd.google-apps.folder";
 
     protected readonly JsonSerializerOptions _options = new() { IncludeFields = true, WriteIndented = true };
+
+    public bool IsGoogleDriveAvailable => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS();
 
     public bool UnsavedChanges { get; private set; }
 
