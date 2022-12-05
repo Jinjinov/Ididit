@@ -71,18 +71,21 @@
         {
             <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
 
-                <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
-                    <CardBody Padding=Padding.Is1>
-                        <ErrorBoundary>
-                            <ChildContent>
-                                @ChildContent
-                            </ChildContent>
-                            <ErrorContent Context="ex">
-                                <p>@ex.Message</p>
-                            </ErrorContent>
-                        </ErrorBoundary>
-                    </CardBody>
-                </Card>
+                @if (Ididit.Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
+                {
+                    <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
+                            <CardBody Padding=Padding.Is1>
+                            <ErrorBoundary>
+                                <ChildContent>
+                                    @ChildContent
+                                </ChildContent>
+                                <ErrorContent Context="ex">
+                                    <p>@ex.Message</p>
+                                </ErrorContent>
+                            </ErrorBoundary>
+                        </CardBody>
+                    </Card>
+                }
 
                 <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
 
