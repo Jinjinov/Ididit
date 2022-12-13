@@ -68,7 +68,7 @@
     <CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
     <CodesignProvision>ididit.ios</CodesignProvision>
 
-    <ServerAddress>192.168.1.77</ServerAddress>
+    <ServerAddress>192.168.0.103</ServerAddress>
     <ServerUser>Urban</ServerUser>
     <TcpPort>58181</TcpPort>
     <ArchiveOnBuild>true</ArchiveOnBuild>
@@ -79,11 +79,11 @@
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
     <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>
     <!-- Only needed when you have a need for entitlements -->
-    <!-- <CodesignEntitlement>Entitlements.plist</CodesignEntitlement> -->
+    <CodesignEntitlement>Entitlements.plist</CodesignEntitlement>
     <CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
     <CodesignProvision>ididit.macos</CodesignProvision>
 
-    <ServerAddress>192.168.1.77</ServerAddress>
+    <ServerAddress>192.168.0.103</ServerAddress>
     <ServerUser>Urban</ServerUser>
     <TcpPort>58181</TcpPort>
     <ArchiveOnBuild>true</ArchiveOnBuild>

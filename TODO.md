@@ -3,8 +3,40 @@
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
+1.
+Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
+
+2.
+Asset validation failed (90717)
+Invalid App Store Icon. The App Store Icon in the asset catalog in 'Ididit.WebView.Maui.app' can't be transparent nor contain an alpha channel. (ID: 5f57532b-c0c4-49d3-b327-1e0b1b14e4a7)
+
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits
+
+3.
+Asset validation failed (90237)
+The product archive package's signature is invalid. Ensure that it is signed with your "3rd Party Mac Developer Installer" certificate. (ID: 3095a9e9-55f1-4b9e-8cf5-4ae05a0b73d8)
+
+4.
+Asset validation failed (90242)
+The product archive is invalid. The Info.plist must contain a LSApplicationCategoryType key, whose value is the UTI for a valid category. 
+For more details, see "Submitting your Mac apps to the App Store". (ID: 30a2dc21-8c04-47c0-8260-6d9b8789b7fd)
+
+5.
+Asset validation failed (90869)
+Invalid bundle. The “Ididit.WebView.Maui.app” bundle supports arm64 but not Intel-based Mac computers. 
+Your build must include the x86_64 architecture to support Intel-based Mac computers. 
+For details, view: https://developer.apple.com/documentation/xcode/building_a_universal_macos_binary. (ID: 8a402de2-8abf-49ae-8038-a26c0097c378)
+
+6.
+Asset validation failed (90296)
+App sandbox not enabled. 
+The following executables must include the "com.apple.security.app-sandbox" entitlement with a Boolean value of true in the entitlements property list: [( "com.jinjinov.ididit.pkg/Payload/Ididit.WebView.Maui.app/Contents/MacOS/Ididit.WebView.Maui" )] 
+Refer to App Sandbox page at https://developer.apple.com/documentation/security/app_sandbox for more information on sandboxing your app. (ID: 1b4647e9-359d-40f7-a062-5f8aceaeccb4)
+
+7.
+Asset validation failed (90756)
+Invalid Bundle. The key UIDeviceFamily in the app's Info.plist file contains one or more unsupported values '1'. (ID: e98a0fc1-d792-4b2d-854c-51a5d1649c82)
 
 
 
@@ -13,6 +45,35 @@
 
 
 - [ ] Linux software repository
+
+    - https://stackoverflow.com/questions/69132782/publishing-net-core-application-in-linux
+    - https://stackoverflow.com/questions/46843863/how-to-run-a-net-core-console-application-on-linux
+    - https://stackoverflow.com/questions/57898073/is-it-possible-to-publish-a-stand-alone-c-sharp-application-to-linux
+
+    dotnet publish -c release -r linux-x64
+
+    In .NET Core 2.2 you can create a self-contained app (i.e. not requiring .NET Core runtime installed on host machine) with this command dotnet publish -r centos.7-x64 -c Release --self-contained. 
+    It'll produce executable and a lot of dependencies.
+
+    In .NET Core 3 you can compress all dependencies into a single file dotnet publish -r centos.7-x64 -c Release /p:PublishSingleFile=true. 
+    You can also add flag /p:PublishTrimmed=true to reduce executable size by tree trimming.
+
+    Follow the below steps to run your application:
+
+    Publish your application as a self contained application:
+
+    dotnet publish -c release -r ubuntu.16.04-x64 --self-contained
+    Copy the publish folder to the Ubuntu machine
+
+    Open the Ubuntu machine terminal (CLI) and go to the project directory
+
+    Provide execute permissions:
+
+    chmod 777 ./appname
+    Execute the application
+
+    ./appname
+
     - https://help.ubuntu.com/community/Repositories/Ubuntu
     - https://askubuntu.com/questions/16446/how-to-get-my-software-into-ubuntu
     - https://wiki.ubuntu.com/UbuntuDevelopment/NewPackages
@@ -44,6 +105,14 @@
     - https://github.com/quamotion/dotnet-packaging
     - https://stackoverflow.com/questions/46809219/net-core-2-0-application-published-as-deb-file
     - https://medium.com/bluekiri/packaging-a-net-core-service-for-ubuntu-4f8e9202d1e5
+
+    - https://github.com/ygoe/DotnetMakeDeb
+    - https://github.com/quamotion/dotnet-packaging
+
+    - https://askubuntu.com/questions/171796/how-can-i-create-a-simple-debian-package-from-binary
+    - https://askubuntu.com/questions/896252/how-do-i-create-a-deb-package-for-a-precompiled-files
+    - https://askubuntu.com/questions/27715/create-a-deb-package-from-scripts-or-binaries
+    - https://askubuntu.com/questions/395753/how-can-i-create-a-deb-from-binaries
 
 - [ ] macOS
     - https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0
