@@ -6,6 +6,12 @@
 1.
 Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
+<i class="fa-brands fa-apple"></i>
+<i class="fa-brands fa-microsoft"></i>
+<i class="fa-brands fa-linux"></i>
+<i class="fa-brands fa-android"></i>
+<i class="fa-solid fa-globe"></i>
+
 2.
 Asset validation failed (90717)
 Invalid App Store Icon. The App Store Icon in the asset catalog in 'Ididit.WebView.Maui.app' can't be transparent nor contain an alpha channel. (ID: 5f57532b-c0c4-49d3-b327-1e0b1b14e4a7)
@@ -95,6 +101,9 @@ Invalid Bundle. The key UIDeviceFamily in the app's Info.plist file contains one
     - https://shallowsky.com/blog/programming/packaging-launchpad-ppas.html
     - https://medium.com/@labruillere/how-to-create-a-ppa-and-manage-it-like-a-8055-293da8124165
     - https://blog.desdelinux.net/en/como-subir-paquetes-a-tu-ppa/
+
+    - https://askubuntu.com/questions/28562/how-do-i-create-a-ppa-for-a-working-program
+    - https://askubuntu.com/questions/161155/how-to-create-a-ppa-for-c-program
 
     - https://unix.stackexchange.com/questions/620672/how-can-i-publish-a-deb-package
     - https://blog.packagecloud.io/using-dh-make-to-prepare-debian-packages/
