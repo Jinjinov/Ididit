@@ -30,9 +30,8 @@ class Program
         if (!OperatingSystem.IsLinux()) // TODO: find out why this works in Photino sample
             app.MainWindow.SetIconFile("favicon.ico");
         app.MainWindow.SetTitle("ididit!");
-        app.MainWindow.SetSize(800, 600);
-        app.MainWindow.SetWidth(800);
-        app.MainWindow.SetHeight(600);
+        app.MainWindow.SetUseOsDefaultSize(false);
+        app.MainWindow.SetSize(1680, 1050);
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {
