@@ -55,10 +55,10 @@
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
     <AndroidKeyStore>True</AndroidKeyStore>
-    <AndroidSigningKeyStore>filename.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>filename.keystore password</AndroidSigningStorePass>
-    <AndroidSigningKeyAlias>keystore.alias</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>keystore.alias password</AndroidSigningKeyPass>
+    <AndroidSigningKeyStore>IdiditGoogleStore.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>password</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>IdiditGooglePlay</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>password</AndroidSigningKeyPass>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
