@@ -18,7 +18,7 @@
     <ApplicationTitle>ididit!</ApplicationTitle>
 
     <!-- App Identifier -->
-    <ApplicationId>today.ididit</ApplicationId>
+    <ApplicationId>com.jinjinov.ididit</ApplicationId>
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
@@ -56,9 +56,9 @@
   <PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
     <AndroidKeyStore>True</AndroidKeyStore>
     <AndroidSigningKeyStore>IdiditGoogleStore.keystore</AndroidSigningKeyStore>
-    <AndroidSigningStorePass>password</AndroidSigningStorePass>
+    <!--<AndroidSigningStorePass>password</AndroidSigningStorePass>-->
     <AndroidSigningKeyAlias>IdiditGooglePlay</AndroidSigningKeyAlias>
-    <AndroidSigningKeyPass>password</AndroidSigningKeyPass>
+    <!--<AndroidSigningKeyPass>password</AndroidSigningKeyPass>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
