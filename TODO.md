@@ -1,5 +1,15 @@
 # TODO:
 
+- [X] Icon:
+    - https://favicon.io/favicon-generator/
+    - ¡!
+    - Circle
+    - Miltonian
+    - Regular 400 Normal
+    - 110
+    - #EEEEEE
+    - #333333
+
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
