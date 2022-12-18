@@ -47,6 +47,32 @@ Invalid Bundle. The key UIDeviceFamily in the app's Info.plist file contains one
 
 
 
+1. Signing the Installer:
+
+productsign --sign "Developer ID Installer: Your Apple Account Name (**********)" ~/Desktop/example.pkg ~/Desktop/signed-example.pkg
+
+2. Sending the notarization request:
+
+Sign in to apps with your Apple ID using app-specific passwords:
+https://support.apple.com/en-us/HT204397
+
+xcrun altool --notarize-app --primary-bundle-id "id" --username "AppleID@mail.com" --password "cvbs-epfg-sizx-olwd" --file "signed-example.pkg"
+
+you get back something like:
+
+altool[8788:92462] No errors uploading 'signed-example.pkg'.
+RequestUUID = 181638fb-a618-2298-bff0-470979f01326
+3. Checking the notarization status:
+xcrun altool --notarization-info 181638fb-a618-2298-bff0-470979f01326 --username "AppleID@mail.com" --password "cvbs-epfg-sizx-olwd"
+
+5. Stapling the ticket to the file
+xcrun stapler staple "signed-example.pkg"
+
+stapling details with:
+stapler validate --verbose "signed-example.pkg"
+
+
+
 - [ ] favicon in Linux - find out why this works in Photino sample
 
 
