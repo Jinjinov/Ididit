@@ -16,6 +16,12 @@
 1.
 Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
+1290x2796 2796x1290
+1242x2688 2688x1242 1284x2778 2778x1284
+1242x2208 2208x1242
+2048x2732 2732x2048
+2048x2732 2732x2048
+
 <i class="fa-brands fa-apple"></i>
 <i class="fa-brands fa-microsoft"></i>
 <i class="fa-brands fa-linux"></i>
