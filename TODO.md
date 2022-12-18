@@ -22,35 +22,20 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 <i class="fa-brands fa-android"></i>
 <i class="fa-solid fa-globe"></i>
 
-2.
-Asset validation failed (90717)
-Invalid App Store Icon. The App Store Icon in the asset catalog in 'Ididit.WebView.Maui.app' can't be transparent nor contain an alpha channel. (ID: 5f57532b-c0c4-49d3-b327-1e0b1b14e4a7)
-
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits
 
-3.
+2.
 Asset validation failed (90237)
 The product archive package's signature is invalid. Ensure that it is signed with your "3rd Party Mac Developer Installer" certificate. (ID: 3095a9e9-55f1-4b9e-8cf5-4ae05a0b73d8)
 
-4.
-Asset validation failed (90242)
-The product archive is invalid. The Info.plist must contain a LSApplicationCategoryType key, whose value is the UTI for a valid category. 
-For more details, see "Submitting your Mac apps to the App Store". (ID: 30a2dc21-8c04-47c0-8260-6d9b8789b7fd)
-
-5.
+3.
 Asset validation failed (90869)
 Invalid bundle. The “Ididit.WebView.Maui.app” bundle supports arm64 but not Intel-based Mac computers. 
 Your build must include the x86_64 architecture to support Intel-based Mac computers. 
 For details, view: https://developer.apple.com/documentation/xcode/building_a_universal_macos_binary. (ID: 8a402de2-8abf-49ae-8038-a26c0097c378)
 
-6.
-Asset validation failed (90296)
-App sandbox not enabled. 
-The following executables must include the "com.apple.security.app-sandbox" entitlement with a Boolean value of true in the entitlements property list: [( "com.jinjinov.ididit.pkg/Payload/Ididit.WebView.Maui.app/Contents/MacOS/Ididit.WebView.Maui" )] 
-Refer to App Sandbox page at https://developer.apple.com/documentation/security/app_sandbox for more information on sandboxing your app. (ID: 1b4647e9-359d-40f7-a062-5f8aceaeccb4)
-
-7.
+4.
 Asset validation failed (90756)
 Invalid Bundle. The key UIDeviceFamily in the app's Info.plist file contains one or more unsupported values '1'. (ID: e98a0fc1-d792-4b2d-854c-51a5d1649c82)
 
