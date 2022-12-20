@@ -22,7 +22,7 @@
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
@@ -84,7 +84,7 @@
     <CodesignProvision>ididit.macos</CodesignProvision>
 
     <ProvisionType>Manual</ProvisionType>
-    <EnableAssemblyILStripping>false</EnableAssemblyILStripping>
+    <!--<EnableAssemblyILStripping>false</EnableAssemblyILStripping>-->
     <UseHardenedRuntime>true</UseHardenedRuntime>
 
     <ServerAddress>192.168.0.103</ServerAddress>
