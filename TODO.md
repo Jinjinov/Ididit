@@ -30,36 +30,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits
 
-Asset validation failed (90237)
-The product archive package's signature is invalid. Ensure that it is signed with your "3rd Party Mac Developer Installer" certificate. (ID: 3095a9e9-55f1-4b9e-8cf5-4ae05a0b73d8)
-
-
-
-    1. Signing the Installer:
-
-    productsign --sign "Developer ID Installer: Your Apple Account Name (**********)" ~/Desktop/example.pkg ~/Desktop/signed-example.pkg
-
-    2. Sending the notarization request:
-
-    Sign in to apps with your Apple ID using app-specific passwords:
-    https://support.apple.com/en-us/HT204397
-
-    xcrun altool --notarize-app --primary-bundle-id "id" --username "AppleID@mail.com" --password "cvbs-epfg-sizx-olwd" --file "signed-example.pkg"
-
-    you get back something like:
-
-    altool[8788:92462] No errors uploading 'signed-example.pkg'.
-    RequestUUID = 181638fb-a618-2298-bff0-470979f01326
-
-    3. Checking the notarization status:
-    xcrun altool --notarization-info 181638fb-a618-2298-bff0-470979f01326 --username "AppleID@mail.com" --password "cvbs-epfg-sizx-olwd"
-
-    5. Stapling the ticket to the file
-    xcrun stapler staple "signed-example.pkg"
-
-    stapling details with:
-    stapler validate --verbose "signed-example.pkg"
-
 
 
 - [ ] favicon in Linux - find out why this works in Photino sample
