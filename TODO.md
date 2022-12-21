@@ -21,11 +21,11 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 2048x2732 2732x2048
 2048x2732 2732x2048
 
-<i class="fa-brands fa-apple"></i>
-<i class="fa-brands fa-microsoft"></i>
-<i class="fa-brands fa-linux"></i>
-<i class="fa-brands fa-android"></i>
-<i class="fa-solid fa-globe"></i>
+<i class="fa fa-apple"></i>
+<i class="fa fa-microsoft"></i>
+<i class="fa fa-linux"></i>
+<i class="fa fa-android"></i>
+<i class="fa fa-globe"></i>
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits
