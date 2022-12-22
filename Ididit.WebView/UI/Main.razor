@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Components.Routing
+@using System.Diagnostics.CodeAnalysis;
+@using Microsoft.AspNetCore.Components.Web;
 
 <Router AppAssembly="@GetType().Assembly">
     <Found Context="routeData">
@@ -8,3 +10,14 @@
         <p role="alert">Sorry, there's nothing at this address.</p>
     </NotFound>
 </Router>
+
+@code {
+    // The following dependency prevents HeadOutlet from getting trimmed away
+    [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(HeadOutlet))]
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+        }
+    }
+}
