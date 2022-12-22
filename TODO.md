@@ -10,8 +10,6 @@
     - #EEEEEE
     - #333333
 
-dotnet publish -c Release -f:net7.0-android /p:RunAOTCompilation=False /p:PublishTrimmed=False
-
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
