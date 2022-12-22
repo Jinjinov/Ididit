@@ -30,5 +30,9 @@
 	<string>Assets.xcassets/appicon.appiconset</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.jinjinov.ididit</string>
+	<key>CFBundleDisplayName</key>
+	<string>ididit!</string>
+	<key>CFBundleName</key>
+	<string>ididit!</string>
 </dict>
 </plist>
