@@ -22,7 +22,7 @@
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
@@ -59,6 +59,10 @@
     <!--<AndroidSigningStorePass>password</AndroidSigningStorePass>-->
     <AndroidSigningKeyAlias>IdiditGooglePlay</AndroidSigningKeyAlias>
     <!--<AndroidSigningKeyPass>password</AndroidSigningKeyPass>-->
+
+    <RunAOTCompilation>False</RunAOTCompilation>
+    <PublishTrimmed>False</PublishTrimmed>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
