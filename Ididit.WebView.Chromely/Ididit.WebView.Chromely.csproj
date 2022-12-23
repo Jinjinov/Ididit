@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <AssemblyName>ididit!</AssemblyName>
     <TargetFramework>net7.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <LangVersion>11.0</LangVersion>

@@ -5,6 +5,7 @@
     <LangVersion>11.0</LangVersion>
     <Nullable>enable</Nullable>
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+    <AssemblyName>ididit!</AssemblyName>
     <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
