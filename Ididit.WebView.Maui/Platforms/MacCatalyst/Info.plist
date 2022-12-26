@@ -33,5 +33,7 @@
 	<string>ididit!</string>
 	<key>CFBundleName</key>
 	<string>ididit!</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>
