@@ -90,14 +90,15 @@
     <!--<CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
     <!--<CodesignProvision>ididit.macos</CodesignProvision>-->
 
-    <!--<CodesignKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
     <!--<CodesignProvision>ididit.developer</CodesignProvision>-->
+    <!--<PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
 
     <CodesignKey>3rd Party Mac Developer Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
-    <EnableCodeSigning>True</EnableCodeSigning>
-
-    <EnablePackageSigning>true</EnablePackageSigning>
     <PackageSigningKey>3rd Party Mac Developer Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>
+
+    <EnableCodeSigning>True</EnableCodeSigning>
+    <EnablePackageSigning>true</EnablePackageSigning>
 
     <ProvisionType>Manual</ProvisionType>
     <!--<EnableAssemblyILStripping>false</EnableAssemblyILStripping>-->
