@@ -19,10 +19,12 @@
     <ProjectReference Include="..\Ididit\Ididit.csproj" />
   </ItemGroup>
 
+  <!--
   <ItemGroup>
     <Content Update="credentials.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  -->
 
 </Project>
