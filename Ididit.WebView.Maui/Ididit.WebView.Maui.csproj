@@ -63,9 +63,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">
+
     <RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+
     <!-- Only needed when you have a need for entitlements -->
     <!-- <CodesignEntitlement>Platforms/iOS/Entitlements.plist</CodesignEntitlement> -->
+
     <CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
     <CodesignProvision>ididit.ios</CodesignProvision>
 
@@ -78,12 +81,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
+
     <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
+
     <!-- Only needed when you have a need for entitlements -->
     <CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>
+
     <!--<CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
-    <!--<CodesignKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
     <!--<CodesignProvision>ididit.macos</CodesignProvision>-->
+
+    <!--<CodesignKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<CodesignProvision>ididit.developer</CodesignProvision>-->
 
     <CodesignKey>3rd Party Mac Developer Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
     <EnableCodeSigning>True</EnableCodeSigning>
