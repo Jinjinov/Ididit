@@ -19,138 +19,149 @@
 </HeadContent>
 
 <CascadingValue Value=Size>
-    <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
-        <Row Border=Border.Is1.OnTop.Dark>
-            <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
-                    <Icon Class="fa-fw" Name="IconName.Bars" />
-                </Button>
+    <ErrorBoundary>
+        <ChildContent>
 
-                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
-                    <Icon Class="fa-fw" Name="IconName.Wrench" />
-                </Button>
+            <Container Fluid=true Height=Height.Is100 Display=Display.Flex Flex=Flex.Column>
+                <Row Border=Border.Is1.OnTop.Dark>
+                    <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                @if (_showDebugControls && IsDebug)
-                {
-                    <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
-                        <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
-                    </Button>
+                        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
+                            <Icon Class="fa-fw" Name="IconName.Bars" />
+                        </Button>
 
-                    <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
-                        <Icon Class="fa-fw" Name="IconName.Bug" /> @_background.Name
-                    </Button>
-                }
+                        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
+                            <Icon Class="fa-fw" Name="IconName.Wrench" />
+                        </Button>
 
-                <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
-                    <a href="https://ididit.today" target="_blank">ididit!</a>
-                </Span>
-
-                <Inline>
-                    <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0>
-                        <Addon AddonType="AddonType.Start">
-                            <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" @onclick="Backup">
-                                <Icon Class="fa-fw" Name="IconName.Save" />
+                        @if (_showDebugControls && IsDebug)
+                        {
+                            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
+                                <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
                             </Button>
-                        </Addon>
 
-                        <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
-                            @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
-                            {
-                                <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
-                            }
-                        </Select>
-                    </Addons>
-                </Inline>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
+                                <Icon Class="fa-fw" Name="IconName.Bug" /> @_background.Name
+                            </Button>
+                        }
 
-                @*@UserDisplayName.GetUserDisplayName().Result*@
+                        <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
+                            <a href="https://ididit.today" target="_blank">ididit!</a>
+                        </Span>
 
-            </Column>
-        </Row>
-        @if (_showOptions)
-        {
-            <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
+                        <Inline>
+                            <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0>
+                                <Addon AddonType="AddonType.Start">
+                                    <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" @onclick="Backup">
+                                        <Icon Class="fa-fw" Name="IconName.Save" />
+                                    </Button>
+                                </Addon>
 
-                @if (Ididit.Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
+                                <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
+                                    @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
+                                    {
+                                        <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
+                                    }
+                                </Select>
+                            </Addons>
+                        </Inline>
+
+                        @*@UserDisplayName.GetUserDisplayName().Result*@
+
+                    </Column>
+                </Row>
+                @if (_showOptions)
                 {
-                    <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
-                            <CardBody Padding=Padding.Is1>
-                            <ErrorBoundary>
-                                <ChildContent>
-                                    @ChildContent
-                                </ChildContent>
-                                <ErrorContent Context="ex">
-                                    <p>@ex.Message</p>
-                                </ErrorContent>
-                            </ErrorBoundary>
-                        </CardBody>
-                    </Card>
+                    <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
+
+                        @if (Ididit.Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
+                        {
+                            <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
+                                <CardBody Padding=Padding.Is1>
+                                    <ErrorBoundary>
+                                        <ChildContent>
+                                            @ChildContent
+                                        </ChildContent>
+                                        <ErrorContent Context="ex">
+                                            <p>@ex.Message</p>
+                                        </ErrorContent>
+                                    </ErrorBoundary>
+                                </CardBody>
+                            </Card>
+                        }
+
+                        <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+
+                        @if (IsDebug)
+                        {
+                            <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
+                                <CardBody Padding=Padding.Is1>
+
+                                    <CheckBox Checked="_showDebugControls" CheckedChanged="OnShowDebugChanged">Show debug controls</CheckBox>
+
+                                </CardBody>
+                            </Card>
+                        }
+
+                    </Row>
                 }
-
-                <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
-
-                @if (IsDebug)
+                else
                 {
-                <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
-                    <CardBody Padding=Padding.Is1>
+                    <Row Background=_background Flex=Flex.Grow.Is1 class="parent-row">
 
-                        <CheckBox Checked="_showDebugControls" CheckedChanged="OnShowDebugChanged">Show debug controls</CheckBox>
+                        <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 320px">
 
-                    </CardBody>
-                </Card>
+                            <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
+                                <Collapse Visible="@_filtersVisible">
+                                    <CollapseHeader Padding=Padding.Is0>
+
+                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
+
+                                    </CollapseHeader>
+                                    @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
+                                    <CollapseBody Padding=Padding.Is0>
+
+                                        <FiltersComponent @bind-Filters="_filters" Settings=Settings />
+
+                                    </CollapseBody>
+                                </Collapse>
+                                <Collapse Visible="@_categoriesVisible">
+                                    <CollapseHeader Padding=Padding.Is0>
+
+                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
+
+                                    </CollapseHeader>
+                                    @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
+                                    <CollapseBody Padding=Padding.Is0>
+
+                                        <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
+
+                                    </CollapseBody>
+                                </Collapse>
+                            </Accordion>
+
+                        </Column>
+                        <Column Padding=Padding.Is0 class="child-column">
+                            <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters=_filters Settings=Settings />
+                        </Column>
+
+                    </Row>
                 }
+                <Row>
+                    <Column Display=Display.Flex Border=Border.Is1.OnTop.Primary>
+                        <Span Flex=Flex.Grow.Is1><a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a></Span>
+                        <Span>&#169; 2022</Span>
+                    </Column>
+                </Row>
+            </Container>
 
-            </Row>
-        }
-        else
-        {
-            <Row Background=_background Flex=Flex.Grow.Is1 class="parent-row">
+        </ChildContent>
+        <ErrorContent Context="ex">
+            <p>@ex.Message</p>
+        </ErrorContent>
+    </ErrorBoundary>
 
-                <Column ColumnSize=ColumnSize.Is12.OnMobile.Is3.OnDesktop Padding=Padding.Is0 class="@($"child-column {SidebarVisibilityCss}")" style="min-width: 320px">
-
-                    <Accordion Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
-                        <Collapse Visible="@_filtersVisible">
-                            <CollapseHeader Padding=Padding.Is0>
-
-                                <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
-
-                            </CollapseHeader>
-                            @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
-                            <CollapseBody Padding=Padding.Is0>
-
-                                <FiltersComponent @bind-Filters="_filters" Settings=Settings />
-
-                            </CollapseBody>
-                        </Collapse>
-                        <Collapse Visible="@_categoriesVisible">
-                            <CollapseHeader Padding=Padding.Is0>
-
-                                <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
-
-                            </CollapseHeader>
-                            @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
-                            <CollapseBody Padding=Padding.Is0>
-
-                                <CategoriesComponent @bind-SelectedCategory=_selectedCategory Settings=Settings />
-
-                            </CollapseBody>
-                        </Collapse>
-                    </Accordion>
-
-                </Column>
-                <Column Padding=Padding.Is0 class="child-column">
-                    <GoalsComponent @bind-SelectedCategory=_selectedCategory Filters=_filters Settings=Settings />
-                </Column>
-
-            </Row>
-        }
-        <Row>
-            <Column Display=Display.Flex Border=Border.Is1.OnTop.Primary>
-                <Span Flex=Flex.Grow.Is1><a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a></Span>
-                <Span>&#169; 2022</Span>
-            </Column>
-        </Row>
-    </Container>
 </CascadingValue>
 
 @*
