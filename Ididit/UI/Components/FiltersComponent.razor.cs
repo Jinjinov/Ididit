@@ -8,6 +8,8 @@ namespace Ididit.UI.Components;
 
 public partial class FiltersComponent
 {
+    public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 
@@ -85,6 +87,11 @@ public partial class FiltersComponent
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
+    }
+
+    async Task OnSortChangeEvent(ChangeEventArgs e)
+    {
+        await OnSortChanged(Enum.Parse<Sort>((string)e.Value));
     }
 
     async Task OnSortChanged(Sort sort)

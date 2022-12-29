@@ -54,10 +54,22 @@
 <Field Margin=Margin.Is0.Is2.FromTop>
     <FieldLabel Margin=Margin.Is0>Sort by:</FieldLabel>
 
-    <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
-        @foreach (Sort sort in Enum.GetValues<Sort>())
-        {
-            <SelectItem Value="sort">@sort.GetDescription()</SelectItem>
-        }
-    </Select>
+    @if (IsApple)
+    {
+        <select class="form-select" value="@Settings.Sort" @onchange="OnSortChangeEvent">
+            @foreach (Sort sort in Enum.GetValues<Sort>())
+            {
+                <option Value="@sort">@sort.GetDescription()</option>
+            }
+        </select>
+    }
+    else
+    {
+        <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
+            @foreach (Sort sort in Enum.GetValues<Sort>())
+            {
+                <SelectItem Value="sort">@sort.GetDescription()</SelectItem>
+            }
+        </Select>
+    }
 </Field>

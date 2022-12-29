@@ -50,6 +50,8 @@
                             <a href="https://ididit.today" target="_blank">ididit!</a>
                         </Span>
 
+                        @if (IsPersonalComputer)
+                        {
                         <Inline>
                             <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0>
                                 <Addon AddonType="AddonType.Start">
@@ -58,14 +60,27 @@
                                     </Button>
                                 </Addon>
 
-                                <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
-                                    @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
-                                    {
-                                        <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
-                                    }
-                                </Select>
+                                @if (IsApple)
+                                {
+                                    <select class="form-select" value="@Settings.SelectedBackupFormat" @onchange="OnDataFormatChangeEvent">
+                                        @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
+                                        {
+                                            <option Value="@dataFormat">@dataFormat.GetDescription()</option>
+                                        }
+                                    </select>
+                                }
+                                else
+                                {
+                                    <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
+                                        @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
+                                        {
+                                            <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
+                                        }
+                                    </Select>
+                                }
                             </Addons>
                         </Inline>
+                        }
 
                         @*@UserDisplayName.GetUserDisplayName().Result*@
 

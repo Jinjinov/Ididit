@@ -12,6 +12,10 @@ namespace Ididit.UI.Components;
 
 public partial class MainComponent
 {
+    public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
+    public static bool IsPersonalComputer => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     public static bool IsDebug
     {
         get
@@ -148,6 +152,11 @@ public partial class MainComponent
     async Task Backup()
     {
         await ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
+    }
+
+    async Task OnDataFormatChangeEvent(ChangeEventArgs e)
+    {
+        await OnDataFormatChanged(Enum.Parse<DataFormat>((string)e.Value));
     }
 
     async Task OnDataFormatChanged(DataFormat dataFormat)
