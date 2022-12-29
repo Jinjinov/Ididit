@@ -13,29 +13,54 @@
         <Field Margin=Margin.Is0.Is2.FromTop>
             <FieldLabel Margin=Margin.Is0>Size:</FieldLabel>
 
-            <Select TValue="Size" Size="Size" SelectedValue="Size" SelectedValueChanged="OnSizeChanged">
-                <SelectItem Value="Blazorise.Size.Default">Default</SelectItem>
-                @*<SelectItem Value="Blazorise.Size.ExtraSmall">Extra small</SelectItem>*@
-                <SelectItem Value="Blazorise.Size.Small">Small</SelectItem>
-                <SelectItem Value="Blazorise.Size.Medium">Medium</SelectItem>
-                <SelectItem Value="Blazorise.Size.Large">Large</SelectItem>
-                @*<SelectItem Value="Blazorise.Size.ExtraLarge">Extra large</SelectItem>*@
-            </Select>
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Size" @onchange="OnSizeChangeEvent">
+                    <option Value="@Blazorise.Size.Default">Default</option>
+                    <option Value="@Blazorise.Size.Small">Small</option>
+                    <option Value="@Blazorise.Size.Medium">Medium</option>
+                    <option Value="@Blazorise.Size.Large">Large</option>
+                </select>
+            }
+            else
+            {
+                <Select TValue="Size" Size="Size" SelectedValue="Size" SelectedValueChanged="OnSizeChanged">
+                    <SelectItem Value="Blazorise.Size.Default">Default</SelectItem>
+                    @*<SelectItem Value="Blazorise.Size.ExtraSmall">Extra small</SelectItem>*@
+                    <SelectItem Value="Blazorise.Size.Small">Small</SelectItem>
+                    <SelectItem Value="Blazorise.Size.Medium">Medium</SelectItem>
+                    <SelectItem Value="Blazorise.Size.Large">Large</SelectItem>
+                    @*<SelectItem Value="Blazorise.Size.ExtraLarge">Extra large</SelectItem>*@
+                </Select>
+            }
         </Field>
 
         <Field Margin=Margin.Is0.Is2.FromTop>
             <FieldLabel Margin=Margin.Is0>Theme:</FieldLabel>
 
-            <Select TValue="string" Size="Size" SelectedValue="Theme" SelectedValueChanged="OnThemeChanged">
-                <SelectItem Value="@("default")">default</SelectItem>
-                @foreach (string theme in Themes)
-                {
-                    <SelectItem Value="theme">@theme</SelectItem>
-                }
-            </Select>
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Theme" @onchange="OnThemeChangeEvent">
+                    <option Value="default">default</option>
+                    @foreach (string theme in Themes)
+                    {
+                        <option Value="@theme">@theme</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <Select TValue="string" Size="Size" SelectedValue="Theme" SelectedValueChanged="OnThemeChanged">
+                    <SelectItem Value="@("default")">default</SelectItem>
+                    @foreach (string theme in Themes)
+                    {
+                        <SelectItem Value="theme">@theme</SelectItem>
+                    }
+                </Select>
+            }
         </Field>
 
-        @if(IsPersonalComputer)
+        @if (IsPersonalComputer)
         {
         <Label For="JSON-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import JSON</Label>
         <InputFile id="JSON-upload" class="d-none" OnChange=Import />

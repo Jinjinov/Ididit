@@ -15,6 +15,8 @@ namespace Ididit.UI.Components;
 
 public partial class Options
 {
+    public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     public static bool IsPersonalComputer => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
 
     [Inject]
@@ -60,10 +62,20 @@ public partial class Options
     [Parameter]
     public EventCallback<string> ThemeChanged { get; set; }
 
+    async Task OnSizeChangeEvent(ChangeEventArgs e)
+    {
+        await OnSizeChanged(Enum.Parse<Blazorise.Size>((string)e.Value));
+    }
+
     async Task OnSizeChanged(Blazorise.Size size)
     {
         Size = size;
         await SizeChanged.InvokeAsync(Size);
+    }
+
+    async Task OnThemeChangeEvent(ChangeEventArgs e)
+    {
+        await OnThemeChanged((string)e.Value);
     }
 
     async Task OnThemeChanged(string theme)

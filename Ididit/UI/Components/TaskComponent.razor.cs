@@ -9,6 +9,8 @@ namespace Ididit.UI.Components;
 
 public sealed partial class TaskComponent : IDisposable
 {
+    public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 
@@ -117,11 +119,21 @@ public sealed partial class TaskComponent : IDisposable
         _showTime = !_showTime;
     }
 
+    async Task PriorityChangeEvent(ChangeEventArgs e)
+    {
+        await PriorityChanged(Enum.Parse<Priority>((string)e.Value));
+    }
+
     async Task PriorityChanged(Priority priority)
     {
         Task.Priority = priority;
 
         await Repository.UpdateTask(Task.Id);
+    }
+
+    async Task OnTaskKindChangeEvent(ChangeEventArgs e)
+    {
+        await OnTaskKindChanged(Enum.Parse<TaskKind>((string)e.Value));
     }
 
     async Task OnTaskKindChanged(TaskKind taskKind)

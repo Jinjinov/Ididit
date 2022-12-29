@@ -66,25 +66,52 @@
             <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
                 <AddonLabel Flex="Flex.Grow.Is1">Type:</AddonLabel>
             </Addon>
-            <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
-                <SelectItem Value="TaskKind.Note">Note</SelectItem>
-                <SelectItem Value="TaskKind.Task">Task</SelectItem>
-                <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
-            </Select>
+
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Task.TaskKind" @onchange="OnTaskKindChangeEvent">
+                    <option Value="@TaskKind.Note">Note</option>
+                    <option Value="@TaskKind.Task">Task</option>
+                    <option Value="@TaskKind.RepeatingTask">Repeating task</option>
+                </select>
+            }
+            else
+            {
+                <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
+                    <SelectItem Value="TaskKind.Note">Note</SelectItem>
+                    <SelectItem Value="TaskKind.Task">Task</SelectItem>
+                    <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
+                </Select>
+            }
         </Addons>
 
         <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
             <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
                 <AddonLabel Flex="Flex.Grow.Is1">Priority:</AddonLabel>
             </Addon>
-            <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
-                <SelectItem Value="Priority.None">None</SelectItem>
-                <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
-                <SelectItem Value="Priority.Low">Low</SelectItem>
-                <SelectItem Value="Priority.Medium">Medium</SelectItem>
-                <SelectItem Value="Priority.High">High</SelectItem>
-                <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
-            </Select>
+
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Task.Priority" @onchange="PriorityChangeEvent">
+                    <option Value="@Priority.None">None</option>
+                    <option Value="@Priority.VeryLow">Very low</option>
+                    <option Value="@Priority.Low">Low</option>
+                    <option Value="@Priority.Medium">Medium</option>
+                    <option Value="@Priority.High">High</option>
+                    <option Value="@Priority.VeryHigh">Very high</option>
+                </select>
+            }
+            else
+            {
+                <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
+                    <SelectItem Value="Priority.None">None</SelectItem>
+                    <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
+                    <SelectItem Value="Priority.Low">Low</SelectItem>
+                    <SelectItem Value="Priority.Medium">Medium</SelectItem>
+                    <SelectItem Value="Priority.High">High</SelectItem>
+                    <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
+                </Select>
+            }
         </Addons>
 
         @if (!Task.IsDoneAtLeastOnce)
