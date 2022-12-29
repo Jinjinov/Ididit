@@ -12,6 +12,18 @@ namespace Ididit.UI.Components;
 
 public partial class MainComponent
 {
+    public static bool IsDebug
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
+        }
+    }
+
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
 
@@ -113,9 +125,9 @@ public partial class MainComponent
         _background = _backgrounds[_backgrounds.Keys[_debugBackground]];
     }
 
-    bool _showDebug;
+    bool _showDebugControls;
 
-    void OnShowDebugChanged(bool? val) => _showDebug = val ?? false;
+    void OnShowDebugChanged(bool? val) => _showDebugControls = val ?? false;
 
     bool _showOptions;
 

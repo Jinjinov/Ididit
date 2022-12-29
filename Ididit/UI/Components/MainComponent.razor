@@ -31,7 +31,7 @@
                     <Icon Class="fa-fw" Name="IconName.Wrench" />
                 </Button>
 
-                @if (_showDebug)
+                @if (_showDebugControls && IsDebug)
                 {
                     <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
                         <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
@@ -89,13 +89,16 @@
 
                 <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
 
+                @if (IsDebug)
+                {
                 <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
                     <CardBody Padding=Padding.Is1>
 
-                        <CheckBox Checked="_showDebug" CheckedChanged="OnShowDebugChanged">Show debug controls</CheckBox>
+                        <CheckBox Checked="_showDebugControls" CheckedChanged="OnShowDebugChanged">Show debug controls</CheckBox>
 
                     </CardBody>
                 </Card>
+                }
 
             </Row>
         }

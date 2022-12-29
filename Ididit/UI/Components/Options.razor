@@ -35,6 +35,8 @@
             </Select>
         </Field>
 
+        @if(IsPersonalComputer)
+        {
         <Label For="JSON-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import JSON</Label>
         <InputFile id="JSON-upload" class="d-none" OnChange=Import />
 
@@ -69,6 +71,7 @@
 
         <Label For="ZIP-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import Google Keep Takeout ZIP</Label>
         <InputFile id="ZIP-upload" class="d-none" OnChange=Import />
+        }
 
     </CardBody>
 </Card>

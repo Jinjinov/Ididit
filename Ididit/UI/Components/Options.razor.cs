@@ -15,6 +15,8 @@ namespace Ididit.UI.Components;
 
 public partial class Options
 {
+    public static bool IsPersonalComputer => OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 
