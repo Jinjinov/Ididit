@@ -8,12 +8,6 @@
 
 Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
-<i class="fa fa-apple"></i>
-<i class="fa fa-microsoft"></i>
-<i class="fa fa-linux"></i>
-<i class="fa fa-android"></i>
-<i class="fa fa-globe"></i>
-
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
