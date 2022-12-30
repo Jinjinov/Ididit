@@ -1,25 +1,12 @@
 # TODO:
 
-- [X] Icon:
-    - https://favicon.io/favicon-generator/
-    - ¡!
-    - Circle
-    - Miltonian
-    - Regular 400 Normal
-    - 110
-    - #EEEEEE
-    - #333333
-
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
-Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
+- [ ] separate import column, select line in textarea, search selected line, copy selected line
+- [ ] organize habits
 
-1290x2796 2796x1290
-1242x2688 2688x1242 1284x2778 2778x1284
-1242x2208 2208x1242
-2048x2732 2732x2048
-2048x2732 2732x2048
+Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 <i class="fa fa-apple"></i>
 <i class="fa fa-microsoft"></i>
@@ -27,12 +14,31 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 <i class="fa fa-android"></i>
 <i class="fa fa-globe"></i>
 
-- [ ] separate import column, select line in textarea, search selected line, copy selected line
-- [ ] organize habits
+- [ ] use phone back button to exit options / settings
+- [ ] fix phone 2x app open - check if app is already running
+
+- [ ] fix menu and options button toggle color
+- [ ] close options on delete all
+- [ ] close options on load examples
 
 
 
 - [ ] favicon in Linux - find out why this works in Photino sample
+
+
+
+- [ ] Maui Google Drive authentication:
+    - https://github.com/thaveeshakannangara/MauiWithFirebase
+    - https://github.com/carlfranklin/MsalGoogleAuthInMaui
+    - https://github.com/omegazero2310/GoogleMapMAUI
+    - https://github.com/jhonatanfernando/maui-google-authentication
+    - https://github.com/krimou2/.net-maui-login-with-google
+    - https://github.com/madamireag/Bookspedia-PDM
+    - Xamarin Google Drive:
+    - https://github.com/Dineshbala1/GoogleDriveAPI-XamarinForms
+    - https://github.com/stevenchang0529/XamarinGoogleDriveRest
+    - https://github.com/Kimserey/GDrivePrototype
+    - https://github.com/nguyenthanhliemfc/TestGoogleDriveForXamarinForms
 
 
 
@@ -111,26 +117,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 - [ ] macOS
     - https://learn.microsoft.com/en-us/dotnet/maui/macos/cli?view=net-maui-7.0
-
-- [ ] Apple store - $99 annually
-    - https://docs.microsoft.com/en-us/xamarin/ios/deploy-test/app-distribution/app-store-distribution/publishing-to-the-app-store
-
-- [ ] iOS
-    - https://learn.microsoft.com/en-us/dotnet/maui/ios/cli?view=net-maui-7.0
-    - https://learn.microsoft.com/en-us/dotnet/maui/ios/pair-to-mac?view=net-maui-7.0
-    - https://learn.microsoft.com/en-us/dotnet/maui/ios/remote-simulator?view=net-maui-7.0
-
-- [ ] Debug on the Android Emulator
-    - https://docs.microsoft.com/en-us/dotnet/maui/android/emulator/debug-on-emulator
-
-- [ ] Set up Android device for debugging
-    - https://docs.microsoft.com/en-us/dotnet/maui/android/device/setup
-
-- [ ] Publish a .NET MAUI app for Android
-    - https://docs.microsoft.com/en-us/dotnet/maui/android/deployment/overview
-
-- [ ] Google store - $25
-    - https://docs.microsoft.com/en-us/xamarin/android/deploy-test/publishing/publishing-to-google-play
 
 -------------------------------------------------------------------------------
 
@@ -238,3 +224,13 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     - The repeater component is a helper component that repeats the child content for each element in a collection.
     - One advantage over using traditional @foreach loop is that repeater have a full support for INotifyCollectionChanged.
     - Meaning you can do custom actions whenever a data-source changes.
+
+- [X] Icon:
+    - https://favicon.io/favicon-generator/
+    - ¡!
+    - Circle
+    - Miltonian
+    - Regular 400 Normal
+    - 110
+    - #EEEEEE
+    - #333333
