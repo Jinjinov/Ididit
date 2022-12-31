@@ -23,8 +23,8 @@
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.0.2</ApplicationDisplayVersion>
-    <ApplicationVersion>2</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.4</ApplicationDisplayVersion>
+    <ApplicationVersion>4</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
@@ -85,18 +85,18 @@
     <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
 
     <!-- Only needed when you have a need for entitlements -->
-    <CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>
+    <!--<CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>-->
 
-    <CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
-    <CodesignProvision>ididit.macos</CodesignProvision>
-
-    <!--<CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
-    <!--<CodesignProvision>ididit.developer</CodesignProvision>-->
-    <!--<PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
+    <!--<CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<CodesignProvision>ididit.macos</CodesignProvision>-->
 
     <!--<CodesignKey>3rd Party Mac Developer Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
-    <PackageSigningKey>3rd Party Mac Developer Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>
+    <!--<PackageSigningKey>3rd Party Mac Developer Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
 
+    <CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
+    <CodesignProvision>ididit.developer</CodesignProvision>
+    <PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>
+    
     <EnableCodeSigning>True</EnableCodeSigning>
     <EnablePackageSigning>true</EnablePackageSigning>
 
