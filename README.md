@@ -40,10 +40,6 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 [Use ididit! version 2.0.2 online](https://app.ididit.today)
 
-### Preview version (2022.11.13)
-
-[Use ididit! version 2.1.0-preview.2 online](https://new.ididit.today)
-
 ### Old version (2021.11.09)
 
 [Use ididit! version 1.3.7 online](https://old.ididit.today)
@@ -51,6 +47,10 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 ## Releases
 
 [Get ididit! from Microsoft Store](https://apps.microsoft.com/store/detail/ididit/9P5L0K28XWM3)
+
+[Get ididit! on Google Play](https://play.google.com/store/apps/details?id=com.jinjinov.ididit)
+
+[Get ididit! on the App Store](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
 
 ### 2.0.2 (2022.11.11)
 
@@ -63,20 +63,6 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 #### Windows:
 
 [Download ididit! version 2.0.1](https://ididit.today/download/ididit.2.0.1.zip) and run setup.exe
-
-## Previews
-
-### 2.1.0-preview.2 (2022.11.13)
-
-#### Windows:
-
-[Download ididit! version 2.1.0-preview.2](https://ididit.today/download/ididit.2.1.0-preview.2.zip) and run setup.exe
-
-### 2.1.0-preview.1 (2022.08.05)
-
-#### Windows:
-
-[Download ididit! version 2.1.0-preview.1](https://ididit.today/download/ididit.2.1.0-preview.1.zip) and run setup.exe
 
 ## Features
 
