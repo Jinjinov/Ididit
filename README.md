@@ -11,7 +11,7 @@ Take notes, manage tasks, track habits.
 
 ididit! is free, open source and works on Web and Windows. Android, iOS, macOS and Linux are coming soon!
 
-[Why ididit!](#why) [Web app](#webapp) [Releases](#releases) [Previews](#previews) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
+[Why ididit!](#why) [Web app](#webapp) [Releases](#releases) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
 
 ## Why ididit! is better
 
@@ -51,6 +51,10 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 [Get ididit! on Google Play](https://play.google.com/store/apps/details?id=com.jinjinov.ididit)
 
 [Get ididit! on the App Store](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
+
+[Download ididit! for macOS](https://ididit.today/download/ididit!.app.zip)
+
+[Download ididit! for Linux](https://ididit.today/download/ididit.linux.1.0.2.zip)
 
 ### 2.0.2 (2022.11.11)
 
