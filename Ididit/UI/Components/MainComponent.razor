@@ -26,11 +26,11 @@
                 <Row Border=Border.Is1.OnTop.Dark>
                     <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
+                        <Button Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
                             <Icon Class="fa-fw" Name="IconName.Bars" />
                         </Button>
 
-                        <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
+                        <Button Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
                             <Icon Class="fa-fw" Name="IconName.Wrench" />
                         </Button>
 

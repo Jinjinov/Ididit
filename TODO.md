@@ -11,7 +11,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
-- [ ] fix menu and options button toggle color
 - [ ] close options on delete all
 - [ ] close options on load examples
 
