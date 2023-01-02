@@ -38,11 +38,11 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 ### Current version (2022.11.11)
 
-[Use ididit! version 2.0.2 online](https://app.ididit.today)
+[Use ididit! version 1.0.2 online](https://app.ididit.today)
 
 ### Old version (2021.11.09)
 
-[Use ididit! version 1.3.7 online](https://old.ididit.today)
+[Use ididit! version 0.3.7 online](https://old.ididit.today)
 
 ## Releases
 
@@ -52,21 +52,25 @@ ididit! is free, open source and works on Web and Windows. Android, iOS, macOS a
 
 [Get ididit! on the App Store](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
 
-[Download ididit! for macOS](https://ididit.today/download/ididit!.app.zip)
+### 1.0.4 (2022.12.31)
 
-[Download ididit! for Linux](https://ididit.today/download/ididit.linux.1.0.2.zip)
+[Download ididit! for macOS](https://ididit.today/download/ididit!.app.zip) and run ididit!.app
 
-### 2.0.2 (2022.11.11)
-
-#### Windows:
-
-[Download ididit! version 2.0.2](https://ididit.today/download/ididit.2.0.2.zip) and run setup.exe
-
-### 2.0.1 (2022.07.31)
+### 1.0.2 (2022.11.11)
 
 #### Windows:
 
-[Download ididit! version 2.0.1](https://ididit.today/download/ididit.2.0.1.zip) and run setup.exe
+[Download ididit! version 1.0.2](https://ididit.today/download/ididit.1.0.2.zip) and run setup.exe
+
+#### Linux:
+
+[Download ididit! for Linux](https://ididit.today/download/ididit.linux.1.0.2.zip) and run `./Ididit.WebView.Photino` from the terminal
+
+### 1.0.1 (2022.07.31)
+
+#### Windows:
+
+[Download ididit! version 1.0.1](https://ididit.today/download/ididit.1.0.1.zip) and run setup.exe
 
 ## Features
 
