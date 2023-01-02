@@ -4,7 +4,7 @@
 - [ ] real usage screenshots
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
-- [ ] organize habits
+- [ ] organize habits / Google Keep notes
 
 Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
@@ -133,8 +133,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 
-- [ ] catch all unhandled exceptions in macOS - "Ran out of trampolines of type 0" - too many refresh calls?
-
 - [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
 - [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
 
@@ -144,7 +142,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
 - [ ] load db before app start in wasm
-- [ ] read Theme from IndexedDb and apply the stylesheet in MainComponent HeadContent
 
 - [ ] backup on: Dropbox / OneDrive / iCloud
 
