@@ -23,6 +23,12 @@ public partial class Options
     IRepository Repository { get; set; } = null!;
 
     [Parameter]
+    public bool ShowOptions { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowOptionsChanged { get; set; }
+
+    [Parameter]
     public CategoryModel SelectedCategory { get; set; } = null!;
 
     [Parameter]
@@ -31,6 +37,8 @@ public partial class Options
     async Task LoadExamples()
     {
         await Repository.LoadExamples();
+
+        await CloseOptions();
     }
 
     async Task DeleteAll()
@@ -38,6 +46,15 @@ public partial class Options
         await Repository.DeleteAll();
 
         await OnSelectedCategoryChanged();
+
+        await CloseOptions();
+    }
+
+    private async Task CloseOptions()
+    {
+        ShowOptions = false;
+
+        await ShowOptionsChanged.InvokeAsync(ShowOptions);
     }
 
     private async Task OnSelectedCategoryChanged()

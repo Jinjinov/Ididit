@@ -105,7 +105,7 @@
                             </Card>
                         }
 
-                        <Options @bind-SelectedCategory=_selectedCategory Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+                        <Options @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
 
                         @if (IsDebug)
                         {
