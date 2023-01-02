@@ -9,7 +9,7 @@ Take notes, manage tasks, track habits.
 
 * * *
 
-ididit! is free, open source and works on Web and Windows. Android, iOS, macOS and Linux are coming soon!
+ididit! is free, open source and works on Web, Windows, Android, iOS, macOS and Linux!
 
 [Why ididit!](#why) [Web app](#webapp) [Releases](#releases) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
 
