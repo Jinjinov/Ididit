@@ -91,7 +91,8 @@ public partial class FiltersComponent
 
     async Task OnSortChangeEvent(ChangeEventArgs e)
     {
-        await OnSortChanged(Enum.Parse<Sort>((string)e.Value));
+        if (e.Value is string value)
+            await OnSortChanged(Enum.Parse<Sort>(value));
     }
 
     async Task OnSortChanged(Sort sort)

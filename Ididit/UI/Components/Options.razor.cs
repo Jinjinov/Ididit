@@ -64,7 +64,8 @@ public partial class Options
 
     async Task OnSizeChangeEvent(ChangeEventArgs e)
     {
-        await OnSizeChanged(Enum.Parse<Blazorise.Size>((string)e.Value));
+        if (e.Value is string value)
+            await OnSizeChanged(Enum.Parse<Blazorise.Size>(value));
     }
 
     async Task OnSizeChanged(Blazorise.Size size)
@@ -75,7 +76,8 @@ public partial class Options
 
     async Task OnThemeChangeEvent(ChangeEventArgs e)
     {
-        await OnThemeChanged((string)e.Value);
+        if (e.Value is string value)
+            await OnThemeChanged(value);
     }
 
     async Task OnThemeChanged(string theme)

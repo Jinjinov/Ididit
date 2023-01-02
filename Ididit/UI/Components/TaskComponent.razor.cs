@@ -121,7 +121,8 @@ public sealed partial class TaskComponent : IDisposable
 
     async Task PriorityChangeEvent(ChangeEventArgs e)
     {
-        await PriorityChanged(Enum.Parse<Priority>((string)e.Value));
+        if (e.Value is string value)
+            await PriorityChanged(Enum.Parse<Priority>(value));
     }
 
     async Task PriorityChanged(Priority priority)
@@ -133,7 +134,8 @@ public sealed partial class TaskComponent : IDisposable
 
     async Task OnTaskKindChangeEvent(ChangeEventArgs e)
     {
-        await OnTaskKindChanged(Enum.Parse<TaskKind>((string)e.Value));
+        if (e.Value is string value)
+            await OnTaskKindChanged(Enum.Parse<TaskKind>(value));
     }
 
     async Task OnTaskKindChanged(TaskKind taskKind)

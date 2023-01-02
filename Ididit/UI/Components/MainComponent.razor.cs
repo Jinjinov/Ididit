@@ -156,7 +156,8 @@ public partial class MainComponent
 
     async Task OnDataFormatChangeEvent(ChangeEventArgs e)
     {
-        await OnDataFormatChanged(Enum.Parse<DataFormat>((string)e.Value));
+        if (e.Value is string value)
+            await OnDataFormatChanged(Enum.Parse<DataFormat>(value));
     }
 
     async Task OnDataFormatChanged(DataFormat dataFormat)
