@@ -73,6 +73,8 @@ public class Startup
     {
         BrowserWindowOptions browserWindowOptions = new()
         {
+            X = 0,
+            Y = 0,
             Width = 1680,
             Height = 1050,
             Show = false, // wait to open it

@@ -27,6 +27,7 @@ config.UrlSchemes.Add(new UrlScheme(DefaultSchemeName.LOCALREQUEST, "http", "www
 config.WindowOptions.Title = "ididit!";
 config.WindowOptions.RelativePathToIconFile = "favicon.ico";
 config.WindowOptions.Size = new WindowSize(1680, 1050);
+config.WindowOptions.Position = new WindowPosition(0, 0);
 
 if (config.CustomSettings is not null)
 {

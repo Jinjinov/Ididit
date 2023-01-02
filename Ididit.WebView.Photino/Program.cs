@@ -33,8 +33,8 @@ class Program
         app.MainWindow.SetUseOsDefaultSize(false);
         app.MainWindow.SetSize(1680, 1050);
         app.MainWindow.SetUseOsDefaultLocation(false);
-        app.MainWindow.SetTop(100);
-        app.MainWindow.SetLeft(100);
+        app.MainWindow.SetTop(0);
+        app.MainWindow.SetLeft(0);
 
         AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
         {

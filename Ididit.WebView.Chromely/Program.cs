@@ -64,6 +64,7 @@ if (port != -1)
     config.WindowOptions.Title = "ididit!";
     config.WindowOptions.RelativePathToIconFile = "favicon.ico";
     config.WindowOptions.Size = new WindowSize(1680, 1050);
+    config.WindowOptions.Position = new WindowPosition(0, 0);
 #if DEBUG
     config.DebuggingMode = true;
 #endif
