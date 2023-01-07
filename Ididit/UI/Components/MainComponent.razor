@@ -92,7 +92,12 @@
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
 
-                        <h4>Options</h4>
+                        <Div Display=Display.Flex>
+                            <h4 class="d-inline-block">Options</h4>
+                            <Button Class="shadow-none" Margin=Margin.Is0.OnY.IsAuto.FromStart Padding=Padding.Is0>
+                                <Icon Class="fa-fw" Name="IconName.Times" />
+                            </Button>
+                        </Div>
 
                         @if (Ididit.Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
                         {
