@@ -125,11 +125,15 @@
                 }
                 else if (_showHelp)
                 {
-                    <HelpComponent />
+                    <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
+                        <HelpComponent />
+                    </Row>
                 }
                 else if (_showAbout)
                 {
-                    <AboutComponent />
+                    <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
+                        <AboutComponent />
+                    </Row>
                 }
                 else
                 {
