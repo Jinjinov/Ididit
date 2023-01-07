@@ -41,7 +41,7 @@ public class SettingsModel
 
     public Sort Sort { get; set; }
 
-    public Screen Screen { get; set; } = Screen.Help;
+    public Screen Screen { get; set; } = Screen.Main;
 
     public long ElapsedToDesiredRatioMin { get; set; }
 

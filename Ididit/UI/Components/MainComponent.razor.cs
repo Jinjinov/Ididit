@@ -149,38 +149,42 @@ public partial class MainComponent
 
     void OnShowDebugChanged(bool? val) => _showDebugControls = val ?? false;
 
-    bool _showOptions;
+    Screen Screen => Repository.Settings.Screen;
 
-    void ToggleOptions()
+    async Task ToggleOptions()
     {
-        _showHelp = false;
-        _showAbout = false;
-        _showOptions = !_showOptions;
+        if (Screen == Screen.Options)
+            Repository.Settings.Screen = Screen.Main;
+        else
+            Repository.Settings.Screen = Screen.Options;
+
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    bool _showHelp;
-
-    void ToggleHelp()
+    async Task ToggleHelp()
     {
-        _showOptions = false;
-        _showAbout = false;
-        _showHelp = !_showHelp;
+        if (Screen == Screen.Help)
+            Repository.Settings.Screen = Screen.Main;
+        else
+            Repository.Settings.Screen = Screen.Help;
+
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    bool _showAbout;
-
-    void ToggleAbout()
+    async Task ToggleAbout()
     {
-        _showOptions = false;
-        _showHelp = false;
-        _showAbout = !_showAbout;
+        if (Screen == Screen.About)
+            Repository.Settings.Screen = Screen.Main;
+        else
+            Repository.Settings.Screen = Screen.About;
+
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    void CloseAll()
+    async Task ShowMainScreen()
     {
-        _showOptions = false;
-        _showHelp = false;
-        _showAbout = false;
+        Repository.Settings.Screen = Screen.Main;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     [Inject]

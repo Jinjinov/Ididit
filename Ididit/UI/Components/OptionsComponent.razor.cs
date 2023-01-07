@@ -23,12 +23,6 @@ public partial class OptionsComponent
     IRepository Repository { get; set; } = null!;
 
     [Parameter]
-    public bool ShowOptions { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> ShowOptionsChanged { get; set; }
-
-    [Parameter]
     public CategoryModel SelectedCategory { get; set; } = null!;
 
     [Parameter]
@@ -59,9 +53,8 @@ public partial class OptionsComponent
 
     private async Task CloseOptions()
     {
-        ShowOptions = false;
-
-        await ShowOptionsChanged.InvokeAsync(ShowOptions);
+        Repository.Settings.Screen = Screen.Main;
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     private async Task OnSelectedCategoryChanged()

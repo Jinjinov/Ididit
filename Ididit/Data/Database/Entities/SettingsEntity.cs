@@ -52,7 +52,7 @@ internal class SettingsEntity
     public Sort Sort { get; set; }
 
     [IndexDbIndex]
-    public Screen Screen { get; set; } = Screen.Help;
+    public Screen Screen { get; set; } = Screen.Main;
 
     [IndexDbIndex]
     public long ElapsedToDesiredRatioMin { get; set; }

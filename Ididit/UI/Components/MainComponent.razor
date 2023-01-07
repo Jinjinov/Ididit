@@ -26,14 +26,14 @@
                 <Row Border=Border.Is1.OnTop.Dark>
                     <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                        @if (!_showOptions && !_showHelp && !_showAbout)
+                        @if (Screen == Screen.Main)
                         {
                             <Button Class="shadow-none sidebar-toggle-visible" Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar">
                                 <Icon Class="fa-fw" Name="IconName.Bars" />
                             </Button>
                         }
 
-                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="Screen != Screen.Options" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
                             <Icon Class="fa-fw" Name="IconName.Wrench" />
                         </Button>
 
@@ -48,7 +48,7 @@
                             </Button>
                         }
 
-                        <Button Class="shadow-none" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="CloseAll">
+                        <Button Class="shadow-none" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ShowMainScreen">
                             <Span style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
                         </Button>
 
@@ -88,13 +88,13 @@
 
                     </Column>
                 </Row>
-                @if (_showOptions)
+                @if (Screen == Screen.Options)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
 
                         <Div Display=Display.Flex>
                             <h4 class="d-inline-block">Options</h4>
-                            <Button Class="shadow-none" Margin=Margin.Is0.OnY.IsAuto.FromStart Padding=Padding.Is0>
+                            <Button Class="shadow-none" Margin=Margin.Is0.OnY.IsAuto.FromStart Padding=Padding.Is0 @onclick="ShowMainScreen">
                                 <Icon Class="fa-fw" Name="IconName.Times" />
                             </Button>
                         </Div>
@@ -115,7 +115,7 @@
                             </Card>
                         }
 
-                        <OptionsComponent @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" 
+                        <OptionsComponent @bind-SelectedCategory=_selectedCategory 
                             Size="Size" SizeChanged="OnSizeChanged" 
                             Themes="_bootswatchThemes.Keys" Theme="@Theme" ThemeChanged="OnThemeChanged"
                             Backgrounds="_backgrounds.Keys" Background="@Repository.Settings.Background" BackgroundChanged="OnBackgroundChanged" />
@@ -133,13 +133,13 @@
 
                     </Row>
                 }
-                else if (_showHelp)
+                else if (Screen == Screen.Help)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
                         <HelpComponent />
                     </Row>
                 }
-                else if (_showAbout)
+                else if (Screen == Screen.About)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
                         <AboutComponent />
@@ -190,11 +190,11 @@
                 <Row>
                     <Column Display=Display.Flex Border=Border.Is1.OnTop.Primary>
 
-                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showHelp" Size="Size" Margin=Margin.Is1.OnY Padding=Padding.Is0.Is1.OnX @onclick="ToggleHelp">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="Screen != Screen.Help" Size="Size" Margin=Margin.Is1.OnY Padding=Padding.Is0.Is1.OnX @onclick="ToggleHelp">
                             <Icon Class="fa-fw" Name="IconName.QuestionCircle" />
                         </Button>
 
-                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showAbout" Size="Size" Margin=Margin.Is1.OnY.IsAuto.FromStart Padding=Padding.Is0.Is1.OnX @onclick="ToggleAbout">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="Screen != Screen.About" Size="Size" Margin=Margin.Is1.OnY.IsAuto.FromStart Padding=Padding.Is0.Is1.OnX @onclick="ToggleAbout">
                             <Icon Class="fa-fw" Name="IconName.InfoCircle" />
                         </Button>
 

@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Ididit.Data;
+using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
 
 public partial class AboutComponent
 {
+    [Inject]
+    IRepository Repository { get; set; } = null!;
+
+    async Task ShowMainScreen()
+    {
+        Repository.Settings.Screen = Screen.Main;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
 }
