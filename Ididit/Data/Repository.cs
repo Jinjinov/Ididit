@@ -77,17 +77,31 @@ internal class Repository : DataModel, IRepository
 
         if (!SettingsList.Any())
         {
-            SettingsModel settings = new()
-            {
-                Id = NextSettingsId,
-                Name = "ididit!",
-                Theme = "default"
-            };
-
-            SettingsList.Add(settings);
-
-            await AddSettings(settings);
+            await AddDefaultSettings();
         }
+
+        Settings = SettingsList.First();
+    }
+
+    private async Task AddDefaultSettings()
+    {
+        SettingsModel settings = new()
+        {
+            Id = NextSettingsId,
+            Name = "ididit!",
+            Theme = "default"
+        };
+
+        SettingsList.Add(settings);
+
+        await AddSettings(settings);
+    }
+
+    public async Task ResetSettings()
+    {
+        await DeleteSettings(Settings.Id);
+
+        await AddDefaultSettings();
 
         Settings = SettingsList.First();
     }

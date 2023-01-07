@@ -3,7 +3,12 @@
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
-- [ ] help
+- [ ] screen enum
+- [ ] close button
+- [ ] screen setting
+- [ ] backgroung setting
+- [ ] backgroung select option
+- [ ] reset settings
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes
