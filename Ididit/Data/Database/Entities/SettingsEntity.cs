@@ -20,7 +20,10 @@ internal class SettingsEntity
     public Blazorise.Size Size { get; set; }
 
     [IndexDbIndex]
-    public string Theme { get; set; } = string.Empty;
+    public string Theme { get; set; } = "default";
+
+    [IndexDbIndex]
+    public string Background { get; set; } = "Default";
 
     [IndexDbIndex]
     public bool ShowAllGoals { get; set; } = true;
@@ -47,6 +50,9 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public Sort Sort { get; set; }
+
+    [IndexDbIndex]
+    public Screen Screen { get; set; } = Screen.Help;
 
     [IndexDbIndex]
     public long ElapsedToDesiredRatioMin { get; set; }

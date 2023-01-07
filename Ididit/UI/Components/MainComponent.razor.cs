@@ -102,7 +102,7 @@ public partial class MainComponent
         await OnThemeChanged(_bootswatchThemes.Keys[_debugTheme]);
     }
 
-    Background _background = Background.Default;
+    Background _background => _backgrounds[Repository.Settings.Background];
 
     readonly SortedList<string, Background> _backgrounds = new()
     {
@@ -121,12 +121,13 @@ public partial class MainComponent
     };
 
     int _debugBackground = 0;
-    void DebugBackground()
+    async Task DebugBackground()
     {
         if (++_debugBackground == _backgrounds.Count)
             _debugBackground = 0;
 
-        _background = _backgrounds[_backgrounds.Keys[_debugBackground]];
+        Repository.Settings.Background = _backgrounds.Keys[_debugBackground];
+        await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
     bool _showDebugControls;

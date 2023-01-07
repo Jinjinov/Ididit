@@ -3,11 +3,8 @@
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
-- [ ] screen enum
 - [ ] screen close button
-- [ ] screen setting
-- [ ] backgroung setting
-- [ ] backgroung select option
+- [ ] background select option
 - [ ] use Size in all controls
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
