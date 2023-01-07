@@ -155,9 +155,16 @@ public partial class MainComponent
 
     void ToggleAbout()
     {
-        _showHelp = false;
         _showOptions = false;
+        _showHelp = false;
         _showAbout = !_showAbout;
+    }
+
+    void CloseAll()
+    {
+        _showOptions = false;
+        _showHelp = false;
+        _showAbout = false;
     }
 
     [Inject]

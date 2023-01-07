@@ -28,33 +28,33 @@
 
                         @if (!_showOptions)
                         {
-                        <Button Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
+                        <Button Class="shadow-none sidebar-toggle-visible" Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar">
                             <Icon Class="fa-fw" Name="IconName.Bars" />
                         </Button>
                         }
 
-                        <Button Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
                             <Icon Class="fa-fw" Name="IconName.Wrench" />
                         </Button>
 
                         @if (_showDebugControls && IsDebug)
                         {
-                            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
+                            <Button Class="shadow-none" Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugTheme">
                                 <Icon Class="fa-fw" Name="IconName.Bug" /> @Theme
                             </Button>
 
-                            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
+                            <Button Class="shadow-none" Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="DebugBackground">
                                 <Icon Class="fa-fw" Name="IconName.Bug" /> @_background.Name
                             </Button>
                         }
 
-                        <Span Flex=Flex.Grow.Is1 style="font-family: 'Caveat', cursive; font-size: 1.5em;">
-                            <a href="https://ididit.today" target="_blank">ididit!</a>
-                        </Span>
+                        <Button Class="shadow-none" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="CloseAll">
+                            <Span style="font-family: 'Caveat', cursive; font-size: 1.5em;">ididit!</Span>
+                        </Button>
 
                         @if (IsPersonalComputer)
                         {
-                        <Inline>
+                        <Inline Margin=Margin.IsAuto.FromStart>
                             <Addons Size=Size.Small Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom Padding=Padding.Is0>
                                 <Addon AddonType="AddonType.Start">
                                     <Button Color="Color.Primary" Outline="UnsavedChanges" Size="Size" @onclick="Backup">
@@ -180,11 +180,11 @@
                 <Row>
                     <Column Display=Display.Flex Border=Border.Is1.OnTop.Primary>
 
-                        <Button Color="Color.Primary" Outline="!_showHelp" Size="Size" Margin=Margin.Is1.OnY Padding=Padding.Is0.Is1.OnX @onclick="ToggleHelp">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showHelp" Size="Size" Margin=Margin.Is1.OnY Padding=Padding.Is0.Is1.OnX @onclick="ToggleHelp">
                             <Icon Class="fa-fw" Name="IconName.QuestionCircle" />
                         </Button>
 
-                        <Button Color="Color.Primary" Outline="!_showAbout" Size="Size" Margin=Margin.Is1.OnY.IsAuto.FromStart Padding=Padding.Is0.Is1.OnX @onclick="ToggleAbout">
+                        <Button Class="shadow-none" Color="Color.Primary" Outline="!_showAbout" Size="Size" Margin=Margin.Is1.OnY.IsAuto.FromStart Padding=Padding.Is0.Is1.OnX @onclick="ToggleAbout">
                             <Icon Class="fa-fw" Name="IconName.InfoCircle" />
                         </Button>
 
