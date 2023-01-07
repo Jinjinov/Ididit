@@ -3,7 +3,6 @@
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
-- [ ] screen close button
 - [ ] use Size in all controls
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
