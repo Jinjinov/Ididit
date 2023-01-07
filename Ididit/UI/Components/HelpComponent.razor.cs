@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
 
-public partial class Help
+public partial class HelpComponent
 {
 }

@@ -26,9 +26,12 @@
                 <Row Border=Border.Is1.OnTop.Dark>
                     <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
+                        @if (!_showOptions)
+                        {
                         <Button Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar" class="sidebar-toggle-visible">
                             <Icon Class="fa-fw" Name="IconName.Bars" />
                         </Button>
+                        }
 
                         <Button Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
                             <Icon Class="fa-fw" Name="IconName.Wrench" />
@@ -105,7 +108,7 @@
                             </Card>
                         }
 
-                        <Options @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+                        <OptionsComponent @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
 
                         @if (IsDebug)
                         {
@@ -119,6 +122,14 @@
                         }
 
                     </Row>
+                }
+                else if (_showHelp)
+                {
+                    <HelpComponent />
+                }
+                else if (_showAbout)
+                {
+                    <AboutComponent />
                 }
                 else
                 {
@@ -164,8 +175,15 @@
                 }
                 <Row>
                     <Column Display=Display.Flex Border=Border.Is1.OnTop.Primary>
-                        <Span Flex=Flex.Grow.Is1><a href="https://github.com/Jinjinov/Ididit" target="_blank"><span class="fab fa-github"></span> GitHub</a></Span>
-                        <Span>&#169; 2022</Span>
+
+                        <Button Color="Color.Primary" Outline="!_showHelp" Size="Size" Margin=Margin.Is1.OnY Padding=Padding.Is0.Is1.OnX @onclick="ToggleHelp">
+                            <Icon Class="fa-fw" Name="IconName.QuestionCircle" />
+                        </Button>
+
+                        <Button Color="Color.Primary" Outline="!_showAbout" Size="Size" Margin=Margin.Is1.OnY.IsAuto.FromStart Padding=Padding.Is0.Is1.OnX @onclick="ToggleAbout">
+                            <Icon Class="fa-fw" Name="IconName.InfoCircle" />
+                        </Button>
+
                     </Column>
                 </Row>
             </Container>

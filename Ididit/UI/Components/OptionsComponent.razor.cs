@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
 
-public partial class Options
+public partial class OptionsComponent
 {
     public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
 

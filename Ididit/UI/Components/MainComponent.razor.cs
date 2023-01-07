@@ -135,7 +135,30 @@ public partial class MainComponent
 
     bool _showOptions;
 
-    void ToggleOptions() => _showOptions = !_showOptions;
+    void ToggleOptions()
+    {
+        _showHelp = false;
+        _showAbout = false;
+        _showOptions = !_showOptions;
+    }
+
+    bool _showHelp;
+
+    void ToggleHelp()
+    {
+        _showOptions = false;
+        _showAbout = false;
+        _showHelp = !_showHelp;
+    }
+
+    bool _showAbout;
+
+    void ToggleAbout()
+    {
+        _showHelp = false;
+        _showOptions = false;
+        _showAbout = !_showAbout;
+    }
 
     [Inject]
     IRepository Repository { get; set; } = null!;
