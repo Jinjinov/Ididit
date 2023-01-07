@@ -50,6 +50,13 @@ public partial class OptionsComponent
         await CloseOptions();
     }
 
+    async Task ResetSettings()
+    {
+        await Repository.ResetSettings();
+
+        await CloseOptions();
+    }
+
     private async Task CloseOptions()
     {
         ShowOptions = false;

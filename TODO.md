@@ -8,7 +8,7 @@
 - [ ] screen setting
 - [ ] backgroung setting
 - [ ] backgroung select option
-- [ ] reset settings option
+- [ ] use Size in all controls
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes
