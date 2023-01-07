@@ -62,6 +62,30 @@
             }
         </Field>
 
+        <Field Margin=Margin.Is0.Is2.FromTop>
+            <FieldLabel Margin=Margin.Is0>Background:</FieldLabel>
+
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Background" @onchange="OnBackgroundChangeEvent">
+                    <option Value="Default">Default</option>
+                    @foreach (string background in Backgrounds)
+                    {
+                        <option Value="@background">@background</option>
+                    }
+                </select>
+            }
+            else
+            {
+                <Select TValue="string" Size="Size" SelectedValue="Background" SelectedValueChanged="OnBackgroundChanged">
+                    @foreach (string background in Backgrounds)
+                    {
+                        <SelectItem Value="background">@background</SelectItem>
+                    }
+                </Select>
+            }
+        </Field>
+
         @if (IsPersonalComputer)
         {
         <Label For="JSON-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">Import JSON</Label>

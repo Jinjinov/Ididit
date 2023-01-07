@@ -4,7 +4,6 @@
 - [ ] real usage screenshots
 
 - [ ] screen close button
-- [ ] background select option
 - [ ] use Size in all controls
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line

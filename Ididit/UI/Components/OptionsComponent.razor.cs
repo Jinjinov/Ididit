@@ -72,19 +72,28 @@ public partial class OptionsComponent
     }
 
     [Parameter]
-    public IList<string> Themes { get; set; } = null!;
-
-    [Parameter]
     public Blazorise.Size Size { get; set; }
-
-    [Parameter]
-    public string Theme { get; set; } = null!;
 
     [Parameter]
     public EventCallback<Blazorise.Size> SizeChanged { get; set; }
 
     [Parameter]
+    public IList<string> Themes { get; set; } = null!;
+
+    [Parameter]
+    public string Theme { get; set; } = null!;
+
+    [Parameter]
     public EventCallback<string> ThemeChanged { get; set; }
+
+    [Parameter]
+    public IList<string> Backgrounds { get; set; } = null!;
+
+    [Parameter]
+    public string Background { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<string> BackgroundChanged { get; set; }
 
     async Task OnSizeChangeEvent(ChangeEventArgs e)
     {
@@ -108,6 +117,18 @@ public partial class OptionsComponent
     {
         Theme = theme;
         await ThemeChanged.InvokeAsync(Theme);
+    }
+
+    async Task OnBackgroundChangeEvent(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+            await OnBackgroundChanged(value);
+    }
+
+    async Task OnBackgroundChanged(string background)
+    {
+        Background = background;
+        await BackgroundChanged.InvokeAsync(Background);
     }
 
     [Inject]

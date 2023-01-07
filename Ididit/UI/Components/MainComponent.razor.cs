@@ -83,6 +83,12 @@ public partial class MainComponent
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
+    async Task OnBackgroundChanged(string background)
+    {
+        Repository.Settings.Background = background;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
+
     int _debugTheme = 0;
     async Task DebugTheme()
     {
@@ -102,7 +108,16 @@ public partial class MainComponent
         await OnThemeChanged(_bootswatchThemes.Keys[_debugTheme]);
     }
 
-    Background _background => _backgrounds[Repository.Settings.Background];
+    Background _background
+    {
+        get
+        {
+            if (_backgrounds.ContainsKey(Repository.Settings.Background))
+                return _backgrounds[Repository.Settings.Background];
+            else
+                return Background.Default;
+        }
+    }
 
     readonly SortedList<string, Background> _backgrounds = new()
     {

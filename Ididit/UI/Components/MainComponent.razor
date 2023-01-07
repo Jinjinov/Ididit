@@ -115,7 +115,10 @@
                             </Card>
                         }
 
-                        <OptionsComponent @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" Themes="_bootswatchThemes.Keys" Size="Size" SizeChanged="OnSizeChanged" Theme="@Theme" ThemeChanged="OnThemeChanged" />
+                        <OptionsComponent @bind-SelectedCategory=_selectedCategory @bind-ShowOptions="_showOptions" 
+                            Size="Size" SizeChanged="OnSizeChanged" 
+                            Themes="_bootswatchThemes.Keys" Theme="@Theme" ThemeChanged="OnThemeChanged"
+                            Backgrounds="_backgrounds.Keys" Background="@Repository.Settings.Background" BackgroundChanged="OnBackgroundChanged" />
 
                         @if (IsDebug)
                         {
