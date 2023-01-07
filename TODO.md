@@ -4,11 +4,11 @@
 - [ ] real usage screenshots
 
 - [ ] screen enum
-- [ ] close button
+- [ ] screen close button
 - [ ] screen setting
 - [ ] backgroung setting
 - [ ] backgroung select option
-- [ ] reset settings
+- [ ] reset settings option
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes
