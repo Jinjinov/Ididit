@@ -4,7 +4,6 @@
 - [ ] real usage screenshots
 
 - [ ] help
-- [ ] about
 
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes

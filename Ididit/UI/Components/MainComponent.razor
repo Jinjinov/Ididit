@@ -26,11 +26,11 @@
                 <Row Border=Border.Is1.OnTop.Dark>
                     <Column Border=Border.Is1.OnBottom.Primary Display=Display.Flex>
 
-                        @if (!_showOptions)
+                        @if (!_showOptions && !_showHelp && !_showAbout)
                         {
-                        <Button Class="shadow-none sidebar-toggle-visible" Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar">
-                            <Icon Class="fa-fw" Name="IconName.Bars" />
-                        </Button>
+                            <Button Class="shadow-none sidebar-toggle-visible" Color="Color.Primary" Outline="!_sidebarVisible" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleSidebar">
+                                <Icon Class="fa-fw" Name="IconName.Bars" />
+                            </Button>
                         }
 
                         <Button Class="shadow-none" Color="Color.Primary" Outline="!_showOptions" Size="Size" Margin=Margin.IsAuto.FromTop.IsAuto.FromBottom.Is2.FromEnd Padding=Padding.Is0.Is1.OnX @onclick="ToggleOptions">
@@ -91,6 +91,8 @@
                 @if (_showOptions)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
+
+                        <h4>Options</h4>
 
                         @if (Ididit.Backup.Online.GoogleDriveBase.IsGoogleDriveAvailable)
                         {

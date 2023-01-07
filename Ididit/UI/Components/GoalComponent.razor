@@ -27,14 +27,7 @@
                         <TextEdit Border=Border.RoundedZero.Is0 Size="Size" Text="@Goal.Name" ReadOnly=true @onclick=OnClick />
 
                         <Addon AddonType="AddonType.End">
-                            @if (Goal.CreateTaskFromEachLine)
-                            {
-                                <Button Color="Color.Primary" Outline="false" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                            }
-                            else
-                            {
-                                <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                            }
+                            <Button Color="Color.Primary" Outline="!Goal.CreateTaskFromEachLine" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
                             <Button Color="Color.Primary" Outline="true" Size="Size" Border=Border.RoundedZero @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                         </Addon>
