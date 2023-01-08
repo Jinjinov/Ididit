@@ -20,6 +20,18 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 - [ ] Maui Google Drive authentication:
+    - Use server back end: ASP.NET Core / PHP / Python / Node.js
+    - https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/communication/authentication
+    - Why use a server back end - IWebAuthenticator - Microsoft.Maui.Authentication
+    - https://blog.jhonatanoliveira.dev/google-login-integration-with-net-maui
+    - https://github.com/jhonatanfernando/maui-google-authentication
+    - public class LoginResponse
+    - public string AccessToken { get; set; }
+    - https://github.com/jhonatanfernando/maui-google-authentication/issues/1
+    - namespace Ididit.Wasm.Online;
+    - internal class GoogleDriveBackup
+    - https://github.com/Clancey/SimpleAuth
+
     - https://github.com/thaveeshakannangara/MauiWithFirebase
     - https://github.com/carlfranklin/MsalGoogleAuthInMaui
     - https://github.com/omegazero2310/GoogleMapMAUI
