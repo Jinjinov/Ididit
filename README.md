@@ -11,7 +11,7 @@ Take notes, manage tasks, track habits.
 
 ididit! is free, open source and works on Web, Windows, Android, iOS, macOS and Linux!
 
-If this issue is still open https://github.com/dotnet/maui/issues/12080 then install the Microsoft.WindowsAppRuntime.1.2 redist: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
+# If this issue is still open https://github.com/dotnet/maui/issues/12080 then install the Microsoft.WindowsAppRuntime.1.2 redist: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
 
 [Why ididit!](#why) [Web app](#webapp) [Releases](#releases) [Features](#features) [Formats](#formats) [Themes](#themes) [About](#about)
 
