@@ -15,10 +15,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 
-fix Linux trim bug
-
-
-
 better description intro sentence
     ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
     ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
