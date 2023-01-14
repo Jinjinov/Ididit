@@ -15,7 +15,30 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 
-- [ ] favicon in Linux - find out why this works in Photino sample
+fix Linux trim bug
+
+
+
+better description intro sentence
+    ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
+    ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
+
+one screenshot per feature
+
+example markdown note
+example task note
+
+localization
+    English
+    German
+    Slovenian
+    Croatian
+    Spanish
+    Japanese
+    Czech
+
+debug import export on phones
+Maui Google drive authentication
 
 
 
