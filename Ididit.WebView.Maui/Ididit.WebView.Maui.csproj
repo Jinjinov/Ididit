@@ -23,7 +23,12 @@
     <ApplicationIdGuid>592BD410-43DE-4A14-BDBC-B5FC9E6AD8E4</ApplicationIdGuid>
 
     <!-- Versions -->
-    <ApplicationDisplayVersion>1.0.4</ApplicationDisplayVersion>
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <!--
+    if ApplicationDisplayVersion != 1.0
+    Assets file 'project.assets.json' doesn't have a target for 'net7.0-windows10.0.19041.0'. 
+    Ensure that restore has run and that you have included 'net7.0-windows10.0.19041.0' in the TargetFrameworks for your project.
+    -->
     <ApplicationVersion>4</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
