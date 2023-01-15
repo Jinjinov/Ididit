@@ -2,7 +2,7 @@
   "culture": "de",
   "translations": {
     "About": "Über",
-    "the procrastination friendly habit tracker": "der procrastination freundliche Gewohnheitstracker",
+    "the procrastination friendly habit tracker": "der Prokrastination freundliche Gewohnheitstracker",
 
     "Show all tasks": "Alle Aufgaben anzeigen",
     "Hide goals with no tasks": "Ziele ohne Aufgaben ausblenden",
@@ -21,6 +21,8 @@
     "Hide completed tasks": "Erledigte Aufgaben ausblenden",
     "Show tasks with ratio over": "Aufgaben mit Verhältnis über anzeigen",
     "Filter by priority": "Nach Priorität filtern",
+    "Filter by type": "Nach Typ filtern",
+    "Sort by": "Sortieren nach",
 
     "Add new goal": "Neues Ziel hinzufügen",
 
@@ -28,6 +30,7 @@
 
     "Help": "Hilfe",
 
+    "Options": "Optionen",
     "Show debug controls": "Debug-Steuerelemente anzeigen",
     "Search, filter, sort": "Suchen, filtern, sortieren",
     "Tasks": "Aufgaben",
@@ -37,6 +40,9 @@
     "Reset settings": "Einstellungen zurücksetzen",
     "Language": "Sprache",
     "Size": "Größe",
+    "Default": "Standard",
+    "Small": "Klein",
+    "Large": "Groß",
     "Theme": "Design",
     "Background": "Hintergrund",
 
@@ -50,6 +56,8 @@
     "Low": "Niedrig",
     "Medium": "Mittel",
     "High": "Hoch",
-    "Very high": "Sehr hoch"
+    "Very high": "Sehr hoch",
+    "Created at": "Erstellt am",
+    "Completed at": "Abgeschlossen am"
   }
 }
