@@ -70,46 +70,46 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Task.TaskKind" @onchange="OnTaskKindChangeEvent">
-                    <option value="@TaskKind.Note">Note</option>
-                    <option value="@TaskKind.Task">Task</option>
-                    <option value="@TaskKind.RepeatingTask">Repeating task</option>
+                    <option value="@TaskKind.Note">@Localizer["Note"]</option>
+                    <option value="@TaskKind.Task">@Localizer["Task"]</option>
+                    <option value="@TaskKind.RepeatingTask">@Localizer["Repeating task"]</option>
                 </select>
             }
             else
             {
                 <Select Size=Size.Small TValue="TaskKind" SelectedValue="Task.TaskKind" SelectedValueChanged="OnTaskKindChanged">
-                    <SelectItem Value="TaskKind.Note">Note</SelectItem>
-                    <SelectItem Value="TaskKind.Task">Task</SelectItem>
-                    <SelectItem Value="TaskKind.RepeatingTask">Repeating task</SelectItem>
+                    <SelectItem Value="TaskKind.Note">@Localizer["Note"]</SelectItem>
+                    <SelectItem Value="TaskKind.Task">@Localizer["Task"]</SelectItem>
+                    <SelectItem Value="TaskKind.RepeatingTask">@Localizer["Repeating task"]</SelectItem>
                 </Select>
             }
         </Addons>
 
         <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
             <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                <AddonLabel Flex="Flex.Grow.Is1">Priority:</AddonLabel>
+                <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Priority"]:</AddonLabel>
             </Addon>
 
             @if (IsApple)
             {
                 <select class="form-select" value="@Task.Priority" @onchange="PriorityChangeEvent">
-                    <option value="@Priority.None">None</option>
-                    <option value="@Priority.VeryLow">Very low</option>
-                    <option value="@Priority.Low">Low</option>
-                    <option value="@Priority.Medium">Medium</option>
-                    <option value="@Priority.High">High</option>
-                    <option value="@Priority.VeryHigh">Very high</option>
+                    <option value="@Priority.None">@Localizer["None"]</option>
+                    <option value="@Priority.VeryLow">@Localizer["Very low"]</option>
+                    <option value="@Priority.Low">@Localizer["Low"]</option>
+                    <option value="@Priority.Medium">@Localizer["Medium"]</option>
+                    <option value="@Priority.High">@Localizer["High"]</option>
+                    <option value="@Priority.VeryHigh">@Localizer["Very high"]</option>
                 </select>
             }
             else
             {
                 <Select Size=Size.Small TValue="Priority" SelectedValue="Task.Priority" SelectedValueChanged="PriorityChanged">
-                    <SelectItem Value="Priority.None">None</SelectItem>
-                    <SelectItem Value="Priority.VeryLow">Very low</SelectItem>
-                    <SelectItem Value="Priority.Low">Low</SelectItem>
-                    <SelectItem Value="Priority.Medium">Medium</SelectItem>
-                    <SelectItem Value="Priority.High">High</SelectItem>
-                    <SelectItem Value="Priority.VeryHigh">Very high</SelectItem>
+                    <SelectItem Value="Priority.None">@Localizer["None"]</SelectItem>
+                    <SelectItem Value="Priority.VeryLow">@Localizer["Very low"]</SelectItem>
+                    <SelectItem Value="Priority.Low">@Localizer["Low"]</SelectItem>
+                    <SelectItem Value="Priority.Medium">@Localizer["Medium"]</SelectItem>
+                    <SelectItem Value="Priority.High">@Localizer["High"]</SelectItem>
+                    <SelectItem Value="Priority.VeryHigh">@Localizer["Very high"]</SelectItem>
                 </Select>
             }
         </Addons>

@@ -9,7 +9,7 @@
 </Addons>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <FieldLabel Margin=Margin.Is0>Date filter:</FieldLabel>
+    <FieldLabel Margin=Margin.Is0>@Localizer["Date filter"]:</FieldLabel>
 
     <Addons Flex=Flex.NoWrap>
         <DateEdit TValue="DateTime?" Size="Size" Date="_dateFilter" DateChanged="OnDateChanged" />
@@ -19,22 +19,22 @@
         </Addon>
     </Addons>
 
-    <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">Today</CheckBox>
+    <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">@Localizer["Today"]</CheckBox>
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">Hide completed tasks</CheckBox>
+    <CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">@Localizer["Hide completed tasks"]</CheckBox>
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
     <FieldLabel Margin=Margin.Is0>
-        <CheckBox Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">Show tasks with ratio over @Settings.ElapsedToDesiredRatioMin %</CheckBox>
+        <CheckBox Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">@Localizer["Show tasks with ratio over"] @Settings.ElapsedToDesiredRatioMin %</CheckBox>
     </FieldLabel>
     <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="Settings.ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <FieldLabel Margin=Margin.Is0>Filter by priority:</FieldLabel>
+    <FieldLabel Margin=Margin.Is0>@Localizer["Filter by priority"]:</FieldLabel>
 
     @foreach (Priority priority in Enum.GetValues<Priority>())
     {

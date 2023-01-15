@@ -1,6 +1,55 @@
 {
   "culture": "de",
   "translations": {
-    "Language": "Sprache"
+    "About": "Über",
+    "the procrastination friendly habit tracker": "der procrastination freundliche Gewohnheitstracker",
+
+    "Show all tasks": "Alle Aufgaben anzeigen",
+    "Hide goals with no tasks": "Ziele ohne Aufgaben ausblenden",
+    "Hide goals with simple text": "Ziele mit einfachem Text ausblenden",
+    "Show all goals": "Alle Ziele anzeigen",
+    "Show categories in goal list": "Kategorien in Ziel-Liste anzeigen",
+    "Add category to": "Kategorie hinzufügen zu",
+    "Categories": "Kategorien",
+    "Toggle all": "Alle umschalten",
+
+    "Add new category": "Neue Kategorie hinzufügen",
+
+    "Search": "Suche",
+    "Date filter": "Datumsfilter",
+    "Today": "Heute",
+    "Hide completed tasks": "Erledigte Aufgaben ausblenden",
+    "Show tasks with ratio over": "Aufgaben mit Verhältnis über anzeigen",
+    "Filter by priority": "Nach Priorität filtern",
+
+    "Add new goal": "Neues Ziel hinzufügen",
+
+    "Add goal to": "Ziel hinzufügen zu",
+
+    "Help": "Hilfe",
+
+    "Show debug controls": "Debug-Steuerelemente anzeigen",
+    "Search, filter, sort": "Suchen, filtern, sortieren",
+    "Tasks": "Aufgaben",
+
+    "Load examples": "Beispiele laden",
+    "Delete all": "Alles löschen",
+    "Reset settings": "Einstellungen zurücksetzen",
+    "Language": "Sprache",
+    "Size": "Größe",
+    "Theme": "Design",
+    "Background": "Hintergrund",
+
+    "Type": "Typ",
+    "Note": "Notiz",
+    "Task": "Aufgabe",
+    "Repeating task": "Wiederholende Aufgabe",
+    "Priority": "Priorität",
+    "None": "Keine",
+    "Very low": "Sehr niedrig",
+    "Low": "Niedrig",
+    "Medium": "Mittel",
+    "High": "Hoch",
+    "Very high": "Sehr hoch"
   }
 }

@@ -1,6 +1,32 @@
 {
-  "culture": "en",
+  "culture": "sl",
   "translations": {
-    "Language": "Jezik"
+    "About": "O",
+
+    "Show all tasks": "Prikaži vse naloge",
+    "Hide goals with no tasks": "Skrij cilje brez nalog",
+    "Hide goals with simple text": "Skrij cilje z enostavnim besedilom",
+    "Show all goals": "Prikaži vse cilje",
+    "Show categories in goal list": "Prikaži kategorije v seznamu ciljev",
+
+    "Add new category": "Dodaj novo kategorijo",
+
+    "Search": "Iskanje",
+
+    "Add new goal": "Dodaj nov cilj",
+
+    "Add goal to": "Dodaj cilj v",
+
+    "Help": "Pomoč",
+
+    "Search, filter, sort": "Iskanje, filtriranje, razvrščanje",
+    "Tasks": "Naloge",
+
+    "Load examples": "Naloži primere",
+    "Delete all": "Izbriši vse",
+    "Reset settings": "Ponastavi nastavitve",
+    "Language": "Jezik",
+
+    "Type": "Tip"
   }
 }

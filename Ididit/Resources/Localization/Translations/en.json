@@ -2,16 +2,25 @@
   "culture": "en",
   "translations": {
     "About": "About",
+    "the procrastination friendly habit tracker": "the procrastination friendly habit tracker",
 
     "Show all tasks": "Show all tasks",
     "Hide goals with no tasks": "Hide goals with no tasks",
     "Hide goals with simple text": "Hide goals with simple text",
     "Show all goals": "Show all goals",
     "Show categories in goal list": "Show categories in goal list",
+    "Add category to": "Add category to",
+    "Categories": "Categories",
+    "Toggle all": "Toggle all",
 
     "Add new category": "Add new category",
 
     "Search": "Search",
+    "Date filter": "Date filter",
+    "Today": "Today",
+    "Hide completed tasks": "Hide completed tasks",
+    "Show tasks with ratio over": "Show tasks with ratio over",
+    "Filter by priority": "Filter by priority",
 
     "Add new goal": "Add new goal",
 
@@ -19,6 +28,7 @@
 
     "Help": "Help",
 
+    "Show debug controls": "Show debug controls",
     "Search, filter, sort": "Search, filter, sort",
     "Tasks": "Tasks",
 
@@ -26,7 +36,20 @@
     "Delete all": "Delete all",
     "Reset settings": "Reset settings",
     "Language": "Language",
+    "Size": "Size",
+    "Theme": "Theme",
+    "Background": "Background",
 
-    "Type": "Type"
+    "Type": "Type",
+    "Note": "Note",
+    "Task": "Task",
+    "Repeating task": "Repeating task",
+    "Priority": "Priority",
+    "None": "None",
+    "Very low": "Very low",
+    "Low": "Low",
+    "Medium": "Medium",
+    "High": "High",
+    "Very high": "Very high"
   }
 }
