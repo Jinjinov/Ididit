@@ -67,7 +67,7 @@
                                     <select class="form-select" value="@Settings.SelectedBackupFormat" @onchange="OnDataFormatChangeEvent">
                                         @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
                                         {
-                                            <option Value="@dataFormat">@dataFormat.GetDescription()</option>
+                                            <option value="@dataFormat">@dataFormat.GetDescription()</option>
                                         }
                                     </select>
                                 }

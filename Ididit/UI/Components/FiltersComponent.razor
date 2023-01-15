@@ -59,7 +59,7 @@
         <select class="form-select" value="@Settings.Sort" @onchange="OnSortChangeEvent">
             @foreach (Sort sort in Enum.GetValues<Sort>())
             {
-                <option Value="@sort">@sort.GetDescription()</option>
+                <option value="@sort">@sort.GetDescription()</option>
             }
         </select>
     }

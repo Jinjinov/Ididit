@@ -20,6 +20,9 @@ internal class SettingsEntity
     public Blazorise.Size Size { get; set; }
 
     [IndexDbIndex]
+    public string Culture { get; set; } = "en";
+
+    [IndexDbIndex]
     public string Theme { get; set; } = "default";
 
     [IndexDbIndex]

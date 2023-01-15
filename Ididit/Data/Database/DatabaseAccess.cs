@@ -237,6 +237,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 SelectedBackupFormat = settings.SelectedBackupFormat,
                 Size = settings.Size,
+                Culture = settings.Culture,
                 Theme = settings.Theme,
                 Background = settings.Background,
                 ShowAllGoals = settings.ShowAllGoals,
@@ -377,6 +378,7 @@ internal class DatabaseAccess : IDatabaseAccess
                 Name = settings.Name,
                 SelectedBackupFormat = settings.SelectedBackupFormat,
                 Size = settings.Size,
+                Culture = settings.Culture,
                 Theme = settings.Theme,
                 Background = settings.Background,
                 ShowAllGoals = settings.ShowAllGoals,
@@ -496,6 +498,7 @@ internal class DatabaseAccess : IDatabaseAccess
             Name = settings.Name,
             SelectedBackupFormat = settings.SelectedBackupFormat,
             Size = settings.Size,
+            Culture = settings.Culture,
             Theme = settings.Theme,
             Background = settings.Background,
             ShowAllGoals = settings.ShowAllGoals,
@@ -628,6 +631,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.Name = settings.Name;
             settingsEntity.SelectedBackupFormat = settings.SelectedBackupFormat;
             settingsEntity.Size = settings.Size;
+            settingsEntity.Culture = settings.Culture;
             settingsEntity.Theme = settings.Theme;
             settingsEntity.Background = settings.Background;
             settingsEntity.ShowAllGoals = settings.ShowAllGoals;

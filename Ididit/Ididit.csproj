@@ -22,4 +22,11 @@
     <PackageReference Include="YamlDotNet" Version="12.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\Localization\**\*.json" />
+    <EmbeddedResource Include="Resources\Localization\**\*.json" />
+    <None Remove="Resources\Localization\*.json" />
+    <EmbeddedResource Include="Resources\Localization\*.json" />
+  </ItemGroup>
+
 </Project>

@@ -14,6 +14,8 @@ public class SettingsModel
 
     public Blazorise.Size Size { get; set; }
 
+    public string Culture { get; set; } = "en";
+
     public string Theme { get; set; } = "default";
 
     public string Background { get; set; } = "Default";

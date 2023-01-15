@@ -70,9 +70,9 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Task.TaskKind" @onchange="OnTaskKindChangeEvent">
-                    <option Value="@TaskKind.Note">Note</option>
-                    <option Value="@TaskKind.Task">Task</option>
-                    <option Value="@TaskKind.RepeatingTask">Repeating task</option>
+                    <option value="@TaskKind.Note">Note</option>
+                    <option value="@TaskKind.Task">Task</option>
+                    <option value="@TaskKind.RepeatingTask">Repeating task</option>
                 </select>
             }
             else
@@ -93,12 +93,12 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Task.Priority" @onchange="PriorityChangeEvent">
-                    <option Value="@Priority.None">None</option>
-                    <option Value="@Priority.VeryLow">Very low</option>
-                    <option Value="@Priority.Low">Low</option>
-                    <option Value="@Priority.Medium">Medium</option>
-                    <option Value="@Priority.High">High</option>
-                    <option Value="@Priority.VeryHigh">Very high</option>
+                    <option value="@Priority.None">None</option>
+                    <option value="@Priority.VeryLow">Very low</option>
+                    <option value="@Priority.Low">Low</option>
+                    <option value="@Priority.Medium">Medium</option>
+                    <option value="@Priority.High">High</option>
+                    <option value="@Priority.VeryHigh">Very high</option>
                 </select>
             }
             else

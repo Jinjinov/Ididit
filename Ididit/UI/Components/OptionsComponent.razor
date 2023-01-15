@@ -13,15 +13,36 @@
         <Button Color=Color.Primary Size="Size" Block=true @onclick=ResetSettings>Reset settings</Button>
 
         <Field Margin=Margin.Is0.Is2.FromTop>
+            <FieldLabel Margin=Margin.Is0>@Localizer["Language"]:</FieldLabel>
+
+            @if (IsApple)
+            {
+                <select class="form-select" value="@Repository.Settings.Culture" @onchange="OnCultureChangeEvent">
+                    <option value="en">English</option>
+                    <option value="de">German</option>
+                    <option value="sl">Slovenian</option>
+                </select>
+            }
+            else
+            {
+                <Select TValue="string" Size="Size" SelectedValue="Repository.Settings.Culture" SelectedValueChanged="OnCultureChanged">
+                    <SelectItem Value="@("en")">English</SelectItem>
+                    <SelectItem Value="@("de")">German</SelectItem>
+                    <SelectItem Value="@("sl")">Slovenian</SelectItem>
+                </Select>
+            }
+        </Field>
+
+        <Field Margin=Margin.Is0.Is2.FromTop>
             <FieldLabel Margin=Margin.Is0>Size:</FieldLabel>
 
             @if (IsApple)
             {
                 <select class="form-select" value="@Size" @onchange="OnSizeChangeEvent">
-                    <option Value="@Blazorise.Size.Default">Default</option>
-                    <option Value="@Blazorise.Size.Small">Small</option>
-                    <option Value="@Blazorise.Size.Medium">Medium</option>
-                    <option Value="@Blazorise.Size.Large">Large</option>
+                    <option value="@Blazorise.Size.Default">Default</option>
+                    <option value="@Blazorise.Size.Small">Small</option>
+                    <option value="@Blazorise.Size.Medium">Medium</option>
+                    <option value="@Blazorise.Size.Large">Large</option>
                 </select>
             }
             else
@@ -43,10 +64,10 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Theme" @onchange="OnThemeChangeEvent">
-                    <option Value="default">default</option>
+                    <option value="default">default</option>
                     @foreach (string theme in Themes)
                     {
-                        <option Value="@theme">@theme</option>
+                        <option value="@theme">@theme</option>
                     }
                 </select>
             }
@@ -68,10 +89,10 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Background" @onchange="OnBackgroundChangeEvent">
-                    <option Value="Default">Default</option>
+                    <option value="Default">Default</option>
                     @foreach (string background in Backgrounds)
                     {
-                        <option Value="@background">@background</option>
+                        <option value="@background">@background</option>
                     }
                 </select>
             }

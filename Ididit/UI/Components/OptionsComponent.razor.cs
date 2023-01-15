@@ -1,4 +1,5 @@
-﻿using Ididit.Backup;
+﻿using Blazorise.Localization;
+using Ididit.Backup;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
 using Ididit.Data;
@@ -62,6 +63,26 @@ public partial class OptionsComponent
         SelectedCategory = Repository.Category;
 
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
+    }
+
+    [Inject]
+    protected ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
+    [Inject]
+    ITextLocalizerService LocalizationService { get; set; } = null!;
+
+    async Task OnCultureChangeEvent(ChangeEventArgs e)
+    {
+        if (e.Value is string value)
+            await OnCultureChanged(value);
+    }
+
+    async Task OnCultureChanged(string culture)
+    {
+        Repository.Settings.Culture = culture;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+
+        LocalizationService.ChangeLanguage(culture);
     }
 
     [Parameter]

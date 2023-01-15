@@ -1,4 +1,5 @@
 ﻿using Blazorise;
+using Blazorise.Localization;
 using Ididit.App;
 using Ididit.Backup;
 using Ididit.Data;
@@ -12,6 +13,46 @@ namespace Ididit.UI.Components;
 
 public partial class MainComponent
 {
+    //[Inject]
+    //IUserDisplayName UserDisplayName { get; set; } = null!;
+
+    [Inject]
+    IRepository Repository { get; set; } = null!;
+
+    [Inject]
+    protected IPreRenderService PreRenderService { get; set; } = null!;
+
+    CategoryModel _selectedCategory = new();
+
+    [Inject]
+    ITextLocalizerService LocalizationService { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!PreRenderService.IsPreRendering)
+            await Repository.Initialize();
+
+        Repository.DataChanged += (object? sender, EventArgs e) => StateHasChanged();
+
+        _selectedCategory = Repository.Category;
+
+        LocalizationService.ChangeLanguage(Repository.Settings.Culture);
+
+        StateHasChanged(); // refresh components with _repository.Settings
+    }
+
+    [Inject]
+    IImportExport ImportExport { get; set; } = null!;
+
+    SettingsModel Settings => Repository.Settings;
+
+    bool UnsavedChanges => ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].UnsavedChanges;
+
+    async Task Backup()
+    {
+        await ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
+    }
+
     public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
 
     public static bool IsPersonalComputer => OperatingSystem.IsBrowser() || OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
@@ -30,9 +71,6 @@ public partial class MainComponent
 
     [Parameter]
     public RenderFragment ChildContent { get; set; } = null!;
-
-    //[Inject]
-    //IUserDisplayName UserDisplayName { get; set; } = null!;
 
     readonly SortedList<string, string> _bootswatchThemes = new()
     {
@@ -187,23 +225,6 @@ public partial class MainComponent
         await Repository.UpdateSettings(Repository.Settings.Id);
     }
 
-    [Inject]
-    IRepository Repository { get; set; } = null!;
-
-    [Inject]
-    IImportExport ImportExport { get; set; } = null!;
-
-    CategoryModel _selectedCategory = new();
-
-    SettingsModel Settings => Repository.Settings;
-
-    bool UnsavedChanges => ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].UnsavedChanges;
-
-    async Task Backup()
-    {
-        await ImportExport.DataExportByFormat[Settings.SelectedBackupFormat].ExportData();
-    }
-
     async Task OnDataFormatChangeEvent(ChangeEventArgs e)
     {
         if (e.Value is string value)
@@ -229,19 +250,4 @@ public partial class MainComponent
     void ToggleSidebar() => _sidebarVisible = !_sidebarVisible;
 
     Filters _filters = new();
-
-    [Inject]
-    protected IPreRenderService PreRenderService { get; set; } = null!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (!PreRenderService.IsPreRendering)
-            await Repository.Initialize();
-
-        Repository.DataChanged += (object? sender, EventArgs e) => StateHasChanged();
-
-        _selectedCategory = Repository.Category;
-
-        StateHasChanged(); // refresh components with _repository.Settings
-    }
 }
