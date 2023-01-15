@@ -39,21 +39,19 @@
             @if (IsApple)
             {
                 <select class="form-select" value="@Size" @onchange="OnSizeChangeEvent">
-                    <option value="@Blazorise.Size.Default">Default</option>
-                    <option value="@Blazorise.Size.Small">Small</option>
-                    <option value="@Blazorise.Size.Medium">Medium</option>
-                    <option value="@Blazorise.Size.Large">Large</option>
+                    <option value="@Blazorise.Size.Default">@Localizer["Default"]</option>
+                    <option value="@Blazorise.Size.Small">@Localizer["Small"]</option>
+                    <option value="@Blazorise.Size.Medium">@Localizer["Medium"]</option>
+                    <option value="@Blazorise.Size.Large">@Localizer["Large"]</option>
                 </select>
             }
             else
             {
                 <Select TValue="Size" Size="Size" SelectedValue="Size" SelectedValueChanged="OnSizeChanged">
-                    <SelectItem Value="Blazorise.Size.Default">Default</SelectItem>
-                    @*<SelectItem Value="Blazorise.Size.ExtraSmall">Extra small</SelectItem>*@
-                    <SelectItem Value="Blazorise.Size.Small">Small</SelectItem>
-                    <SelectItem Value="Blazorise.Size.Medium">Medium</SelectItem>
-                    <SelectItem Value="Blazorise.Size.Large">Large</SelectItem>
-                    @*<SelectItem Value="Blazorise.Size.ExtraLarge">Extra large</SelectItem>*@
+                    <SelectItem Value="Blazorise.Size.Default">@Localizer["Default"]</SelectItem>
+                    <SelectItem Value="Blazorise.Size.Small">@Localizer["Small"]</SelectItem>
+                    <SelectItem Value="Blazorise.Size.Medium">@Localizer["Medium"]</SelectItem>
+                    <SelectItem Value="Blazorise.Size.Large">@Localizer["Large"]</SelectItem>
                 </Select>
             }
         </Field>

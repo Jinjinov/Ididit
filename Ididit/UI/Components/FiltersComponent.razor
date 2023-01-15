@@ -43,7 +43,7 @@
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <FieldLabel Margin=Margin.Is0>Filter by type:</FieldLabel>
+    <FieldLabel Margin=Margin.Is0>@Localizer["Filter by type"]:</FieldLabel>
 
     @foreach (TaskKind taskKind in Enum.GetValues<TaskKind>())
     {
@@ -52,7 +52,7 @@
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <FieldLabel Margin=Margin.Is0>Sort by:</FieldLabel>
+    <FieldLabel Margin=Margin.Is0>@Localizer["Sort by"]:</FieldLabel>
 
     @if (IsApple)
     {

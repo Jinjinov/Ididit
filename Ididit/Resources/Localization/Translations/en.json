@@ -21,6 +21,8 @@
     "Hide completed tasks": "Hide completed tasks",
     "Show tasks with ratio over": "Show tasks with ratio over",
     "Filter by priority": "Filter by priority",
+    "Filter by type": "Filter by type",
+    "Sort by": "Sort by",
 
     "Add new goal": "Add new goal",
 
@@ -28,6 +30,7 @@
 
     "Help": "Help",
 
+    "Options": "Options",
     "Show debug controls": "Show debug controls",
     "Search, filter, sort": "Search, filter, sort",
     "Tasks": "Tasks",
@@ -37,6 +40,9 @@
     "Reset settings": "Reset settings",
     "Language": "Language",
     "Size": "Size",
+    "Default": "Default",
+    "Small": "Small",
+    "Large": "Large",
     "Theme": "Theme",
     "Background": "Background",
 
@@ -50,6 +56,8 @@
     "Low": "Low",
     "Medium": "Medium",
     "High": "High",
-    "Very high": "Very high"
+    "Very high": "Very high",
+    "Created at": "Created at",
+    "Completed at": "Completed at"
   }
 }

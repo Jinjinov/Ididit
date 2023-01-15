@@ -117,14 +117,14 @@
         @if (!Task.IsDoneAtLeastOnce)
         {
             <div>
-                @("Created at: " + Task.CreatedAt)
+                @Localizer["Created at"]: @Task.CreatedAt
             </div>
         }
 
         @if (Task.IsCompletedTask)
         {
             <div>
-                @("Completed at: " + Task.LastTimeDoneAt)
+                @Localizer["Completed at"]: @Task.LastTimeDoneAt
             </div>
         }
 
@@ -199,15 +199,15 @@
                             else
                             {
                                 <Addons Style="max-width:500px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
-                                    <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                                        <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time) + " ago")</AddonLabel>
-                                        </Addon>
+                                <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
+                                    <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time) + " ago")</AddonLabel>
+                                    </Addon>
 
-                                        <Addon AddonType="AddonType.End">
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
-                                        </Addon>
-                                    </Addons>
+                                    <Addon AddonType="AddonType.End">
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                                    </Addon>
+                                </Addons>
                             }
                         }
                     }
