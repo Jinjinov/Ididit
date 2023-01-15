@@ -13,6 +13,9 @@ namespace Ididit.UI.Components;
 
 public partial class MainComponent
 {
+    [Inject]
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
     //[Inject]
     //IUserDisplayName UserDisplayName { get; set; } = null!;
 

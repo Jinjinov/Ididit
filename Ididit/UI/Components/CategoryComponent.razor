@@ -1,7 +1,7 @@
 ﻿@if (EditCategory == Category && Category is not null)
 {
     <Addons Flex=Flex.NoWrap>
-        <TextEdit @ref=_textEdit Size="Size.Small" @bind-Text="@_categoryName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="Add new category" />
+        <TextEdit @ref=_textEdit Size="Size.Small" @bind-Text="@_categoryName" KeyUp=KeyUp FocusOut=FocusOut Placeholder="@Localizer["Add new category"]" />
         <Addon AddonType="AddonType.End">
             <Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
             @*<Button Color="Color.Primary" Outline="true" Size="Size.Small" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@

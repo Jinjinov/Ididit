@@ -155,7 +155,7 @@
                                 <Collapse Visible="@_filtersVisible">
                                     <CollapseHeader Padding=Padding.Is0>
 
-                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _filtersVisible = !_filtersVisible)">Search, filter, sort</Button>
+                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _filtersVisible = !_filtersVisible)">@Localizer["Search, filter, sort"]</Button>
 
                                     </CollapseHeader>
                                     @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@
@@ -168,7 +168,7 @@
                                 <Collapse Visible="@_categoriesVisible">
                                     <CollapseHeader Padding=Padding.Is0>
 
-                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _categoriesVisible = !_categoriesVisible)">Tasks</Button>
+                                        <Button Size=Size.Small Block=true Padding=Padding.Is1.OnY.Is2.OnX @onclick="@(() => _categoriesVisible = !_categoriesVisible)">@Localizer["Tasks"]</Button>
 
                                     </CollapseHeader>
                                     @*<CollapseBody Padding=Padding.Is0 Style="margin: -12px"> Bootstrap 4 *@

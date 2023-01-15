@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Blazorise.Localization;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -8,6 +9,9 @@ namespace Ididit.UI.Components;
 
 public sealed partial class CategoryComponent
 {
+    [Inject]
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 

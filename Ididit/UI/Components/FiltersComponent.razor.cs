@@ -1,4 +1,5 @@
-﻿using Ididit.Data;
+﻿using Blazorise.Localization;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -8,6 +9,9 @@ namespace Ididit.UI.Components;
 
 public partial class FiltersComponent
 {
+    [Inject]
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
     public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
 
     [Inject]

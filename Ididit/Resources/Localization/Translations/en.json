@@ -1,6 +1,32 @@
 {
   "culture": "en",
   "translations": {
-    "Language": "Language"
+    "About": "About",
+
+    "Show all tasks": "Show all tasks",
+    "Hide goals with no tasks": "Hide goals with no tasks",
+    "Hide goals with simple text": "Hide goals with simple text",
+    "Show all goals": "Show all goals",
+    "Show categories in goal list": "Show categories in goal list",
+
+    "Add new category": "Add new category",
+
+    "Search": "Search",
+
+    "Add new goal": "Add new goal",
+
+    "Add goal to": "Add goal to",
+
+    "Help": "Help",
+
+    "Search, filter, sort": "Search, filter, sort",
+    "Tasks": "Tasks",
+
+    "Load examples": "Load examples",
+    "Delete all": "Delete all",
+    "Reset settings": "Reset settings",
+    "Language": "Language",
+
+    "Type": "Type"
   }
 }

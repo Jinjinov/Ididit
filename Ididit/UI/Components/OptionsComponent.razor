@@ -6,11 +6,11 @@
 <Card Margin=Margin.Is0.OnMobile.Is2.OnDesktop Padding=Padding.Is0 Style="max-width: 414px">
     <CardBody Padding=Padding.Is1>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=LoadExamples>Load examples</Button>
+        <Button Color=Color.Primary Size="Size" Block=true @onclick=LoadExamples>@Localizer["Load examples"]</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=DeleteAll>Delete all</Button>
+        <Button Color=Color.Primary Size="Size" Block=true @onclick=DeleteAll>@Localizer["Delete all"]</Button>
 
-        <Button Color=Color.Primary Size="Size" Block=true @onclick=ResetSettings>Reset settings</Button>
+        <Button Color=Color.Primary Size="Size" Block=true @onclick=ResetSettings>@Localizer["Reset settings"]</Button>
 
         <Field Margin=Margin.Is0.Is2.FromTop>
             <FieldLabel Margin=Margin.Is0>@Localizer["Language"]:</FieldLabel>

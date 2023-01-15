@@ -1,7 +1,7 @@
 ﻿@using Ididit.Data
 
 <Addons Flex=Flex.NoWrap>
-    <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="Search" />
+    <TextEdit Size="Size" Text="@_searchFilter" TextChanged="SearchFilterChanged" Placeholder="@Localizer["Search"]" />
 
     <Addon AddonType="AddonType.End">
         <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="ClearSearchFilter"><Icon Class="fa-fw" Name="IconName.Times" /></Button>

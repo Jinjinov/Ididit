@@ -66,7 +66,7 @@ public partial class OptionsComponent
     }
 
     [Inject]
-    protected ITextLocalizer<Translations> Localizer { get; set; } = null!;
+    ITextLocalizer<Translations> Localizer { get; set; } = null!;
 
     [Inject]
     ITextLocalizerService LocalizationService { get; set; } = null!;
