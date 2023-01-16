@@ -132,7 +132,7 @@
         {
             <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                 <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                    <AddonLabel Flex="Flex.Grow.Is1">Desired duration:</AddonLabel>
+                    <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired duration"]:</AddonLabel>
                 </Addon>
                 <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
             </Addons>
@@ -140,13 +140,13 @@
             @if (Task.IsRepeating)
             {
                 <div>
-                    Average duration: @((Task.AverageDuration ?? TimeSpan.Zero).ToString(@"hh\:mm\:ss"))
+                    @Localizer["Average duration"]: @((Task.AverageDuration ?? TimeSpan.Zero).ToString(@"hh\:mm\:ss"))
                 </div>
 
                 <div>
                     <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                         <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                            <AddonLabel Flex="Flex.Grow.Is1">Desired interval:</AddonLabel>
+                            <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired interval"]:</AddonLabel>
                         </Addon>
 
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
@@ -162,22 +162,22 @@
 
                     @if (Task.IsElapsedOverDesired)
                     {
-                        <Div TextWeight=TextWeight.Bold>@($"Desired interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.DesiredInterval)} ( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )")</Div>
+                        <Div TextWeight=TextWeight.Bold>@Localizer["Desired interval is overdue by"]: @ToReadableString(Task.ElapsedTime - Task.DesiredInterval) @($"( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )")</Div>
                     }
                 </div>
 
                 @if (Task.IsDoneAtLeastOnce)
                 {
                     <div>
-                        @("Average interval: " + ToReadableString(Task.AverageInterval))
+                        @Localizer["Average interval"]: @ToReadableString(Task.AverageInterval)
 
                         @if (Task.IsElapsedOverAverage)
                         {
-                            <Div TextWeight=TextWeight.Bold>@($"Average interval is overdue by: {ToReadableString(Task.ElapsedTime - Task.AverageInterval)} ( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
+                            <Div TextWeight=TextWeight.Bold>@Localizer["Average interval is overdue by"]: @ToReadableString(Task.ElapsedTime - Task.AverageInterval) @($"( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
                         }
                     </div>
 
-                    <Button Color="Color.Primary" Block=false Outline="true" Size=Size.Small Margin=Margin.Is1.FromEnd @onclick="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />Show history</Button>
+                    <Button Color="Color.Primary" Block=false Outline="true" Size=Size.Small Margin=Margin.Is1.FromEnd @onclick="ToggleShowTime"><Icon Class="fa-fw" Name="IconName.History" Margin=Margin.Is1.FromEnd />@Localizer["Show history"]</Button>
 
                     @if (_showTime)
                     {

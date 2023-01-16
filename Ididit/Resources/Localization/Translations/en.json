@@ -45,6 +45,19 @@
     "Large": "Large",
     "Theme": "Theme",
     "Background": "Background",
+    "Import JSON": "Import JSON",
+    "Export JSON": "Export JSON",
+    "Import YAML": "Import YAML",
+    "Export YAML": "Export YAML",
+    "Import TSV": "Import TSV",
+    "Export TSV": "Export TSV",
+    "Import Markdown": "Import Markdown",
+    "Export Markdown": "Export Markdown",
+    "Import folder": "Import folder",
+    "Export folder": "Export folder",
+    "Import Google Drive": "Import Google Drive",
+    "Export Google Drive": "Export Google Drive",
+    "Import Google Keep Takeout ZIP": "Import Google Keep Takeout ZIP",
 
     "Type": "Type",
     "Note": "Note",
@@ -58,6 +71,13 @@
     "High": "High",
     "Very high": "Very high",
     "Created at": "Created at",
-    "Completed at": "Completed at"
+    "Completed at": "Completed at",
+    "Desired duration": "Desired duration",
+    "Average duration": "Average duration",
+    "Desired interval": "Desired interval",
+    "Desired interval is overdue by": "Desired interval is overdue by",
+    "Average interval": "Average interval",
+    "Average interval is overdue by": "Average interval is overdue by",
+    "Show history": "Show history"
   }
 }
