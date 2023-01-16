@@ -16,8 +16,13 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 better description intro sentence
-    ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
-    ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
+    more friendly than a streak counter
+        ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
+        ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
+
+    better prioritization than reminders
+        10 day, 4 days, 140%
+        1 day, 4 days, 400%
 
 one screenshot per feature
 

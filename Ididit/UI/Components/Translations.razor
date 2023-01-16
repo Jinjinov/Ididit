@@ -1,5 +1,18 @@
-﻿<h3>Translations</h3>
-
-@code {
-
+﻿@if (IsApple)
+{
+    <select class="form-select" value="@Repository.Settings.Culture" @onchange="OnCultureChangeEvent">
+        @foreach (var pair in _cultures)
+        {
+            <option value="@pair.Value.TwoLetterISOLanguageName">@(OperatingSystem.IsBrowser() ? pair.Key : pair.Value.NativeName)</option>
+        }
+    </select>
+}
+else
+{
+    <Select TValue="string" Size="Size" SelectedValue="Repository.Settings.Culture" SelectedValueChanged="OnCultureChanged">
+        @foreach (var pair in _cultures)
+        {
+            <SelectItem Value="@pair.Value.TwoLetterISOLanguageName">@(OperatingSystem.IsBrowser() ? pair.Key : pair.Value.NativeName)</SelectItem>
+        }
+    </Select>
 }

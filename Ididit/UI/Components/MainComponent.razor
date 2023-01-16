@@ -118,7 +118,8 @@
                         <OptionsComponent @bind-SelectedCategory=_selectedCategory 
                             Size="Size" SizeChanged="OnSizeChanged" 
                             Themes="_bootswatchThemes.Keys" Theme="@Theme" ThemeChanged="OnThemeChanged"
-                            Backgrounds="_backgrounds.Keys" Background="@Repository.Settings.Background" BackgroundChanged="OnBackgroundChanged" />
+                            Backgrounds="_backgrounds.Keys" Background="@Repository.Settings.Background" BackgroundChanged="OnBackgroundChanged"
+                            LanguageChanged="() => StateHasChanged()" />
 
                         @if (IsDebug)
                         {

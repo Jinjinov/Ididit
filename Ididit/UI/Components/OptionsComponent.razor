@@ -15,22 +15,7 @@
         <Field Margin=Margin.Is0.Is2.FromTop>
             <FieldLabel Margin=Margin.Is0>@Localizer["Language"]:</FieldLabel>
 
-            @if (IsApple)
-            {
-                <select class="form-select" value="@Repository.Settings.Culture" @onchange="OnCultureChangeEvent">
-                    <option value="en">English</option>
-                    <option value="de">German</option>
-                    <option value="sl">Slovenian</option>
-                </select>
-            }
-            else
-            {
-                <Select TValue="string" Size="Size" SelectedValue="Repository.Settings.Culture" SelectedValueChanged="OnCultureChanged">
-                    <SelectItem Value="@("en")">English</SelectItem>
-                    <SelectItem Value="@("de")">German</SelectItem>
-                    <SelectItem Value="@("sl")">Slovenian</SelectItem>
-                </Select>
-            }
+            <Translations LanguageChanged="LanguageChanged" />
         </Field>
 
         <Field Margin=Margin.Is0.Is2.FromTop>

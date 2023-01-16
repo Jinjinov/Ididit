@@ -68,22 +68,8 @@ public partial class OptionsComponent
     [Inject]
     ITextLocalizer<Translations> Localizer { get; set; } = null!;
 
-    [Inject]
-    ITextLocalizerService LocalizationService { get; set; } = null!;
-
-    async Task OnCultureChangeEvent(ChangeEventArgs e)
-    {
-        if (e.Value is string value)
-            await OnCultureChanged(value);
-    }
-
-    async Task OnCultureChanged(string culture)
-    {
-        Repository.Settings.Culture = culture;
-        await Repository.UpdateSettings(Repository.Settings.Id);
-
-        LocalizationService.ChangeLanguage(culture);
-    }
+    [Parameter]
+    public EventCallback LanguageChanged { get; set; }
 
     [Parameter]
     public Blazorise.Size Size { get; set; }
