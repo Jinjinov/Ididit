@@ -27,8 +27,8 @@ public partial class Translations
     readonly Dictionary<string, CultureInfo> _cultures = new()
     {
         { "English", new CultureInfo("en") },
-        { "German", new CultureInfo("de") },
-        { "Slovenian", new CultureInfo("sl") },
+        { "Deutsch", new CultureInfo("de") },
+        { "slovenščina", new CultureInfo("sl") },
     };
 
     async Task OnCultureChangeEvent(ChangeEventArgs e)
