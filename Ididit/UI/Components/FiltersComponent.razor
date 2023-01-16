@@ -38,7 +38,7 @@
 
     @foreach (Priority priority in Enum.GetValues<Priority>())
     {
-        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">@priority.GetDescription()</CheckBox>
+        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">@Localizer[priority.GetDescription()]</CheckBox>
     }
 </Field>
 
@@ -47,7 +47,7 @@
 
     @foreach (TaskKind taskKind in Enum.GetValues<TaskKind>())
     {
-        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">@taskKind.GetDescription()s</CheckBox>
+        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">@Localizer[taskKind.GetDescription()]</CheckBox>
     }
 </Field>
 
@@ -59,7 +59,7 @@
         <select class="form-select" value="@Settings.Sort" @onchange="OnSortChangeEvent">
             @foreach (Sort sort in Enum.GetValues<Sort>())
             {
-                <option value="@sort">@sort.GetDescription()</option>
+                <option value="@sort">@Localizer[sort.GetDescription()]</option>
             }
         </select>
     }
@@ -68,7 +68,7 @@
         <Select TValue="Sort" Size="Size" SelectedValue="Settings.Sort" SelectedValueChanged="OnSortChanged">
             @foreach (Sort sort in Enum.GetValues<Sort>())
             {
-                <SelectItem Value="sort">@sort.GetDescription()</SelectItem>
+                <SelectItem Value="sort">@Localizer[sort.GetDescription()]</SelectItem>
             }
         </Select>
     }

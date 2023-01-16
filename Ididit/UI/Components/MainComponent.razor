@@ -67,7 +67,7 @@
                                     <select class="form-select" value="@Settings.SelectedBackupFormat" @onchange="OnDataFormatChangeEvent">
                                         @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
                                         {
-                                            <option value="@dataFormat">@dataFormat.GetDescription()</option>
+                                            <option value="@dataFormat">@Localizer[dataFormat.GetDescription()]</option>
                                         }
                                     </select>
                                 }
@@ -76,7 +76,7 @@
                                     <Select TValue="DataFormat" Size="Size.Small" SelectedValue="Settings.SelectedBackupFormat" SelectedValueChanged="OnDataFormatChanged">
                                         @foreach (DataFormat dataFormat in ImportExport.DataExportByFormat.Keys)
                                         {
-                                            <SelectItem Value="dataFormat">@dataFormat.GetDescription()</SelectItem>
+                                            <SelectItem Value="dataFormat">@Localizer[dataFormat.GetDescription()]</SelectItem>
                                         }
                                     </Select>
                                 }

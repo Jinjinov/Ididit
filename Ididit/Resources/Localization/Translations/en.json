@@ -23,6 +23,11 @@
     "Filter by priority": "Filter by priority",
     "Filter by type": "Filter by type",
     "Sort by": "Sort by",
+    "Name": "Name",
+    "Elapsed time": "Elapsed time",
+    "Elapsed time to Average time ratio": "Elapsed time to Average time ratio",
+    "Elapsed time to Desired time ratio": "Elapsed time to Desired time ratio",
+    "Average time to Desired time ratio": "Average time to Desired time ratio",
 
     "Add new goal": "Add new goal",
 
@@ -30,6 +35,12 @@
 
     "Help": "Help",
 
+    "Directory": "Directory",
+    "Json": "Json",
+    "Markdown": "Markdown",
+    "Tsv": "Tsv",
+    "Yaml": "Yaml",
+    "Google Drive": "Google Drive",
     "Options": "Options",
     "Show debug controls": "Show debug controls",
     "Search, filter, sort": "Search, filter, sort",
