@@ -6,7 +6,7 @@
 5.
 - [ ] use Size in all controls
 
-7.
+8.
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes
 
@@ -48,6 +48,8 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 6.
     debug import export on phones
+
+7.
     Maui Google drive authentication
 
 
