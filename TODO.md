@@ -3,8 +3,10 @@
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
 
+5.
 - [ ] use Size in all controls
 
+7.
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 - [ ] organize habits / Google Keep notes
 
@@ -15,31 +17,38 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 
 
-better description intro sentence
-    more friendly than a streak counter
-        ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
-        ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
+1.
+    better description intro sentence
+        more friendly than a streak counter
+            ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
+            ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
 
-    better prioritization than reminders
-        10 day, 4 days, 140%
-        1 day, 4 days, 400%
+        better prioritization than reminders
+            10 day, 4 days, 140%
+            1 day, 4 days, 400%
 
-one screenshot per feature
+4.
+    one screenshot per feature
 
-example markdown note
-example task note
+3.
+    example markdown note
+    example task note
 
-localization
-    English
-    German
-    Slovenian
-    Croatian
-    Spanish
-    Japanese
-    Czech
+2.
+    localization
+        English
+        German
+        Slovenian
+        Croatian
+        Spanish
+        Japanese
+        Czech
 
-debug import export on phones
-Maui Google drive authentication
+        about
+
+6.
+    debug import export on phones
+    Maui Google drive authentication
 
 
 
