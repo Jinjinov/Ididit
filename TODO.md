@@ -15,8 +15,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
-
-
 1.
     better description intro sentence
         more friendly than a streak counter
@@ -50,10 +48,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     debug import export on phones
 
 7.
-    Maui Google drive authentication
-
-
-
 - [ ] Maui Google Drive authentication:
     - Use server back end: ASP.NET Core / PHP / Python / Node.js
     - https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/communication/authentication
@@ -79,8 +73,7 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     - https://github.com/Kimserey/GDrivePrototype
     - https://github.com/nguyenthanhliemfc/TestGoogleDriveForXamarinForms
 
-
-
+9.
 - [ ] Linux software repository
 
     - https://stackoverflow.com/questions/69132782/publishing-net-core-application-in-linux
