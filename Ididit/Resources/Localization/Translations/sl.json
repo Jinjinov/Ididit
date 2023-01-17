@@ -100,6 +100,7 @@
     "Export Google Drive": "Izvozi Google Drive",
     "Import Google Keep Takeout ZIP": "Uvozi Google Keep Takeout ZIP",
 
+    "Never": "Nikoli",
     "Type": "Tip",
     "Note": "Opomba",
     "Task": "Naloga",
@@ -113,6 +114,10 @@
     "Very high": "Zelo visoko",
     "Created at": "Ustvarjeno ob",
     "Completed at": "Končano ob",
+    "day": "dan",
+    "days": "dni",
+    "hour": "ura",
+    "hours": "ur",
     "Desired duration": "Želeno trajanje",
     "Average duration": "Povprečno trajanje",
     "Desired interval": "Želeni interval",

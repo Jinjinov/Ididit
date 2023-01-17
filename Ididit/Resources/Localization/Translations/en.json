@@ -100,6 +100,7 @@
     "Export Google Drive": "Export Google Drive",
     "Import Google Keep Takeout ZIP": "Import Google Keep Takeout ZIP",
 
+    "Never": "Never",
     "Type": "Type",
     "Note": "Note",
     "Task": "Task",
@@ -113,6 +114,10 @@
     "Very high": "Very high",
     "Created at": "Created at",
     "Completed at": "Completed at",
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
     "Desired duration": "Desired duration",
     "Average duration": "Average duration",
     "Desired interval": "Desired interval",

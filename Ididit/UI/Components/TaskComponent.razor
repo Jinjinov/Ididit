@@ -15,7 +15,7 @@
             }
             @if (Task.IsRepeating)
             {
-                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : "Never")</Div>
+                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : Localizer["Never"])</Div>
 
                 @if (Task.ElapsedToDesiredRatio >= 100)
                 {
@@ -150,11 +150,11 @@
                         </Addon>
 
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
-                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? "day" : "days")" />
+                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? Localizer["day"] : Localizer["days"])" />
 
                         <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
                         <Addon AddonType="AddonType.End">
-                            <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? "hour" : "hours")</AddonLabel>
+                            <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? Localizer["hour"] : Localizer["hours"])</AddonLabel>
 
                             <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                         </Addon>
