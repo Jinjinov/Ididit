@@ -227,16 +227,16 @@ public sealed partial class TaskComponent : IDisposable
         await Repository.UpdateTask(Task.Id);
     }
 
-    static string ToReadableString(TimeSpan span, bool ago = false)
+    string ToReadableString(TimeSpan span, bool ago = false)
     {
         string readableString = span.TotalMinutes >= 1.0 ? (
             (span.Days > 0 ? span.Days + " d" + (span.Hours > 0 || span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
             (span.Hours > 0 ? span.Hours + " h" + (span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
             (span.Minutes > 0 ? span.Minutes + " m" : string.Empty)
-            ) : "0 minutes";
+            ) : "0 " + Localizer["minutes"];
 
         if (ago)
-            readableString += " ago";
+            readableString += " " + Localizer["ago"];
 
         return readableString;
     }
