@@ -241,10 +241,10 @@ public sealed partial class TaskComponent : IDisposable
         return readableString;
     }
 
-    static string ToHighestValueString(TimeSpan span)
+    string ToHighestValueString(TimeSpan span)
     {
-        return span.Days > 0 ? span.Days + " day" + (span.Days == 1 ? string.Empty : "s") + " ago"
-                             : span.Hours > 0 ? span.Hours + " hour" + (span.Hours == 1 ? string.Empty : "s") + " ago"
-                                              : span.Minutes + " minute" + (span.Minutes == 1 ? string.Empty : "s") + " ago";
+        return span.Days > 0 ? span.Days + " " + (span.Days == 1 ? Localizer["day ago"] : Localizer["days ago"])
+                             : span.Hours > 0 ? span.Hours + " " + (span.Hours == 1 ? Localizer["hour ago"] : Localizer["hours ago"])
+                                              : span.Minutes + " " + (span.Minutes == 1 ? Localizer["minute ago"] : Localizer["minutes ago"]);
     }
 }

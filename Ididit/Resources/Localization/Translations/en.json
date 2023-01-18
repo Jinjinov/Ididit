@@ -111,6 +111,12 @@
     "Export Google Drive": "Export Google Drive",
     "Import Google Keep Takeout ZIP": "Import Google Keep Takeout ZIP",
 
+    "day ago": "day ago",
+    "days ago": "days ago",
+    "hour ago": "hour ago",
+    "hours ago": "hours ago",
+    "minute ago": "minute ago",
+    "minutes ago": "minutes ago",
     "Never": "Never",
     "Type": "Type",
     "Note": "Note",

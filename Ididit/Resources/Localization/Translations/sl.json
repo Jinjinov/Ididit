@@ -111,6 +111,12 @@
     "Export Google Drive": "Izvozi Google Drive",
     "Import Google Keep Takeout ZIP": "Uvozi Google Keep Takeout ZIP",
 
+    "day ago": "dan nazaj",
+    "days ago": "dni nazaj",
+    "hour ago": "uro nazaj",
+    "hours ago": "ur nazaj",
+    "minute ago": "minuto nazaj",
+    "minutes ago": "minut nazaj",
     "Never": "Nikoli",
     "Type": "Tip",
     "Note": "Opomba",
