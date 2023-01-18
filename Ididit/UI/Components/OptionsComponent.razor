@@ -75,7 +75,7 @@
                     <option value="Default">Default</option>
                     @foreach (string background in Backgrounds)
                     {
-                        <option value="@background">@background</option>
+                        <option value="@background">@Localizer[background]</option>
                     }
                 </select>
             }
@@ -84,7 +84,7 @@
                 <Select TValue="string" Size="Size" SelectedValue="Background" SelectedValueChanged="OnBackgroundChanged">
                     @foreach (string background in Backgrounds)
                     {
-                        <SelectItem Value="background">@background</SelectItem>
+                        <SelectItem Value="background">@Localizer[background]</SelectItem>
                     }
                 </Select>
             }
