@@ -1,22 +1,15 @@
 # TODO:
 
+Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
+
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
-
-5.
-- [ ] use Size in all controls
-
-8.
-- [ ] separate import column, select line in textarea, search selected line, copy selected line
-- [ ] organize habits / Google Keep notes
-
-Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
 1.
-    better description intro sentence
+- [ ] better description intro sentence
         more friendly than a streak counter
             ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
             ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
@@ -25,15 +18,8 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
             10 day, 4 days, 140%
             1 day, 4 days, 400%
 
-4.
-    one screenshot per feature
-
-3.
-    example markdown note
-    example task note
-
 2.
-    localization
+- [ ] localization
         English
         German
         Slovenian
@@ -44,8 +30,26 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
         about
 
+3.
+- [ ] example markdown note
+- [ ] example task note
+
+4.
+- [ ] use Size in all controls
+
+5.
+- [ ] one screenshot per feature
+
+-------------------------------------------------------------------------------
+
+8.
+- [ ] separate import column, select line in textarea, search selected line, copy selected line
+- [ ] organize habits / Google Keep notes
+
+-------------------------------------------------------------------------------
+
 6.
-    debug import export on phones
+- [ ] debug import export on phones
 
 7.
 - [ ] Maui Google Drive authentication:
@@ -72,6 +76,8 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     - https://github.com/stevenchang0529/XamarinGoogleDriveRest
     - https://github.com/Kimserey/GDrivePrototype
     - https://github.com/nguyenthanhliemfc/TestGoogleDriveForXamarinForms
+
+-------------------------------------------------------------------------------
 
 9.
 - [ ] Linux software repository
@@ -166,22 +172,22 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] add Google Ads
     - https://ads.google.com/
 
+-------------------------------------------------------------------------------
+
 - [ ] add Google Analytics
     - https://analytics.google.com/
 
+- [ ] backup on: Dropbox / OneDrive / iCloud
 
+-------------------------------------------------------------------------------
 
 - [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
 - [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
-
-
 
 - [ ] GoogleDriveBackup - auto save backup - `class Repository` - on every `IDatabaseAccess` use - Benchmark / Stopwatch
 - [ ] GoogleDriveBackup - auto restore backup - `class LoginComponent` - on `LogIn` complete - `AuthenticationStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;`
 
 - [ ] load db before app start in wasm
-
-- [ ] backup on: Dropbox / OneDrive / iCloud
 
 - [ ] fix AddCategoryList(List<CategoryModel> categoryList)
     - in Repository and DatabaseAccess
