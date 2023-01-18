@@ -227,19 +227,24 @@ public sealed partial class TaskComponent : IDisposable
         await Repository.UpdateTask(Task.Id);
     }
 
-    static string ToReadableString(TimeSpan span)
+    static string ToReadableString(TimeSpan span, bool ago = false)
     {
-        return span.TotalMinutes >= 1.0 ? (
+        string readableString = span.TotalMinutes >= 1.0 ? (
             (span.Days > 0 ? span.Days + " d" + (span.Hours > 0 || span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
             (span.Hours > 0 ? span.Hours + " h" + (span.Minutes > 0 ? ", " : string.Empty) : string.Empty) +
             (span.Minutes > 0 ? span.Minutes + " m" : string.Empty)
             ) : "0 minutes";
+
+        if (ago)
+            readableString += " ago";
+
+        return readableString;
     }
 
     static string ToHighestValueString(TimeSpan span)
     {
-        return span.Days > 0 ? span.Days + " day" + (span.Days == 1 ? string.Empty : "s")
-                             : span.Hours > 0 ? span.Hours + " hour" + (span.Hours == 1 ? string.Empty : "s")
-                                              : span.Minutes + " minute" + (span.Minutes == 1 ? string.Empty : "s");
+        return span.Days > 0 ? span.Days + " day" + (span.Days == 1 ? string.Empty : "s") + " ago"
+                             : span.Hours > 0 ? span.Hours + " hour" + (span.Hours == 1 ? string.Empty : "s") + " ago"
+                                              : span.Minutes + " minute" + (span.Minutes == 1 ? string.Empty : "s") + " ago";
     }
 }

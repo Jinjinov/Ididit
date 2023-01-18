@@ -15,7 +15,7 @@
             }
             @if (Task.IsRepeating)
             {
-                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) + " ago" : Localizer["Never"])</Div>
+                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) : Localizer["Never"])</Div>
 
                 @if (Task.ElapsedToDesiredRatio >= 100)
                 {
@@ -200,7 +200,7 @@
                             {
                                 <Addons Style="max-width:500px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
                                 <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                                    <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time) + " ago")</AddonLabel>
+                                    <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time, ago: true))</AddonLabel>
                                     </Addon>
 
                                     <Addon AddonType="AddonType.End">
