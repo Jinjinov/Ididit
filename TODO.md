@@ -8,6 +8,21 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
+Say goodbye to the demotivating effects of broken streaks with ididit!, the procrastination-friendly habit tracker. 
+Unlike other habit trackers that rely on streaks, ididit! focuses on tracking the time elapsed since your last task completion and comparing it to the task's repeating interval. 
+This allows you to easily prioritize your tasks based on their level of urgency, rather than feeling punished for missing a day. 
+With ididit!, you'll never have to worry about feeling demotivated again, and you'll be able to focus on achieving your goals one step at a time.
+
+ididit! - the procrastination friendly habit tracker:
+
+Say goodbye to streak-breaking guilt: ididit! tracks the time elapsed since your last task completion, not a rigid streak.
+Prioritize your tasks: Compare the urgency of tasks by how overdue they are relative to their intervals.
+Organize your goals: Create categories and sub-categories to group similar goals, assign priorities, and keep track of what's important.
+Search, filter, and sort: Quickly find what you need with search, filter tasks by criteria, and sort by any property.
+Habit tracking: Set desired intervals for habits, compare with actual averages, and see when you last completed a task.
+Google integration: Import from Google Keep and backup to Google Drive.
+File import/export: Easily import and export data in popular formats such as Markdown, JSON, YAML, and TSV.
+
 1.
 - [ ] better description intro sentence
         more friendly than a streak counter
