@@ -13,25 +13,27 @@ Unlike other habit trackers that rely on streaks, ididit! focuses on tracking th
 This allows you to easily prioritize your tasks based on their level of urgency, rather than feeling punished for missing a day. 
 With ididit!, you'll never have to worry about feeling demotivated again, and you'll be able to focus on achieving your goals one step at a time.
 
-ididit! - the procrastination friendly habit tracker:
-
 Say goodbye to streak-breaking guilt: ididit! tracks the time elapsed since your last task completion, not a rigid streak.
 Prioritize your tasks: Compare the urgency of tasks by how overdue they are relative to their intervals.
-Organize your goals: Create categories and sub-categories to group similar goals, assign priorities, and keep track of what's important.
-Search, filter, and sort: Quickly find what you need with search, filter tasks by criteria, and sort by any property.
-Habit tracking: Set desired intervals for habits, compare with actual averages, and see when you last completed a task.
-Google integration: Import from Google Keep and backup to Google Drive.
-File import/export: Easily import and export data in popular formats such as Markdown, JSON, YAML, and TSV.
 
 1.
 - [ ] better description intro sentence
-        more friendly than a streak counter
-            ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero
-            ididit! calculates the average interval with which you do your habits so whenever you skip a habit, the average interval gets a little longer
+        ididit! is more friendly than a streak counter and has better task prioritization than reminders.
 
-        better prioritization than reminders
-            10 day, 4 days, 140%
-            1 day, 4 days, 400%
+    ididit! - the procrastination friendly habit tracker:
+        ididit! doesn't use a streak counter so you won't feel demotivated when you skip a habit once and have to start your streak from zero.
+        It tracks the time elapsed since your last task completion and compares it to the task's repeating interval.
+        A task with a 10 day interval which is 2 days overdue is at 120% - but a task with a 2 day interval which is also 2 days overdue is at 200%.
+        This allows you to easily prioritize your tasks based on their level of urgency.
+
+    Features:
+        Organize your goals: Create categories and sub-categories to group similar goals, assign priorities, and keep track of what's important.
+        Search, filter, and sort: Quickly find what you need with search, filter tasks by criteria, and sort by any property.
+        Habit tracking: Set desired intervals for habits, compare with actual averages, and see when you last completed a task.
+
+    Formats:
+        Google integration: Import from Google Keep and backup to Google Drive.
+        File import/export: Easily import and export data in popular formats such as Markdown, JSON, YAML, and TSV.
 
 2.
 - [ ] localization
