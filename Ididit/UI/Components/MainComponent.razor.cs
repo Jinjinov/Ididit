@@ -41,7 +41,7 @@ public partial class MainComponent
 
             if (isFirstTime)
             {
-                await Examples.LoadExamples();
+                await Examples.LoadBasicExamples();
             }
         }
 

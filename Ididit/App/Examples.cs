@@ -18,6 +18,57 @@ internal class Examples : IExamples
         _localizer = localizer;
     }
 
+    public async Task LoadBasicExamples()
+    {
+        long nextGoalId = _repository.NextGoalId;
+
+        GoalModel tasksGoal = _repository.Category.CreateGoal(nextGoalId++, _localizer["Tasks goal"]);
+        GoalModel markdownGoal = _repository.Category.CreateGoal(nextGoalId++, _localizer["Markdown goal"]);
+
+        long nextTaskId = _repository.NextTaskId;
+
+        TaskModel note = tasksGoal.CreateTask(nextTaskId++, _localizer["Note"]);
+        TaskModel doneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Task (done)"]);
+        TaskModel notDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Task (not done)"]);
+        TaskModel neverDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Repeating task (never done)"]);
+        TaskModel doneTwiceTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Repeating task (done twice)"]);
+
+        foreach (TaskModel task in tasksGoal.TaskList)
+        {
+            tasksGoal.Details += string.IsNullOrEmpty(tasksGoal.Details) ? task.Name : Environment.NewLine + task.Name;
+        }
+
+        tasksGoal.CreateTaskFromEachLine = true;
+
+        await _repository.AddGoal(tasksGoal);
+
+        await _repository.AddTask(note);
+        await _repository.AddTask(doneTask);
+        await _repository.AddTask(notDoneTask);
+        await _repository.AddTask(neverDoneTask);
+        await _repository.AddTask(doneTwiceTask);
+
+        markdownGoal.Details =
+            """
+            # Heading level 1
+            ## Heading level 2
+                code
+                block
+            **bold**
+            *italic*
+            ***bold and italic***
+            `code`
+            [ididit!](https://ididit.today)
+            - one item
+            - another item
+            ---
+            1. first item
+            2. second item
+            """;
+
+        await _repository.AddGoal(markdownGoal);
+    }
+
     public async Task LoadExamples()
     {
         long nextCategoryId = _repository.NextCategoryId;
