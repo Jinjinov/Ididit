@@ -1,0 +1,37 @@
+{
+  "culture": "sl",
+  "translations": {
+    "Accomplishments": "Dosežki",
+    "Health": "Zdravje",
+    "Well-being": "Blaginja",
+
+    "Chores": "Gospodinjska opravila",
+    "Hobbies": "Hobi",
+    "Personal growth": "Osebni razvoj",
+    "Appearance": "Videz",
+    "Food": "Hrana",
+    "Sports": "Šport",
+    "Peace of mind": "Mir v duši",
+    "Relationships": "Odnosi",
+    "Relaxation": "Sprostitev",
+
+    "Clean dust": "Počisti prah",
+    "Clean the windows": "Počisti okna",
+    "Go salsa dancing": "Pojdi plesat salso",
+    "Play the piano": "Igraj na klavir",
+    "Attend a workshop": "Sodeluj na delavnici",
+    "Learn Spanish": "Uči se španščino",
+    "Get a haircut": "Pojdi k frizerju",
+    "Buy new clothes": "Kupi nove obleke",
+    "Drink water": "Pij vodo",
+    "Eat fruit": "Jej sadje",
+    "Stretch & workout": "Raztegni se in vadi",
+    "Go hiking": "Pojdi na pohod",
+    "Take a walk": "Pojdi na sprehod",
+    "Meditate": "Meditiraj",
+    "Call parents": "Pokliči starše",
+    "Do someone a favor": "Naredi nekomu uslugo",
+    "Read a book": "Preberi knjigo",
+    "Get a massage": "Pojdi na masažo"
+  }
+}

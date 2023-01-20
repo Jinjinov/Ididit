@@ -1,0 +1,37 @@
+{
+  "culture": "de",
+  "translations": {
+    "Accomplishments": "Erfolge",
+    "Health": "Gesundheit",
+    "Well-being": "Wohlbefinden",
+
+    "Chores": "Haushalt",
+    "Hobbies": "Hobbys",
+    "Personal growth": "Persönliche Entwicklung",
+    "Appearance": "Erscheinungsbild",
+    "Food": "Ernährung",
+    "Sports": "Sport",
+    "Peace of mind": "Innerer Frieden",
+    "Relationships": "Beziehungen",
+    "Relaxation": "Entspannung",
+
+    "Clean dust": "Staub saugen",
+    "Clean the windows": "Fenster putzen",
+    "Go salsa dancing": "Salsa tanzen gehen",
+    "Play the piano": "Klavier spielen",
+    "Attend a workshop": "Workshop besuchen",
+    "Learn Spanish": "Spanisch lernen",
+    "Get a haircut": "Haarschnitt bekommen",
+    "Buy new clothes": "Neue Kleidung kaufen",
+    "Drink water": "Wasser trinken",
+    "Eat fruit": "Obst essen",
+    "Stretch & workout": "Dehnen & trainieren",
+    "Go hiking": "Wandern gehen",
+    "Take a walk": "Spazieren gehen",
+    "Meditate": "Meditieren",
+    "Call parents": "Eltern anrufen",
+    "Do someone a favor": "Jemandem einen Gefallen tun",
+    "Read a book": "Ein Buch lesen",
+    "Get a massage": "Massage bekommen"
+  }
+}
