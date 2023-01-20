@@ -23,7 +23,7 @@ public interface IRepository : IDataModel
 
     event EventHandler? DataChanged;
 
-    Task Initialize();
+    Task<bool> Initialize();
     Task AddData(IDataModel data);
 
     CategoryModel CreateCategory(string name);

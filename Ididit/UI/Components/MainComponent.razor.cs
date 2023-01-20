@@ -23,6 +23,9 @@ public partial class MainComponent
     IRepository Repository { get; set; } = null!;
 
     [Inject]
+    IExamples Examples { get; set; } = null!;
+
+    [Inject]
     protected IPreRenderService PreRenderService { get; set; } = null!;
 
     CategoryModel _selectedCategory = new();
@@ -33,7 +36,14 @@ public partial class MainComponent
     protected override async Task OnInitializedAsync()
     {
         if (!PreRenderService.IsPreRendering)
-            await Repository.Initialize();
+        {
+            bool isFirstTime = await Repository.Initialize();
+
+            if (isFirstTime)
+            {
+                await Examples.LoadExamples();
+            }
+        }
 
         Repository.DataChanged += (object? sender, EventArgs e) => StateHasChanged();
 

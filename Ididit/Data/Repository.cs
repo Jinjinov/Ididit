@@ -44,18 +44,13 @@ internal class Repository : DataModel, IRepository
         DataChanged?.Invoke(sender, e);
     }
 
-    public async Task Initialize()
+    public async Task<bool> Initialize()
     {
         if (_databaseAccess.IsInitialized)
-            return;
+            return false;
 
         await _databaseAccess.Initialize();
 
-        await GetData();
-    }
-
-    private async Task GetData()
-    {
         RepositoryData data = await _databaseAccess.GetData();
 
         CategoryList = data.CategoryList;
@@ -65,6 +60,8 @@ internal class Repository : DataModel, IRepository
         _goalDict = data.GoalDict;
         _settingsDict = data.SettingsDict;
         _taskDict = data.TaskDict;
+
+        bool isFirstTime = !CategoryList.Any() && !SettingsList.Any();
 
         if (!CategoryList.Any())
         {
@@ -81,6 +78,8 @@ internal class Repository : DataModel, IRepository
         }
 
         Settings = SettingsList.First();
+
+        return isFirstTime;
     }
 
     private async Task AddDefaultSettings()
