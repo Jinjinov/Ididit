@@ -1,6 +1,14 @@
 {
   "culture": "de",
   "translations": {
+    "Tasks goal": "Aufgabenziel",
+    "Markdown goal": "Markdown Ziel",
+    "Note": "Notiz",
+    "High priority task": "Wichtige Aufgabe",
+    "Task": "Aufgabe",
+    "Low priority habit": "Niedrigprioritäres Gewohnheit",
+    "Habit": "Gewohnheit",
+
     "Accomplishments": "Erfolge",
     "Health": "Gesundheit",
     "Well-being": "Wohlbefinden",

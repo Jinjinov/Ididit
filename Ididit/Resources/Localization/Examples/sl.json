@@ -1,6 +1,14 @@
 {
   "culture": "sl",
   "translations": {
+    "Tasks goal": "Cilj opravil",
+    "Markdown goal": "Cilj Markdown",
+    "Note": "Opomba",
+    "High priority task": "Opravilo z visoko prioriteto",
+    "Task": "Opravilo",
+    "Low priority habit": "Navada z nizko prioriteto",
+    "Habit": "Navada",
+
     "Accomplishments": "Dosežki",
     "Health": "Zdravje",
     "Well-being": "Blaginja",

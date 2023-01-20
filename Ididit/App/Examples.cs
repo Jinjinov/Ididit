@@ -27,11 +27,11 @@ internal class Examples : IExamples
 
         long nextTaskId = _repository.NextTaskId;
 
-        TaskModel note = tasksGoal.CreateTask(nextTaskId++, _localizer["Note"]);
-        TaskModel doneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Task (done)"]);
-        TaskModel notDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Task (not done)"]);
-        TaskModel neverDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Repeating task (never done)"]);
-        TaskModel doneTwiceTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Repeating task (done twice)"]);
+        TaskModel note = tasksGoal.CreateTask(nextTaskId++, _localizer["Note"], TimeSpan.Zero, Priority.None, TaskKind.Note, null);
+        TaskModel doneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["High priority task"], TimeSpan.Zero, Priority.High, TaskKind.Task, null);
+        TaskModel notDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Task"], TimeSpan.Zero, Priority.Medium, TaskKind.Task, TimeSpan.FromMinutes(30));
+        TaskModel neverDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Low priority habit"], TimeSpan.FromDays(10), Priority.Low, TaskKind.RepeatingTask, null);
+        TaskModel doneTwiceTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Habit"], TimeSpan.FromDays(4), Priority.Medium, TaskKind.RepeatingTask, TimeSpan.FromMinutes(15));
 
         foreach (TaskModel task in tasksGoal.TaskList)
         {
