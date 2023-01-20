@@ -48,10 +48,23 @@ internal class Examples : IExamples
         await _repository.AddTask(neverDoneTask);
         await _repository.AddTask(doneTwiceTask);
 
+        List<(DateTime time, long taskId)> times = new()
+        {
+            { doneTask.AddTime(DateTime.Now.AddDays(-2)) },
+            { doneTwiceTask.AddTime(DateTime.Now.AddDays(-3)) },
+            { doneTwiceTask.AddTime(DateTime.Now.AddDays(-1)) }
+        };
+
+        foreach ((DateTime time, long taskId) in times)
+        {
+            await _repository.AddTime(time, taskId);
+            await _repository.UpdateTask(taskId);
+        }
+
         markdownGoal.Details =
             """
-            # Heading level 1
-            ## Heading level 2
+            # Markdown
+            ## Heading
                 code
                 block
             **bold**
