@@ -92,22 +92,22 @@
 
         @if (IsPersonalComputer)
         {
-            <Label For="JSON-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">@Localizer["Import JSON"]</Label>
+            <label for="JSON-upload" class="btn-block btn @ButtonSizeClass btn-primary my-2">@Localizer["Import JSON"]</label>
             <InputFile id="JSON-upload" class="d-none" OnChange=Import />
 
             <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Json)">@Localizer["Export JSON"]</Button>
 
-            <Label For="YAML-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">@Localizer["Import YAML"]</Label>
+            <label for="YAML-upload" class="btn-block btn @ButtonSizeClass btn-primary my-2">@Localizer["Import YAML"]</label>
             <InputFile id="YAML-upload" class="d-none" OnChange=Import />
 
             <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Yaml)">@Localizer["Export YAML"]</Button>
 
-            <Label For="TSV-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">@Localizer["Import TSV"]</Label>
+            <label for="TSV-upload" class="btn-block btn @ButtonSizeClass btn-primary my-2">@Localizer["Import TSV"]</label>
             <InputFile id="TSV-upload" class="d-none" OnChange=Import />
 
             <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.Tsv)">@Localizer["Export TSV"]</Button>
 
-            <Label For="Markdown-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">@Localizer["Import Markdown"]</Label>
+            <label for="Markdown-upload" class="btn-block btn @ButtonSizeClass btn-primary my-2">@Localizer["Import Markdown"]</label>
             @*<InputFile id="Markdown-upload" class="d-none" webkitdirectory directory multiple OnChange=ImportMarkdown />*@
             <InputFile id="Markdown-upload" class="d-none" OnChange=Import />
 
@@ -124,7 +124,7 @@
                 <Button Color=Color.Primary Size="Size" Block=true @onclick="async () => await ExportData(DataFormat.GoogleDrive)">@Localizer["Export Google Drive"]</Button>
             }
 
-            <Label For="ZIP-upload" Display=Display.Block Margin=Margin.Is2.FromTop class="btn btn-primary">@Localizer["Import Google Keep Takeout ZIP"]</Label>
+            <label for="ZIP-upload" class="btn-block btn @ButtonSizeClass btn-primary mt-2">@Localizer["Import Google Keep Takeout ZIP"]</label>
             <InputFile id="ZIP-upload" class="d-none" OnChange=Import />
         }
 

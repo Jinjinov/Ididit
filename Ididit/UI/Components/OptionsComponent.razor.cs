@@ -95,6 +95,18 @@ public partial class OptionsComponent
     [Parameter]
     public EventCallback<string> BackgroundChanged { get; set; }
 
+    readonly Dictionary<Blazorise.Size, string> _buttonClassBySize = new()
+        {
+            { Blazorise.Size.Default, "" },
+            { Blazorise.Size.ExtraSmall, "btn-sm" },
+            { Blazorise.Size.Small, "btn-sm" },
+            { Blazorise.Size.Medium, "btn-md" },
+            { Blazorise.Size.Large, "btn-lg" },
+            { Blazorise.Size.ExtraLarge, "btn-lg" }
+        };
+
+    public string ButtonSizeClass => _buttonClassBySize[Size];
+
     async Task OnSizeChangeEvent(ChangeEventArgs e)
     {
         if (e.Value is string value)

@@ -24,9 +24,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 - [ ] example markdown note
 - [ ] example task note
 
-4.
-- [ ] use Size in all controls
-
 5.
 - [ ] one screenshot per feature
 
