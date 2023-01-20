@@ -149,14 +149,14 @@
                             <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired interval"]:</AddonLabel>
                         </Addon>
 
-                        <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
-                        <TextEdit Size="Size" ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? Localizer["day"] : Localizer["days"])" />
+                        <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
+                        <TextEdit Size=Size.Small ReadOnly="true" Text="@(Task.DesiredInterval.Days == 1 ? Localizer["day"] : Localizer["days"])" />
 
-                        <NumericEdit ShowStepButtons="false" Size="Size" TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
+                        <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="23" Value="Task.DesiredInterval.Hours" ValueChanged="SetDesiredIntervalHours" />
                         <Addon AddonType="AddonType.End">
                             <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? Localizer["hour"] : Localizer["hours"])</AddonLabel>
 
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                                <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
 
@@ -188,24 +188,24 @@
                             @if (_editTime && _selectedTime == time.Ticks)
                             {
                                 <Addons Style="max-width:500px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop>
-                                    <DateEdit TValue="DateTime" Size="Size" Date="@_taskTime" DateChanged="DateChanged" />
-                                    <TimeEdit TValue="TimeSpan" Size="Size" Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
+                                    <DateEdit TValue="DateTime" Size=Size.Small Date="@_taskTime" DateChanged="DateChanged" />
+                                    <TimeEdit TValue="TimeSpan" Size=Size.Small Time="@_taskTime.TimeOfDay" TimeChanged="TimeChanged" />
                                     <Addon AddonType="AddonType.End">
-                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
-                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick="@(async () => await SaveTime(time))"><Icon Class="fa-fw" Name="IconName.Save" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick="@(() => CancelEditTime())"><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                                     </Addon>
                                 </Addons>
                             }
                             else
                             {
                                 <Addons Style="max-width:500px" Size=Size.Small Flex=Flex.NoWrap Margin=Margin.Is1.FromTop Display=Display.Flex>
-                                <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                                    <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time, ago: true))</AddonLabel>
+                                    <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
+                                        <AddonLabel Flex="Flex.Grow.Is1">@(ToReadableString(DateTime.Now - time, ago: true))</AddonLabel>
                                     </Addon>
 
                                     <Addon AddonType="AddonType.End">
-                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
-                                        <Button Color="Color.Primary" Outline="true" Size="Size" @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick="@(() => EditTime(time))"><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                                        <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick="@(async () => await DeleteTime(time))"><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                                     </Addon>
                                 </Addons>
                             }
