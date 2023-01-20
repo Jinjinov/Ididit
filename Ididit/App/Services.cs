@@ -57,6 +57,7 @@ public static class Services
 
         serviceCollection.AddScoped<IRepository, Repository>();
         serviceCollection.AddScoped<IDatabaseAccess, DatabaseAccess>();
+        serviceCollection.AddScoped<IExamples, Examples>();
 
         serviceCollection.AddIndexedDbDatabase<IndexedDb>(options =>
         {

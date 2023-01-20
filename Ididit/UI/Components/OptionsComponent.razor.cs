@@ -1,4 +1,5 @@
 ﻿using Blazorise.Localization;
+using Ididit.App;
 using Ididit.Backup;
 using Ididit.Backup.Drive;
 using Ididit.Backup.Online;
@@ -23,6 +24,9 @@ public partial class OptionsComponent
     [Inject]
     IRepository Repository { get; set; } = null!;
 
+    [Inject]
+    IExamples Examples { get; set; } = null!;
+
     [Parameter]
     public CategoryModel SelectedCategory { get; set; } = null!;
 
@@ -31,7 +35,7 @@ public partial class OptionsComponent
 
     async Task LoadExamples()
     {
-        await Repository.LoadExamples();
+        await Examples.LoadExamples();
 
         await CloseOptions();
     }
