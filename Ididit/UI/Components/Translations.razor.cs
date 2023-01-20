@@ -29,6 +29,7 @@ public partial class Translations
         { "English", new CultureInfo("en") },
         { "Deutsch", new CultureInfo("de") },
         { "slovenščina", new CultureInfo("sl") },
+        { "español", new CultureInfo("es") }
     };
 
     async Task OnCultureChangeEvent(ChangeEventArgs e)
