@@ -2,18 +2,17 @@
 
 Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
+-------------------------------------------------------------------------------
+
 - [ ] choose minimum task list for ididit
 - [ ] real usage screenshots
+
+-------------------------------------------------------------------------------
 
 - [ ] use phone back button to exit options / settings
 - [ ] fix phone 2x app open - check if app is already running
 
-2.
-- [ ] localization
-        English
-        German
-        Slovenian
-        Spanish
+-------------------------------------------------------------------------------
 
 5.
 - [ ] one screenshot per feature
