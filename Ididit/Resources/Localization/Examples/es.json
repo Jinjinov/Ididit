@@ -1,0 +1,45 @@
+{
+  "culture": "es",
+  "translations": {
+    "Tasks goal": "Objetivo de tareas",
+    "Markdown goal": "Objetivo de Markdown",
+    "Note": "Nota",
+    "High priority task": "Tarea de alta prioridad",
+    "Task": "Tarea",
+    "Low priority habit": "Hábito de baja prioridad",
+    "Habit": "Hábito",
+
+    "Accomplishments": "Logros",
+    "Health": "Salud",
+    "Well-being": "Bienestar",
+
+    "Chores": "Tareas del hogar",
+    "Hobbies": "Aficiones",
+    "Personal growth": "Crecimiento personal",
+    "Appearance": "Apariencia",
+    "Food": "Comida",
+    "Sports": "Deportes",
+    "Peace of mind": "Paz mental",
+    "Relationships": "Relaciones",
+    "Relaxation": "Relajación",
+
+    "Clean dust": "Limpiar el polvo",
+    "Clean the windows": "Limpiar las ventanas",
+    "Go salsa dancing": "Ir a bailar salsa",
+    "Play the piano": "Tocar el piano",
+    "Attend a workshop": "Asistir a un taller",
+    "Learn Spanish": "Aprender español",
+    "Get a haircut": "Cortarse el pelo",
+    "Buy new clothes": "Comprar ropa nueva",
+    "Drink water": "Beber agua",
+    "Eat fruit": "Comer fruta",
+    "Stretch & workout": "Ejercitar y estirar",
+    "Go hiking": "Ir de senderismo",
+    "Take a walk": "Dar un paseo",
+    "Meditate": "Meditar",
+    "Call parents": "Llamar a los padres",
+    "Do someone a favor": "Hacer un favor a alguien",
+    "Read a book": "Leer un libro",
+    "Get a massage": "Tomar un masaje"
+  }
+}
