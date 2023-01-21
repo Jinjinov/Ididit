@@ -22,8 +22,18 @@ internal class Examples : IExamples
     {
         long nextGoalId = _repository.NextGoalId;
 
+        GoalModel notesGoal = _repository.Category.CreateGoal(nextGoalId++, _localizer["Change these notes to tasks"]);
         GoalModel tasksGoal = _repository.Category.CreateGoal(nextGoalId++, _localizer["Tasks goal"]);
         GoalModel markdownGoal = _repository.Category.CreateGoal(nextGoalId++, _localizer["Markdown goal"]);
+
+        notesGoal.Details =
+            $"""
+            {_localizer["The first icon changes notes to tasks"]}
+            {_localizer["Each line becomes one task"]}
+            {_localizer["Select a task to see its details"]}
+            """;
+
+        await _repository.AddGoal(notesGoal);
 
         long nextTaskId = _repository.NextTaskId;
 

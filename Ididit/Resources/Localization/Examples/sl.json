@@ -1,8 +1,14 @@
 {
   "culture": "sl",
   "translations": {
-    "Tasks goal": "Cilj opravil",
+    "Change these notes to tasks": "Spremenite te zapise v naloge",
+    "Tasks goal": "Cilj nalog",
     "Markdown goal": "Cilj Markdown",
+
+    "The first icon changes notes to tasks": "Prvi ikona spremeni zapise v naloge",
+    "Each line becomes one task": "Vsaka vrstica postane ena naloga",
+    "Select a task to see its details": "Izberite nalogo, da si ogledate podrobnosti",
+
     "Note": "Opomba",
     "High priority task": "Opravilo z visoko prioriteto",
     "Task": "Opravilo",

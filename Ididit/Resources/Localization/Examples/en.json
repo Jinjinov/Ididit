@@ -1,8 +1,14 @@
 {
   "culture": "en",
   "translations": {
+    "Change these notes to tasks": "Change these notes to tasks",
     "Tasks goal": "Tasks goal",
     "Markdown goal": "Markdown goal",
+
+    "The first icon changes notes to tasks": "The first icon changes notes to tasks",
+    "Each line becomes one task": "Each line becomes one task",
+    "Select a task to see its details": "Select a task to see its details",
+
     "Note": "Note",
     "High priority task": "High priority task",
     "Task": "Task",

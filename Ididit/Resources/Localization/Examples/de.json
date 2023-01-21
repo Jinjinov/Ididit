@@ -1,8 +1,14 @@
 {
   "culture": "de",
   "translations": {
-    "Tasks goal": "Aufgabenziel",
+    "Change these notes to tasks": "Ändere diese Notizen zu Aufgaben",
+    "Tasks goal": "Aufgaben Ziel",
     "Markdown goal": "Markdown Ziel",
+
+    "The first icon changes notes to tasks": "Das erste Symbol ändert Notizen in Aufgaben",
+    "Each line becomes one task": "Jede Zeile wird zu einer Aufgabe",
+    "Select a task to see its details": "Wähle eine Aufgabe aus, um ihre Details anzuzeigen",
+
     "Note": "Notiz",
     "High priority task": "Wichtige Aufgabe",
     "Task": "Aufgabe",

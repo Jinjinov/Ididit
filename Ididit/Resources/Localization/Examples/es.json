@@ -1,8 +1,14 @@
 {
   "culture": "es",
   "translations": {
+    "Change these notes to tasks": "Cambiar estas notas a tareas",
     "Tasks goal": "Objetivo de tareas",
     "Markdown goal": "Objetivo de Markdown",
+
+    "The first icon changes notes to tasks": "El primer icono cambia las notas a tareas",
+    "Each line becomes one task": "Cada línea se convierte en una tarea",
+    "Select a task to see its details": "Seleccione una tarea para ver sus detalles",
+
     "Note": "Nota",
     "High priority task": "Tarea de alta prioridad",
     "Task": "Tarea",
