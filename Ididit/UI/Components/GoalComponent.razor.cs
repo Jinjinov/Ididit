@@ -201,7 +201,12 @@ public partial class GoalComponent
     {
         Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
 
-        if (!string.IsNullOrEmpty(Goal.Details) && !Goal.TaskList.Any())
+        if (!Goal.CreateTaskFromEachLine)
+        {
+            Goal.UpdateDetailsMarkdownHtml();
+        }
+
+        if (!string.IsNullOrEmpty(Goal.Details) && Goal.CreateTaskFromEachLine)
         {
             await UpdateTasks();
         }

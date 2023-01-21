@@ -27,7 +27,7 @@ public class GoalModel
             _details = value;
 
             if (!CreateTaskFromEachLine)
-                DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
+                UpdateDetailsMarkdownHtml();
         }
     }
 
@@ -40,6 +40,11 @@ public class GoalModel
     public bool CreateTaskFromEachLine { get; set; }
 
     public List<TaskModel> TaskList = new();
+
+    public void UpdateDetailsMarkdownHtml()
+    {
+        DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
+    }
 
     public TaskModel CreateTask(long id, string name)
     {
