@@ -20,18 +20,20 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 -------------------------------------------------------------------------------
 
 2.
-- [ ] sort ascending / descending
+- [ ] sort Tasks ascending / descending
 
 3.
-- [ ] sort by `DateTime CreatedAt`
+- [ ] create new Goal at the top
 
 -------------------------------------------------------------------------------
 
 4.
 - [ ] change Goal order
+- [ ] change Task order
 
 5.
 - [ ] change Goal Category
+- [ ] change Task Goal
 
 -------------------------------------------------------------------------------
 

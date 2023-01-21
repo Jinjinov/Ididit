@@ -11,7 +11,7 @@ public class Filters
 
     public DateTime? DateFilter { get; set; }
 
-    public IList<TaskModel> FilterTasks(IEnumerable<TaskModel> tasks, SettingsModel settings)
+    public IList<TaskModel> FilterAndSortTasks(IEnumerable<TaskModel> tasks, SettingsModel settings)
     {
         IEnumerable<TaskModel> filteredTasks = tasks.Where(task =>
         {

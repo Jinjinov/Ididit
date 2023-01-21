@@ -2,7 +2,7 @@
 
 @if (Goal is not null)
 {
-    IList<TaskModel> tasks = Filters.FilterTasks(Goal.TaskList, Settings);
+    IList<TaskModel> tasks = Filters.FilterAndSortTasks(Goal.TaskList, Settings);
 
     @if (tasks.Any() || !Settings.HideEmptyGoals)
     {

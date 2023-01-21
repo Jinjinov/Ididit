@@ -4,7 +4,7 @@
 
     @if (Settings.ShowAllTasks)
     {
-        @foreach (TaskModel task in Filters.FilterTasks(Repository.AllTasks.Values, Settings))
+        @foreach (TaskModel task in Filters.FilterAndSortTasks(Repository.AllTasks.Values, Settings))
         {
             <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
         }
@@ -19,7 +19,7 @@
         {
             @foreach (CategoryModel category in Repository.AllCategories.Values)
             {
-                if (Settings.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterTasks(goal.TaskList, Settings).Any()).Any())
+                if (Settings.ShowCategoriesInGoalList && category.GoalList.Where(goal => Filters.FilterAndSortTasks(goal.TaskList, Settings).Any()).Any())
                 {
                     <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Outline=true Size="Size.Small" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
                 }
