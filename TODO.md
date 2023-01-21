@@ -19,7 +19,11 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 -------------------------------------------------------------------------------
 
-2.
+2. GoalComponent.razor.cs - class GoalComponent - ToggleCreateTaskFromEachLine()
+- [ ] update goal markdown (note mode) from goal details (changed in task mode)
+- [ ] update tasks when goal details are changed in (note mode) and then (task mode) is turned back on
+
+3.
 - [ ] sort Tasks ascending / descending
 
 -------------------------------------------------------------------------------
