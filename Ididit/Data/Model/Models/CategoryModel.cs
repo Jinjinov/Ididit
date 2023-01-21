@@ -88,6 +88,35 @@ public class CategoryModel
         return changedGoal;
     }
 
+    public (GoalModel? firstGoal, GoalModel? nextGoal) MoveGoalToStart(GoalModel goal)
+    {
+        if(GoalList.Count < 2)
+            return (null, null);
+
+        int index = GoalList.IndexOf(goal);
+
+        if (index == 0)
+            return (null, null);
+
+        GoalModel? nextGoal = null;
+
+        if (index < GoalList.Count - 1)
+        {
+            nextGoal = GoalList[index + 1];
+            nextGoal.PreviousId = GoalList[index - 1].Id;
+        }
+
+        GoalModel firstGoal = GoalList[0];
+        firstGoal.PreviousId = goal.Id;
+
+        goal.PreviousId = null;
+
+        GoalList.Remove(goal);
+        GoalList.Insert(0, goal);
+
+        return (firstGoal, nextGoal);
+    }
+
     public void OrderCategories()
     {
         List<CategoryModel> categoryList = new();

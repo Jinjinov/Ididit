@@ -46,6 +46,14 @@ public partial class GoalsComponent
     {
         GoalModel goal = SelectedCategory.CreateGoal(Repository.NextGoalId, string.Empty);
 
+        (GoalModel? firstGoal, GoalModel? nextGoal) = SelectedCategory.MoveGoalToStart(goal);
+
+        if (firstGoal is not null)
+            await Repository.UpdateGoal(firstGoal.Id);
+
+        if (nextGoal is not null)
+            await Repository.UpdateGoal(nextGoal.Id);
+
         await Repository.AddGoal(goal);
 
         _selectedGoal = goal;
