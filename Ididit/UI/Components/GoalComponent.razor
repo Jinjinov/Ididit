@@ -35,30 +35,33 @@
 
                     @if (Goal.CreateTaskFromEachLine)
                     {
-                        <!-- no margin in Markdown HTML -->
-                        <Div Class="child-no-margin">
-                            @foreach (TaskModel task in tasks)
+                        @foreach (TaskModel task in tasks)
+                        {
+                            @if (task.MarkdownHtml is null)
                             {
-                                @if (task.MarkdownHtml is null)
-                                {
-                                    <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
-                                }
-                                else
-                                {
-                                    @((MarkupString)task.MarkdownHtml)
-                                }
-
-                                @if (!string.IsNullOrEmpty(task.DetailsText))
-                                {
-                                    @((MarkupString)task.DetailsMarkdownHtml)
-                                }
+                                <TaskComponent @key=task Task=task @bind-SelectedTask=_selectedTask />
                             }
-                        </Div>
+                            else
+                            {
+                                <!-- no margin in Markdown HTML -->
+                                <Div Class="child-no-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
+                                    @((MarkupString)task.MarkdownHtml)
+                                </Div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(task.DetailsText))
+                            {
+                                <!-- no margin in Markdown HTML -->
+                                <Div Class="child-no-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
+                                    @((MarkupString)task.DetailsMarkdownHtml)
+                                </Div>
+                            }
+                        }
                     }
                     else if (!Settings.HideGoalsWithSimpleText)
                     {
                         <!-- no margin in Markdown HTML -->
-                        <Div Class="child-no-margin" Padding=Padding.Is1 Border="Border.Is1">
+                        <Div Class="child-no-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
                             @((MarkupString)Goal.DetailsMarkdownHtml)
                         </Div>
                     }
