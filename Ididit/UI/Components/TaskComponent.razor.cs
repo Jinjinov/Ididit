@@ -55,7 +55,7 @@ public sealed partial class TaskComponent : IDisposable
         {
             _timer.Stop();
 
-            await OnDone();
+            await InvokeAsync(OnDone);
         }
 
         await InvokeAsync(StateHasChanged);
@@ -66,7 +66,7 @@ public sealed partial class TaskComponent : IDisposable
         _taskStarted = true;
         _taskStartedTime = DateTime.Now;
 
-        if (Task.DesiredDuration is not null)
+        if (Task.DesiredDuration.HasValue && Task.DesiredDuration.Value.TotalMinutes > 0.0)
         {
             _timer.Start();
         }
@@ -167,6 +167,13 @@ public sealed partial class TaskComponent : IDisposable
         await Repository.UpdateTask(Task.Id);
     }
 
+    async Task ClearDesiredDuration()
+    {
+        Task.DesiredDuration = null;
+
+        await Repository.UpdateTask(Task.Id);
+    }
+
     void DateChanged(DateTime dateTime)
     {
         _taskTime = dateTime.Date + _taskTime.TimeOfDay;
@@ -223,6 +230,20 @@ public sealed partial class TaskComponent : IDisposable
     async Task SetDesiredIntervalHours(int? hours)
     {
         Task.DesiredInterval = new TimeSpan(Task.DesiredInterval.Days, hours ?? 0, Task.DesiredInterval.Minutes, Task.DesiredInterval.Seconds);
+
+        await Repository.UpdateTask(Task.Id);
+    }
+
+    async Task SetDesiredDurationHours(int? hours)
+    {
+        Task.DesiredDuration = new TimeSpan(Task.DesiredDuration?.Days ?? 0, hours ?? 0, Task.DesiredDuration?.Minutes ?? 0, Task.DesiredDuration?.Seconds ?? 0);
+
+        await Repository.UpdateTask(Task.Id);
+    }
+
+    async Task SetDesiredDurationMinutes(int? minutes)
+    {
+        Task.DesiredDuration = new TimeSpan(Task.DesiredDuration?.Days ?? 0, Task.DesiredDuration?.Hours ?? 0, minutes ?? 0, Task.DesiredDuration?.Seconds ?? 0);
 
         await Repository.UpdateTask(Task.Id);
     }

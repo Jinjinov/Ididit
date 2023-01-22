@@ -134,7 +134,16 @@
                 <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
                     <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired duration"]:</AddonLabel>
                 </Addon>
-                <TimeEdit Size=Size.Small TValue="TimeSpan?" @bind-Time="@Task.DesiredDuration" />
+
+                <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="23" Value="Task.DesiredDuration?.Hours" ValueChanged="SetDesiredDurationHours" />
+                <TextEdit Size=Size.Small ReadOnly="true" Text="@(Task.DesiredDuration?.Hours == 1 ? Localizer["hour"] : Localizer["hours"])" />
+
+                <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="59" Value="Task.DesiredDuration?.Minutes" ValueChanged="SetDesiredDurationMinutes" />
+                <Addon AddonType="AddonType.End">
+                    <AddonLabel>@(Task.DesiredDuration?.Minutes == 1 ? Localizer["minute"] : Localizer["minutes"])</AddonLabel>
+
+                    <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick=ClearDesiredDuration><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                </Addon>
             </Addons>
 
             @if (Task.IsRepeating)
@@ -156,7 +165,7 @@
                         <Addon AddonType="AddonType.End">
                             <AddonLabel>@(Task.DesiredInterval.Hours == 1 ? Localizer["hour"] : Localizer["hours"])</AddonLabel>
 
-                                <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size=Size.Small @onclick=ClearDesiredInterval><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                         </Addon>
                     </Addons>
 
