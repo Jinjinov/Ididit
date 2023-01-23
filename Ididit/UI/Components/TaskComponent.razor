@@ -157,9 +157,12 @@
 
             @if (Task.IsRepeating)
             {
-                <div>
-                    @Localizer["Average duration"]: @((Task.AverageDuration ?? TimeSpan.Zero).ToString(@"hh\:mm\:ss"))
-                </div>
+                @if (Task.HasDesiredDuration)
+                {
+                    <div>
+                        @Localizer["Average duration"]: @((Task.AverageDuration ?? TimeSpan.Zero).ToString(@"hh\:mm\:ss"))
+                    </div>
+                }
 
                 <div>
                     <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
