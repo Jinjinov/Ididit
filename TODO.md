@@ -15,12 +15,7 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 -------------------------------------------------------------------------------
 
 1.
-- [ ] fix task width on phones
-    - task text / last time done - Flex=Flex.NoWrap.AlignItems.Start
-    - desired duration
-    - desired interval
-    - desired overdue by
-    - average overdue by
+- [ ] 
 
 -------------------------------------------------------------------------------
 
