@@ -90,6 +90,9 @@ public class TaskModel
     public TimeSpan? DesiredDuration { get; set; }
     public int DurationTimedCount { get; set; }
 
+    [JsonIgnore]
+    public bool HasDesiredDuration => DesiredDuration.HasValue && DesiredDuration.Value.TotalMinutes > 0.0;
+
     public List<DateTime> TimeList = new();
 
     public DetailsModel? Details { get; set; }

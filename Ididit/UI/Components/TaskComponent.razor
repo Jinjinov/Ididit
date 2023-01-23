@@ -3,61 +3,70 @@
 
 <Div Border=Border.Is1.RoundedZero Padding=Padding.Is1>
 
-    <Div Flex=Flex.NoWrap.AlignItems.Start>
-        <Div Display=Display.Flex Flex=Flex.Grow.Is1 Margin=Margin.Is0 Padding=Padding.Is0 @onclick="ToggleTask">
-            @if (Task.IsCompletedTask)
-            {
-                <Div Flex=Flex.Grow.Is1><s>@Task.Name</s></Div>
-            }
-            else
-            {
-                <Div Flex=Flex.Grow.Is1>@Task.Name</Div>
-            }
-            @if (Task.IsRepeating)
-            {
-                <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) : Localizer["Never"])</Div>
-
-                @if (Task.ElapsedToDesiredRatio >= 100)
-                {
-                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                }
-                else if (Task.ElapsedToDesiredRatio >= 80)
-                {
-                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                }
-                else
-                {
-                    <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
-                }
-            }
-            @switch (Task.Priority)
-            {
-                case Priority.VeryLow:
-                    <i class="fas fa-fw my-auto fa-angle-double-down"></i>
-                    break;
-                case Priority.Low:
-                    <i class="fas fa-fw my-auto fa-angle-down"></i>
-                    break;
-                case Priority.Medium:
-                    <i class="fas fa-fw my-auto fa-minus"></i>
-                    break;
-                case Priority.High:
-                    <i class="fas fa-fw my-auto fa-angle-up"></i>
-                    break;
-                case Priority.VeryHigh:
-                    <i class="fas fa-fw my-auto fa-angle-double-up"></i>
-                    break;
-            }
-        </Div>
-        @if (Task.IsTask)
+    <Div Display=Display.Flex Flex=Flex.Wrap>
+        @if (Task.IsCompletedTask)
         {
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnPlay"><Icon Class="fa-fw" Name="IconName.PlayCircle" /></Button>
-            @if (_timer.Enabled)
-            {
-                @_elapsedTime.ToString(@"hh\:mm\:ss")
-            }
-            <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnDone"><Icon Class="fa-fw" Name="IconName.Check" /></Button>
+            <Div Flex=Flex.Grow.Is1 @onclick="ToggleTask"><s>@Task.Name</s></Div>
         }
+        else
+        {
+            <Div Flex=Flex.Grow.Is1 @onclick="ToggleTask">@Task.Name</Div>
+        }
+
+        <Div Display=Display.Flex>
+
+            <Div Display=Display.Flex @onclick="ToggleTask">
+                @if (Task.IsRepeating)
+                {
+                    <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) : Localizer["Never"])</Div>
+
+                    @if (Task.ElapsedToDesiredRatio >= 100)
+                    {
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Danger>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                    }
+                    else if (Task.ElapsedToDesiredRatio >= 80)
+                    {
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Warning>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                    }
+                    else
+                    {
+                        <Div Margin=Margin.Is1.OnX TextWeight=TextWeight.Bold TextColor=TextColor.Info>( @Task.ElapsedToDesiredRatio.ToString("N0") % )</Div>
+                    }
+                }
+                @switch (Task.Priority)
+                {
+                    case Priority.VeryLow:
+                        <i class="fas fa-fw my-auto fa-angle-double-down"></i>
+                        break;
+                    case Priority.Low:
+                        <i class="fas fa-fw my-auto fa-angle-down"></i>
+                        break;
+                    case Priority.Medium:
+                        <i class="fas fa-fw my-auto fa-minus"></i>
+                        break;
+                    case Priority.High:
+                        <i class="fas fa-fw my-auto fa-angle-up"></i>
+                        break;
+                    case Priority.VeryHigh:
+                        <i class="fas fa-fw my-auto fa-angle-double-up"></i>
+                        break;
+                }
+            </Div>
+
+            @if (Task.IsTask)
+            {
+                @if (Task.HasDesiredDuration)
+                {
+                    <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnPlay"><Icon Class="fa-fw" Name="IconName.PlayCircle" /></Button>
+                }
+                @if (_timer.Enabled)
+                {
+                    @_elapsedTime.ToString(@"hh\:mm\:ss")
+                }
+                <Button Color="Color.Primary" Outline="true" Size="Size" Margin=Margin.Is1.FromStart Padding=Padding.Is0.Is1.OnX @onclick="OnDone"><Icon Class="fa-fw" Name="IconName.Check" /></Button>
+            }
+
+        </Div>
     </Div>
 
     @if (Task == SelectedTask)
