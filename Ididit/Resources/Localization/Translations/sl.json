@@ -161,12 +161,11 @@
     "days": "dni",
     "hour": "ura",
     "hours": "ur",
-    "Desired duration": "Želeno trajanje",
+    "Duration": "Trajanje",
     "Average duration": "Povprečno trajanje",
-    "Desired interval": "Želeni interval",
-    "Desired interval is overdue by": "Želeni interval zamuja za",
+    "Interval": "Interval",
     "Average interval": "Povprečni interval",
-    "Average interval is overdue by": "Povprečni interval zamuja za",
+    "Overdue by": "Zamuja za",
     "Show history": "Prikaži zgodovino"
   }
 }

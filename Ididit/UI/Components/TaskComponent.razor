@@ -141,7 +141,7 @@
         {
             <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                 <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                    <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired duration"]:</AddonLabel>
+                    <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Duration"]:</AddonLabel>
                 </Addon>
 
                 <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="23" Value="Task.DesiredDuration?.Hours" ValueChanged="SetDesiredDurationHours" />
@@ -164,7 +164,7 @@
                 <div>
                     <Addons Style="max-width:500px" Size=Size.Small Display="Display.Flex" Flex=Flex.NoWrap Margin=Margin.Is1.OnY>
                         <Addon AddonType="AddonType.Start" Flex="Flex.Grow.Is1">
-                            <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Desired interval"]:</AddonLabel>
+                            <AddonLabel Flex="Flex.Grow.Is1">@Localizer["Interval"]:</AddonLabel>
                         </Addon>
 
                         <NumericEdit ShowStepButtons="false" Size=Size.Small TValue="int?" Min="0" Max="9000" Value="Task.DesiredInterval.Days" ValueChanged="SetDesiredIntervalDays" />
@@ -180,7 +180,7 @@
 
                     @if (Task.IsElapsedOverDesired)
                     {
-                        <Div TextWeight=TextWeight.Bold>@Localizer["Desired interval is overdue by"]: @ToReadableString(Task.ElapsedTime - Task.DesiredInterval) @($"( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )")</Div>
+                        <Div TextWeight=TextWeight.Bold>@Localizer["Overdue by"]: @ToReadableString(Task.ElapsedTime - Task.DesiredInterval) @($"( {(Task.ElapsedToDesiredRatio - 100).ToString("N0")} % )")</Div>
                     }
                 </div>
 
@@ -191,7 +191,7 @@
 
                         @if (Task.IsElapsedOverAverage)
                         {
-                            <Div TextWeight=TextWeight.Bold>@Localizer["Average interval is overdue by"]: @ToReadableString(Task.ElapsedTime - Task.AverageInterval) @($"( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
+                            <Div TextWeight=TextWeight.Bold>@Localizer["Overdue by"]: @ToReadableString(Task.ElapsedTime - Task.AverageInterval) @($"( {(Task.ElapsedToAverageRatio - 100).ToString("N0")} % )")</Div>
                         }
                     </div>
 

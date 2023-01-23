@@ -161,12 +161,11 @@
     "days": "Tage",
     "hour": "Stunde",
     "hours": "Stunden",
-    "Desired duration": "Gewünschte Dauer",
+    "Duration": "Dauer",
     "Average duration": "Durchschnittliche Dauer",
-    "Desired interval": "Gewünschtes Intervall",
-    "Desired interval is overdue by": "Gewünschtes Intervall ist überfällig um",
+    "Interval": "Intervall",
     "Average interval": "Durchschnittliches Intervall",
-    "Average interval is overdue by": "Durchschnittliches Intervall ist überfällig um",
+    "Overdue by": "Überfällig um",
     "Show history": "Verlauf anzeigen"
   }
 }

@@ -161,12 +161,11 @@
     "days": "days",
     "hour": "hour",
     "hours": "hours",
-    "Desired duration": "Desired duration",
+    "Duration": "Duration",
     "Average duration": "Average duration",
-    "Desired interval": "Desired interval",
-    "Desired interval is overdue by": "Desired interval is overdue by",
+    "Interval": "Interval",
     "Average interval": "Average interval",
-    "Average interval is overdue by": "Average interval is overdue by",
+    "Overdue by": "Overdue by",
     "Show history": "Show history"
   }
 }
