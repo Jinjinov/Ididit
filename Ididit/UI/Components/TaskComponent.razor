@@ -13,9 +13,9 @@
             <Div Flex=Flex.Grow.Is1 @onclick="ToggleTask">@Task.Name</Div>
         }
 
-        <Div Display=Display.Flex>
+        <Div Display=Display.Flex Flex=Flex.Wrap>
 
-            <Div Display=Display.Flex @onclick="ToggleTask">
+            <Div Display=Display.Flex Flex=Flex.Wrap @onclick="ToggleTask">
                 @if (Task.IsRepeating)
                 {
                     <Div>@(Task.IsDoneAtLeastOnce ? ToHighestValueString(Task.ElapsedTime) : Localizer["Never"])</Div>
