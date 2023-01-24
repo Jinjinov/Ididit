@@ -11,7 +11,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 1.
 - [ ] choose minimum task list for ididit
-- [ ] real usage screenshots
 
 -------------------------------------------------------------------------------
 
