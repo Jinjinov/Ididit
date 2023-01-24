@@ -56,4 +56,6 @@ public class SettingsModel
     public bool ShowCategoriesInGoalList { get; set; }
 
     public bool HideCompletedTasks { get; set; }
+
+    public int? MaxWidth { get; set; }
 }

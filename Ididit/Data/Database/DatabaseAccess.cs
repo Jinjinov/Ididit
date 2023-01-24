@@ -251,7 +251,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 HideEmptyGoals = settings.HideEmptyGoals,
                 HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-                HideCompletedTasks = settings.HideCompletedTasks
+                HideCompletedTasks = settings.HideCompletedTasks,
+                MaxWidth = settings.MaxWidth
             };
 
             _settingsDict[settings.Id] = settings;
@@ -392,7 +393,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 HideEmptyGoals = settings.HideEmptyGoals,
                 HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-                HideCompletedTasks = settings.HideCompletedTasks
+                HideCompletedTasks = settings.HideCompletedTasks,
+                MaxWidth = settings.MaxWidth
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -512,7 +514,8 @@ internal class DatabaseAccess : IDatabaseAccess
             HideEmptyGoals = settings.HideEmptyGoals,
             HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText,
             ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
-            HideCompletedTasks = settings.HideCompletedTasks
+            HideCompletedTasks = settings.HideCompletedTasks,
+            MaxWidth = settings.MaxWidth
         };
 
         _settingsList.Add(settingsEntity);
@@ -646,6 +649,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.HideGoalsWithSimpleText = settings.HideGoalsWithSimpleText;
             settingsEntity.ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList;
             settingsEntity.HideCompletedTasks = settings.HideCompletedTasks;
+            settingsEntity.MaxWidth = settings.MaxWidth;
 
             await UpdateItems(new List<SettingsEntity> { settingsEntity });
         }

@@ -29,6 +29,8 @@ public partial class GoalsComponent
     [Parameter]
     public Filters Filters { get; set; } = null!;
 
+    string MaxWidth => Repository.Settings.MaxWidth.HasValue ? $"max-width:{Repository.Settings.MaxWidth.Value}px" : string.Empty;
+
     TaskModel? _selectedTask;
 
     GoalModel? _selectedGoal;

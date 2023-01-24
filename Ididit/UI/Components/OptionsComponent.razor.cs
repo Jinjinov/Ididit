@@ -69,6 +69,18 @@ public partial class OptionsComponent
         await SelectedCategoryChanged.InvokeAsync(SelectedCategory);
     }
 
+    private async Task SetMaxWidth(int? maxWidth)
+    {
+        Repository.Settings.MaxWidth = maxWidth;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
+
+    private async Task ClearMaxWidth()
+    {
+        Repository.Settings.MaxWidth = null;
+        await Repository.UpdateSettings(Repository.Settings.Id);
+    }
+
     [Inject]
     ITextLocalizer<Translations> Localizer { get; set; } = null!;
 

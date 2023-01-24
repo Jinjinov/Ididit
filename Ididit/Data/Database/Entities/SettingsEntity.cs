@@ -74,4 +74,7 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public bool HideCompletedTasks { get; set; }
+
+    [IndexDbIndex]
+    public int? MaxWidth { get; set; }
 }
