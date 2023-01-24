@@ -10,8 +10,8 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 -------------------------------------------------------------------------------
 
 1.
-- [ ] Date filter - Show tasks completed on
-- [ ] Set max column width
+- [ ] Date filter -> Show tasks completed on
+- [ ] Set max task column width - 200 - 2000
 
 -------------------------------------------------------------------------------
 
