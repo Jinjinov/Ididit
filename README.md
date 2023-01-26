@@ -36,13 +36,13 @@ ididit! is free, open source and works on Web, Windows, Linux, Android, iOS and 
 #### ididit! is available on 3 stores
 
 Windows:  
-[![](Ididit.Web/icons/Microsoft.svg)](https://apps.microsoft.com/store/detail/ididit/9P5L0K28XWM3)
+[<img src="Ididit.Web/icons/Microsoft.svg" height="48">](https://apps.microsoft.com/store/detail/ididit/9P5L0K28XWM3)
 
 Android:  
-[![](Ididit.Web/icons/Google.svg)](https://play.google.com/store/apps/details?id=com.jinjinov.ididit)
+[<img src="Ididit.Web/icons/Google.svg" height="48">](https://play.google.com/store/apps/details?id=com.jinjinov.ididit)
 
 iOS:  
-[![](Ididit.Web/icons/AppStore.svg)](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
+[<img src="Ididit.Web/icons/AppStore.svg" height="48">](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
 
 ### Downloads
 
