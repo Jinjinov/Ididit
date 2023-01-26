@@ -137,13 +137,17 @@
                 else if (Screen == Screen.Help)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
-                        <HelpComponent />
+                        <Column>
+                            <HelpComponent />
+                        </Column>
                     </Row>
                 }
                 else if (Screen == Screen.About)
                 {
                     <Row Background=_background Flex=Flex.Grow.Is1 Overflow=Overflow.Auto Display=Display.Block Height=Height.Max100>
-                        <AboutComponent />
+                        <Column>
+                            <AboutComponent />
+                        </Column>
                     </Row>
                 }
                 else
