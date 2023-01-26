@@ -25,6 +25,13 @@
     "Human readable Markdown and YAML formats": "Razumljivi formati Markdown in YAML",
     "The popular JSON format": "Priljubljeni format JSON",
     "Excel and Google Sheets compatible TSV (Tab Separated Values)": "Kompatibilni s programom Excel in Google Sheets TSV (Tab Separated Values)",
+    "Privacy": "Zasebnost",
+    "saves your data (goals, notes, tasks and habits) on your device, offering you complete privacy.": "shrani vaše podatke (cilje, beležke, naloge in navade) na vašem napravi in vam ponuja popolno zasebnost.",
+    "It allows you to delete the data stored on your device at any time.": "Omogoča vam, da kadar koli izbrišete shranjene podatke na vaši napravi.",
+    "It doesn't use an online database and because of that automatic backup and automatic sync with your other devices are not possible.": "Ne uporablja spletne baze podatkov, zato avtomatsko varnostno kopiranje in avtomatsko sinhronizacijo z drugimi napravami ni mogoče.",
+    "It is available on 6 platforms and on some platforms it can backup your data to your Google Drive.": "Na voljo je na 6 platformah in na nekaterih platformah lahko varnostno kopirate svoje podatke na Google Drive.",
+    "If you allow it to backup your data to your Google Drive, it will receive your email and display your name only on your device.": "Če dovolite varnostno kopiranje podatkov na vaš Google Drive, bo prejel vaš e-poštni naslov in prikazal vaše ime le na vaši napravi.",
+    "You can read the privacy policy at": "Politiko zasebnosti lahko preberete na",
 
     "Show all tasks": "Prikaži vse naloge",
     "Hide goals with no tasks": "Skrij cilje brez nalog",

@@ -25,6 +25,13 @@
     "Human readable Markdown and YAML formats": "Formatos legibles por humanos Markdown y YAML",
     "The popular JSON format": "El popular formato JSON",
     "Excel and Google Sheets compatible TSV (Tab Separated Values)": "TSV compatible con Excel y Google Sheets (Valores separados por tabulaciones)",
+    "Privacy": "Privacidad",
+    "saves your data (goals, notes, tasks and habits) on your device, offering you complete privacy.": "guarda tus datos (metas, notas, tareas y hábitos) en tu dispositivo, ofreciéndote privacidad completa.",
+    "It allows you to delete the data stored on your device at any time.": "Te permite eliminar los datos almacenados en tu dispositivo en cualquier momento.",
+    "It doesn't use an online database and because of that automatic backup and automatic sync with your other devices are not possible.": "No utiliza una base de datos en línea y por eso no es posible hacer copias de seguridad automáticas ni sincronizar automáticamente con otros dispositivos.",
+    "It is available on 6 platforms and on some platforms it can backup your data to your Google Drive.": "Está disponible en 6 plataformas y en algunas plataformas permite hacer copias de seguridad de tus datos a tu Google Drive.",
+    "If you allow it to backup your data to your Google Drive, it will receive your email and display your name only on your device.": "Si permites hacer copias de seguridad a tu Google Drive, recibirá tu correo electrónico y solo mostrará tu nombre en tu dispositivo.",
+    "You can read the privacy policy at": "Puedes leer la política de privacidad en",
 
     "Show all tasks": "Mostrar todas las tareas",
     "Hide goals with no tasks": "Ocultar objetivos sin tareas",

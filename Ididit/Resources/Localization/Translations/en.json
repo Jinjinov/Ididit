@@ -25,6 +25,13 @@
     "Human readable Markdown and YAML formats": "Human readable Markdown and YAML formats",
     "The popular JSON format": "The popular JSON format",
     "Excel and Google Sheets compatible TSV (Tab Separated Values)": "Excel and Google Sheets compatible TSV (Tab Separated Values)",
+    "Privacy": "Privacy",
+    "saves your data (goals, notes, tasks and habits) on your device, offering you complete privacy.": "saves your data (goals, notes, tasks and habits) on your device, offering you complete privacy.",
+    "It allows you to delete the data stored on your device at any time.": "It allows you to delete the data stored on your device at any time.",
+    "It doesn't use an online database and because of that automatic backup and automatic sync with your other devices are not possible.": "It doesn't use an online database and because of that automatic backup and automatic sync with your other devices are not possible.",
+    "It is available on 6 platforms and on some platforms it can backup your data to your Google Drive.": "It is available on 6 platforms and on some platforms it can backup your data to your Google Drive.",
+    "If you allow it to backup your data to your Google Drive, it will receive your email and display your name only on your device.": "If you allow it to backup your data to your Google Drive, it will receive your email and display your name only on your device.",
+    "You can read the privacy policy at": "You can read the privacy policy at",
 
     "Show all tasks": "Show all tasks",
     "Hide goals with no tasks": "Hide goals with no tasks",
