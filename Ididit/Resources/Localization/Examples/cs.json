@@ -1,0 +1,51 @@
+{
+  "culture": "cs",
+  "translations": {
+    "Change these notes to tasks": "Změňte tyto poznámky na úkoly",
+    "Tasks goal": "Cíl úkolů",
+    "Markdown goal": "Cíl Markdown",
+
+    "The first icon changes notes to tasks": "První ikona mění poznámky na úkoly",
+    "Each line becomes one task": "Každý řádek se stává jedním úkolem",
+    "Select a task to see its details": "Vyberte úkol, abyste viděli jeho podrobnosti",
+
+    "Note": "Poznámka",
+    "High priority task": "Úkol s vysokou prioritou",
+    "Task": "Úkol",
+    "Low priority habit": "Návyk s nízkou prioritou",
+    "Habit": "Návyk",
+
+    "Accomplishments": "Úspěchy",
+    "Health": "Zdraví",
+    "Well-being": "Blaho",
+
+    "Chores": "Domácí práce",
+    "Hobbies": "Koníčky",
+    "Personal growth": "Osobní rozvoj",
+    "Appearance": "Vzhled",
+    "Food": "Jídlo",
+    "Sports": "Sporty",
+    "Peace of mind": "Klid mysli",
+    "Relationships": "Vztahy",
+    "Relaxation": "Relaxace",
+
+    "Clean dust": "Vyčistit prach",
+    "Clean the windows": "Vyčistit okna",
+    "Go salsa dancing": "Jít tančit salsa",
+    "Play the piano": "Hrát na klavír",
+    "Attend a workshop": "Zúčastnit se workshopu",
+    "Learn Spanish": "Učit se španělštinu",
+    "Get a haircut": "Nechat si ostříhat vlasy",
+    "Buy new clothes": "Koupit si nové oblečení",
+    "Drink water": "Pít vodu",
+    "Eat fruit": "Jíst ovoce",
+    "Stretch & workout": "Rozcvičit se & cvičit",
+    "Go hiking": "Jít na výlet do přírody",
+    "Take a walk": "Procházka",
+    "Meditate": "Meditovat",
+    "Call parents": "Zavolat rodičům",
+    "Do someone a favor": "Udělat někomu laskavost",
+    "Read a book": "Přečíst knihu",
+    "Get a massage": "Dostat masáž"
+  }
+}
