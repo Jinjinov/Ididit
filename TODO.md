@@ -12,7 +12,8 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 -------------------------------------------------------------------------------
 
 1.
-- [ ] Set max task column width - slider?
+- [ ] Set max task column width - slider? 500 - 1000
+- [ ] android tablet screenshots - 2x (small, large)
 
 -------------------------------------------------------------------------------
 
@@ -36,6 +37,28 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 
 8.
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
+
+    - https://stackoverflow.com/questions/60110779/get-the-selected-text-from-an-input-using-blazor
+    - https://stackoverflow.com/questions/65035652/select-characters-highlight-text-in-input-on-mousedown-and-mouseup-with-blazor
+    - https://codersblock.com/blog/highlight-text-inside-a-textarea/
+    - https://codepen.io/lonekorean/pen/gaLEMR
+    - https://lonekorean.github.io/highlight-within-textarea/
+    - https://github.com/lonekorean/highlight-within-textarea
+    - https://stackoverflow.com/questions/13650534/how-to-select-line-of-text-in-textarea
+    - http://jsfiddle.net/5enfp/
+    - http://jsfiddle.net/9UgEF/73/
+
+    - ididit advanced Keep Zip import / search 
+    - ididit advanced input / search
+    - all goals, tasks ?without buttons?
+    - selected goal is editable
+    - if selected string, filter tasks
+    - select current line - border
+    - select current line in goal
+    - copy current line to selected goal, after current line
+    - delete current line - button in front (or top / bottom)
+    - delete current line in goal
+
 - [ ] organize habits / Google Keep notes
 
 -------------------------------------------------------------------------------
