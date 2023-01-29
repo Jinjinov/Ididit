@@ -22,7 +22,7 @@
     "Import from Google Keep": "Importieren Sie aus Google Keep",
     "Backup to and restore from Google Drive in JSON format": "Sichern und Wiederherstellen von Google Drive im JSON-Format",
     "File import/export": "Datei-Import/Export",
-    "Human readable Markdown and YAML formats": "Lesbare Markdown- und YAML-Formate",
+    "Human readable Markdown and YAML formats": "Lesbare Markdown und YAML Formate",
     "The popular JSON format": "Das beliebte JSON-Format",
     "Excel and Google Sheets compatible TSV (Tab Separated Values)": "Excel und Google Sheets kompatible TSV (Tabulator getrennte Werte)",
     "Privacy": "Datenschutz",
@@ -45,7 +45,7 @@
     "Add new category": "Neue Kategorie hinzufügen",
 
     "Search": "Suchen",
-    "Show tasks completed on": "Anzeigen Aufgaben erledigt am",
+    "Show tasks completed on": "Anzeige Aufgaben erledigt am",
     "Today": "Heute",
     "Hide completed tasks": "Erledigte Aufgaben ausblenden",
     "Show tasks with ratio over": "Zeige Aufgaben mit einem Verhältnis von über",
