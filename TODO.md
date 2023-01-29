@@ -14,6 +14,7 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 1.
 - [ ] Set max task column width - slider? 500 - 1000
 - [ ] android tablet screenshots - 2x (small, large)
+- [ ] Google drive last backup date
 
 -------------------------------------------------------------------------------
 
@@ -47,6 +48,9 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     - https://stackoverflow.com/questions/13650534/how-to-select-line-of-text-in-textarea
     - http://jsfiddle.net/5enfp/
     - http://jsfiddle.net/9UgEF/73/
+    - https://stackoverflow.com/questions/9185630/find-out-the-line-row-number-of-the-cursor-in-a-textarea
+    - http://jsfiddle.net/9QzQy/
+    - https://github.com/component/textarea-caret-position
 
     - ididit advanced Keep Zip import / search 
     - ididit advanced input / search
