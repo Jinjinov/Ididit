@@ -6,3 +6,5 @@ obj
 credentials.json
 GoogleDriveService.GoogleClientSecrets.cs
 *.keystore
+*.pfx
+Package.StoreAssociation.xml
