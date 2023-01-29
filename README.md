@@ -23,9 +23,9 @@ ididit! is free, open source and works on Web, Windows, Linux, Android, iOS and 
 
 ### Web app - use ididit! online
 
-#### Current version (2023.01.26)
+#### Current version (2023.01.29)
 
-[Use ididit! 1.0.8 in your browser now](https://app.ididit.today)
+[Use ididit! 1.0.9 in your browser now](https://app.ididit.today)
 
 #### Old version (2021.11.09)
 
@@ -45,6 +45,14 @@ iOS:
 [<img src="Ididit.Web/icons/AppStore.svg" height="48">](https://apps.apple.com/us/app/ididit-habit-tracker/id1659289949)
 
 ### Downloads
+
+#### 1.0.9 (2023.01.29)
+
+**Windows:** [ididit!.windows.1.0.9.zip](https://ididit.today/download/ididit!.windows.1.0.9.zip) - run setup.exe
+
+**Linux:** [ididit!.linux.1.0.9.zip](https://ididit.today/download/ididit!.linux.1.0.9.zip) - run ididit!
+
+**macOS:** [ididit!.macos.1.0.9.zip](https://ididit.today/download/ididit!.macos.1.0.9.zip) - run ididit!.app
 
 #### 1.0.8 (2023.01.26)
 

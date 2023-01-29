@@ -29,7 +29,7 @@
     Assets file 'project.assets.json' doesn't have a target for 'net7.0-windows10.0.19041.0'. 
     Ensure that restore has run and that you have included 'net7.0-windows10.0.19041.0' in the TargetFrameworks for your project.
     -->
-    <ApplicationVersion>4</ApplicationVersion>
+    <ApplicationVersion>1</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
