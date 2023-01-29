@@ -90,7 +90,7 @@
     <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers>
 
     <!-- Only needed when you have a need for entitlements -->
-    <!--<CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>-->
+    <CodesignEntitlement>Platforms/MacCatalyst/Entitlements.plist</CodesignEntitlement>
 
     <!--<CodesignKey>Apple Distribution: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
     <!--<CodesignProvision>ididit.macos</CodesignProvision>-->
@@ -98,22 +98,22 @@
     <!--<CodesignKey>3rd Party Mac Developer Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
     <!--<PackageSigningKey>3rd Party Mac Developer Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
 
-    <CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>
-    <CodesignProvision>ididit.developer</CodesignProvision>
-    <PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>
+    <!--<CodesignKey>Developer ID Application: Urban Dzindzinovic (53V66WG4KU)</CodesignKey>-->
+    <!--<CodesignProvision>ididit.developer</CodesignProvision>-->
+    <!--<PackageSigningKey>Developer ID Installer: Urban Dzindzinovic (53V66WG4KU)</PackageSigningKey>-->
     
-    <EnableCodeSigning>True</EnableCodeSigning>
-    <EnablePackageSigning>true</EnablePackageSigning>
+    <!--<EnableCodeSigning>True</EnableCodeSigning>-->
+    <!--<EnablePackageSigning>true</EnablePackageSigning>-->
 
-    <ProvisionType>Manual</ProvisionType>
+    <!--<ProvisionType>Manual</ProvisionType>-->
     <!--<EnableAssemblyILStripping>false</EnableAssemblyILStripping>-->
-    <UseHardenedRuntime>true</UseHardenedRuntime>
+    <!--<UseHardenedRuntime>true</UseHardenedRuntime>-->
 
-    <ServerAddress>192.168.0.103</ServerAddress>
-    <ServerUser>Urban</ServerUser>
-    <TcpPort>58181</TcpPort>
-    <ArchiveOnBuild>true</ArchiveOnBuild>
-    <_DotNetRootRemoteDirectory>/Users/Urban/Library/Caches/Xamarin/XMA/SDKs/dotnet/</_DotNetRootRemoteDirectory>
+    <!--<ServerAddress>192.168.0.103</ServerAddress>-->
+    <!--<ServerUser>Urban</ServerUser>-->
+    <!--<TcpPort>58181</TcpPort>-->
+    <!--<ArchiveOnBuild>true</ArchiveOnBuild>-->
+    <!--<_DotNetRootRemoteDirectory>/Users/Urban/Library/Caches/Xamarin/XMA/SDKs/dotnet/</_DotNetRootRemoteDirectory>-->
     
   </PropertyGroup>
 
