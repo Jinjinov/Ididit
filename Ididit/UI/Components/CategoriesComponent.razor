@@ -1,19 +1,19 @@
 ﻿@using Blazorise.TreeView
 @using Ididit.Data.Model.Models
 
-<CheckBox Checked="Settings.ShowAllTasks" CheckedChanged="OnShowAllTasksChanged">@Localizer["Show all tasks"]</CheckBox>
+<Check TValue="bool" Checked="Settings.ShowAllTasks" CheckedChanged="OnShowAllTasksChanged">@Localizer["Show all tasks"]</Check>
 
 @if (!Settings.ShowAllTasks)
 {
-    <CheckBox Checked="Settings.HideEmptyGoals" CheckedChanged="OnHideEmptyGoalsChanged">@Localizer["Hide goals with no tasks"]</CheckBox>
+    <Check TValue="bool" Checked="Settings.HideEmptyGoals" CheckedChanged="OnHideEmptyGoalsChanged">@Localizer["Hide goals with no tasks"]</Check>
 
-    <CheckBox Checked="Settings.HideGoalsWithSimpleText" CheckedChanged="OnHideGoalsWithSimpleText">@Localizer["Hide goals with simple text"]</CheckBox>
+    <Check TValue="bool" Checked="Settings.HideGoalsWithSimpleText" CheckedChanged="OnHideGoalsWithSimpleText">@Localizer["Hide goals with simple text"]</Check>
 
-    <CheckBox Checked="Settings.ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">@Localizer["Show all goals"]</CheckBox>
+    <Check TValue="bool" Checked="Settings.ShowAllGoals" CheckedChanged="OnShowAllGoalsChanged">@Localizer["Show all goals"]</Check>
 
     if (Settings.ShowAllGoals)
     {
-        <CheckBox Checked="Settings.ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">@Localizer["Show categories in goal list"]</CheckBox>
+        <Check TValue="bool" Checked="Settings.ShowCategoriesInGoalList" CheckedChanged="OnShowCategoriesInGoalListChanged">@Localizer["Show categories in goal list"]</Check>
     }
 
     <Button Color=Color.Primary Size="Size" Block=true Margin=Margin.Is2.FromTop @onclick=NewCategory>@Localizer["Add category to"] @SelectedCategory.Name</Button>

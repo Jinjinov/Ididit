@@ -50,12 +50,12 @@ public partial class FiltersComponent
 
     DateTime? _dateFilter;
 
-    bool? IsTodayChecked => _dateFilter == DateTime.Now.Date;
+    bool IsTodayChecked => _dateFilter == DateTime.Now.Date;
 
-    async Task TodayCheckedChanged(bool? isToday)
+    async Task TodayCheckedChanged(bool isToday)
     {
-        _dateFilter = isToday == true ? DateTime.Now.Date : null;
-        Filters.DateFilter = isToday == true ? DateTime.Now.Date : null;
+        _dateFilter = isToday ? DateTime.Now.Date : null;
+        Filters.DateFilter = isToday ? DateTime.Now.Date : null;
         await FiltersChanged.InvokeAsync(Filters);
     }
 
@@ -107,17 +107,17 @@ public partial class FiltersComponent
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnHideCompletedTasksChanged(bool? val)
+    async Task OnHideCompletedTasksChanged(bool val)
     {
-        Settings.HideCompletedTasks = val ?? false;
+        Settings.HideCompletedTasks = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnShowElapsedToDesiredRatioOverMinChanged(bool? val)
+    async Task OnShowElapsedToDesiredRatioOverMinChanged(bool val)
     {
-        Settings.ShowElapsedToDesiredRatioOverMin = val ?? false;
+        Settings.ShowElapsedToDesiredRatioOverMin = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);

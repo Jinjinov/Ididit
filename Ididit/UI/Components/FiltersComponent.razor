@@ -19,16 +19,16 @@
         </Addon>
     </Addons>
 
-    <CheckBox Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">@Localizer["Today"]</CheckBox>
+    <Check TValue="bool" Checked="IsTodayChecked" CheckedChanged="TodayCheckedChanged">@Localizer["Today"]</Check>
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <CheckBox Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">@Localizer["Hide completed tasks"]</CheckBox>
+    <Check TValue="bool" Checked="Settings.HideCompletedTasks" CheckedChanged="OnHideCompletedTasksChanged">@Localizer["Hide completed tasks"]</Check>
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
     <FieldLabel Margin=Margin.Is0>
-        <CheckBox Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">@Localizer["Show tasks with ratio over"] @Settings.ElapsedToDesiredRatioMin %</CheckBox>
+        <Check TValue="bool" Checked="Settings.ShowElapsedToDesiredRatioOverMin" CheckedChanged="OnShowElapsedToDesiredRatioOverMinChanged">@Localizer["Show tasks with ratio over"] @Settings.ElapsedToDesiredRatioMin %</Check>
     </FieldLabel>
     <Slider Size="Size" Class="custom-range" TValue="long" Min="0" Max="100" Step="5" Value="Settings.ElapsedToDesiredRatioMin" ValueChanged="OnElapsedToDesiredRatioMinChanged" />
 </Field>
@@ -38,7 +38,7 @@
 
     @foreach (Priority priority in Enum.GetValues<Priority>())
     {
-        <CheckBox Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show ?? false)">@Localizer[priority.GetDescription()]</CheckBox>
+        <Check TValue="bool" Checked="GetShowPriority(priority)" CheckedChanged="(show) => OnShowPriorityChanged(priority, show)">@Localizer[priority.GetDescription()]</Check>
     }
 </Field>
 
@@ -47,7 +47,7 @@
 
     @foreach (TaskKind taskKind in Enum.GetValues<TaskKind>())
     {
-        <CheckBox Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show ?? false)">@Localizer[taskKind.GetDescription()]</CheckBox>
+        <Check TValue="bool" Checked="GetShowTaskKind(taskKind)" CheckedChanged="(show) => OnShowTaskKindChanged(taskKind, show)">@Localizer[taskKind.GetDescription()]</Check>
     }
 </Field>
 

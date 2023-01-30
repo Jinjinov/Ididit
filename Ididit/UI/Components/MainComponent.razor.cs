@@ -199,7 +199,7 @@ public partial class MainComponent
 
     bool _showDebugControls;
 
-    void OnShowDebugChanged(bool? val) => _showDebugControls = val ?? false;
+    void OnShowDebugChanged(bool val) => _showDebugControls = val;
 
     Screen Screen => Repository.Settings.Screen;
 

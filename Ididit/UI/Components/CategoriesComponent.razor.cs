@@ -87,25 +87,25 @@ public partial class CategoriesComponent
         style.Style = "padding:0!important";
     }
 
-    async Task OnHideEmptyGoalsChanged(bool? val)
+    async Task OnHideEmptyGoalsChanged(bool val)
     {
-        Settings.HideEmptyGoals = val ?? false;
+        Settings.HideEmptyGoals = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnHideGoalsWithSimpleText(bool? val)
+    async Task OnHideGoalsWithSimpleText(bool val)
     {
-        Settings.HideGoalsWithSimpleText = val ?? false;
+        Settings.HideGoalsWithSimpleText = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnShowAllGoalsChanged(bool? val)
+    async Task OnShowAllGoalsChanged(bool val)
     {
-        bool showAllGoals = val ?? false;
+        bool showAllGoals = val;
 
         if (Settings.ShowAllGoals != showAllGoals)
         {
@@ -119,17 +119,17 @@ public partial class CategoriesComponent
         }
     }
 
-    async Task OnShowCategoriesInGoalListChanged(bool? val)
+    async Task OnShowCategoriesInGoalListChanged(bool val)
     {
-        Settings.ShowCategoriesInGoalList = val ?? false;
+        Settings.ShowCategoriesInGoalList = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
     }
 
-    async Task OnShowAllTasksChanged(bool? val)
+    async Task OnShowAllTasksChanged(bool val)
     {
-        bool showAllTasks = val ?? false;
+        bool showAllTasks = val;
 
         if (Settings.ShowAllTasks != showAllTasks)
         {
