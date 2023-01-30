@@ -79,3 +79,13 @@ export async function writeDirectoryEntry(dirHandle, nodes) {
         }
     }
 }
+
+export function getSelectionString(textarea) {
+    return textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+}
+export function getSelectionStartEnd(textarea) {
+    return {
+        start: textarea.selectionStart,
+        end: textarea.selectionEnd
+    };
+}

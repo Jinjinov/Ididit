@@ -25,6 +25,12 @@ public class NodeContent
     public NodeContent[] Nodes { get; set; } = Array.Empty<NodeContent>();
 }
 
+public class Selection
+{
+    public int Start { get; set; }
+    public int End { get; set; }
+}
+
 public sealed class JsInterop : IAsyncDisposable
 {
     private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
@@ -84,6 +90,18 @@ public sealed class JsInterop : IAsyncDisposable
         catch
         {
         }
+    }
+
+    public async ValueTask<string> GetSelectionString(ElementReference element)
+    {
+        IJSObjectReference module = await _moduleTask.Value;
+        return await module.InvokeAsync<string>("getSelectionString", element);
+    }
+
+    public async ValueTask<Selection> GetSelectionStartEnd(ElementReference element)
+    {
+        IJSObjectReference module = await _moduleTask.Value;
+        return await module.InvokeAsync<Selection>("getSelectionStartEnd", element);
     }
 
     public async ValueTask DisposeAsync()

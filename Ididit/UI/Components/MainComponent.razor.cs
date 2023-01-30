@@ -263,4 +263,21 @@ public partial class MainComponent
     void ToggleSidebar() => _sidebarVisible = !_sidebarVisible;
 
     Filters _filters = new();
+
+    MemoEdit? _memoEdit;
+
+    [Inject]
+    JsInterop JsInterop { get; set; } = null!;
+
+    async Task OnSelect(EventArgs e)
+    {
+        if (_memoEdit is null)
+            return;
+
+        string selectionString = await JsInterop.GetSelectionString(_memoEdit.ElementRef);
+
+        Selection selection = await JsInterop.GetSelectionStartEnd(_memoEdit.ElementRef);
+
+        _filters.SearchFilter = selectionString;
+    }
 }
