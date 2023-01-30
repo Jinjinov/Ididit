@@ -269,6 +269,10 @@ public partial class MainComponent
 
     string _memoEditText = "";
 
+    bool _selectLineWithCaret;
+
+    bool _filterBySelectedText;
+
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
@@ -277,20 +281,27 @@ public partial class MainComponent
         if (_memoEdit is null)
             return;
 
-        string selectionString = await JsInterop.GetSelectionString(_memoEdit.ElementRef);
+        if (_filterBySelectedText)
+        {
+            string selectionString = await JsInterop.GetSelectionString(_memoEdit.ElementRef);
 
-        _filters.SearchFilter = selectionString;
+            _filters.SearchFilter = selectionString;
+        }
     }
 
     async Task OnKeyUp(KeyboardEventArgs e)
     {
-        if (e.Code == "ArrowLeft" || e.Code == "ArrowUp" || e.Code == "ArrowRight" || e.Code == "ArrowDown")
-            await SelectCurrentLine();
+        if (_selectLineWithCaret)
+        {
+            if (e.Code == "ArrowLeft" || e.Code == "ArrowUp" || e.Code == "ArrowRight" || e.Code == "ArrowDown")
+                await SelectCurrentLine();
+        }
     }
 
     async Task OnMouseUp(MouseEventArgs e)
     {
-        await SelectCurrentLine();
+        if (_selectLineWithCaret)
+            await SelectCurrentLine();
     }
 
     private async Task SelectCurrentLine()
