@@ -188,7 +188,13 @@
                         </Column>
 
                         <Column Padding=Padding.Is0 class="child-column">
-                            <MemoEdit @ref="_memoEdit" Class="shadow-none" AutoSize @bind-Text="@_memoEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" />
+                            <Div Margin=Margin.Is0.OnMobile.Is2.OnDesktop>
+                                <div>[ ] select line with caret</div>
+                                <div>[ ] filter by selected text</div>
+                                <div>copy selected text</div>
+                                <div> delete selected text</div>
+                                <MemoEdit @ref="_memoEdit" Class="shadow-none" AutoSize @bind-Text="@_memoEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" />
+                            </Div>
                         </Column>
 
                         <Column Padding=Padding.Is0 class="child-column">

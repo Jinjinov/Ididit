@@ -55,6 +55,11 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
 
+    - [ ] select line with caret
+    - [ ] filter by selected text
+    - copy selected text
+    - delete selected text
+
     - ididit advanced Keep Zip import / search 
     - ididit advanced input / search
     - all goals, tasks ?without buttons?
