@@ -5,6 +5,7 @@ using Ididit.Backup;
 using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -266,6 +267,8 @@ public partial class MainComponent
 
     MemoEdit? _memoEdit;
 
+    string _memoEditText = "";
+
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
@@ -276,8 +279,45 @@ public partial class MainComponent
 
         string selectionString = await JsInterop.GetSelectionString(_memoEdit.ElementRef);
 
+        _filters.SearchFilter = selectionString;
+    }
+
+    async Task OnKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Code == "ArrowLeft" || e.Code == "ArrowUp" || e.Code == "ArrowRight" || e.Code == "ArrowDown")
+            await SelectCurrentLine();
+    }
+
+    async Task OnMouseUp(MouseEventArgs e)
+    {
+        await SelectCurrentLine();
+    }
+
+    private async Task SelectCurrentLine()
+    {
+        if (_memoEdit is null)
+            return;
+
         Selection selection = await JsInterop.GetSelectionStartEnd(_memoEdit.ElementRef);
 
-        _filters.SearchFilter = selectionString;
+        if (selection.Start == selection.End && _memoEditText.Length > 0)
+        {
+            int index = Math.Min(selection.Start, _memoEditText.Length - 1);
+
+            int afterEnd = _memoEditText.IndexOf('\n', index);
+
+            if (afterEnd == 0)
+                return;
+
+            if (afterEnd == index)
+                index -= 1;
+
+            int beforeStart = _memoEditText.LastIndexOf('\n', index);
+
+            if (afterEnd == -1)
+                afterEnd = _memoEditText.Length;
+
+            await JsInterop.SetSelectionStartEnd(_memoEdit.ElementRef, beforeStart + 1, afterEnd);
+        }
     }
 }

@@ -188,7 +188,7 @@
                         </Column>
 
                         <Column Padding=Padding.Is0 class="child-column">
-                            <MemoEdit @ref="_memoEdit" AutoSize @onselect="OnSelect" />
+                            <MemoEdit @ref="_memoEdit" Class="shadow-none" AutoSize @bind-Text="@_memoEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" />
                         </Column>
 
                         <Column Padding=Padding.Is0 class="child-column">

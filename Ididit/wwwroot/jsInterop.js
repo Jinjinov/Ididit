@@ -89,3 +89,7 @@ export function getSelectionStartEnd(textarea) {
         end: textarea.selectionEnd
     };
 }
+export function setSelectionStartEnd(textarea, start, end) {
+    textarea.selectionStart = start;
+    textarea.selectionEnd = end;
+}

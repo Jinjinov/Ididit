@@ -104,6 +104,12 @@ public sealed class JsInterop : IAsyncDisposable
         return await module.InvokeAsync<Selection>("getSelectionStartEnd", element);
     }
 
+    public async ValueTask SetSelectionStartEnd(ElementReference element, int start, int end)
+    {
+        IJSObjectReference module = await _moduleTask.Value;
+        await module.InvokeAsync<Selection>("setSelectionStartEnd", element, start, end);
+    }
+
     public async ValueTask DisposeAsync()
     {
         if (_moduleTask.IsValueCreated)
