@@ -79,6 +79,11 @@ public partial class GoalComponent
         EditTitleGoal = null;
         await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
+        await UpdateGoalName();
+    }
+
+    private async Task UpdateGoalName()
+    {
         if (Goal.Name != _goalName)
         {
             Goal.Name = _goalName;
@@ -126,7 +131,7 @@ public partial class GoalComponent
         }
         else if (eventArgs.Code == "Enter" || eventArgs.Code == "NumpadEnter")
         {
-            await SaveName();
+            await SaveNameAndEndEdit();
         }
     }
 
@@ -134,6 +139,11 @@ public partial class GoalComponent
     {
         _goalName = Goal.Name;
 
+        await EndEdit();
+    }
+
+    private async Task EndEdit()
+    {
         EditTitleGoal = null;
         await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
@@ -141,21 +151,11 @@ public partial class GoalComponent
         await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
-    async Task SaveName()
+    async Task SaveNameAndEndEdit()
     {
-        EditTitleGoal = null;
-        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
+        await EndEdit();
 
-        EditDetailsGoal = null;
-        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
-
-        if (Goal.Name != _goalName)
-        {
-            Goal.Name = _goalName;
-            await Repository.UpdateGoal(Goal.Id);
-
-            await GoalChanged.InvokeAsync(Goal);
-        }
+        await UpdateGoalName();
     }
 
     async Task DeleteGoal()
