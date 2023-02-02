@@ -26,6 +26,10 @@ public partial class MainWindow : Window
 
         InitializeComponent();
 
+        // https://stackoverflow.com/questions/67972372/why-are-window-height-and-window-width-not-exact-c-wpf
+        Width = 1680 + 14;
+        Height = 1050 + 7 + 31;
+
         serviceProvider.UseServices();
     }
 }

@@ -18,8 +18,9 @@ public partial class App : Application
         window.X = 0;
         window.Y = 0;
 
-        window.Width = 1680;
-        window.Height = 1050;
+        // https://stackoverflow.com/questions/67972372/why-are-window-height-and-window-width-not-exact-c-wpf
+        window.Width = 1680 + 14;
+        window.Height = 1050 + 7 + 31;
 
         return window;
     }
