@@ -265,9 +265,11 @@ public partial class MainComponent
 
     Filters _filters = new();
 
-    MemoEdit? _memoEdit;
+    MemoEdit? _advancedEdit;
 
-    string _memoEditText = "";
+    string _advancedEditText = string.Empty;
+
+    string _selectedAdvancedEditText = string.Empty;
 
     bool _selectLineWithCaret;
 
@@ -276,17 +278,28 @@ public partial class MainComponent
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
-    async Task OnSelect(EventArgs e)
+    void SetSelectedAdvancedEditText(string text)
     {
-        if (_memoEdit is null)
-            return;
+        _selectedAdvancedEditText = text;
 
         if (_filterBySelectedText)
         {
-            string selectionString = await JsInterop.GetSelectionString(_memoEdit.ElementRef);
-
-            _filters.SearchFilter = selectionString;
+            _filters.SearchFilter = _selectedAdvancedEditText;
         }
+    }
+
+    async Task OnSelect(EventArgs e)
+    {
+        if (_advancedEdit is null)
+            return;
+
+        string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
+        SetSelectedAdvancedEditText(selectionString);
+    }
+
+    void OnFocusOut()
+    {
+        SetSelectedAdvancedEditText(string.Empty);
     }
 
     async Task OnKeyUp(KeyboardEventArgs e)
@@ -296,26 +309,40 @@ public partial class MainComponent
             if (e.Code == "ArrowLeft" || e.Code == "ArrowUp" || e.Code == "ArrowRight" || e.Code == "ArrowDown")
                 await SelectCurrentLine();
         }
+        else if (e.ShiftKey || e.Key == "Shift")
+        {
+            if (_advancedEdit is not null)
+            {
+                string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
+                SetSelectedAdvancedEditText(selectionString);
+            }
+        }
+        else
+        {
+            SetSelectedAdvancedEditText(string.Empty);
+        }
     }
 
     async Task OnMouseUp(MouseEventArgs e)
     {
         if (_selectLineWithCaret)
             await SelectCurrentLine();
+        else
+            SetSelectedAdvancedEditText(string.Empty);
     }
 
     private async Task SelectCurrentLine()
     {
-        if (_memoEdit is null)
+        if (_advancedEdit is null)
             return;
 
-        Selection selection = await JsInterop.GetSelectionStartEnd(_memoEdit.ElementRef);
+        Selection selection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
 
-        if (selection.Start == selection.End && _memoEditText.Length > 0)
+        if (selection.Start == selection.End && _advancedEditText.Length > 0)
         {
-            int index = Math.Min(selection.Start, _memoEditText.Length - 1);
+            int index = Math.Min(selection.Start, _advancedEditText.Length - 1);
 
-            int afterEnd = _memoEditText.IndexOf('\n', index);
+            int afterEnd = _advancedEditText.IndexOf('\n', index);
 
             if (afterEnd == 0)
                 return;
@@ -323,12 +350,12 @@ public partial class MainComponent
             if (afterEnd == index)
                 index -= 1;
 
-            int beforeStart = _memoEditText.LastIndexOf('\n', index);
+            int beforeStart = _advancedEditText.LastIndexOf('\n', index);
 
             if (afterEnd == -1)
-                afterEnd = _memoEditText.Length;
+                afterEnd = _advancedEditText.Length;
 
-            await JsInterop.SetSelectionStartEnd(_memoEdit.ElementRef, beforeStart + 1, afterEnd);
+            await JsInterop.SetSelectionStartEnd(_advancedEdit.ElementRef, beforeStart + 1, afterEnd);
         }
     }
 }

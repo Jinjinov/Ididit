@@ -179,10 +179,10 @@
 
                         <Column Padding=Padding.Is0.OnMobile.Is2.OnDesktop>
                             <Div Display="Display.Flex" Flex="Flex.Column" Height="Height.Is100">
-                                <Button Disabled="string.IsNullOrEmpty(_memoEditText)" Color=Color.Primary Size="Size" Block=true Margin="Margin.Is2.FromBottom">@Localizer["Move selected text to selected goal"]</Button>
+                                <Button Disabled="string.IsNullOrEmpty(_selectedAdvancedEditText)" Color=Color.Primary Size="Size" Block=true Margin="Margin.Is2.FromBottom">@Localizer["Move selected text to selected goal"]</Button>
                                 <Check TValue="bool" @bind-Checked="_selectLineWithCaret">@Localizer["Select line with caret"]</Check>
                                 <Check TValue="bool" @bind-Checked="_filterBySelectedText">@Localizer["Filter by selected text"]</Check>
-                                <MemoEdit @ref="_memoEdit" Class="shadow-none" Style="resize:none" Margin="Margin.Is2.FromTop" Flex="Flex.Grow.Is1" @bind-Text="@_memoEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" />
+                                <MemoEdit @ref="_advancedEdit" Class="shadow-none" Style="resize:none" Margin="Margin.Is2.FromTop" Flex="Flex.Grow.Is1" @bind-Text="@_advancedEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" FocusOut=OnFocusOut />
                             </Div>
                         </Column>
 
