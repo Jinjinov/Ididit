@@ -29,13 +29,21 @@ public partial class GoalsComponent
     [Parameter]
     public Filters Filters { get; set; } = null!;
 
+    [Parameter]
+    public GoalModel? EditDetailsGoal { get; set; }
+
+    [Parameter]
+    public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
+
+    [Parameter]
+    public GoalModel? EditNameGoal { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<GoalModel> EditNameGoalChanged { get; set; }
+
     string MaxWidth => Repository.Settings.MaxWidth.HasValue ? $"max-width:{Repository.Settings.MaxWidth.Value}px" : string.Empty;
 
     TaskModel? _selectedTask;
-
-    GoalModel? _editDetailsGoal;
-
-    GoalModel? _editNameGoal;
 
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
@@ -58,7 +66,10 @@ public partial class GoalsComponent
 
         await Repository.AddGoal(goal);
 
-        _editDetailsGoal = goal;
-        _editNameGoal = goal;
+        EditNameGoal = goal;
+        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
+
+        EditDetailsGoal = goal;
+        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 }

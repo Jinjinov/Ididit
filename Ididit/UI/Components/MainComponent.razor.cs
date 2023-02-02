@@ -265,6 +265,10 @@ public partial class MainComponent
 
     Filters _filters = new();
 
+    GoalModel? _editDetailsGoal;
+
+    GoalModel? _editNameGoal;
+
     MemoEdit? _advancedEdit;
 
     string _advancedEditText = string.Empty;
