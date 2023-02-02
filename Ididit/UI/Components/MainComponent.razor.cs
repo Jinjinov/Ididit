@@ -282,6 +282,20 @@ public partial class MainComponent
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
+    void MoveSelectedTextToSelectedGoal()
+    {
+        GoalModel goal;
+
+        if (_editNameGoal is not null)
+            goal = _editNameGoal;
+        else if (_editDetailsGoal is not null)
+            goal = _editDetailsGoal;
+        else
+            return;
+
+        goal.Details += _selectedAdvancedEditText;
+    }
+
     void SetSelectedAdvancedEditText(string text)
     {
         _selectedAdvancedEditText = text;
