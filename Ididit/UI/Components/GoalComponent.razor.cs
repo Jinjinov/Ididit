@@ -35,10 +35,10 @@ public partial class GoalComponent
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
     [Parameter]
-    public GoalModel? EditTitleGoal { get; set; } = null!;
+    public GoalModel? EditNameGoal { get; set; } = null!;
 
     [Parameter]
-    public EventCallback<GoalModel> EditTitleGoalChanged { get; set; }
+    public EventCallback<GoalModel> EditNameGoalChanged { get; set; }
 
     [Parameter]
     public Filters Filters { get; set; } = null!;
@@ -46,7 +46,7 @@ public partial class GoalComponent
     [Parameter]
     public SettingsModel Settings { get; set; } = null!;
 
-    bool EditEnabled => EditDetailsGoal == Goal || EditTitleGoal == Goal;
+    bool EditEnabled => EditDetailsGoal == Goal || EditNameGoal == Goal;
 
     IFluentBorderWithAll CardBorder => EditEnabled ? Border.Is1.RoundedZero : Border.Is0.RoundedZero;
 
@@ -70,14 +70,14 @@ public partial class GoalComponent
 
     async Task OnEditTitleFocusIn()
     {
-        EditTitleGoal = Goal;
-        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
+        EditNameGoal = Goal;
+        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
     }
 
     async Task OnEditTitleFocusOut()
     {
-        EditTitleGoal = null;
-        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
+        EditNameGoal = null;
+        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
 
         await UpdateGoalName();
     }
@@ -107,17 +107,17 @@ public partial class GoalComponent
 
     async Task OnClick(MouseEventArgs args)
     {
-        await SelectAndEditTitleGoal();
+        await SelectAndEditNameGoal();
     }
 
-    async Task SelectAndEditTitleGoal()
+    async Task SelectAndEditNameGoal()
     {
         _goalName = Goal.Name;
 
         _shouldFocus = true;
 
-        EditTitleGoal = Goal;
-        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
+        EditNameGoal = Goal;
+        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
 
         //EditDetailsGoal = Goal;
         //await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
@@ -144,8 +144,8 @@ public partial class GoalComponent
 
     private async Task EndEdit()
     {
-        EditTitleGoal = null;
-        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
+        EditNameGoal = null;
+        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
 
         EditDetailsGoal = null;
         await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
