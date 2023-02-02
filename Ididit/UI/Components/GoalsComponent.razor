@@ -26,7 +26,7 @@
 
                 @foreach (GoalModel goal in category.GoalList)
                 {
-                    <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters Settings=Settings />
+                    <GoalComponent @key=goal Goal=goal @bind-EditDetailsGoal=_editDetailsGoal @bind-EditTitleGoal=_editTitleGoal Filters=Filters Settings=Settings />
                 }
             }
         }
@@ -34,7 +34,7 @@
         {
             @foreach (GoalModel goal in SelectedCategory.GoalList)
             {
-                <GoalComponent @key=goal Goal=goal @bind-SelectedGoal=_selectedGoal @bind-EditGoal=_editGoal Filters=Filters Settings=Settings />
+                <GoalComponent @key=goal Goal=goal @bind-EditDetailsGoal=_editDetailsGoal @bind-EditTitleGoal=_editTitleGoal Filters=Filters Settings=Settings />
             }
         }
     }

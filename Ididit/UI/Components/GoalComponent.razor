@@ -12,14 +12,14 @@
                 @if (EditEnabled)
                 {
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.RoundedZero.Is0 Style="margin-right:1px" Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=FocusIn FocusOut=FocusOut Placeholder="@Localizer["Add new goal"]" />
+                        <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.RoundedZero.Is0 Style="margin-right:1px" Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=OnEditTitleFocusIn FocusOut=OnEditTitleFocusOut Placeholder="@Localizer["Add new goal"]" />
                         <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Border=Border.RoundedZero Size="Size" @onclick=SaveName><Icon Class="fa-fw" Name="IconName.Save" /></Button>
                             @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
                         </Addon>
                     </Addons>
 
-                    <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnFocusIn FocusOut=OnFocusOut TextChanged=OnTextChanged />
+                    <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                 }
                 else
                 {
@@ -28,7 +28,7 @@
 
                         <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="!Goal.CreateTaskFromEachLine" Size="Size" @onclick=ToggleCreateTaskFromEachLine><i class="fas fa-fw fa-tasks"></i></Button>
-                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
+                            <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=SelectAndEditTitleGoal><Icon Class="fa-fw" Name="IconName.Edit" /></Button>
                             <Button Color="Color.Primary" Outline="true" Size="Size" Border=Border.RoundedZero @onclick=DeleteGoal><Icon Class="fa-fw" Name="IconName.Delete" /></Button>
                         </Addon>
                     </Addons>

@@ -33,9 +33,9 @@ public partial class GoalsComponent
 
     TaskModel? _selectedTask;
 
-    GoalModel? _selectedGoal;
+    GoalModel? _editDetailsGoal;
 
-    GoalModel? _editGoal;
+    GoalModel? _editTitleGoal;
 
     async Task OnSelectedCategoryChanged(CategoryModel category)
     {
@@ -58,7 +58,7 @@ public partial class GoalsComponent
 
         await Repository.AddGoal(goal);
 
-        _selectedGoal = goal;
-        _editGoal = goal;
+        _editDetailsGoal = goal;
+        _editTitleGoal = goal;
     }
 }

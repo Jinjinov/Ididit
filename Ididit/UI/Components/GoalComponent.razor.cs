@@ -29,16 +29,16 @@ public partial class GoalComponent
     public EventCallback<GoalModel> GoalChanged { get; set; }
 
     [Parameter]
-    public GoalModel? SelectedGoal { get; set; }
+    public GoalModel? EditDetailsGoal { get; set; }
 
     [Parameter]
-    public EventCallback<GoalModel?> SelectedGoalChanged { get; set; }
+    public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
     [Parameter]
-    public GoalModel? EditGoal { get; set; } = null!;
+    public GoalModel? EditTitleGoal { get; set; } = null!;
 
     [Parameter]
-    public EventCallback<GoalModel> EditGoalChanged { get; set; }
+    public EventCallback<GoalModel> EditTitleGoalChanged { get; set; }
 
     [Parameter]
     public Filters Filters { get; set; } = null!;
@@ -46,7 +46,7 @@ public partial class GoalComponent
     [Parameter]
     public SettingsModel Settings { get; set; } = null!;
 
-    bool EditEnabled => SelectedGoal == Goal || EditGoal == Goal;
+    bool EditEnabled => EditDetailsGoal == Goal || EditTitleGoal == Goal;
 
     IFluentBorderWithAll CardBorder => EditEnabled ? Border.Is1.RoundedZero : Border.Is0.RoundedZero;
 
@@ -68,16 +68,16 @@ public partial class GoalComponent
         }
     }
 
-    async Task FocusIn()
+    async Task OnEditTitleFocusIn()
     {
-        EditGoal = Goal;
-        await EditGoalChanged.InvokeAsync(EditGoal);
+        EditTitleGoal = Goal;
+        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
     }
 
-    async Task FocusOut()
+    async Task OnEditTitleFocusOut()
     {
-        EditGoal = null;
-        await EditGoalChanged.InvokeAsync(EditGoal);
+        EditTitleGoal = null;
+        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
         if (Goal.Name != _goalName)
         {
@@ -88,34 +88,34 @@ public partial class GoalComponent
         }
     }
 
-    async Task OnFocusIn()
+    async Task OnEditDetailsFocusIn()
     {
-        SelectedGoal = Goal;
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        EditDetailsGoal = Goal;
+        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
-    async Task OnFocusOut()
+    async Task OnEditDetailsFocusOut()
     {
-        SelectedGoal = null;
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        EditDetailsGoal = null;
+        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
     async Task OnClick(MouseEventArgs args)
     {
-        await SelectAndEditGoal();
+        await SelectAndEditTitleGoal();
     }
 
-    async Task SelectAndEditGoal()
+    async Task SelectAndEditTitleGoal()
     {
         _goalName = Goal.Name;
 
         _shouldFocus = true;
 
-        EditGoal = Goal;
-        await EditGoalChanged.InvokeAsync(EditGoal);
+        EditTitleGoal = Goal;
+        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
-        //SelectedGoal = Goal;
-        //await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        //EditDetailsGoal = Goal;
+        //await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
     async Task KeyUp(KeyboardEventArgs eventArgs)
@@ -134,20 +134,20 @@ public partial class GoalComponent
     {
         _goalName = Goal.Name;
 
-        EditGoal = null;
-        await EditGoalChanged.InvokeAsync(EditGoal);
+        EditTitleGoal = null;
+        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
-        SelectedGoal = null;
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        EditDetailsGoal = null;
+        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
     async Task SaveName()
     {
-        EditGoal = null;
-        await EditGoalChanged.InvokeAsync(EditGoal);
+        EditTitleGoal = null;
+        await EditTitleGoalChanged.InvokeAsync(EditTitleGoal);
 
-        SelectedGoal = null;
-        await SelectedGoalChanged.InvokeAsync(SelectedGoal);
+        EditDetailsGoal = null;
+        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
 
         if (Goal.Name != _goalName)
         {
