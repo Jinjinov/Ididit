@@ -70,6 +70,26 @@ public partial class GoalComponent
         }
     }
 
+    public void UpdateDetailsHeight()
+    {
+        if (_detailsEdit is null)
+            return;
+
+        var e = _detailsEdit.ElementRef;
+
+        /*
+        function calculateAutoHeight(e)
+        {
+            if (e && e.target)
+            {
+                e.target.style.height = 'auto';
+                e.target.style.height = this.scrollHeight + 'px';
+                e.target.style.overflowY = 'hidden';
+            }
+        }
+        /**/
+    }
+
     async Task OnEditNameFocusIn()
     {
         await SetEditGoal(Goal, null);
