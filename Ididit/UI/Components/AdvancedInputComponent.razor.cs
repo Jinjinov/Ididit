@@ -26,7 +26,13 @@ public partial class AdvancedInputComponent
     public GoalModel? EditNameGoal { get; set; } = null!;
 
     [Parameter]
+    public EventCallback<GoalModel> EditNameGoalChanged { get; set; }
+
+    [Parameter]
     public GoalModel? EditDetailsGoal { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
     MemoEdit? _advancedEdit;
 
@@ -41,18 +47,18 @@ public partial class AdvancedInputComponent
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
 
-    void MoveSelectedTextToSelectedGoal()
+    async Task MoveSelectedTextToSelectedGoal()
     {
-        GoalModel goal;
-
         if (EditNameGoal is not null)
-            goal = EditNameGoal;
+        {
+            EditNameGoal.Details += _selectedAdvancedEditText;
+            await EditNameGoalChanged.InvokeAsync(EditNameGoal);
+        }
         else if (EditDetailsGoal is not null)
-            goal = EditDetailsGoal;
-        else
-            return;
-
-        goal.Details += _selectedAdvancedEditText;
+        {
+            EditDetailsGoal.Details += _selectedAdvancedEditText;
+            await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
+        }
     }
 
     async Task SetSelectedAdvancedEditText(string text)
