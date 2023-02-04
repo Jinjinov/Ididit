@@ -30,7 +30,7 @@ public partial class GoalsComponent
     public Filters Filters { get; set; } = null!;
 
     [Parameter]
-    public GoalModel? EditDetailsGoal { get; set; }
+    public GoalModel? EditDetailsGoal { get; set; } = null!;
 
     [Parameter]
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
