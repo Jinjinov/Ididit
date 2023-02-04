@@ -68,14 +68,16 @@ public partial class GoalComponent
         }
     }
 
-    async Task OnEditTitleFocusIn()
+    async Task OnEditNameFocusIn()
     {
-        EditNameGoal = Goal;
-        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
+        await SetEditGoal(Goal, null);
     }
 
-    async Task OnEditTitleFocusOut()
+    async Task OnEditNameFocusOut()
     {
+        if (Settings.ShowAdvancedInput)
+            return;
+
         EditNameGoal = null;
         await EditNameGoalChanged.InvokeAsync(EditNameGoal);
 
@@ -95,12 +97,14 @@ public partial class GoalComponent
 
     async Task OnEditDetailsFocusIn()
     {
-        EditDetailsGoal = Goal;
-        await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
+        await SetEditGoal(null, Goal);
     }
 
     async Task OnEditDetailsFocusOut()
     {
+        if (Settings.ShowAdvancedInput)
+            return;
+
         EditDetailsGoal = null;
         await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
@@ -116,11 +120,7 @@ public partial class GoalComponent
 
         _shouldFocus = true;
 
-        EditNameGoal = Goal;
-        await EditNameGoalChanged.InvokeAsync(EditNameGoal);
-
-        //EditDetailsGoal = Goal;
-        //await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
+        await SetEditGoal(Goal, null);
     }
 
     async Task KeyUp(KeyboardEventArgs eventArgs)
@@ -139,21 +139,21 @@ public partial class GoalComponent
     {
         _goalName = Goal.Name;
 
-        await EndEdit();
+        await SetEditGoal(null, null);
     }
 
-    private async Task EndEdit()
+    private async Task SetEditGoal(GoalModel? nameGoal, GoalModel? detailsGoal)
     {
-        EditNameGoal = null;
+        EditNameGoal = nameGoal;
         await EditNameGoalChanged.InvokeAsync(EditNameGoal);
 
-        EditDetailsGoal = null;
+        EditDetailsGoal = detailsGoal;
         await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
     }
 
     async Task SaveNameAndEndEdit()
     {
-        await EndEdit();
+        await SetEditGoal(null, null);
 
         await UpdateGoalName();
     }
