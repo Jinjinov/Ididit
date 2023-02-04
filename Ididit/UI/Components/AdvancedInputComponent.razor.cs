@@ -59,6 +59,20 @@ public partial class AdvancedInputComponent
             EditDetailsGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }
+
+        // TODO: GoalComponent.OnTextChanged
+        /*
+        async Task OnTextChanged(string text)
+        {
+            Goal.Details = text;
+            await Repository.UpdateGoal(Goal.Id);
+
+            if (!Goal.CreateTaskFromEachLine)
+                return;
+
+            await UpdateTasks(); // TODO: move to Repository
+        }
+        /**/
     }
 
     async Task SetSelectedAdvancedEditText(string text)

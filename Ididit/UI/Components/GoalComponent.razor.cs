@@ -77,6 +77,7 @@ public partial class GoalComponent
 
         var e = _detailsEdit.ElementRef;
 
+        // TODO:
         /*
         function calculateAutoHeight(e)
         {
@@ -238,6 +239,7 @@ public partial class GoalComponent
         await GoalChanged.InvokeAsync(Goal);
     }
 
+    // TODO: move to Repository
     private async Task UpdateTasks()
     {
         List<DoneTask> oldLines = Goal.TaskList.Select(task => new DoneTask { Task = task }).ToList();
