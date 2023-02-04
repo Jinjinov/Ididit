@@ -177,9 +177,12 @@
 
                         </Column>
 
-                        <Column Padding=Padding.Is0.OnMobile.Is2.OnDesktop>
-                            <AdvancedInputComponent EditDetailsGoal=_editDetailsGoal EditNameGoal=_editNameGoal @bind-Filters=_filters />
-                        </Column>
+                        @if (IsPersonalComputer && Settings.ShowAdvancedInput)
+                        {
+                            <Column Padding=Padding.Is0.OnMobile.Is2.OnDesktop>
+                                <AdvancedInputComponent EditDetailsGoal=_editDetailsGoal EditNameGoal=_editNameGoal @bind-Filters=_filters />
+                            </Column>
+                        }
 
                         <Column Padding=Padding.Is0 class="child-column">
                             <GoalsComponent @bind-SelectedCategory=_selectedCategory @bind-EditDetailsGoal=_editDetailsGoal @bind-EditNameGoal=_editNameGoal Filters=_filters Settings=Settings />

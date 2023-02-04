@@ -8,6 +8,13 @@
     </Addon>
 </Addons>
 
+@if (IsPersonalComputer)
+{
+    <Field Margin=Margin.Is0.Is2.FromTop>
+        <Check TValue="bool" Checked="Settings.ShowAdvancedInput" CheckedChanged="OnShowAdvancedInputChanged">@Localizer["Show advanced input"]</Check>
+    </Field>
+}
+
 <Field Margin=Margin.Is0.Is2.FromTop>
     <FieldLabel Margin=Margin.Is0>@Localizer["Show tasks completed on"]:</FieldLabel>
 

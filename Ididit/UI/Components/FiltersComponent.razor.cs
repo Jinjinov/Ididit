@@ -14,6 +14,8 @@ public partial class FiltersComponent
 
     public static bool IsApple => OperatingSystem.IsIOS() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
 
+    public static bool IsPersonalComputer => OperatingSystem.IsBrowser() || OperatingSystem.IsWindows() || OperatingSystem.IsLinux() || OperatingSystem.IsMacOS() || OperatingSystem.IsMacCatalyst();
+
     [Inject]
     IRepository Repository { get; set; } = null!;
 
@@ -126,6 +128,14 @@ public partial class FiltersComponent
     async Task OnElapsedToDesiredRatioMinChanged(long val)
     {
         Settings.ElapsedToDesiredRatioMin = val;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
+
+    async Task OnShowAdvancedInputChanged(bool val)
+    {
+        Settings.ShowAdvancedInput = val;
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);

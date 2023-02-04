@@ -77,4 +77,7 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public int? MaxWidth { get; set; }
+
+    [IndexDbIndex]
+    public bool ShowAdvancedInput { get; set; }
 }

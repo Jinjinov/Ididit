@@ -58,4 +58,6 @@ public class SettingsModel
     public bool HideCompletedTasks { get; set; }
 
     public int? MaxWidth { get; set; }
+
+    public bool ShowAdvancedInput { get; set; }
 }
