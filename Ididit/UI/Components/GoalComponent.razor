@@ -12,14 +12,14 @@
                 @if (EditEnabled)
                 {
                     <Addons Flex=Flex.NoWrap>
-                        <TextEdit @ref=_textEdit Class="shadow-none" Border=Border.RoundedZero.Is0 Style="margin-right:1px" Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=OnEditNameFocusIn FocusOut=OnEditNameFocusOut Placeholder="@Localizer["Add new goal"]" />
+                        <TextEdit @ref=_nameEdit Class="shadow-none" Border=Border.RoundedZero.Is0 Style="margin-right:1px" Size="Size" @bind-Text="@_goalName" KeyUp=KeyUp @onmousedown=OnEditNameFocusIn FocusOut=OnEditNameFocusOut Placeholder="@Localizer["Add new goal"]" />
                         <Addon AddonType="AddonType.End">
                             <Button Color="Color.Primary" Outline="true" Border=Border.RoundedZero Size="Size" @onclick=SaveNameAndEndEdit><Icon Class="fa-fw" Name="IconName.Save" /></Button>
                             @*<Button Color="Color.Primary" Outline="true" Size="Size" @onclick=CancelEdit><Icon Class="fa-fw" Name="IconName.Times" /></Button>*@
                         </Addon>
                     </Addons>
 
-                    <MemoEdit Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
+                    <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                 }
                 else
                 {

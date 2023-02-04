@@ -52,7 +52,9 @@ public partial class GoalComponent
 
     TaskModel? _selectedTask;
 
-    Blazorise.TextEdit? _textEdit;
+    TextEdit? _nameEdit;
+
+    MemoEdit? _detailsEdit;
 
     string _goalName = string.Empty;
 
@@ -60,11 +62,11 @@ public partial class GoalComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_shouldFocus && _textEdit is not null)
+        if (_shouldFocus && _nameEdit is not null)
         {
             _shouldFocus = false;
 
-            await _textEdit.Focus();
+            await _nameEdit.Focus();
         }
     }
 

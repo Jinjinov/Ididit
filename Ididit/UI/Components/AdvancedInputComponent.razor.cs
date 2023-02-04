@@ -51,12 +51,12 @@ public partial class AdvancedInputComponent
     {
         if (EditNameGoal is not null)
         {
-            EditNameGoal.Details += _selectedAdvancedEditText;
+            EditNameGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
             await EditNameGoalChanged.InvokeAsync(EditNameGoal);
         }
         else if (EditDetailsGoal is not null)
         {
-            EditDetailsGoal.Details += _selectedAdvancedEditText;
+            EditDetailsGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }
     }
@@ -83,7 +83,8 @@ public partial class AdvancedInputComponent
 
     async Task OnFocusOut()
     {
-        await SetSelectedAdvancedEditText(string.Empty);
+        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
+        //await SetSelectedAdvancedEditText(string.Empty);
     }
 
     async Task OnKeyUp(KeyboardEventArgs e)
