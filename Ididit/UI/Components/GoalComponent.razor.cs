@@ -77,7 +77,7 @@ public partial class GoalComponent
 
         var e = _detailsEdit.ElementRef;
 
-        // TODO:
+        // TODO: https://github.com/Megabit/Blazorise/issues/4555
         /*
         function calculateAutoHeight(e)
         {

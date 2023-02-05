@@ -19,7 +19,7 @@
                         </Addon>
                     </Addons>
 
-                    <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
+                    <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize="!Settings.ShowAdvancedInput" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                 }
                 else
                 {

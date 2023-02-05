@@ -70,7 +70,7 @@ public partial class AdvancedInputComponent
             if (!Goal.CreateTaskFromEachLine)
                 return;
 
-            await UpdateTasks(); // TODO: move to Repository
+            await UpdateTasks();
         }
         /**/
     }
@@ -97,7 +97,8 @@ public partial class AdvancedInputComponent
 
     async Task OnFocusOut()
     {
-        // TODO: https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
+        // TODO: https://github.com/Megabit/Blazorise/issues/4554
+        // https://developer.mozilla.org/en-US/docs/Web/API/FocusEvent/relatedTarget
         //await SetSelectedAdvancedEditText(string.Empty);
     }
 

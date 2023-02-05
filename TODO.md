@@ -64,7 +64,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 
     - ididit advanced Keep Zip import / search 
     - ididit advanced input / search
-    - all goals, tasks ?without buttons?
+    - all goals, tasks
     - selected goal is editable
     - if selected string, filter tasks
     - select current line - border
