@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap5" Version="1.1.4.1" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.4.1" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.1.4.1" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="1.1.7" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.7" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.1.7" />
     <PackageReference Include="Photino.Blazor" Version="2.5.0" />
   </ItemGroup>
 

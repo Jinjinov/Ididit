@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Blazorise.Bootstrap5" Version="1.1.4.1" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.4.1" />
-    <PackageReference Include="Blazorise.TreeView" Version="1.1.4.1" />
+    <PackageReference Include="Blazorise.Bootstrap5" Version="1.1.7" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.1.7" />
+    <PackageReference Include="Blazorise.TreeView" Version="1.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.59" />
   </ItemGroup>
 
