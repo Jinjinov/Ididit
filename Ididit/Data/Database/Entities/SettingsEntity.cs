@@ -80,4 +80,10 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public bool ShowAdvancedInput { get; set; }
+
+    [IndexDbIndex]
+    public bool SelectLineWithCaret { get; set; }
+
+    [IndexDbIndex]
+    public bool FilterBySelectedText { get; set; }
 }

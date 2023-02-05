@@ -21,6 +21,12 @@ public partial class AdvancedInputComponent
     Blazorise.Size Size { get; set; }
 
     [Parameter]
+    public SettingsModel Settings { get; set; } = null!;
+
+    [Parameter]
+    public EventCallback<SettingsModel> SettingsChanged { get; set; }
+
+    [Parameter]
     public Filters Filters { get; set; } = null!;
 
     [Parameter]
@@ -48,12 +54,24 @@ public partial class AdvancedInputComponent
 
     string _selectedAdvancedEditText = string.Empty;
 
-    bool _selectLineWithCaret;
-
-    bool _filterBySelectedText;
-
     [Inject]
     JsInterop JsInterop { get; set; } = null!;
+
+    async Task OnSelectLineWithCaretChanged(bool val)
+    {
+        Settings.SelectLineWithCaret = val;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
+
+    async Task OnFilterBySelectedTextChanged(bool val)
+    {
+        Settings.FilterBySelectedText = val;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
 
     async Task MoveSelectedTextToSelectedGoal()
     {
@@ -87,7 +105,7 @@ public partial class AdvancedInputComponent
     {
         _selectedAdvancedEditText = text;
 
-        if (_filterBySelectedText)
+        if (Settings.FilterBySelectedText)
         {
             Filters.SearchFilter = _selectedAdvancedEditText;
             await FiltersChanged.InvokeAsync(Filters);
@@ -121,7 +139,7 @@ public partial class AdvancedInputComponent
 
     async Task OnKeyUp(KeyboardEventArgs e)
     {
-        if (_selectLineWithCaret)
+        if (Settings.SelectLineWithCaret)
         {
             if (e.Code == "ArrowLeft" || e.Code == "ArrowUp" || e.Code == "ArrowRight" || e.Code == "ArrowDown")
                 await SelectCurrentLine();
@@ -138,7 +156,7 @@ public partial class AdvancedInputComponent
 
     async Task OnMouseUp(MouseEventArgs e)
     {
-        if (_selectLineWithCaret)
+        if (Settings.SelectLineWithCaret)
             await SelectCurrentLine();
         else
             await SetSelectedAdvancedEditText(string.Empty);

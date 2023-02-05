@@ -60,4 +60,8 @@ public class SettingsModel
     public int? MaxWidth { get; set; }
 
     public bool ShowAdvancedInput { get; set; }
+
+    public bool SelectLineWithCaret { get; set; }
+
+    public bool FilterBySelectedText { get; set; }
 }

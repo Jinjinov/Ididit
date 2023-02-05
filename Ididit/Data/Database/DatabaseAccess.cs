@@ -253,7 +253,9 @@ internal class DatabaseAccess : IDatabaseAccess
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 HideCompletedTasks = settings.HideCompletedTasks,
                 MaxWidth = settings.MaxWidth,
-                ShowAdvancedInput = settings.ShowAdvancedInput
+                ShowAdvancedInput = settings.ShowAdvancedInput,
+                SelectLineWithCaret = settings.SelectLineWithCaret,
+                FilterBySelectedText = settings.FilterBySelectedText
             };
 
             _settingsDict[settings.Id] = settings;
@@ -396,7 +398,9 @@ internal class DatabaseAccess : IDatabaseAccess
                 ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
                 HideCompletedTasks = settings.HideCompletedTasks,
                 MaxWidth = settings.MaxWidth,
-                ShowAdvancedInput = settings.ShowAdvancedInput
+                ShowAdvancedInput = settings.ShowAdvancedInput,
+                SelectLineWithCaret = settings.SelectLineWithCaret,
+                FilterBySelectedText = settings.FilterBySelectedText
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -518,7 +522,9 @@ internal class DatabaseAccess : IDatabaseAccess
             ShowCategoriesInGoalList = settings.ShowCategoriesInGoalList,
             HideCompletedTasks = settings.HideCompletedTasks,
             MaxWidth = settings.MaxWidth,
-            ShowAdvancedInput = settings.ShowAdvancedInput
+            ShowAdvancedInput = settings.ShowAdvancedInput,
+            SelectLineWithCaret = settings.SelectLineWithCaret,
+            FilterBySelectedText = settings.FilterBySelectedText
         };
 
         _settingsList.Add(settingsEntity);
@@ -654,6 +660,8 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.HideCompletedTasks = settings.HideCompletedTasks;
             settingsEntity.MaxWidth = settings.MaxWidth;
             settingsEntity.ShowAdvancedInput = settings.ShowAdvancedInput;
+            settingsEntity.SelectLineWithCaret = settings.SelectLineWithCaret;
+            settingsEntity.FilterBySelectedText = settings.FilterBySelectedText;
 
             await UpdateItems(new List<SettingsEntity> { settingsEntity });
         }
