@@ -59,6 +59,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 
     - ididit advanced Keep Zip import / search
 
+    - highlight filter word in results
+
     - select current line in goal
     - move selected text after selected line in goal
 

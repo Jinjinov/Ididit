@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Backup.Drive;
 
-internal class MarkdownBackup : IDataExport, IFileImport
+internal class MarkdownBackup : IDataExport, IFileImport, IFileToString
 {
     public bool UnsavedChanges { get; private set; }
 
@@ -29,6 +29,15 @@ internal class MarkdownBackup : IDataExport, IFileImport
         _repository = repository;
 
         _repository.DataChanged += (sender, e) => UnsavedChanges = true;
+    }
+
+    public async Task<string> GetString(Stream stream)
+    {
+        using StreamReader streamReader = new(stream);
+
+        string text = await streamReader.ReadToEndAsync();
+
+        return text;
     }
 
     private static int GetStartHashCount(string line)
