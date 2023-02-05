@@ -1,5 +1,6 @@
 ﻿using Blazorise;
 using Blazorise.Localization;
+using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -12,6 +13,9 @@ public partial class AdvancedInputComponent
 {
     [Inject]
     ITextLocalizer<Translations> Localizer { get; set; } = null!;
+
+    [Inject]
+    IRepository Repository { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -34,6 +38,8 @@ public partial class AdvancedInputComponent
     [Parameter]
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
+    bool IsMoveSelectedTextDisabled => string.IsNullOrEmpty(_selectedAdvancedEditText) || (EditNameGoal is null && EditDetailsGoal is null);
+
     MemoEdit? _advancedEdit;
 
     string _advancedEditText = string.Empty;
@@ -52,27 +58,25 @@ public partial class AdvancedInputComponent
         if (EditNameGoal is not null)
         {
             EditNameGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
+            await OnTextChanged(EditNameGoal);
             await EditNameGoalChanged.InvokeAsync(EditNameGoal);
         }
         else if (EditDetailsGoal is not null)
         {
             EditDetailsGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
+            await OnTextChanged(EditDetailsGoal);
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }
 
-        // TODO: GoalComponent.OnTextChanged
-        /*
-        async Task OnTextChanged(string text)
+        async Task OnTextChanged(GoalModel goal)
         {
-            Goal.Details = text;
-            await Repository.UpdateGoal(Goal.Id);
+            await Repository.UpdateGoal(goal.Id);
 
-            if (!Goal.CreateTaskFromEachLine)
+            if (!goal.CreateTaskFromEachLine)
                 return;
 
-            await UpdateTasks();
+            await Repository.UpdateGoalTasks(goal);
         }
-        /**/
     }
 
     async Task SetSelectedAdvancedEditText(string text)
