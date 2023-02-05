@@ -44,6 +44,8 @@ public partial class AdvancedInputComponent
 
     string _advancedEditText = string.Empty;
 
+    Selection _advancedEditTextSelection = new();
+
     string _selectedAdvancedEditText = string.Empty;
 
     bool _selectLineWithCaret;
@@ -67,6 +69,8 @@ public partial class AdvancedInputComponent
             await OnTextChanged(EditDetailsGoal);
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }
+
+        _advancedEditText = _advancedEditText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
 
         async Task OnTextChanged(GoalModel goal)
         {
@@ -92,10 +96,19 @@ public partial class AdvancedInputComponent
 
     async Task OnSelect(EventArgs e)
     {
+        await GetSelectionString();
+    }
+
+    async Task GetSelectionString()
+    {
         if (_advancedEdit is null)
             return;
 
-        string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
+        _advancedEditTextSelection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
+        string selectionString = _advancedEditText[_advancedEditTextSelection.Start.._advancedEditTextSelection.End];
+
+        //string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
+
         await SetSelectedAdvancedEditText(selectionString);
     }
 
@@ -115,11 +128,7 @@ public partial class AdvancedInputComponent
         }
         else if (e.ShiftKey || e.Key == "Shift")
         {
-            if (_advancedEdit is not null)
-            {
-                string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
-                await SetSelectedAdvancedEditText(selectionString);
-            }
+            await GetSelectionString();
         }
         else
         {

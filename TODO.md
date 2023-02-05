@@ -57,20 +57,8 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
 
-    - [ ] select line with caret
-    - [ ] filter by selected text
-    - copy selected text
-    - delete selected text
-
     - ididit advanced Keep Zip import / search 
-    - ididit advanced input / search
-    - all goals, tasks
-    - selected goal is editable
-    - if selected string, filter tasks
-    - select current line - border
     - select current line in goal
-    - copy current line to selected goal, after current line
-    - delete current line - button in front (or top / bottom)
     - delete current line in goal
 
 - [ ] organize habits / Google Keep notes
