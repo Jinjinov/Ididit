@@ -14,7 +14,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 -------------------------------------------------------------------------------
 
 1.
-- [ ] Set max task column width - slider? 500 - 1000
+- [ ] Set max task column width - slider range: 500 - 1000
 - [ ] android tablet screenshots - 2x (small, large)
 - [ ] Google drive last backup date
 

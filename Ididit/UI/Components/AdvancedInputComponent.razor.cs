@@ -90,6 +90,10 @@ public partial class AdvancedInputComponent
 
         _advancedEditText = _advancedEditText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
 
+        _advancedEditTextSelection.Start = 0;
+        _advancedEditTextSelection.End = 0;
+        await SetSelectedAdvancedEditText(string.Empty);
+
         async Task OnTextChanged(GoalModel goal)
         {
             await Repository.UpdateGoal(goal.Id);
