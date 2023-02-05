@@ -135,12 +135,13 @@ iOS:
 
 ### Languages
 
-#### There are 4 languages:
+#### There are 5 languages:
 
 *   English
 *   German
 *   Slovenian
 *   Spanish
+*   Czech
 
 ### Themes
 
