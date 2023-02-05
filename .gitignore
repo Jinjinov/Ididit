@@ -4,7 +4,7 @@ bin
 obj
 *.user
 credentials.json
-GoogleDriveService.GoogleClientSecrets.cs
+GoogleDriveClientSecrets.Hidden.cs
 *.keystore
 *.pfx
 Package.StoreAssociation.xml

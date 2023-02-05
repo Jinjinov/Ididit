@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.WebView.Online;
 
-public partial class GoogleDriveService : IGoogleDriveService
+public class GoogleDriveService : IGoogleDriveService
 {
     // If modifying these scopes, delete your previously saved "Ididit" folder
     private readonly string[] _scopes = { DriveService.Scope.DriveFile };
@@ -74,8 +74,10 @@ public partial class GoogleDriveService : IGoogleDriveService
         // The folder "Ididit" stores the user's access and refresh tokens, and is created automatically when the authorization flow completes for the first time
         string credPath = "Ididit";
 
+        GoogleDriveClientSecrets googleDriveClientSecrets = new();
+
         UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-            _clientSecrets,
+            googleDriveClientSecrets.ClientSecrets,
             _scopes,
             "user",
             CancellationToken.None,

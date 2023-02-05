@@ -1,17 +1,6 @@
-# Error CS0103 The name '_clientSecrets' does not exist in the current context
+# The program has exited with code 2147942405 (0x80070005).
 
-    using Google.Apis.Auth.OAuth2;
-
-    namespace Ididit.WebView.Online;
-
-    public partial class GoogleDriveService
-    {
-        private readonly ClientSecrets _clientSecrets = new()
-        {
-            ClientId = "",
-            ClientSecret = ""
-        };
-    }
+If this issue is still open https://github.com/dotnet/maui/issues/12080 then install the Microsoft.WindowsAppRuntime.1.2 redist: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
 
 # How to host a Blazor WASM on IIS
 
@@ -36,15 +25,11 @@
     - go to `Application Pools` and click on the application pool with the site name
     - for `.NET CLR Version` select `No Managed Code`
 
-# The program has exited with code 2147942405 (0x80070005).
-
-If this issue is still open https://github.com/dotnet/maui/issues/12080 then install the Microsoft.WindowsAppRuntime.1.2 redist: https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads
-
 # Bootstrap
 
 https://getbootstrap.com/docs/4.3/layout/grid/
 
-Containers provide a means to center and horizontally pad your site’s contents. Use .container for a responsive pixel width or .container-fluid for width: 100% across all viewport and device sizes.
+Containers provide a means to center and horizontally pad your siteï¿½s contents. Use .container for a responsive pixel width or .container-fluid for width: 100% across all viewport and device sizes.
 In a grid layout, content must be placed within columns and only columns may be immediate children of rows.
 
 https://getbootstrap.com/docs/4.3/utilities/flex/
