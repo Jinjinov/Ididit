@@ -57,6 +57,14 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
 
+    filter goal details and titles, not tasks
+    force show goal details
+    highlight search word in results
+    highlight current goal line
+    insert after current goal line
+    import markdown
+    import Google Keep
+
     - ididit advanced Keep Zip import / search
 
     - highlight filter word in results
