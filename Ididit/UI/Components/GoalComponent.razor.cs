@@ -98,13 +98,13 @@ public partial class GoalComponent
 
     async Task OnEditNameFocusOut()
     {
+        await UpdateGoalName();
+
         if (Settings.ShowAdvancedInput)
             return;
 
         EditNameGoal = null;
         await EditNameGoalChanged.InvokeAsync(EditNameGoal);
-
-        await UpdateGoalName();
     }
 
     private async Task UpdateGoalName()
