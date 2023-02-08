@@ -62,7 +62,6 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
 
-    - highlight filter word in results
     - select current line in goal
     - move selected text after selected line in goal
 

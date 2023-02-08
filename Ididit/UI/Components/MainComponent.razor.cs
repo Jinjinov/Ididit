@@ -269,5 +269,10 @@ public partial class MainComponent
 
     GoalModel? _editNameGoal;
 
-    string _advancedInputText = string.Empty;
+    AdvancedInputComponent? _advancedInputComponent;
+
+    void OnAdvancedInputTextChanged(string text)
+    {
+        _advancedInputComponent?.OnTextChanged(text);
+    }
 }

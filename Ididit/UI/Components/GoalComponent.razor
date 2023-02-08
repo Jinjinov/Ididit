@@ -62,7 +62,14 @@
                     {
                         <!-- no margin in Markdown HTML -->
                         <Div Class="child-no-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
-                            @((MarkupString)Goal.DetailsMarkdownHtml)
+                            @if (string.IsNullOrEmpty(Filters.SearchFilter) || Filters.SearchFilter == "\n")
+                            {
+                                @((MarkupString)Goal.DetailsMarkdownHtml)
+                            }
+                            else
+                            {
+                                @((MarkupString)MarkSearchResults(Goal.DetailsMarkdownHtml))
+                            }
                         </Div>
                     }
                 }

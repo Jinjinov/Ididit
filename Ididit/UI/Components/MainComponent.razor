@@ -116,7 +116,7 @@
                         }
 
                         <OptionsComponent @bind-SelectedCategory=_selectedCategory
-                            @bind-AdvancedInputText=_advancedInputText
+                            AdvancedInputTextChanged=OnAdvancedInputTextChanged
                             Size="Size" SizeChanged="OnSizeChanged" 
                             Themes="_bootswatchThemes.Keys" Theme="@Theme" ThemeChanged="OnThemeChanged"
                             Backgrounds="_backgrounds.Keys" Background="@Repository.Settings.Background" BackgroundChanged="OnBackgroundChanged"
@@ -181,7 +181,7 @@
                         @if (IsPersonalComputer && Settings.ShowAdvancedInput)
                         {
                             <Column Padding=Padding.Is0.OnMobile.Is2.OnDesktop>
-                                <AdvancedInputComponent @bind-AdvancedInputText=_advancedInputText @bind-EditDetailsGoal=_editDetailsGoal @bind-EditNameGoal=_editNameGoal @bind-Filters=_filters Settings=Settings />
+                                <AdvancedInputComponent @ref=_advancedInputComponent @bind-EditDetailsGoal=_editDetailsGoal @bind-EditNameGoal=_editNameGoal @bind-Filters=_filters Settings=Settings />
                             </Column>
                         }
 

@@ -183,9 +183,6 @@ public partial class OptionsComponent
     }
 
     [Parameter]
-    public string AdvancedInputText { get; set; } = string.Empty;
-
-    [Parameter]
     public EventCallback<string> AdvancedInputTextChanged { get; set; }
 
     async Task ImportToString(InputFileChangeEventArgs e)
@@ -198,8 +195,7 @@ public partial class OptionsComponent
 
             if (!string.IsNullOrEmpty(fileString))
             {
-                AdvancedInputText = fileString;
-                await AdvancedInputTextChanged.InvokeAsync(AdvancedInputText);
+                await AdvancedInputTextChanged.InvokeAsync(fileString);
             }
 
             if (!Repository.Settings.ShowAdvancedInput)

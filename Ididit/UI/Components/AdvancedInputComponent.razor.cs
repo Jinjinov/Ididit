@@ -47,11 +47,7 @@ public partial class AdvancedInputComponent
     [Parameter]
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
-    [Parameter]
-    public string AdvancedInputText { get; set; } = string.Empty;
-
-    [Parameter]
-    public EventCallback<string> AdvancedInputTextChanged { get; set; }
+    private string AdvancedInputText { get => Filters.AdvancedInputText; set => Filters.AdvancedInputText = value; }
 
     bool IsMoveSelectedTextDisabled => string.IsNullOrEmpty(_selectedAdvancedEditText) || (EditNameGoal is null && EditDetailsGoal is null);
 
@@ -61,10 +57,9 @@ public partial class AdvancedInputComponent
 
     string _selectedAdvancedEditText = string.Empty;
 
-    async Task OnTextChanged(string text)
+    public void OnTextChanged(string text)
     {
         AdvancedInputText = text;
-        await AdvancedInputTextChanged.InvokeAsync(AdvancedInputText);
     }
 
     async Task OnSelectLineWithCaretChanged(bool val)
@@ -105,7 +100,6 @@ public partial class AdvancedInputComponent
         }
 
         AdvancedInputText = AdvancedInputText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
-        await AdvancedInputTextChanged.InvokeAsync(AdvancedInputText);
 
         _advancedEditTextSelection.Start = 0;
         _advancedEditTextSelection.End = 0;

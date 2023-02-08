@@ -1,9 +1,11 @@
 ﻿using Blazorise;
 using Blazorise.Localization;
+using HtmlAgilityPack;
 using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -223,5 +225,22 @@ public partial class GoalComponent
         await Repository.UpdateGoal(Goal.Id);
 
         await GoalChanged.InvokeAsync(Goal);
+    }
+
+    string MarkSearchResults(string text)
+    {
+        //return text.Replace(Filters.SearchFilter, $"<mark>{Filters.SearchFilter}</mark>");
+
+        var htmlDoc = new HtmlDocument();
+        htmlDoc.LoadHtml(text);
+
+        HtmlNodeCollection coll = htmlDoc.DocumentNode.SelectNodes("//text()");
+
+        foreach (HtmlTextNode node in coll.Cast<HtmlTextNode>())
+        {
+            node.Text = node.Text.Replace(Filters.SearchFilter, $"<mark>{Filters.SearchFilter}</mark>");
+        }
+
+        return htmlDoc.DocumentNode.OuterHtml;
     }
 }

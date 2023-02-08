@@ -11,6 +11,8 @@ public class Filters
 
     public DateTime? DateFilter { get; set; }
 
+    public string AdvancedInputText { get; set; } = string.Empty;
+
     public IList<TaskModel> FilterAndSortTasks(IEnumerable<TaskModel> tasks, SettingsModel settings)
     {
         IEnumerable<TaskModel> filteredTasks = tasks.Where(task =>
