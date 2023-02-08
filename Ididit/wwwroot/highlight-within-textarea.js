@@ -48,19 +48,19 @@
 
         generate: function () {
             this.$el
-                .addClass(ID + '-input ' + ID + '-content')
-                .on('input.' + ID, this.handleInput.bind(this))
-                .on('scroll.' + ID, this.handleScroll.bind(this));
+                .classList.add(ID + '-input ' + ID + '-content')
+                .addEventListener('input.' + ID, this.handleInput.bind(this))
+                .addEventListener('scroll.' + ID, this.handleScroll.bind(this));
 
-            this.$highlights = $('<div>', { class: ID + '-highlights ' + ID + '-content' });
+            this.$highlights = document.querySelector('<div>', { class: ID + '-highlights ' + ID + '-content' });
 
-            this.$backdrop = $('<div>', { class: ID + '-backdrop' })
-                .append(this.$highlights);
+            this.$backdrop = document.querySelector('<div>', { class: ID + '-backdrop' })
+                .insertAdjacentHTML("beforeend", this.$highlights);
 
-            this.$container = $('<div>', { class: ID + '-container' })
+            this.$container = document.querySelector('<div>', { class: ID + '-container' })
                 .insertAfter(this.$el)
-                .append(this.$backdrop, this.$el) // moves $el into $container
-                .on('scroll', this.blockContainerScroll.bind(this));
+                .insertAdjacentHTML("beforeend", this.$backdrop, this.$el) // moves $el into $container
+                .addEventListener('scroll', this.blockContainerScroll.bind(this));
 
             this.browser = this.detectBrowser();
             switch (this.browser) {
@@ -137,7 +137,7 @@
         },
 
         handleInput: function () {
-            let input = this.$el.val();
+            let input = this.$el.value;
             let ranges = this.getRanges(input, this.highlight);
             let unstaggeredRanges = this.removeStaggeredRanges(ranges);
             let boundaries = this.getBoundaries(unstaggeredRanges);
@@ -273,7 +273,7 @@
         },
 
         renderMarks: function (boundaries) {
-            let input = this.$el.val();
+            let input = this.$el.value;
             boundaries.forEach(function (boundary, index) {
                 let markup;
                 if (boundary.type === 'start') {
@@ -312,7 +312,7 @@
         },
 
         handleScroll: function () {
-            let scrollTop = this.$el.scrollTop();
+            let scrollTop = this.$el.scrollTop;
             this.$backdrop.scrollTop(scrollTop);
 
             // Chrome and Safari won't break long strings of spaces, which can cause
@@ -332,8 +332,8 @@
             this.$backdrop.remove();
             this.$el
                 .unwrap()
-                .removeClass(ID + '-text ' + ID + '-input')
-                .off(ID)
+                .classList.remove(ID + '-text ' + ID + '-input')
+                .removeEventListener(ID)
                 .removeData(ID);
         },
     };
@@ -341,7 +341,7 @@
     // register the jQuery plugin
     $.fn.highlightWithinTextarea = function (options) {
         return this.each(function () {
-            let $this = $(this);
+            let $this = document.querySelector(this);
             let plugin = $this.data(ID);
 
             if (typeof options === 'string') {
