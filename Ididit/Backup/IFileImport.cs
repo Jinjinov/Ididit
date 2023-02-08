@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 
 namespace Ididit.Backup;
 
-public interface IFileImport
+public interface IFileImport : IFileExtension
 {
-    string FileExtension { get; }
-
     Task ImportData(Stream stream);
 }

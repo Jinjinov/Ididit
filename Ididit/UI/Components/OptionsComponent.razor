@@ -138,6 +138,12 @@
                     <Button Color="Color.Primary" Outline="true" Size="Size" @onclick=ClearMaxWidth><Icon Class="fa-fw" Name="IconName.Times" /></Button>
                 </Addon>
             </Addons>
+
+            <label for="Markdown-to-string" class="btn-block btn @ButtonSizeClass btn-primary my-2">@Localizer["Open Markdown"]</label>
+            <InputFile id="Markdown-to-string" class="d-none" OnChange=ImportToString />
+
+            <label for="ZIP-to-string" class="btn-block btn @ButtonSizeClass btn-primary mt-2">@Localizer["Open Google Keep Takeout ZIP"]</label>
+            <InputFile id="ZIP-to-string" class="d-none" OnChange=ImportToString />
         }
 
     </CardBody>

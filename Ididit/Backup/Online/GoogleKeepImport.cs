@@ -44,8 +44,8 @@ internal class GoogleKeepImport : IFileImport, IFileToString
 
                 if (googleKeepNote is not null)
                 {
-                    text += Environment.NewLine + googleKeepNote.Title;
-                    text += Environment.NewLine + googleKeepNote.TextContent;
+                    text += string.IsNullOrEmpty(text) ? googleKeepNote.Title : Environment.NewLine + googleKeepNote.Title;
+                    text += string.IsNullOrEmpty(text) ? googleKeepNote.TextContent : Environment.NewLine + googleKeepNote.TextContent;
                 }
             }
         }

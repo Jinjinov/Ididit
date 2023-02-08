@@ -77,13 +77,13 @@ public partial class AdvancedInputComponent
     {
         if (EditNameGoal is not null)
         {
-            EditNameGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
+            EditNameGoal.Details += string.IsNullOrEmpty(EditNameGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
             await OnTextChanged(EditNameGoal);
             await EditNameGoalChanged.InvokeAsync(EditNameGoal);
         }
         else if (EditDetailsGoal is not null)
         {
-            EditDetailsGoal.Details += Environment.NewLine + _selectedAdvancedEditText;
+            EditDetailsGoal.Details += string.IsNullOrEmpty(EditDetailsGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
             await OnTextChanged(EditDetailsGoal);
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }

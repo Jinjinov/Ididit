@@ -49,9 +49,11 @@ public static class Services
         serviceCollection.AddScoped<MarkdownBackup>();
         serviceCollection.AddScoped<IDataExport>(x => x.GetRequiredService<MarkdownBackup>());
         serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<MarkdownBackup>());
+        serviceCollection.AddScoped<IFileToString>(x => x.GetRequiredService<MarkdownBackup>());
 
         serviceCollection.AddScoped<GoogleKeepImport>();
         serviceCollection.AddScoped<IFileImport>(x => x.GetRequiredService<GoogleKeepImport>());
+        serviceCollection.AddScoped<IFileToString>(x => x.GetRequiredService<GoogleKeepImport>());
 
         serviceCollection.AddScoped<IImportExport, ImportExport>();
 

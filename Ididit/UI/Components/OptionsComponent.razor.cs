@@ -45,7 +45,6 @@ public partial class OptionsComponent
         await Repository.DeleteAll();
 
         await OnSelectedCategoryChanged();
-
         await CloseOptions();
     }
 
@@ -168,16 +167,42 @@ public partial class OptionsComponent
     [Inject]
     IGoogleDriveBackup GoogleDriveBackup { get; set; } = null!;
 
+    const long _maxAllowedFileSize = 50 * 1024 * 1024; // 50 MB
+
     async Task Import(InputFileChangeEventArgs e)
     {
         if (ImportExport.FileImportByExtension.Where(pair => e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase)).Select(pair => pair.Value).FirstOrDefault() is IFileImport fileImport)
         {
-            Stream stream = e.File.OpenReadStream(maxAllowedSize: 5242880);
+            Stream stream = e.File.OpenReadStream(maxAllowedSize: _maxAllowedFileSize);
             await fileImport.ImportData(stream);
             stream.Close();
         }
 
         await OnSelectedCategoryChanged();
+        await CloseOptions();
+    }
+
+    async Task ImportToString(InputFileChangeEventArgs e)
+    {
+        if (ImportExport.FileToStringByExtension.Where(pair => e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase)).Select(pair => pair.Value).FirstOrDefault() is IFileToString fileToString)
+        {
+            Stream stream = e.File.OpenReadStream(maxAllowedSize: _maxAllowedFileSize);
+            string fileString = await fileToString.GetString(stream);
+            stream.Close();
+
+            if (!string.IsNullOrEmpty(fileString))
+            {
+
+            }
+
+            if (!Repository.Settings.ShowAdvancedInput)
+            {
+                Repository.Settings.ShowAdvancedInput = true;
+                await Repository.UpdateSettings(Repository.Settings.Id);
+            }
+        }
+
+        await CloseOptions();
     }
 
     async Task ExportData(DataFormat dataFormat)
@@ -188,6 +213,8 @@ public partial class OptionsComponent
     async Task ImportDirectory()
     {
         await DirectoryBackup.ImportData();
+
+        await CloseOptions();
     }
 
     async Task ImportGoogleDrive()
@@ -195,5 +222,6 @@ public partial class OptionsComponent
         await GoogleDriveBackup.ImportData();
 
         await OnSelectedCategoryChanged();
+        await CloseOptions();
     }
 }
