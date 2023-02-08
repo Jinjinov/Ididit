@@ -41,25 +41,26 @@ a difference of 7px in Height and 14px in Width, header 31px
 8.
 - [ ] separate import column, select line in textarea, search selected line, copy selected line
 
+    - get selection:
     - https://stackoverflow.com/questions/60110779/get-the-selected-text-from-an-input-using-blazor
     - https://stackoverflow.com/questions/65035652/select-characters-highlight-text-in-input-on-mousedown-and-mouseup-with-blazor
+    - highlight:
     - https://codersblock.com/blog/highlight-text-inside-a-textarea/
     - https://codepen.io/lonekorean/pen/gaLEMR
     - https://lonekorean.github.io/highlight-within-textarea/
     - https://github.com/lonekorean/highlight-within-textarea
+    - select line:
     - https://stackoverflow.com/questions/13650534/how-to-select-line-of-text-in-textarea
     - http://jsfiddle.net/5enfp/
     - http://jsfiddle.net/9UgEF/73/
+    - get line number:
     - https://stackoverflow.com/questions/9185630/find-out-the-line-row-number-of-the-cursor-in-a-textarea
     - http://jsfiddle.net/9QzQy/
     - https://github.com/component/textarea-caret-position
+    - detect when "cursor position inside input change"
     - https://stackoverflow.com/questions/53999384/javascript-execute-when-textarea-caret-is-moved
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
-
-        highlight search word in results
-        highlight current goal line
-        insert after current goal line
 
     - highlight filter word in results
     - select current line in goal
