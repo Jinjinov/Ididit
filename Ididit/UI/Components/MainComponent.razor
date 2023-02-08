@@ -181,7 +181,7 @@
                         @if (IsPersonalComputer && Settings.ShowAdvancedInput)
                         {
                             <Column Padding=Padding.Is0.OnMobile.Is2.OnDesktop>
-                                <AdvancedInputComponent AdvancedInputText="@_advancedInputText" @bind-EditDetailsGoal=_editDetailsGoal @bind-EditNameGoal=_editNameGoal @bind-Filters=_filters Settings=Settings />
+                                <AdvancedInputComponent @bind-AdvancedInputText=_advancedInputText @bind-EditDetailsGoal=_editDetailsGoal @bind-EditNameGoal=_editNameGoal @bind-Filters=_filters Settings=Settings />
                             </Column>
                         }
 
