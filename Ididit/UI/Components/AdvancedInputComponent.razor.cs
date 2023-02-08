@@ -143,6 +143,9 @@ public partial class AdvancedInputComponent
         if (_advancedEdit is null)
             return;
 
+        if (Settings.Screen != Screen.Main)
+            return;
+
         _advancedEditTextSelection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
         string selectionString = AdvancedInputText[_advancedEditTextSelection.Start.._advancedEditTextSelection.End];
 
