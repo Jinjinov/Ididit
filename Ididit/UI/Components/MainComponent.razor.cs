@@ -268,4 +268,6 @@ public partial class MainComponent
     GoalModel? _editDetailsGoal;
 
     GoalModel? _editNameGoal;
+
+    string _advancedInputText = string.Empty;
 }

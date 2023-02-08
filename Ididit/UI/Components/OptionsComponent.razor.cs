@@ -182,6 +182,12 @@ public partial class OptionsComponent
         await CloseOptions();
     }
 
+    [Parameter]
+    public string AdvancedInputText { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<string> AdvancedInputTextChanged { get; set; }
+
     async Task ImportToString(InputFileChangeEventArgs e)
     {
         if (ImportExport.FileToStringByExtension.Where(pair => e.File.Name.EndsWith(pair.Key, StringComparison.OrdinalIgnoreCase)).Select(pair => pair.Value).FirstOrDefault() is IFileToString fileToString)
@@ -192,7 +198,8 @@ public partial class OptionsComponent
 
             if (!string.IsNullOrEmpty(fileString))
             {
-
+                AdvancedInputText = fileString;
+                await AdvancedInputTextChanged.InvokeAsync(AdvancedInputText);
             }
 
             if (!Repository.Settings.ShowAdvancedInput)

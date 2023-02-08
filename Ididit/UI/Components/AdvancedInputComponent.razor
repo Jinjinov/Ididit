@@ -2,5 +2,5 @@
     <Button Disabled="IsMoveSelectedTextDisabled" Color=Color.Primary Size="Size" Block=true Margin="Margin.Is2.FromBottom" @onclick=MoveSelectedTextToSelectedGoal>@Localizer["Move selected text to selected goal"]</Button>
     <Check TValue="bool" Checked="Settings.SelectLineWithCaret" CheckedChanged="OnSelectLineWithCaretChanged">@Localizer["Select line with caret"]</Check>
     <Check TValue="bool" Checked="Settings.FilterBySelectedText" CheckedChanged="OnFilterBySelectedTextChanged">@Localizer["Filter by selected text"]</Check>
-    <MemoEdit @ref="_advancedEdit" Class="shadow-none" Style="resize:none" Margin="Margin.Is2.FromTop" Flex="Flex.Grow.Is1" @bind-Text="@_advancedEditText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" FocusOut=OnFocusOut />
+    <MemoEdit @ref="_advancedEdit" Class="shadow-none" Style="resize:none" Margin="Margin.Is2.FromTop" Flex="Flex.Grow.Is1" @bind-Text="@AdvancedInputText" @onselect="OnSelect" @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" FocusOut=OnFocusOut />
 </Div>

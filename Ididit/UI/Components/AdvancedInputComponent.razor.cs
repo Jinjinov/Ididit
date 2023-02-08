@@ -17,6 +17,9 @@ public partial class AdvancedInputComponent
     [Inject]
     IRepository Repository { get; set; } = null!;
 
+    [Inject]
+    JsInterop JsInterop { get; set; } = null!;
+
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
 
@@ -44,18 +47,16 @@ public partial class AdvancedInputComponent
     [Parameter]
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
+    [Parameter]
+    public string AdvancedInputText { get; set; } = string.Empty;
+
     bool IsMoveSelectedTextDisabled => string.IsNullOrEmpty(_selectedAdvancedEditText) || (EditNameGoal is null && EditDetailsGoal is null);
 
     MemoEdit? _advancedEdit;
 
-    string _advancedEditText = string.Empty;
-
     Selection _advancedEditTextSelection = new();
 
     string _selectedAdvancedEditText = string.Empty;
-
-    [Inject]
-    JsInterop JsInterop { get; set; } = null!;
 
     async Task OnSelectLineWithCaretChanged(bool val)
     {
@@ -88,7 +89,7 @@ public partial class AdvancedInputComponent
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }
 
-        _advancedEditText = _advancedEditText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
+        AdvancedInputText = AdvancedInputText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
 
         _advancedEditTextSelection.Start = 0;
         _advancedEditTextSelection.End = 0;
@@ -127,7 +128,7 @@ public partial class AdvancedInputComponent
             return;
 
         _advancedEditTextSelection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
-        string selectionString = _advancedEditText[_advancedEditTextSelection.Start.._advancedEditTextSelection.End];
+        string selectionString = AdvancedInputText[_advancedEditTextSelection.Start.._advancedEditTextSelection.End];
 
         //string selectionString = await JsInterop.GetSelectionString(_advancedEdit.ElementRef);
 
@@ -173,11 +174,11 @@ public partial class AdvancedInputComponent
 
         Selection selection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
 
-        if (selection.Start == selection.End && _advancedEditText.Length > 0)
+        if (selection.Start == selection.End && AdvancedInputText.Length > 0)
         {
-            int index = Math.Min(selection.Start, _advancedEditText.Length - 1);
+            int index = Math.Min(selection.Start, AdvancedInputText.Length - 1);
 
-            int afterEnd = _advancedEditText.IndexOf('\n', index);
+            int afterEnd = AdvancedInputText.IndexOf('\n', index);
 
             if (afterEnd == 0)
                 return;
@@ -185,10 +186,10 @@ public partial class AdvancedInputComponent
             if (afterEnd == index)
                 index -= 1;
 
-            int beforeStart = _advancedEditText.LastIndexOf('\n', index);
+            int beforeStart = AdvancedInputText.LastIndexOf('\n', index);
 
             if (afterEnd == -1)
-                afterEnd = _advancedEditText.Length;
+                afterEnd = AdvancedInputText.Length;
 
             await JsInterop.SetSelectionStartEnd(_advancedEdit.ElementRef, beforeStart + 1, afterEnd);
         }
