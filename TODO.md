@@ -57,7 +57,7 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://stackoverflow.com/questions/9185630/find-out-the-line-row-number-of-the-cursor-in-a-textarea
     - http://jsfiddle.net/9QzQy/
     - https://github.com/component/textarea-caret-position
-    - detect when "cursor position inside input change"
+    - on change of cursor position inside textarea:
     - https://stackoverflow.com/questions/53999384/javascript-execute-when-textarea-caret-is-moved
     - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
     - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
