@@ -81,6 +81,12 @@ public partial class AdvancedInputComponent
         await Repository.UpdateSettings(Settings.Id);
 
         await SettingsChanged.InvokeAsync(Settings);
+
+        if (!Settings.FilterBySelectedText)
+        {
+            Filters.SearchFilter = string.Empty;
+            await FiltersChanged.InvokeAsync(Filters);
+        }
     }
 
     async Task MoveSelectedTextToSelectedGoal()

@@ -26,6 +26,12 @@
 
                 @foreach (GoalModel goal in category.GoalList)
                 {
+                    if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
+                    {
+                        if (!goal.Name.Contains(Filters.SearchFilter) && !goal.Details.Contains(Filters.SearchFilter))
+                            continue;
+                    }
+
                     <GoalComponent @key=goal Goal=goal EditDetailsGoal=EditDetailsGoal EditDetailsGoalChanged=EditDetailsGoalChanged EditNameGoal=EditNameGoal EditNameGoalChanged=EditNameGoalChanged Filters=Filters Settings=Settings />
                 }
             }
@@ -34,6 +40,12 @@
         {
             @foreach (GoalModel goal in SelectedCategory.GoalList)
             {
+                if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
+                {
+                    if (!goal.Name.Contains(Filters.SearchFilter) && !goal.Details.Contains(Filters.SearchFilter))
+                        continue;
+                }
+
                 <GoalComponent @key=goal Goal=goal EditDetailsGoal=EditDetailsGoal EditDetailsGoalChanged=EditDetailsGoalChanged EditNameGoal=EditNameGoal EditNameGoalChanged=EditNameGoalChanged Filters=Filters Settings=Settings />
             }
         }
