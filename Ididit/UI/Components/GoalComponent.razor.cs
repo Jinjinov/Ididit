@@ -236,6 +236,9 @@ public partial class GoalComponent
 
     string MarkCurrentLine(string text)
     {
+        if (text.Length < _currentLine.End)
+            return text;
+
         return text.Insert(_currentLine.End, "</mark>").Insert(_currentLine.Start, "<mark class='hwt-mark'>");
     }
 
