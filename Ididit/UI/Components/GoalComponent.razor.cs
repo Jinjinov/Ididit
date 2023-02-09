@@ -5,6 +5,7 @@ using Ididit.Data;
 using Ididit.Data.Model.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -17,6 +18,9 @@ public partial class GoalComponent
 
     [Inject]
     IRepository Repository { get; set; } = null!;
+
+    [Inject]
+    JsInterop JsInterop { get; set; } = null!;
 
     [CascadingParameter]
     Blazorise.Size Size { get; set; }
@@ -230,6 +234,11 @@ public partial class GoalComponent
         await GoalChanged.InvokeAsync(Goal);
     }
 
+    string MarkCurrentLine(string text)
+    {
+        return text.Insert(_currentLine.End, "</mark>").Insert(_currentLine.Start, "<mark class='hwt-mark'>");
+    }
+
     string MarkSearchResults(string text)
     {
         return text.Replace(Filters.SearchFilter, $"<mark class='hwt-mark'>{Filters.SearchFilter}</mark>");
@@ -248,5 +257,48 @@ public partial class GoalComponent
         }
 
         return htmlDoc.DocumentNode.OuterHtml;
+    }
+
+    async Task OnKeyUp(KeyboardEventArgs e)
+    {
+        if (Settings.SelectLineWithCaret)
+            await SelectCurrentLine();
+    }
+
+    async Task OnMouseUp(MouseEventArgs e)
+    {
+        if (Settings.SelectLineWithCaret)
+            await SelectCurrentLine();
+    }
+
+    Selection _currentLine = new();
+
+    private async Task SelectCurrentLine()
+    {
+        if (_detailsEdit is null)
+            return;
+
+        Selection selection = await JsInterop.GetSelectionStartEnd(_detailsEdit.ElementRef);
+
+        if (selection.Start == selection.End && Goal.Details.Length > 0)
+        {
+            int index = Math.Min(selection.Start, Goal.Details.Length - 1);
+
+            int afterEnd = Goal.Details.IndexOf('\n', index);
+
+            if (afterEnd == 0)
+                return;
+
+            if (afterEnd == index)
+                index -= 1;
+
+            int beforeStart = Goal.Details.LastIndexOf('\n', index);
+
+            if (afterEnd == -1)
+                afterEnd = Goal.Details.Length;
+
+            _currentLine.Start = beforeStart + 1;
+            _currentLine.End = afterEnd;
+        }
     }
 }

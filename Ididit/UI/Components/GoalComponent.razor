@@ -19,7 +19,7 @@
                         </Addon>
                     </Addons>
 
-                    @if (string.IsNullOrEmpty(Filters.SearchFilter) || Filters.SearchFilter == "\n")
+                    @if (!Settings.SelectLineWithCaret && string.IsNullOrEmpty(Filters.SearchFilter))
                     {
                         <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize="AutoSize" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                     }
@@ -28,10 +28,17 @@
                         <Div class="hwt-container">
                             <Div class="hwt-backdrop" Position="Position.Absolute">
                                 <Div class="hwt-highlights form-control" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0>
-                                    @((MarkupString)MarkSearchResults(Goal.Details))
+                                    @if (!string.IsNullOrEmpty(Filters.SearchFilter))
+                                    {
+                                        @((MarkupString)MarkSearchResults(Goal.Details))
+                                    }
+                                    else
+                                    {
+                                        @((MarkupString)MarkCurrentLine(Goal.Details))
+                                    }
                                 </Div>
                             </Div>
-                            <MemoEdit @ref="_detailsEdit" Class="shadow-none hwt-textarea" Position="Position.Relative" AutoSize="AutoSize" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
+                            <MemoEdit @ref="_detailsEdit" Class="shadow-none hwt-textarea" Position="Position.Relative" AutoSize="AutoSize" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn @onkeyup="OnKeyUp" @onmouseup="OnMouseUp" FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                         </Div>
                     }
                 }
@@ -76,7 +83,7 @@
                     {
                         <!-- no margin in Markdown HTML -->
                         <Div Class="child-no-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
-                            @if (string.IsNullOrEmpty(Filters.SearchFilter) || Filters.SearchFilter == "\n")
+                            @if (string.IsNullOrEmpty(Filters.SearchFilter))
                             {
                                 @((MarkupString)Goal.DetailsMarkdownHtml)
                             }

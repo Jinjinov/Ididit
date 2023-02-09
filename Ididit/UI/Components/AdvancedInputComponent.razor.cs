@@ -138,7 +138,7 @@ public partial class AdvancedInputComponent
     {
         _selectedAdvancedEditText = text;
 
-        if (Settings.FilterBySelectedText)
+        if (Settings.FilterBySelectedText && _selectedAdvancedEditText != "\n")
         {
             Filters.SearchFilter = _selectedAdvancedEditText;
             await FiltersChanged.InvokeAsync(Filters);
