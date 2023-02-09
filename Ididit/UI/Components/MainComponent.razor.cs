@@ -269,6 +269,8 @@ public partial class MainComponent
 
     GoalModel? _editNameGoal;
 
+    bool _autosize = true;
+
     AdvancedInputComponent? _advancedInputComponent;
 
     void OnAdvancedInputTextChanged(string text)

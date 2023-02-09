@@ -21,18 +21,18 @@
 
                     @if (string.IsNullOrEmpty(Filters.SearchFilter) || Filters.SearchFilter == "\n")
                     {
-                        <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize="!Settings.ShowAdvancedInput" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
+                        <MemoEdit @ref="_detailsEdit" Class="shadow-none" AutoSize="AutoSize" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
                     }
                     else
                     {
-                        <div class="hwt-container">
+                        <Div class="hwt-container">
                             <Div class="hwt-backdrop" Position="Position.Absolute">
                                 <Div class="hwt-highlights form-control" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0>
                                     @((MarkupString)MarkSearchResults(Goal.Details))
                                 </Div>
                             </Div>
-                            <MemoEdit @ref="_detailsEdit" Class="shadow-none hwt-textarea" Position="Position.Absolute" AutoSize="!Settings.ShowAdvancedInput" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
-                        </div>
+                            <MemoEdit @ref="_detailsEdit" Class="shadow-none hwt-textarea" Position="Position.Relative" AutoSize="AutoSize" Text="@Goal.Details" Rows="@Goal.Rows" Margin=Margin.Is0 Padding=Padding.Is1 Border=Border.RoundedZero.Is0 @onmousedown=OnEditDetailsFocusIn FocusOut=OnEditDetailsFocusOut TextChanged=OnTextChanged />
+                        </Div>
                     }
                 }
                 else
