@@ -229,8 +229,11 @@ public partial class GoalComponent
 
     string MarkSearchResults(string text)
     {
-        //return text.Replace(Filters.SearchFilter, $"<mark>{Filters.SearchFilter}</mark>");
+        return text.Replace(Filters.SearchFilter, $"<mark class='hwt-mark'>{Filters.SearchFilter}</mark>");
+    }
 
+    string MarkSearchResultsInHtml(string text)
+    {
         var htmlDoc = new HtmlDocument();
         htmlDoc.LoadHtml(text);
 

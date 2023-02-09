@@ -8,6 +8,27 @@ mark {
     background-color: #fff200 !important;
 }
 
+.hwt-mark {
+    padding: 0 !important;
+    background-color: #fff200 !important;
+    color: transparent !important;
+}
+
+.hwt-backdrop {
+    z-index: 1;
+}
+
+.hwt-textarea {
+    z-index: 2;
+    background-color: transparent !important;
+}
+
+.hwt-highlights {
+    color: transparent !important;
+    white-space: pre-wrap;
+    letter-spacing: normal;
+}
+
 .accordion-body {
     padding: 0.5rem !important;
 }
