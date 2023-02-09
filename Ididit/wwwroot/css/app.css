@@ -3,6 +3,11 @@ html, body, #app {
     height: 100%;
 }
 
+mark {
+    padding: 0 !important;
+    background-color: #fff200 !important;
+}
+
 .accordion-body {
     padding: 0.5rem !important;
 }
