@@ -50,9 +50,6 @@ public partial class GoalComponent
     [Parameter]
     public SettingsModel Settings { get; set; } = null!;
 
-    [Parameter]
-    public bool AutoSize { get; set; }
-
     bool EditEnabled => EditDetailsGoal == Goal || EditNameGoal == Goal;
 
     IFluentBorderWithAll CardBorder => EditEnabled ? Border.Is1.RoundedZero : Border.Is0.RoundedZero;

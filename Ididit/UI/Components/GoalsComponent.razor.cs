@@ -41,9 +41,6 @@ public partial class GoalsComponent
     [Parameter]
     public EventCallback<GoalModel> EditNameGoalChanged { get; set; }
 
-    [Parameter]
-    public bool AutoSize { get; set; }
-
     string MaxWidth => Repository.Settings.MaxWidth.HasValue ? $"max-width:{Repository.Settings.MaxWidth.Value}px" : string.Empty;
 
     TaskModel? _selectedTask;

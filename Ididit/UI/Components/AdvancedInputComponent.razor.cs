@@ -47,12 +47,6 @@ public partial class AdvancedInputComponent
     [Parameter]
     public EventCallback<GoalModel?> EditDetailsGoalChanged { get; set; }
 
-    [Parameter]
-    public bool AutoSize { get; set; }
-
-    [Parameter]
-    public EventCallback<bool> AutoSizeChanged { get; set; }
-
     private string AdvancedInputText { get => Filters.AdvancedInputText; set => Filters.AdvancedInputText = value; }
 
     bool IsMoveSelectedTextDisabled => string.IsNullOrEmpty(_selectedAdvancedEditText) || (EditNameGoal is null && EditDetailsGoal is null);
@@ -94,27 +88,15 @@ public partial class AdvancedInputComponent
     {
         if (EditNameGoal is not null)
         {
-            AutoSize = false;
-            await AutoSizeChanged.InvokeAsync(AutoSize);
-
             EditNameGoal.Details += string.IsNullOrEmpty(EditNameGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
             await OnTextChanged(EditNameGoal);
             await EditNameGoalChanged.InvokeAsync(EditNameGoal);
-
-            AutoSize = true;
-            await AutoSizeChanged.InvokeAsync(AutoSize);
         }
         else if (EditDetailsGoal is not null)
         {
-            AutoSize = false;
-            await AutoSizeChanged.InvokeAsync(AutoSize);
-
             EditDetailsGoal.Details += string.IsNullOrEmpty(EditDetailsGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
             await OnTextChanged(EditDetailsGoal);
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
-
-            AutoSize = true;
-            await AutoSizeChanged.InvokeAsync(AutoSize);
         }
 
         AdvancedInputText = AdvancedInputText.Remove(_advancedEditTextSelection.Start, _advancedEditTextSelection.End - _advancedEditTextSelection.Start);
