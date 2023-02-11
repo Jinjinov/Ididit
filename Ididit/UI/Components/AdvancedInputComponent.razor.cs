@@ -88,13 +88,25 @@ public partial class AdvancedInputComponent
     {
         if (EditNameGoal is not null)
         {
-            EditNameGoal.Details += string.IsNullOrEmpty(EditNameGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
+            string selectedText = string.IsNullOrEmpty(EditNameGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
+
+            if (EditNameGoal.DetailsSelection is not null)
+                EditNameGoal.Details = EditNameGoal.Details.Insert(EditNameGoal.DetailsSelection.End, selectedText);
+            else
+                EditNameGoal.Details += selectedText;
+
             await OnTextChanged(EditNameGoal);
             await EditNameGoalChanged.InvokeAsync(EditNameGoal);
         }
         else if (EditDetailsGoal is not null)
         {
-            EditDetailsGoal.Details += string.IsNullOrEmpty(EditDetailsGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
+            string selectedText = string.IsNullOrEmpty(EditDetailsGoal.Details) ? _selectedAdvancedEditText : Environment.NewLine + _selectedAdvancedEditText;
+
+            if (EditDetailsGoal.DetailsSelection is not null)
+                EditDetailsGoal.Details = EditDetailsGoal.Details.Insert(EditDetailsGoal.DetailsSelection.End, selectedText);
+            else
+                EditDetailsGoal.Details += selectedText;
+
             await OnTextChanged(EditDetailsGoal);
             await EditDetailsGoalChanged.InvokeAsync(EditDetailsGoal);
         }

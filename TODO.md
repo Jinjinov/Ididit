@@ -26,8 +26,6 @@ a difference of 7px in Height and 14px in Width, header 31px
 -------------------------------------------------------------------------------
 
 8.
-- [ ] move selected text after selected line in goal
-
 - [ ] organize habits / Google Keep notes
 
 -------------------------------------------------------------------------------
