@@ -32,6 +32,9 @@ public class GoalModel
     }
 
     [JsonIgnore]
+    public Selection? DetailsSelection { get; set; }
+
+    [JsonIgnore]
     internal string DetailsMarkdownHtml { get; set; } = string.Empty;
 
     [JsonIgnore]

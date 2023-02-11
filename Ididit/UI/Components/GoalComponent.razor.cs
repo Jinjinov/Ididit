@@ -233,10 +233,13 @@ public partial class GoalComponent
 
     string MarkCurrentLine(string text)
     {
-        if (text.Length < _currentLine.End)
+        if (Goal.DetailsSelection is null)
             return text;
 
-        return text.Insert(_currentLine.End, "</mark>").Insert(_currentLine.Start, "<mark class='hwt-mark'>");
+        if (text.Length < Goal.DetailsSelection.End)
+            return text;
+
+        return text.Insert(Goal.DetailsSelection.End, "</mark>").Insert(Goal.DetailsSelection.Start, "<mark class='hwt-mark'>");
     }
 
     string MarkSearchResults(string text)
@@ -263,15 +266,17 @@ public partial class GoalComponent
     {
         if (Settings.SelectLineWithCaret)
             await SelectCurrentLine();
+        else if (Goal.DetailsSelection is not null)
+            Goal.DetailsSelection = null;
     }
 
     async Task OnMouseUp(MouseEventArgs e)
     {
         if (Settings.SelectLineWithCaret)
             await SelectCurrentLine();
+        else if (Goal.DetailsSelection is not null)
+            Goal.DetailsSelection = null;
     }
-
-    Selection _currentLine = new();
 
     private async Task SelectCurrentLine()
     {
@@ -297,8 +302,11 @@ public partial class GoalComponent
             if (afterEnd == -1)
                 afterEnd = Goal.Details.Length;
 
-            _currentLine.Start = beforeStart + 1;
-            _currentLine.End = afterEnd;
+            if (Goal.DetailsSelection is null)
+                Goal.DetailsSelection = new();
+
+            Goal.DetailsSelection.Start = beforeStart + 1;
+            Goal.DetailsSelection.End = afterEnd;
         }
     }
 }
