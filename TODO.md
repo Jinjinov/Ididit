@@ -6,27 +6,14 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- [ ] use phone back button to exit options / settings
-- [ ] fix phone 2x app open - check if app is already running
-
-- [ ] benchmark method performance
-
--------------------------------------------------------------------------------
-
 1.
-- [ ] Set max task column width - slider range: 500 - 1000
 - [ ] android tablet screenshots - 2x (small, large)
-- [ ] Google drive last backup date
-
--------------------------------------------------------------------------------
 
 2.
-- [ ] restore deleted Goals from Trash
+- [ ] Google drive last backup date
 
 3.
-- [ ] sort Tasks ascending / descending
-
--------------------------------------------------------------------------------
+- [ ] restore deleted Goals from Trash
 
 4.
 - [ ] change Goal order
@@ -39,30 +26,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 -------------------------------------------------------------------------------
 
 8.
-- [ ] separate import column, select line in textarea, search selected line, copy selected line
-
-    - get selection:
-    - https://stackoverflow.com/questions/60110779/get-the-selected-text-from-an-input-using-blazor
-    - https://stackoverflow.com/questions/65035652/select-characters-highlight-text-in-input-on-mousedown-and-mouseup-with-blazor
-    - highlight:
-    - https://codersblock.com/blog/highlight-text-inside-a-textarea/
-    - https://codepen.io/lonekorean/pen/gaLEMR
-    - https://lonekorean.github.io/highlight-within-textarea/
-    - https://github.com/lonekorean/highlight-within-textarea
-    - select line:
-    - https://stackoverflow.com/questions/13650534/how-to-select-line-of-text-in-textarea
-    - http://jsfiddle.net/5enfp/
-    - http://jsfiddle.net/9UgEF/73/
-    - get line number:
-    - https://stackoverflow.com/questions/9185630/find-out-the-line-row-number-of-the-cursor-in-a-textarea
-    - http://jsfiddle.net/9QzQy/
-    - https://github.com/component/textarea-caret-position
-    - on change of cursor position inside textarea:
-    - https://stackoverflow.com/questions/53999384/javascript-execute-when-textarea-caret-is-moved
-    - https://stackoverflow.com/questions/19755633/detect-when-cursor-position-inside-input-change-in-jquery
-    - https://stackoverflow.com/questions/5832662/catching-cursor-place-change-events-inside-textareas-with-jquery-ie6-compatib
-
-    - move selected text after selected line in goal
+- [ ] move selected text after selected line in goal
 
 - [ ] organize habits / Google Keep notes
 
@@ -201,6 +165,17 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+## VERY HIGH PRIORITY:
+
+- [ ] use phone back button to exit options / settings
+- [ ] fix phone 2x app open - check if app is already running
+
+- [ ] benchmark method performance
+
+- [ ] Set max task column width - slider range: 500 - 1000
+
+- [ ] sort Tasks ascending / descending
+
 - [ ] Bootstrap 5.1.3 ---> 5.2.0 - https://github.com/twbs/bootstrap/issues/36431
 - [ ] Fontawesome 5.15.4 ---> 6.0.0 - https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?version=6.0.0
 
@@ -268,6 +243,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 - [ ] show "Task done times" in a Calendar/Scheduler, not a List
 
 - [ ] help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
+
+## VERY LOW PRIORITY:
 
 - [ ] fix "The given key '6' was not present in the dictionary" in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
 
