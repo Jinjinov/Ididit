@@ -50,11 +50,9 @@ iframe {
 /* MARKDOWN */
 
 /* no margin in Markdown HTML */
-.child-no-margin > p {
-    margin: 0;
-}
-
-/* no margin in Markdown HTML */
+.child-no-margin > p,
+.child-no-margin > ol,
+.child-no-margin > ul,
 .child-no-margin > pre {
     margin: 0;
 }

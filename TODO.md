@@ -6,7 +6,6 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- remove <ul> and <ol> bottom margin
 - replace \r\n\r\n with <br><br>
 - add new line before appending a new Google Keep note
 - add # before the Google Keep note title
