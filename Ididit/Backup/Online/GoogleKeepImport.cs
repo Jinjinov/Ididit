@@ -47,16 +47,16 @@ internal class GoogleKeepImport : IFileImport, IFileToString
                     if (!string.IsNullOrEmpty(googleKeepNote.Title))
                     {
                         string title = $"# {googleKeepNote.Title}";
-                        text += string.IsNullOrEmpty(text) ? title : Environment.NewLine + Environment.NewLine + title;
+                        text += string.IsNullOrEmpty(text) ? title : "\n" + "\n" + title;
                     }
                     else if (!string.IsNullOrEmpty(text))
                     {
-                        text += Environment.NewLine;
+                        text += "\n";
                     }
 
                     if (!string.IsNullOrEmpty(googleKeepNote.TextContent))
                     {
-                        text += string.IsNullOrEmpty(text) ? googleKeepNote.TextContent : Environment.NewLine + googleKeepNote.TextContent;
+                        text += string.IsNullOrEmpty(text) ? googleKeepNote.TextContent : "\n" + googleKeepNote.TextContent;
                     }
                 }
             }
