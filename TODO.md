@@ -6,6 +6,22 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+- remove <ul> and <ol> bottom margin
+- replace \r\n\r\n with <br><br>
+- add new line before appending a new Google Keep note
+- add # before the Google Keep note title
+
+- drag & drop Goal
+    - change order
+    - change Category
+    - merge with another Goal
+
+- Asp Net Core backend - Blazor server
+    - authentication / authorization for Google Drive
+    - sync data with SQL Server
+
+-------------------------------------------------------------------------------
+
 1.
 - [ ] android tablet screenshots - 2x (small, large)
 
@@ -16,12 +32,12 @@ a difference of 7px in Height and 14px in Width, header 31px
 - [ ] restore deleted Goals from Trash
 
 4.
-- [ ] change Goal order
-- [ ] change Task order
+- [ ] change Goal order !!!
+- [ ] (change Task order)
 
 5.
-- [ ] change Goal Category
-- [ ] change Task Goal
+- [ ] change Goal Category !!!
+- [ ] (change Task Goal)
 
 -------------------------------------------------------------------------------
 
@@ -31,7 +47,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 -------------------------------------------------------------------------------
 
 6.
-- [ ] debug import export on phones
+- [ ] debug import / export on phones
 
 7.
 - [ ] Maui Google Drive authentication:
