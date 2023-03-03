@@ -6,7 +6,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- replace \r\n\r\n with <br><br>
+- preserve empty lines in Markdown
 
 - drag & drop Goal
     - change order
