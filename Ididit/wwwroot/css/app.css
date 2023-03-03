@@ -49,23 +49,23 @@ iframe {
 
 /* MARKDOWN */
 
-/* no margin in Markdown HTML */
-.child-no-margin > p,
-.child-no-margin > ol,
-.child-no-margin > ul,
-.child-no-margin > pre {
+/* set margin in Markdown HTML */
+.child-block-margin > p,
+.child-block-margin > ol,
+.child-block-margin > ul,
+.child-block-margin > pre {
     margin-bottom: calc(1em * var(--bs-body-line-height));
 }
 
-.child-no-margin > p + ol,
-.child-no-margin > p + ul {
+.child-block-margin > p + ol,
+.child-block-margin > p + ul {
     margin-top: calc(-1em * var(--bs-body-line-height));
 }
 
-.child-no-margin > p:last-child,
-.child-no-margin > ol:last-child,
-.child-no-margin > ul:last-child,
-.child-no-margin > pre:last-child {
+.child-block-margin > p:last-child,
+.child-block-margin > ol:last-child,
+.child-block-margin > ul:last-child,
+.child-block-margin > pre:last-child {
     margin-bottom: 0;
 }
 
