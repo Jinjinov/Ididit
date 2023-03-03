@@ -54,7 +54,19 @@ iframe {
 .child-no-margin > ol,
 .child-no-margin > ul,
 .child-no-margin > pre {
-    margin: 0;
+    margin-bottom: calc(1em * var(--bs-body-line-height));
+}
+
+.child-no-margin > p + ol,
+.child-no-margin > p + ul {
+    margin-top: calc(-1em * var(--bs-body-line-height));
+}
+
+.child-no-margin > p:last-child,
+.child-no-margin > ol:last-child,
+.child-no-margin > ul:last-child,
+.child-no-margin > pre:last-child {
+    margin-bottom: 0;
 }
 
 /* FULL SCREEN OVERLAY */
