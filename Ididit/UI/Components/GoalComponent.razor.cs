@@ -245,13 +245,16 @@ public partial class GoalComponent
 
     string MarkSearchResults(string text)
     {
-        return text.Replace(Filters.SearchFilter, $"<mark class='hwt-mark'>{Filters.SearchFilter}</mark>");
+        if (Filters.IgnoreSearchCase)
+            return MarkSearchResults(text, "<mark class='hwt-mark'>", "</mark>");
+        else
+            return text.Replace(Filters.SearchFilter, $"<mark class='hwt-mark'>{Filters.SearchFilter}</mark>");
     }
 
-    public static string MarkSearchResults(string input, string searchTerm)
+    string MarkSearchResults(string input, string before, string after)
     {
         // Create a pattern to match the search term with case-insensitivity
-        string pattern = "(?i)" + Regex.Escape(searchTerm);
+        string pattern = "(?i)" + Regex.Escape(Filters.SearchFilter);
 
         // Replace the search term with the marked version
         return Regex.Replace(input, pattern, match =>
@@ -260,7 +263,7 @@ public partial class GoalComponent
             string matchedTerm = match.Value;
 
             // Add mark tag to the start and end of the matched term
-            return $"<mark class='hwt-mark'>{matchedTerm}</mark>";
+            return $"{before}{matchedTerm}{after}";
         });
     }
 
@@ -271,9 +274,19 @@ public partial class GoalComponent
 
         HtmlNodeCollection coll = htmlDoc.DocumentNode.SelectNodes("//text()");
 
-        foreach (HtmlTextNode node in coll.Cast<HtmlTextNode>())
+        if (Filters.IgnoreSearchCase)
         {
-            node.Text = node.Text.Replace(Filters.SearchFilter, $"<mark>{Filters.SearchFilter}</mark>");
+            foreach (HtmlTextNode node in coll.Cast<HtmlTextNode>())
+            {
+                node.Text = MarkSearchResults(node.Text, "<mark>", "</mark>");
+            }
+        }
+        else
+        {
+            foreach (HtmlTextNode node in coll.Cast<HtmlTextNode>())
+            {
+                node.Text = node.Text.Replace(Filters.SearchFilter, $"<mark>{Filters.SearchFilter}</mark>");
+            }
         }
 
         return htmlDoc.DocumentNode.OuterHtml;
