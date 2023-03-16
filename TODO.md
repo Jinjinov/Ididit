@@ -4,44 +4,31 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 https://stackoverflow.com/questions/67972372/why-are-window-height-and-window-width-not-exact-c-wpf
 a difference of 7px in Height and 14px in Width, header 31px
 
--------------------------------------------------------------------------------
-
-- sort goals by name
-
-- use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
-
-- drag & drop Goal
-    - change order
-    - change Category
-    - merge with another Goal
-
-- Asp Net Core backend - Blazor server
-    - authentication / authorization for Google Drive
-    - sync data with SQL Server
+- android tablet screenshots - 2x (small, large)
 
 -------------------------------------------------------------------------------
+
+- [ ] organize habits / Google Keep notes
 
 1.
-- [ ] android tablet screenshots - 2x (small, large)
+- [ ] sort goals by name
 
 2.
 - [ ] Google drive last backup date
 
 3.
-- [ ] restore deleted Goals from Trash
+- [ ] use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
 
 4.
-- [ ] change Goal order !!!
-- [ ] (change Task order)
+- [ ] drag & drop Goal
+    - change order
+    - change Category
+    - merge with another Goal
 
 5.
-- [ ] change Goal Category !!!
-- [ ] (change Task Goal)
-
--------------------------------------------------------------------------------
-
-8.
-- [ ] organize habits / Google Keep notes
+- [ ] drag & drop Task
+    - change order
+    - change Goal
 
 -------------------------------------------------------------------------------
 
@@ -73,6 +60,13 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://github.com/stevenchang0529/XamarinGoogleDriveRest
     - https://github.com/Kimserey/GDrivePrototype
     - https://github.com/nguyenthanhliemfc/TestGoogleDriveForXamarinForms
+
+-------------------------------------------------------------------------------
+
+8.
+- [ ] Asp Net Core backend - Blazor server
+    - authentication / authorization for Google Drive
+    - sync data with SQL Server
 
 -------------------------------------------------------------------------------
 
@@ -175,6 +169,8 @@ a difference of 7px in Height and 14px in Width, header 31px
     - https://analytics.google.com/
 
 - [ ] backup on: Dropbox / OneDrive / iCloud
+
+- [ ] restore deleted Goals from Trash
 
 -------------------------------------------------------------------------------
 
