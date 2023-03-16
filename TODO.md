@@ -6,6 +6,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+- sort goals by name
+
 - use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
 
 - drag & drop Goal
