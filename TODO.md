@@ -19,6 +19,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 3.
 - [ ] use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
 
+-------------------------------------------------------------------------------
+
 4.
 - [ ] drag & drop Goal
     - change order
