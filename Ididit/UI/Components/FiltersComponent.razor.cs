@@ -36,6 +36,8 @@ public partial class FiltersComponent
 
     string _searchFilter = string.Empty;
 
+    bool _ignoreSearchCase;
+
     async Task SearchFilterChanged(string searchFilter)
     {
         _searchFilter = searchFilter;
@@ -47,6 +49,13 @@ public partial class FiltersComponent
     {
         _searchFilter = string.Empty;
         Filters.SearchFilter = string.Empty;
+        await FiltersChanged.InvokeAsync(Filters);
+    }
+
+    async Task IgnoreSearchCaseChanged(bool ignoreSearchCase)
+    {
+        _ignoreSearchCase = ignoreSearchCase;
+        Filters.IgnoreSearchCase = ignoreSearchCase;
         await FiltersChanged.InvokeAsync(Filters);
     }
 

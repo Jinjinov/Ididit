@@ -9,6 +9,8 @@ public class Filters
 {
     public string SearchFilter { get; set; } = string.Empty;
 
+    public bool IgnoreSearchCase { get; set; }
+
     public DateTime? DateFilter { get; set; }
 
     public string AdvancedInputText { get; set; } = string.Empty;
@@ -19,7 +21,7 @@ public class Filters
         {
             bool isRatioOk = task.ElapsedToDesiredRatio >= settings.ElapsedToDesiredRatioMin;
 
-            bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, StringComparison.OrdinalIgnoreCase);
+            bool isNameOk = string.IsNullOrEmpty(SearchFilter) || task.Name.Contains(SearchFilter, IgnoreSearchCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
 
             bool isDateOk = DateFilter is null || task.TimeList.Any(time => time.Date == DateFilter?.Date);
 

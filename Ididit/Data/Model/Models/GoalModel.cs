@@ -44,6 +44,13 @@ public class GoalModel
 
     public List<TaskModel> TaskList = new();
 
+    public bool Contains(string text, bool ignoreCase)
+    {
+        StringComparison comparisonType = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+
+        return Name.Contains(text, comparisonType) || Details.Contains(text, comparisonType);
+    }
+
     public void UpdateDetailsMarkdownHtml()
     {
         DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);

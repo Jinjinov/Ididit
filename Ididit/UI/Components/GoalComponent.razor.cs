@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Ididit.UI.Components;
@@ -245,6 +246,22 @@ public partial class GoalComponent
     string MarkSearchResults(string text)
     {
         return text.Replace(Filters.SearchFilter, $"<mark class='hwt-mark'>{Filters.SearchFilter}</mark>");
+    }
+
+    public static string MarkSearchResults(string input, string searchTerm)
+    {
+        // Create a pattern to match the search term with case-insensitivity
+        string pattern = "(?i)" + Regex.Escape(searchTerm);
+
+        // Replace the search term with the marked version
+        return Regex.Replace(input, pattern, match =>
+        {
+            // Get the matched search term with its original case
+            string matchedTerm = match.Value;
+
+            // Add mark tag to the start and end of the matched term
+            return $"<mark class='hwt-mark'>{matchedTerm}</mark>";
+        });
     }
 
     string MarkSearchResultsInHtml(string text)

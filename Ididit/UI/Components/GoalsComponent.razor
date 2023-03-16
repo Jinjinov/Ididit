@@ -28,7 +28,7 @@
                 {
                     if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
                     {
-                        if (!goal.Name.Contains(Filters.SearchFilter) && !goal.Details.Contains(Filters.SearchFilter))
+                        if (!goal.Contains(Filters.SearchFilter, Filters.IgnoreSearchCase))
                             continue;
                     }
 
@@ -42,7 +42,7 @@
             {
                 if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
                 {
-                    if (!goal.Name.Contains(Filters.SearchFilter) && !goal.Details.Contains(Filters.SearchFilter))
+                    if (!goal.Contains(Filters.SearchFilter, Filters.IgnoreSearchCase))
                         continue;
                 }
 
