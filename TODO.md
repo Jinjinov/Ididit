@@ -8,10 +8,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- [ ] organize habits / Google Keep notes
-
 1.
-- [ ] sort goals by name
+- [ ] organize habits / Google Keep notes
 
 2.
 - [ ] Google Drive last backup date

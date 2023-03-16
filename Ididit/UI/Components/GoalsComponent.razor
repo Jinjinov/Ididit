@@ -24,7 +24,9 @@
                     <Button @key=category Margin=Margin.Is2.FromTop.Is2.FromEnd Color=Color.Primary Outline=true Size="Size.Small" @onclick="async () => await OnSelectedCategoryChanged(category)">@category.Name</Button>
                 }
 
-                @foreach (GoalModel goal in category.GoalList)
+                IEnumerable<GoalModel> goals = Settings.SortGoalsByName ? category.GoalList.OrderBy(g => g.Name) : category.GoalList;
+
+                @foreach (GoalModel goal in goals)
                 {
                     if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
                     {
@@ -38,7 +40,9 @@
         }
         else
         {
-            @foreach (GoalModel goal in SelectedCategory.GoalList)
+            IEnumerable<GoalModel> goals = Settings.SortGoalsByName ? SelectedCategory.GoalList.OrderBy(g => g.Name) : SelectedCategory.GoalList;
+
+            @foreach (GoalModel goal in goals)
             {
                 if (Settings.ShowAdvancedInput && !string.IsNullOrEmpty(Filters.SearchFilter))
                 {
