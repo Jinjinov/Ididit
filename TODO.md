@@ -8,8 +8,14 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-1.
 - [ ] organize habits / Google Keep notes
+
+1.
+- [ ] fix bug: Goal title is set to empty string
+
+- [ ] fix bug: filter stops working after 3 lines are selected in the Goal
+
+- [ ] don't select the space after a word
 
 2.
 - [ ] Google Drive last backup date
