@@ -6,7 +6,6 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- preserve empty lines in Markdown
 - use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
 
 - drag & drop Goal
