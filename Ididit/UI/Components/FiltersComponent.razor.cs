@@ -149,4 +149,12 @@ public partial class FiltersComponent
 
         await SettingsChanged.InvokeAsync(Settings);
     }
+
+    async Task OnSortGoalsByNameChanged(bool val)
+    {
+        Settings.SortGoalsByName = val;
+        await Repository.UpdateSettings(Settings.Id);
+
+        await SettingsChanged.InvokeAsync(Settings);
+    }
 }

@@ -255,7 +255,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 MaxWidth = settings.MaxWidth,
                 ShowAdvancedInput = settings.ShowAdvancedInput,
                 SelectLineWithCaret = settings.SelectLineWithCaret,
-                FilterBySelectedText = settings.FilterBySelectedText
+                FilterBySelectedText = settings.FilterBySelectedText,
+                SortGoalsByName = settings.SortGoalsByName
             };
 
             _settingsDict[settings.Id] = settings;
@@ -400,7 +401,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 MaxWidth = settings.MaxWidth,
                 ShowAdvancedInput = settings.ShowAdvancedInput,
                 SelectLineWithCaret = settings.SelectLineWithCaret,
-                FilterBySelectedText = settings.FilterBySelectedText
+                FilterBySelectedText = settings.FilterBySelectedText,
+                SortGoalsByName = settings.SortGoalsByName
             };
 
             if (!_settingsDict.ContainsKey(settingsEntity.Id))
@@ -524,7 +526,8 @@ internal class DatabaseAccess : IDatabaseAccess
             MaxWidth = settings.MaxWidth,
             ShowAdvancedInput = settings.ShowAdvancedInput,
             SelectLineWithCaret = settings.SelectLineWithCaret,
-            FilterBySelectedText = settings.FilterBySelectedText
+            FilterBySelectedText = settings.FilterBySelectedText,
+            SortGoalsByName = settings.SortGoalsByName
         };
 
         _settingsList.Add(settingsEntity);
@@ -662,6 +665,7 @@ internal class DatabaseAccess : IDatabaseAccess
             settingsEntity.ShowAdvancedInput = settings.ShowAdvancedInput;
             settingsEntity.SelectLineWithCaret = settings.SelectLineWithCaret;
             settingsEntity.FilterBySelectedText = settings.FilterBySelectedText;
+            settingsEntity.SortGoalsByName = settings.SortGoalsByName;
 
             await UpdateItems(new List<SettingsEntity> { settingsEntity });
         }

@@ -61,7 +61,7 @@
 </Field>
 
 <Field Margin=Margin.Is0.Is2.FromTop>
-    <FieldLabel Margin=Margin.Is0>@Localizer["Sort by"]:</FieldLabel>
+    <FieldLabel Margin=Margin.Is0>@Localizer["Sort tasks by"]:</FieldLabel>
 
     @if (IsApple)
     {
@@ -81,4 +81,8 @@
             }
         </Select>
     }
+</Field>
+
+<Field Margin=Margin.Is0.Is2.FromTop>
+    <Check TValue="bool" Checked="Settings.SortGoalsByName" CheckedChanged="OnSortGoalsByNameChanged">@Localizer["Sort goals by name"]</Check>
 </Field>

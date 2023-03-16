@@ -14,7 +14,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 - [ ] sort goals by name
 
 2.
-- [ ] Google drive last backup date
+- [ ] Google Drive last backup date
 
 3.
 - [ ] use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642

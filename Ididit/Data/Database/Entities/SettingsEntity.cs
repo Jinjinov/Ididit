@@ -86,4 +86,7 @@ internal class SettingsEntity
 
     [IndexDbIndex]
     public bool FilterBySelectedText { get; set; }
+
+    [IndexDbIndex]
+    public bool SortGoalsByName { get; set; }
 }

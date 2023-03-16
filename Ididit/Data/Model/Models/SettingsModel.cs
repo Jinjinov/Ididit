@@ -64,4 +64,6 @@ public class SettingsModel
     public bool SelectLineWithCaret { get; set; }
 
     public bool FilterBySelectedText { get; set; }
+
+    public bool SortGoalsByName { get; set; }
 }
