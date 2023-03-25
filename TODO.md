@@ -8,7 +8,10 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-- [ ] organize habits / Google Keep notes
+- [ ] start using ididit:
+    - organize categories
+    - organize habits / Google Keep notes
+    - start using tasks
 
 1.
 - [ ] fix bug: Goal title is set to empty string

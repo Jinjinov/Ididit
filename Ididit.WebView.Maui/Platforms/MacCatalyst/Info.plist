@@ -23,6 +23,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<!-- Specify the category for your app here. -->
+	<!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/lsapplicationcategorytype -->
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>XSAppIconAssets</key>
@@ -33,6 +35,8 @@
 	<string>ididit!</string>
 	<key>CFBundleName</key>
 	<string>ididit!</string>
+	<!-- The App store requires that ITSAppUsesNonExemptEncryption to be set -->
+	<!-- Please consult https://developer.apple.com/documentation/bundleresources/information_property_list/itsappusesnonexemptencryption -->
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 </dict>
