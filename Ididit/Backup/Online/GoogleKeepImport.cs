@@ -1,6 +1,7 @@
 ﻿using Ididit.Data;
 using Ididit.Data.Model.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -22,43 +23,25 @@ internal class GoogleKeepImport : IFileImport, IFileToString
 
     public async Task<string> GetString(Stream stream)
     {
+        List<GoogleKeepNote> googleKeepNotes = await GetGoogleKeepNotes(stream);
+
         string text = string.Empty;
 
-        MemoryStream memoryStream = new();
-
-        await stream.CopyToAsync(memoryStream);
-
-        ZipArchive archive = new(memoryStream);
-
-        foreach (ZipArchiveEntry entry in archive.Entries)
+        foreach (GoogleKeepNote googleKeepNote in googleKeepNotes.OrderByDescending(gkn => gkn.CreatedTimestampUsec))
         {
-            if (entry.FullName.EndsWith(".json", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(googleKeepNote.Title))
             {
-                await using Stream jsonStream = entry.Open();
+                string title = $"# {googleKeepNote.Title}";
+                text += string.IsNullOrEmpty(text) ? title : "\n" + "\n" + title;
+            }
+            else if (!string.IsNullOrEmpty(text))
+            {
+                text += "\n";
+            }
 
-                using StreamReader streamReader = new(jsonStream);
-
-                string jsonText = await streamReader.ReadToEndAsync();
-
-                GoogleKeepNote? googleKeepNote = JsonSerializer.Deserialize<GoogleKeepNote>(jsonText);
-
-                if (googleKeepNote is not null)
-                {
-                    if (!string.IsNullOrEmpty(googleKeepNote.Title))
-                    {
-                        string title = $"# {googleKeepNote.Title}";
-                        text += string.IsNullOrEmpty(text) ? title : "\n" + "\n" + title;
-                    }
-                    else if (!string.IsNullOrEmpty(text))
-                    {
-                        text += "\n";
-                    }
-
-                    if (!string.IsNullOrEmpty(googleKeepNote.TextContent))
-                    {
-                        text += string.IsNullOrEmpty(text) ? googleKeepNote.TextContent : "\n" + googleKeepNote.TextContent;
-                    }
-                }
+            if (!string.IsNullOrEmpty(googleKeepNote.TextContent))
+            {
+                text += string.IsNullOrEmpty(text) ? googleKeepNote.TextContent : "\n" + googleKeepNote.TextContent;
             }
         }
 
@@ -67,13 +50,55 @@ internal class GoogleKeepImport : IFileImport, IFileToString
 
     public async Task ImportData(Stream stream)
     {
+        List<GoogleKeepNote> googleKeepNotes = await GetGoogleKeepNotes(stream);
+
         CategoryModel category = _repository.Category;
 
+        foreach (GoogleKeepNote googleKeepNote in googleKeepNotes.OrderByDescending(gkn => gkn.CreatedTimestampUsec))
+        {
+            GoalModel goal = category.CreateGoal(_repository.NextGoalId, googleKeepNote.Title);
+            goal.Details = googleKeepNote.TextContent;
+
+            await _repository.AddGoal(goal);
+
+            TaskModel? task = null;
+
+            foreach (string line in goal.Details.Split('\n'))
+            {
+                if (task is not null && line.StartsWith("- "))
+                {
+                    bool add = task.AddDetail(line);
+
+                    if (add)
+                        task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
+
+                    await _repository.UpdateTask(task.Id);
+                }
+                else
+                {
+                    if (!goal.TaskList.Any())
+                    {
+                        goal.CreateTaskFromEachLine = true;
+                        await _repository.UpdateGoal(goal.Id);
+                    }
+
+                    task = goal.CreateTask(_repository.NextTaskId, line);
+
+                    await _repository.AddTask(task);
+                }
+            }
+        }
+    }
+
+    private static async Task<List<GoogleKeepNote>> GetGoogleKeepNotes(Stream stream)
+    {
         MemoryStream memoryStream = new();
 
         await stream.CopyToAsync(memoryStream);
 
         ZipArchive archive = new(memoryStream);
+
+        List<GoogleKeepNote> googleKeepNotes = new();
 
         foreach (ZipArchiveEntry entry in archive.Entries)
         {
@@ -89,39 +114,11 @@ internal class GoogleKeepImport : IFileImport, IFileToString
 
                 if (googleKeepNote is not null)
                 {
-                    GoalModel goal = category.CreateGoal(_repository.NextGoalId, googleKeepNote.Title);
-                    goal.Details = googleKeepNote.TextContent;
-
-                    await _repository.AddGoal(goal);
-
-                    TaskModel? task = null;
-
-                    foreach (string line in goal.Details.Split('\n'))
-                    {
-                        if (task is not null && line.StartsWith("- "))
-                        {
-                            bool add = task.AddDetail(line);
-
-                            if (add)
-                                task.DetailsText += string.IsNullOrEmpty(task.DetailsText) ? line : Environment.NewLine + line;
-
-                            await _repository.UpdateTask(task.Id);
-                        }
-                        else
-                        {
-                            if (!goal.TaskList.Any())
-                            {
-                                goal.CreateTaskFromEachLine = true;
-                                await _repository.UpdateGoal(goal.Id);
-                            }
-
-                            task = goal.CreateTask(_repository.NextTaskId, line);
-
-                            await _repository.AddTask(task);
-                        }
-                    }
+                    googleKeepNotes.Add(googleKeepNote);
                 }
             }
         }
+
+        return googleKeepNotes;
     }
 }
