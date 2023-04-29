@@ -95,7 +95,7 @@ export function setSelectionStartEnd(textarea, start, end) {
 }
 
 export function handleTabKey(textarea) {
-    if (!textarea.tabKeyHandlerAdded) {
+    if (textarea && !textarea.tabKeyHandlerAdded) {
         textarea.addEventListener('keydown', function (event) {
             if (event.key === 'Tab') {
                 event.preventDefault();
