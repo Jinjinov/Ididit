@@ -65,7 +65,7 @@
                             else
                             {
                                 <!-- set margin in Markdown HTML -->
-                                <Div Class="child-block-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
+                                <Div Class="child-block-margin" Style="white-space: pre;" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
                                     @((MarkupString)task.MarkdownHtml)
                                 </Div>
                             }
@@ -73,7 +73,7 @@
                             @if (!string.IsNullOrEmpty(task.DetailsText))
                             {
                                 <!-- set margin in Markdown HTML -->
-                                <Div Class="child-block-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
+                                <Div Class="child-block-margin" Style="white-space: pre;" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
                                     @((MarkupString)task.DetailsMarkdownHtml)
                                 </Div>
                             }
@@ -82,7 +82,7 @@
                     else if (!Settings.HideGoalsWithSimpleText)
                     {
                         <!-- set margin in Markdown HTML -->
-                        <Div Class="child-block-margin" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
+                        <Div Class="child-block-margin" Style="white-space: pre;" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
                             @if (string.IsNullOrEmpty(Filters.SearchFilter))
                             {
                                 @((MarkupString)Goal.DetailsMarkdownHtml)
