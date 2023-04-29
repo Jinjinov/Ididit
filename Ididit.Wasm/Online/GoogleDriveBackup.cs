@@ -9,8 +9,15 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace Ididit.Wasm.Online;
+
+internal class GoogleDriveFile
+{
+    [JsonPropertyName("modifiedTime")]
+    public DateTime ModifiedTime { get; set; }
+}
 
 internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
 {
@@ -146,6 +153,38 @@ internal class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
         }
 
         return file;
+    }
+
+    protected override async Task<DateTime> GetFileModifiedTime(string fileId)
+    {
+        AccessTokenResult tokenResult = await _tokenProvider.RequestAccessToken();
+
+        if (tokenResult.TryGetToken(out AccessToken token))
+        {
+            string url = $"https://www.googleapis.com/drive/v3/files/{fileId}?fields=modifiedTime";
+
+            HttpRequestMessage requestMessage = new()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(url),
+            };
+
+            requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token.Value);
+
+            HttpResponseMessage response = await _httpClient.SendAsync(requestMessage);
+
+            HttpStatusCode responseStatusCode = response.StatusCode;
+
+            if (responseStatusCode == HttpStatusCode.OK)
+            {
+                GoogleDriveFile? file = await response.Content.ReadFromJsonAsync<GoogleDriveFile>();
+
+                if (file is not null)
+                    return file.ModifiedTime.ToLocalTime();
+            }
+        }
+
+        return DateTime.MinValue;
     }
 
     protected override async Task<string> CreateFolder()

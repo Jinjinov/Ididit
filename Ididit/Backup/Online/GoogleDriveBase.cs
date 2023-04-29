@@ -96,7 +96,30 @@ public abstract class GoogleDriveBase : IGoogleDriveBackup
         }
     }
 
+    public async Task<DateTime> GetFileModifiedTime()
+    {
+        string folderId = await GetFolderId();
+
+        if (string.IsNullOrEmpty(folderId))
+        {
+            return DateTime.MinValue;
+        }
+
+        string fileId = await GetFileId(folderId);
+
+        if (string.IsNullOrEmpty(fileId))
+        {
+            return DateTime.MinValue;
+        }
+        else
+        {
+            return await GetFileModifiedTime(fileId);
+        }
+    }
+
     protected abstract Task<string> GetFile(string fileId);
+
+    protected abstract Task<DateTime> GetFileModifiedTime(string fileId);
 
     protected abstract Task<string> CreateFolder();
 

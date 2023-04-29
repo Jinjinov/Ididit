@@ -1,12 +1,13 @@
-﻿using Google.Apis.Drive.v3;
-using Ididit.Data;
+﻿using Google.Apis.Download;
+using Google.Apis.Drive.v3;
+using Google.Apis.Upload;
 using Ididit.Backup.Online;
+using Ididit.Data;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Google.Apis.Download;
-using Google.Apis.Upload;
 
 namespace Ididit.WebView.Online;
 
@@ -46,6 +47,22 @@ public class GoogleDriveBackup : GoogleDriveBase, IGoogleDriveBackup
         string text = await streamReader.ReadToEndAsync();
 
         return text;
+    }
+
+    protected override async Task<DateTime> GetFileModifiedTime(string fileId)
+    {
+        DriveService? service = await _googleDriveService.GetDriveService();
+
+        if (service is null)
+            return DateTime.MinValue;
+
+        FilesResource.GetRequest request = service.Files.Get(fileId);
+        request.Fields = "modifiedTime";
+
+        Google.Apis.Drive.v3.Data.File file = request.Execute();
+        DateTime modifiedTime = file.ModifiedTime ?? DateTime.MinValue;
+
+        return modifiedTime;
     }
 
     protected override async Task<string> CreateFolder()

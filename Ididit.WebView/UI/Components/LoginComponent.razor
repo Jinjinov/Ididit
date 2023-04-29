@@ -8,4 +8,8 @@ else
 {
     <span class="mr-1">@UserDisplayName.DisplayName</span>
     <button class="nav-link btn btn-link p-0 m-0 d-inline align-baseline shadow-none" @onclick="LogOut">Log out</button>
+    @if (_modifiedTime != default)
+    {
+        <div>Backup: @_modifiedTime</div>
+    }
 }

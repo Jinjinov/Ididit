@@ -18,10 +18,8 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 - [ ] fix bug: filter stops working after 3 lines are selected in the Goal
 
-- [ ] don't select the space after a word
-
 2.
-- [ ] Google Drive last backup date
+- [ ] don't select the space after a word
 
 3.
 - [ ] use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642

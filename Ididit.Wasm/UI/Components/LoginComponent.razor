@@ -6,6 +6,10 @@
         @context.User.Identity?.Name
         @*@GetUserDisplayName().Result*@
         <button class="nav-link btn btn-link p-0 m-0 d-inline align-baseline shadow-none" @onclick="BeginSignOut">Log out</button>
+        @if (_modifiedTime != default)
+        {
+            <div>Backup: @_modifiedTime</div>
+        }
     </Authorized>
     <NotAuthorized>
         <a href="authentication/login">Log in</a>
