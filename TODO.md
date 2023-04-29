@@ -22,7 +22,9 @@ a difference of 7px in Height and 14px in Width, header 31px
 - [ ] don't select the space after a word
 
 3.
-- [ ] use ReplaceTab in MemoEdit https://github.com/Megabit/Blazorise/issues/4642
+- ( ) Markdown in MemoEdit
+- ( ) Normal text in MemoEdit
+- ( ) Preserve tabs in MemoEdit
 
 -------------------------------------------------------------------------------
 
