@@ -107,6 +107,9 @@ export function handleTabKey(textarea) {
                 textarea.value = newValue;
 
                 textarea.setSelectionRange(start + 1, start + 1);
+
+                const inputEvent = new Event('input', { bubbles: true, cancelable: true });
+                textarea.dispatchEvent(inputEvent);
             }
         });
 
