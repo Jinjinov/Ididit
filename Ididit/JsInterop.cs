@@ -110,6 +110,12 @@ public sealed class JsInterop : IAsyncDisposable
         await module.InvokeAsync<Selection>("setSelectionStartEnd", element, start, end);
     }
 
+    public async ValueTask HandleTabKey(ElementReference element)
+    {
+        IJSObjectReference module = await _moduleTask.Value;
+        await module.InvokeAsync<Selection>("handleTabKey", element);
+    }
+
     public async ValueTask DisposeAsync()
     {
         if (_moduleTask.IsValueCreated)

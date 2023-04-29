@@ -93,3 +93,23 @@ export function setSelectionStartEnd(textarea, start, end) {
     textarea.selectionStart = start;
     textarea.selectionEnd = end;
 }
+
+export function handleTabKey(textarea) {
+    if (!textarea.tabKeyHandlerAdded) {
+        textarea.addEventListener('keydown', function (event) {
+            if (event.key === 'Tab') {
+                event.preventDefault();
+
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+
+                const newValue = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
+                textarea.value = newValue;
+
+                textarea.setSelectionRange(start + 1, start + 1);
+            }
+        });
+
+        textarea.tabKeyHandlerAdded = true;
+    }
+}

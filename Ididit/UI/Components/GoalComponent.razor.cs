@@ -67,6 +67,9 @@ public partial class GoalComponent
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+        if (_detailsEdit is not null)
+            await JsInterop.HandleTabKey(_detailsEdit.ElementRef);
+
         if (_shouldFocus && _nameEdit is not null)
         {
             _shouldFocus = false;
