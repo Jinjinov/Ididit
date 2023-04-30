@@ -166,6 +166,7 @@ a difference of 7px in Height and 14px in Width, header 31px
     - [X] https://alternativeto.net/
 
 App Store Optimization (ASO):
+- promotion inside the store
 - encourage your users to rate and review your app
 
 Public Relations:
