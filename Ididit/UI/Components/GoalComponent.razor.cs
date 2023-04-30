@@ -220,7 +220,7 @@ public partial class GoalComponent
     {
         Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
 
-        if (!Goal.CreateTaskFromEachLine)
+        if (Goal.DisplayAsMarkdown && !Goal.CreateTaskFromEachLine)
         {
             Goal.UpdateDetailsMarkdownHtml();
         }

@@ -158,7 +158,8 @@ internal class DatabaseAccess : IDatabaseAccess
                 PreviousId = goal.PreviousId,
                 Name = goal.Name,
                 Details = goal.Details,
-                CreateTaskFromEachLine = goal.CreateTaskFromEachLine
+                CreateTaskFromEachLine = goal.CreateTaskFromEachLine,
+                DisplayAsMarkdown = goal.DisplayAsMarkdown
             };
 
             _goalDict[goal.Id] = goal;
@@ -307,7 +308,8 @@ internal class DatabaseAccess : IDatabaseAccess
                     PreviousId = goal.PreviousId,
                     Name = goal.Name,
                     Details = goal.Details,
-                    CreateTaskFromEachLine = goal.CreateTaskFromEachLine
+                    CreateTaskFromEachLine = goal.CreateTaskFromEachLine,
+                    DisplayAsMarkdown = goal.DisplayAsMarkdown
                 };
 
                 if (!_goalDict.ContainsKey(goalEntity.Id))
@@ -438,7 +440,8 @@ internal class DatabaseAccess : IDatabaseAccess
             PreviousId = goal.PreviousId,
             Name = goal.Name,
             Details = goal.Details,
-            CreateTaskFromEachLine = goal.CreateTaskFromEachLine
+            CreateTaskFromEachLine = goal.CreateTaskFromEachLine,
+            DisplayAsMarkdown = goal.DisplayAsMarkdown
         };
 
         _goalList.Add(goalEntity);
@@ -562,6 +565,7 @@ internal class DatabaseAccess : IDatabaseAccess
             goalEntity.Name = goal.Name;
             goalEntity.Details = goal.Details;
             goalEntity.CreateTaskFromEachLine = goal.CreateTaskFromEachLine;
+            goalEntity.DisplayAsMarkdown = goal.DisplayAsMarkdown;
 
             await UpdateItems(new List<GoalEntity> { goalEntity });
         }

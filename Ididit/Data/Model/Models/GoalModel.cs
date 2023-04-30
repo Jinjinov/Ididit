@@ -26,7 +26,7 @@ public class GoalModel
         {
             _details = value;
 
-            if (!CreateTaskFromEachLine)
+            if (DisplayAsMarkdown && !CreateTaskFromEachLine)
                 UpdateDetailsMarkdownHtml();
         }
     }
@@ -42,6 +42,8 @@ public class GoalModel
 
     public bool CreateTaskFromEachLine { get; set; }
 
+    public bool DisplayAsMarkdown { get; set; }
+
     public List<TaskModel> TaskList = new();
 
     public bool Contains(string text, bool ignoreCase)
@@ -53,7 +55,7 @@ public class GoalModel
 
     public void UpdateDetailsMarkdownHtml()
     {
-        DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("\n", "");
+        DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
     }
 
     public TaskModel CreateTask(long id, string name)

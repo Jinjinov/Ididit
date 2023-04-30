@@ -89,6 +89,8 @@ internal class Examples : IExamples
             2. second item
             """;
 
+        markdownGoal.DisplayAsMarkdown = true;
+
         await _repository.AddGoal(markdownGoal);
     }
 

@@ -21,4 +21,7 @@ internal class GoalEntity
 
     [IndexDbIndex]
     public bool CreateTaskFromEachLine { get; set; }
+
+    [IndexDbIndex]
+    public bool DisplayAsMarkdown { get; set; }
 }
