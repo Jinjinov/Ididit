@@ -157,10 +157,12 @@ internal class DatabaseAccess : IDatabaseAccess
                 CategoryId = goal.CategoryId,
                 PreviousId = goal.PreviousId,
                 Name = goal.Name,
-                Details = goal.Details,
                 CreateTaskFromEachLine = goal.CreateTaskFromEachLine,
                 DisplayAsMarkdown = goal.DisplayAsMarkdown
             };
+
+            // must be after CreateTaskFromEachLine and DisplayAsMarkdown
+            goalModel.Details = goal.Details;
 
             _goalDict[goal.Id] = goal;
 
