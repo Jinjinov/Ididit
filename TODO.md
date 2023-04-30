@@ -16,15 +16,11 @@ a difference of 7px in Height and 14px in Width, header 31px
 1.
 - [ ] fix bug: Goal title is set to empty string
 
+2.
 - [ ] fix bug: filter stops working after 3 lines are selected in the Goal
 
-2.
-- [ ] don't select the space after a word
-
 3.
-- ( ) Markdown in MemoEdit
-- ( ) Normal text in MemoEdit
-- ( ) Preserve tabs in MemoEdit
+- [ ] don't select the space after a word
 
 -------------------------------------------------------------------------------
 
