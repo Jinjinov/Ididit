@@ -7,7 +7,7 @@ public enum TaskKind
     [Description("Note")]
     Note,
 
-    [Description("Task")]
+    [Description("Task")] // ASAP, DateTime, Opportunity
     Task,
 
     [Description("Repeating task")]
