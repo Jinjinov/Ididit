@@ -57,6 +57,12 @@ public partial class AdvancedInputComponent
 
     string _selectedAdvancedEditText = string.Empty;
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_advancedEdit is not null)
+            await JsInterop.HandleTabKey(_advancedEdit.ElementRef);
+    }
+
     public void OnTextChanged(string text)
     {
         AdvancedInputText = text;
