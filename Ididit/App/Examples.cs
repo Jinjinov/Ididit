@@ -43,12 +43,12 @@ internal class Examples : IExamples
         TaskModel neverDoneTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Low priority habit"], TimeSpan.FromDays(10), Priority.Low, TaskKind.RepeatingTask, null);
         TaskModel doneTwiceTask = tasksGoal.CreateTask(nextTaskId++, _localizer["Habit"], TimeSpan.FromDays(4), Priority.Medium, TaskKind.RepeatingTask, TimeSpan.FromMinutes(15));
 
+        tasksGoal.CreateTaskFromEachLine = true;
+
         foreach (TaskModel task in tasksGoal.TaskList)
         {
             tasksGoal.Details += string.IsNullOrEmpty(tasksGoal.Details) ? task.Name : Environment.NewLine + task.Name;
         }
-
-        tasksGoal.CreateTaskFromEachLine = true;
 
         await _repository.AddGoal(tasksGoal);
 
@@ -71,6 +71,7 @@ internal class Examples : IExamples
             await _repository.UpdateTask(taskId);
         }
 
+        markdownGoal.DisplayAsMarkdown = true;
         markdownGoal.Details =
             """
             # Markdown
@@ -88,8 +89,6 @@ internal class Examples : IExamples
             1. first item
             2. second item
             """;
-
-        markdownGoal.DisplayAsMarkdown = true;
 
         await _repository.AddGoal(markdownGoal);
     }
@@ -159,12 +158,12 @@ internal class Examples : IExamples
 
         foreach (GoalModel goal in goals)
         {
+            goal.CreateTaskFromEachLine = true;
+
             foreach (TaskModel task in goal.TaskList)
             {
                 goal.Details += string.IsNullOrEmpty(goal.Details) ? task.Name : Environment.NewLine + task.Name;
             }
-
-            goal.CreateTaskFromEachLine = true;
 
             await _repository.AddGoal(goal);
         }
