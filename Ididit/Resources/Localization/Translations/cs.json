@@ -65,6 +65,8 @@
 
     "Tasks": "úkoly",
     "This icon creates tasks from notes": "Touto ikonou vytvoříš úkol z poznámek",
+    "Markdown": "Markdown",
+    "This icon displays notes as Markdown": "Tato ikona zobrazuje poznámky jako Markdown",
     "Menu": "Menu",
     "This icon toggles the main menu": "Touto ikonou se přepíná hlavní menu",
     "Options": "Nastavení",
@@ -100,13 +102,13 @@
 
     "Directory": "Adresář",
     "Json": "Json",
-    "Markdown": "Markdown",
     "Tsv": "Tsv",
     "Yaml": "Yaml",
     "Google Drive": "Google Drive",
     "Show debug controls": "Zobraz debugovací ovladání",
     "Search, filter, sort": "Hledat, filtrovat, seřadit",
 
+    "Backup": "Záloha",
     "Load examples": "Načíst příklady",
     "Delete all": "Smazat vše",
     "Reset settings": "Vymazat nastavení",

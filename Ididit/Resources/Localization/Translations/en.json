@@ -65,6 +65,8 @@
 
     "Tasks": "Tasks",
     "This icon creates tasks from notes": "This icon creates tasks from notes",
+    "Markdown": "Markdown",
+    "This icon displays notes as Markdown": "This icon displays notes as Markdown",
     "Menu": "Menu",
     "This icon toggles the main menu": "This icon toggles the main menu",
     "Options": "Options",
@@ -100,13 +102,13 @@
 
     "Directory": "Directory",
     "Json": "Json",
-    "Markdown": "Markdown",
     "Tsv": "Tsv",
     "Yaml": "Yaml",
     "Google Drive": "Google Drive",
     "Show debug controls": "Show debug controls",
     "Search, filter, sort": "Search, filter, sort",
 
+    "Backup": "Backup",
     "Load examples": "Load examples",
     "Delete all": "Delete all",
     "Reset settings": "Reset settings",

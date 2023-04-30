@@ -65,6 +65,8 @@
 
     "Tasks": "Naloge",
     "This icon creates tasks from notes": "Ta ikona ustvari naloge iz opomb",
+    "Markdown": "Markdown",
+    "This icon displays notes as Markdown": "Ta ikona prikazuje zapiske kot Markdown",
     "Menu": "Meni",
     "This icon toggles the main menu": "Ta ikona preklopi glavni meni",
     "Options": "Možnosti",
@@ -100,13 +102,13 @@
 
     "Directory": "Direktorij",
     "Json": "Json",
-    "Markdown": "Markdown",
     "Tsv": "Tsv",
     "Yaml": "Yaml",
     "Google Drive": "Google Drive",
     "Show debug controls": "Prikaži kontrole za razhroščevanje",
     "Search, filter, sort": "Iskanje, filtriranje, razvrščanje",
 
+    "Backup": "Varnostna kopija",
     "Load examples": "Naloži primere",
     "Delete all": "Izbriši vse",
     "Reset settings": "Ponastavi nastavitve",

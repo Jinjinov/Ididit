@@ -65,6 +65,8 @@
 
     "Tasks": "Aufgaben",
     "This icon creates tasks from notes": "Dieses Symbol erstellt Aufgaben aus Notizen",
+    "Markdown": "Markdown",
+    "This icon displays notes as Markdown": "Dieses Symbol zeigt Notizen als Markdown an",
     "Menu": "Menü",
     "This icon toggles the main menu": "Dieses Symbol schaltet das Hauptmenü um",
     "Options": "Optionen",
@@ -100,13 +102,13 @@
 
     "Directory": "Verzeichnis",
     "Json": "Json",
-    "Markdown": "Markdown",
     "Tsv": "Tsv",
     "Yaml": "Yaml",
     "Google Drive": "Google Drive",
     "Show debug controls": "Debug-Steuerelemente anzeigen",
     "Search, filter, sort": "Suchen, filtern, sortieren",
 
+    "Backup": "Sicherung",
     "Load examples": "Beispiele laden",
     "Delete all": "Alles löschen",
     "Reset settings": "Einstellungen zurücksetzen",
