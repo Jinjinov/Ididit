@@ -53,7 +53,7 @@ public class GoalModel
 
     public void UpdateDetailsMarkdownHtml()
     {
-        DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline).Replace("\n", "");
+        DetailsMarkdownHtml = Markdown.ToHtml(_details, _markdownPipeline);
     }
 
     public TaskModel CreateTask(long id, string name)
