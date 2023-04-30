@@ -166,21 +166,13 @@ a difference of 7px in Height and 14px in Width, header 31px
     - [X] https://alternativeto.net/
 
 App Store Optimization (ASO):
-- App Annie https://www.data.ai/en/product/free-premium/
-- Sensor Tower https://app.sensortower.com/pricing/indie
 - encourage your users to rate and review your app
-
-Social Media Marketing:
-- Facebook, Twitter, Instagram, YouTube
-- create a Facebook page and an Instagram account for your app
 
 Public Relations:
 - media outlets and journalists
 - bloggers, podcasters, and magazines
 
 Influencer Marketing:
-- BuzzSumo https://buzzsumo.com/pricing/
-- Upfluence https://www.upfluence.com/pricing
 - ask them to create honest reviews, tutorials, or testimonials
 
 Search Ads:
