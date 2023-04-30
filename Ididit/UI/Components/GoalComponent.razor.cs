@@ -220,6 +220,18 @@ public partial class GoalComponent
     {
         Goal.CreateTaskFromEachLine = !Goal.CreateTaskFromEachLine;
 
+        await UpdateGoal();
+    }
+
+    async Task ToggleDisplayAsMarkdown()
+    {
+        Goal.DisplayAsMarkdown = !Goal.DisplayAsMarkdown;
+
+        await UpdateGoal();
+    }
+
+    private async Task UpdateGoal()
+    {
         if (Goal.DisplayAsMarkdown && !Goal.CreateTaskFromEachLine)
         {
             Goal.UpdateDetailsMarkdownHtml();

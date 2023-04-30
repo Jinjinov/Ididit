@@ -24,10 +24,12 @@ public class TaskModel
         {
             _name = value;
 
-            if (!string.IsNullOrEmpty(_name) && char.IsLetter(_name.First()))
-                MarkdownHtml = null;
-            else
-                MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline);
+            // TODO: I can't remember why would this be useful?
+
+            //if (!string.IsNullOrEmpty(_name) && char.IsLetter(_name.First()))
+            //    MarkdownHtml = null;
+            //else
+            //    MarkdownHtml = Markdown.ToHtml(_name, _markdownPipeline);
         }
     }
 
