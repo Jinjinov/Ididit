@@ -47,7 +47,7 @@ class Program
                 string path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Ididit", "Error.log");
                 System.IO.File.WriteAllText(path, message);
 
-                app.MainWindow.OpenAlertWindow("Error", message);
+                app.MainWindow.ShowMessage("Error", message);
             }
             catch
             {
