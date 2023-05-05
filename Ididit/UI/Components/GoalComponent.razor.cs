@@ -78,6 +78,24 @@ public partial class GoalComponent
         }
     }
 
+    async Task OnDoubleClick()
+    {
+        if (_detailsEdit is null)
+            return;
+
+        Selection selection = await JsInterop.GetSelectionStartEnd(_detailsEdit.ElementRef);
+
+        int end = selection.End;
+
+        while (end > selection.Start && Goal.Details[end - 1] == ' ')
+        {
+            end--;
+        }
+
+        if (end != selection.End)
+            await JsInterop.SetSelectionStartEnd(_detailsEdit.ElementRef, selection.Start, end);
+    }
+
     public void UpdateDetailsHeight()
     {
         if (_detailsEdit is null)

@@ -63,6 +63,24 @@ public partial class AdvancedInputComponent
             await JsInterop.HandleTabKey(_advancedEdit.ElementRef);
     }
 
+    async Task OnDoubleClick()
+    {
+        if (_advancedEdit is null)
+            return;
+
+        Selection selection = await JsInterop.GetSelectionStartEnd(_advancedEdit.ElementRef);
+
+        int end = selection.End;
+
+        while (end > selection.Start && AdvancedInputText[end - 1] == ' ')
+        {
+            end--;
+        }
+
+        if (end != selection.End)
+            await JsInterop.SetSelectionStartEnd(_advancedEdit.ElementRef, selection.Start, end);
+    }
+
     public void OnTextChanged(string text)
     {
         AdvancedInputText = text;

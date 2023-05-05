@@ -8,19 +8,16 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+1.
 - [ ] start using ididit:
     - organize categories
     - organize habits / Google Keep notes
-    - start using tasks
-
-1.
-- [ ] fix bug: Goal title is set to empty string
 
 2.
-- [ ] fix bug: filter stops working after 3 lines are selected in the Goal
+- [ ] fix bug: Goal title is set to empty string
 
 3.
-- [ ] don't select the space after a word
+- [ ] fix bug: filter stops working after 3 lines are selected in the Goal
 
 -------------------------------------------------------------------------------
 
