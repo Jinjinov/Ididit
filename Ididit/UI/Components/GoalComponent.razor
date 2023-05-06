@@ -105,14 +105,7 @@
                         else
                         {
                             <Div Style="white-space: pre-wrap;" Border=Border.Is1.RoundedZero Padding=Padding.Is1>
-                                @if (string.IsNullOrEmpty(Filters.SearchFilter))
-                                {
-                                    @(Goal.Details)
-                                }
-                                else
-                                {
-                                    @(MarkSearchResultsInHtml(Goal.Details))
-                                }
+                                @Goal.Details
                             </Div>
                         }
                     }

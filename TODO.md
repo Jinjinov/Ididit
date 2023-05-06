@@ -4,8 +4,6 @@ Screenshots dimensions should be: 1280x800 1440x900 2560x1600 2880x1800
 https://stackoverflow.com/questions/67972372/why-are-window-height-and-window-width-not-exact-c-wpf
 a difference of 7px in Height and 14px in Width, header 31px
 
-- android tablet screenshots - 2x (small, large)
-
 -------------------------------------------------------------------------------
 
 1.
@@ -17,7 +15,7 @@ a difference of 7px in Height and 14px in Width, header 31px
 - [ ] fix bug: Goal title is set to empty string
 
 3.
-- [ ] fix bug: filter stops working after 3 lines are selected in the Goal
+- android tablet screenshots - 2x (small, large)
 
 -------------------------------------------------------------------------------
 
@@ -173,7 +171,6 @@ Public Relations:
 Influencer Marketing:
 - ask them to create honest reviews, tutorials, or testimonials
 
-Search Ads:
 - [ ] add Google Ads
     - https://ads.google.com/
 
@@ -268,8 +265,6 @@ Search Ads:
 - [ ] help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
 
 ## VERY LOW PRIORITY:
-
-- [ ] fix "The given key '6' was not present in the dictionary" in DeleteTask() in OnTextChanged() - there are 2 tasks from one goal details line when typing too fast
 
 - [ ] https://blazorise.com/docs/components/repeater
     - The repeater component is a helper component that repeats the child content for each element in a collection.
