@@ -19,6 +19,46 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+    - note
+    - task
+        - ASAP
+        - date and time
+    - habit
+        - repeating interval
+        - always / every opportunity / occasion
+
+-------------------------------------------------------------------------------
+
+blazor united
+asp net core
+sql server
+markdown notes that don't truncate
+tabs - routes
+load on demand
+virtualized container
+method trace logging - performance 
+
+-------------------------------------------------------------------------------
+
+task is either ASAP or habit
+use either checkbox or one time action to permanently create a habit
+
+email: copy task list as HTML with checkboxes to clipboard
+sms, message: copy task list with Unicode checkboxes 
+
+copy Google Keep - don't truncate
+category - in your face, route friendly 
+[X] Category must be set when creating a new note
+- Category (tree view dropbox --> breadcrums)
+- Title
+- Note
+
+copy Loop Habit Tracker
+
+there is no point in accordian component - one action to open and one action to close is the same as next, previous - and it is not url route friendly 
+
+-------------------------------------------------------------------------------
+
 4.
 - [ ] drag & drop Goal
     - change order
