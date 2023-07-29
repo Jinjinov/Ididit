@@ -37,6 +37,10 @@ tabs - routes
 load on demand
 virtualized container
 method trace logging - performance 
+https://learn.microsoft.com/en-us/aspnet/core/blazor/performance
+
+https://github.com/dotnet/runtime/pull/77449
+https://github.com/dotnet/runtime/pull/77779
 
 -------------------------------------------------------------------------------
 
