@@ -19,13 +19,13 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-    - note
-    - task
-        - ASAP
-        - date and time
-    - habit
-        - repeating interval
-        - always / every opportunity / occasion
+- note
+- task
+    - ASAP
+    - date and time
+- habit
+    - repeating interval
+    - always / every opportunity / occasion
 
 -------------------------------------------------------------------------------
 
@@ -61,8 +61,14 @@ category - in your face, route friendly
 - Note
 
 copy Loop Habit Tracker
+- History (done count grouped by week, month, quarter, year)
+- Calendar (continuous year calendar, no breaks in months: 7 days -> 7 rows (horizontal scroll) or 7 columns (vertical scroll))
+- Best straks (from date - to date)
+- Frequency (by day of the week - continuous calendar, without dates, done count grouped by days of the week)
 
-there is no point in accordian component - one action to open and one action to close is the same as next, previous - and it is not url route friendly 
+there is no point in accordian component - one action to open and one action to close is the same as next, previous - and it is not url route friendly
+
+Goal progress: (done X tasks / total number of tasks) since (last time all tasks were done)
 
 -------------------------------------------------------------------------------
 
@@ -80,7 +86,7 @@ there is no point in accordian component - one action to open and one action to 
 -------------------------------------------------------------------------------
 
 6.
-- [ ] debug import / export on phones
+- [ ] debug import/export on phones
 
 7.
 - [ ] Maui Google Drive authentication:
