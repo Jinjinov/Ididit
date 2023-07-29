@@ -40,6 +40,13 @@ method trace logging - performance
 
 -------------------------------------------------------------------------------
 
+do NOT add tasks that you ALWAYS do
+do NOT add tasks that you NEVER do
+
+color coded priorities
+
+showing DesiredInterval is a bad idea - no consequences (interval doesn't change) - show AverageInterval
+
 task is either ASAP or habit
 use either checkbox or one time action to permanently create a habit
 
@@ -232,7 +239,7 @@ Influencer Marketing:
 
 - [ ] benchmark method performance
 
-- [ ] Set max task column width - slider range: 500 - 1000
+- [ ] For "max task column width" use Slider range: 500 - 1000
 
 - [ ] sort Tasks ascending / descending
 
@@ -247,6 +254,7 @@ Influencer Marketing:
 - [ ] fix AddCategoryList(List<CategoryModel> categoryList)
     - in Repository and DatabaseAccess
     - first search for existing Entity / Model and merge / overwrite, then add
+
     - add class Map / Mapper with Entity <-> Model mapping
 
 - [ ] composition over inheritance: class Note, class Task, class RepeatingTask
@@ -263,18 +271,7 @@ Influencer Marketing:
 
 - [ ] mobile: show sub-categories in Goal list
 
-- [ ] every line that StartsWith("- ") is a task detail - edit in another MemoEdit inside TaskComponent
-
-- [ ] DirectoryBackup save Task Details
-
-- [ ] task obstacle: weak point -> Habit / Task -> reason for not doing it -> solution
-- [ ] solution = Task.Details - when, where, name, address, phone number, working hours, website, email
-- [ ] possible to do the task:
-    - anytime
-    - free time
-    - during work week open hours
-    - during weekend
-    - when opportunity arises
+- [ ] procrastinating? take the first step, write down: when, where, name, address, phone number, working hours, website, email
 
 - [ ] Tizen: keyboard arrow down can change focus to next textarea
 
@@ -293,16 +290,11 @@ Influencer Marketing:
 
 ## LOW PRIORITY:
 
-- [ ] task priority (must, should, can) - importance / urgency - (scale 1-10) - (low / med / high)
-- [ ] sort by priority (must, should, can) - importance / urgency
-
 - [ ] weekly category goal (do X tasks from this category)
 - [ ] statistics (did X tasks from this category)
 - [ ] graphs (number of tasks over time)
 
 - [ ] show "Task done times" in a Calendar/Scheduler, not a List
-
-- [ ] help: product tour: customer onboarding: Pendo, UserPilot, HelpHero, Appcues
 
 ## VERY LOW PRIORITY:
 
