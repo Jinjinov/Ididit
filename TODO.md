@@ -32,8 +32,15 @@ a difference of 7px in Height and 14px in Width, header 31px
 blazor united
 asp net core
 sql server
+
 markdown notes that don't truncate
 tabs - routes
+
+BlazorWasmProfiler
+- don't use `event` to refresh everything on every change
+- don't use `StateHasChanged()`
+- fix this: current screen changed -> save current screen to settings -> data changed -> refresh all
+
 load on demand
 virtualized container
 method trace logging - performance 
@@ -315,7 +322,7 @@ Influencer Marketing:
 
 - [X] Icon:
     - https://favicon.io/favicon-generator/
-    - ก!
+    - ยก!
     - Circle
     - Miltonian
     - Regular 400 Normal
