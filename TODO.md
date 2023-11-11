@@ -54,6 +54,16 @@ https://github.com/dotnet/runtime/pull/77779
 do NOT add tasks that you ALWAYS do
 do NOT add tasks that you NEVER do
 
+- one in all, jack of all trades, master of none
+- tasks and habits mixed
+- too many tasks - should be one task with interval and sub-tasks
+- missing Trash
+
+- tasks with very low imporance
+- tasks that i never do
+- tasks that don't need a reminder
+- tasks with interval longer than 7 days
+
 color coded priorities
 
 showing DesiredInterval is a bad idea - no consequences (interval doesn't change) - show AverageInterval
