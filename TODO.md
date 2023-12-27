@@ -6,11 +6,6 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-1.
-- [ ] start using ididit:
-    - organize categories
-    - organize habits / Google Keep notes
-
 2.
 - [ ] fix bug: Goal title is set to empty string
 
@@ -18,23 +13,6 @@ a difference of 7px in Height and 14px in Width, header 31px
 - android tablet screenshots - 2x (small, large)
 
 -------------------------------------------------------------------------------
-
-- note
-- task
-    - ASAP
-    - date and time
-- habit
-    - repeating interval
-    - always / every opportunity / occasion
-
--------------------------------------------------------------------------------
-
-blazor united
-asp net core
-sql server
-
-markdown notes that don't truncate
-tabs - routes
 
 BlazorWasmProfiler
 - don't use `event` to refresh everything on every change
@@ -51,43 +29,11 @@ https://github.com/dotnet/runtime/pull/77779
 
 -------------------------------------------------------------------------------
 
-do NOT add tasks that you ALWAYS do
-do NOT add tasks that you NEVER do
-
-- one in all, jack of all trades, master of none
-- tasks and habits mixed
-- too many tasks - should be one task with interval and sub-tasks
-- missing Trash
-
-- tasks with very low imporance
-- tasks that i never do
-- tasks that don't need a reminder
-- tasks with interval longer than 7 days
-
-color coded priorities
-
-showing DesiredInterval is a bad idea - no consequences (interval doesn't change) - show AverageInterval
-
-task is either ASAP or habit
-use either checkbox or one time action to permanently create a habit
-
-email: copy task list as HTML with checkboxes to clipboard
-sms, message: copy task list with Unicode checkboxes 
-
-copy Google Keep - don't truncate
-category - in your face, route friendly 
-[X] Category must be set when creating a new note
-- Category (tree view dropbox --> breadcrums)
-- Title
-- Note
-
 copy Loop Habit Tracker
 - History (done count grouped by week, month, quarter, year)
 - Calendar (continuous year calendar, no breaks in months: 7 days -> 7 rows (horizontal scroll) or 7 columns (vertical scroll))
 - Best straks (from date - to date)
 - Frequency (by day of the week - continuous calendar, without dates, done count grouped by days of the week)
-
-there is no point in accordian component - one action to open and one action to close is the same as next, previous - and it is not url route friendly
 
 Goal progress: (done X tasks / total number of tasks) since (last time all tasks were done)
 
