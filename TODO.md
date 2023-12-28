@@ -14,17 +14,13 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
-BlazorWasmProfiler
-- don't use `event` to refresh everything on every change
-- don't use `StateHasChanged()`
-- fix this: current screen changed -> save current screen to settings -> data changed -> refresh all
-
-load on demand
 virtualized container
 method trace logging - performance 
 https://learn.microsoft.com/en-us/aspnet/core/blazor/performance
 
+[wasm] browser profiler
 https://github.com/dotnet/runtime/pull/77449
+[wasm] browser profiler (again)
 https://github.com/dotnet/runtime/pull/77779
 
 -------------------------------------------------------------------------------
@@ -54,6 +50,8 @@ Goal progress: (done X tasks / total number of tasks) since (last time all tasks
 
 6.
 - [ ] debug import/export on phones
+    - separate import/export
+    - import should have a file type filter *.json not *.*
 
 7.
 - [ ] Maui Google Drive authentication:
