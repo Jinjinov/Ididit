@@ -6,11 +6,40 @@ a difference of 7px in Height and 14px in Width, header 31px
 
 -------------------------------------------------------------------------------
 
+1.
+BlazorWasmProfiler
+
+    Ididit.csproj
+        <PackageReference Include="BlazorWasmProfiler" Version="0.0.1" />
+
+    HelpComponent.razor
+        <BlazorWasmProfiler.MethodCallStatistics/>
+        <BlazorWasmProfiler.RenderTimeStatistics/>
+
+    Services.cs
+        using BlazorWasmProfiler;
+        [assembly: BlazorTimer]
+
 2.
-- [ ] fix bug: Goal title is set to empty string
+fix bug: Goal title is set to empty string
+
+    public class GoalModel
+        private string _name = string.Empty;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                if (value == "" && _details != "")
+                {
+                    int i = 0;
+                }
+            }
+        }
 
 3.
-- android tablet screenshots - 2x (small, large)
+android tablet screenshots - 2x (small, large)
 
 -------------------------------------------------------------------------------
 
