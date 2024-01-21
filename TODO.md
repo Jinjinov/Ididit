@@ -309,6 +309,6 @@ Influencer Marketing:
     - Circle
     - Miltonian
     - Regular 400 Normal
-    - 110
-    - #EEEEEE
-    - #333333
+    - font size 110
+    - font color #EEEEEE
+    - background color #333333
