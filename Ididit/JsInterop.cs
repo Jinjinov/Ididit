@@ -64,7 +64,7 @@ public sealed class JsInterop : IAsyncDisposable
         byte[] data = Encoding.UTF8.GetBytes(content);
 
         IJSObjectReference module = await _moduleTask.Value;
-        await module.InvokeAsync<object>("saveAsFile", filename, Convert.ToBase64String(data));
+        await module.InvokeVoidAsync("saveAsFile", filename, Convert.ToBase64String(data));
     }
 
     public async ValueTask<NodeContent?> ReadDirectoryFiles()
@@ -107,13 +107,13 @@ public sealed class JsInterop : IAsyncDisposable
     public async ValueTask SetSelectionStartEnd(ElementReference element, int start, int end)
     {
         IJSObjectReference module = await _moduleTask.Value;
-        await module.InvokeAsync<Selection>("setSelectionStartEnd", element, start, end);
+        await module.InvokeVoidAsync("setSelectionStartEnd", element, start, end);
     }
 
     public async ValueTask HandleTabKey(ElementReference element)
     {
         IJSObjectReference module = await _moduleTask.Value;
-        await module.InvokeAsync<Selection>("handleTabKey", element);
+        await module.InvokeVoidAsync("handleTabKey", element);
     }
 
     public async ValueTask DisposeAsync()
