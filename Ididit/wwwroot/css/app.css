@@ -14,15 +14,18 @@ mark {
     color: transparent !important;
 }
 
+/* For parent of hwt-highlights */
 .hwt-backdrop {
     z-index: 1;
 }
 
+/* In front of hwt-backdrop and hwt-highlights */
 .hwt-textarea {
     z-index: 2;
     background-color: transparent !important;
 }
 
+/* Behind hwt-textarea */
 .hwt-highlights {
     color: transparent !important;
     white-space: pre-wrap;
