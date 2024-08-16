@@ -6,6 +6,8 @@ https://ididit.today/
 The procrastination friendly habit tracker.  
 Take notes, manage tasks, track habits.
 
+# New version: https://github.com/Jinjinov/OpenHabitTracker
+
 * * *
 
 ididit! is free, open source and works on Web, Windows, Linux, Android, iOS and macOS!
